@@ -1,0 +1,3 @@
+{
+    "files": ["test.py","mainwindow.py","form.ui","FreeCADTemplate.py","KiCADTemplate.py"]
+}
