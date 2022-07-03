@@ -3,6 +3,7 @@ import os
 
 def numToABC(num):
     retStr = "";
+    num -= 1
     #       1    2    3    4    5    6    7    8    9    10   11   12   13   14   15   16   17   18   21  20   21   22   23   24
     abc = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     ABC = [0];
@@ -85,23 +86,23 @@ class StandardDraw:
 
     def drawISO5457_ISO700_A(self):
         sizeStringFile = self.SIZE_STRING.replace(' ', '_')
-        filename = sizeStringFile + '_ISO_5457-1999_ISO_7200-2004'
+        filename = sizeStringFile + '_ISO5457_ISO7200'
         if self.NUM_OPT_LINES > 0:
             filename += '+' + str(self.NUM_OPT_LINES)
         if self.REV_HISTORY:
-            filename +='_ASME_Y14-35-2014_rev_history_' + str(self.NUMREVISIONS)
+            filename +='_rh+' + str(self.NUMREVISIONS)
         if self.FOLD_LINES:
-            filename += '_DIN_824-A-1981_folding_lines'
+            filename += '_fl'
         if self.FULL_PARTS_LIST:
-            filename += '_full_sheet_parts_list'
+            filename += '_fspl'
             if self.FULL_PARTS_LIST_SMALL_LINES:
-                filename += '_small_lines'
+                filename += '_sl'
             if self.FULL_PARTS_LIST_NUM_SHEETS > 1:
-                filename += '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS) + '_sheets'
+                filename += '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS) + '_sh'
         if self.SMALL_PARTS_LIST:
-            filename += '_small_parts_list_' + str(self.SMALL_PARTS_LIST_NUM_LINES) + '_lines'
+            filename += '_spl+' + str(self.SMALL_PARTS_LIST_NUM_LINES)
         if self.COLOR != '#000000':
-            filename += '_color_hex_' + self.COLOR.replace('#', '')
+            filename += '_c_' + self.COLOR.replace('#', '')
         print(filename)
 
         try:
