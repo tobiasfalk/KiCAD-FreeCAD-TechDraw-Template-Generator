@@ -11,8 +11,8 @@ You also should install the osifont: https://github.com/hikikomori82/osifont
 After you installed you run the mainwindow.py with python 3(I tested it with 3.6.15 on opensuse 15.2)
 ## Limitations
 ### KiCAD
-- Not able to change the font
-- text height is not he same as the real height
+- Not able to change the font(with 7(6.99) posable)
+- text height is not he same as the real height(with 7(6.99) posable)
 
 ### FreeCAD
 - SVG text height is not he same as the real height
