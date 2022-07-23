@@ -253,10 +253,10 @@ class StandardDraw:
         dwg.text(text = 'Document number', position = (width - 50 + 0.5, height - 43 + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-non-editable")
         dwg.text(text = '%C6', position = (width - 50 + 0.5, height - 43 + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
         dwg.text(text = 'Titel, Supplementary titel', position = (width - 110 + 0.5, height - 43 + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-non-editable")
-        dwg.text(text = 'T2', position = (width - 110 + 0.5, height - 43 + 3 + 12.5), tsize = 7, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
+        dwg.text(text = '%C8', position = (width - 110 + 0.5, height - 43 + 3 + 12.5), tsize = 7, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
         dwg.text(text = '%T', position = (width - 110 + 0.5, height - 43 + 3 + 12.5 + 12.5), tsize = 7, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
         dwg.text(text = 'Legal owner', position = (width - 190 + 0.5, height - 43 + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-non-editable")
-        dwg.text(text = 'Y2', position = (width - 190 + 0.5, height - 43 + 3 + 12.5), tsize = 7, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
+        dwg.text(text = '%C7', position = (width - 190 + 0.5, height - 43 + 3 + 12.5), tsize = 7, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
         dwg.text(text = '%Y', position = (width - 190 + 0.5, height - 43 + 3 + 12.5 + 12.5), tsize = 7, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
         dwg.text(text = 'Approved by', position = (width - 190 + 0.5, height - 54 + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-non-editable")
         dwg.text(text = '%C1', position = (width - 190 + 0.5, height - 54 + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
@@ -276,10 +276,10 @@ class StandardDraw:
         for i in range(self.NUM_OPT_LINES):
             dwg.line(start=(width - 10, height - 65 - (11 * i)), end=(width - 190, height - 65 - (11 * i)), linewidth = 0.35, color = color, group = "titleblock-structure")
             if i == 0:
-                dwg.text(text = '%C7', position = (width - 190 + 0.5, height - 65 - (11 * (i + 1)) + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
-                dwg.text(text = '%C8', position = (width - 190 + 0.5, height - 65 - (11 * (i + 1)) + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
+                dwg.text(text = 'A', position = (width - 190 + 0.5, height - 65 - (11 * (i + 1)) + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
+                dwg.text(text = 'B', position = (width - 190 + 0.5, height - 65 - (11 * (i + 1)) + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
                 dwg.text(text = 'Raw dimensions', position = (width - 110 + 0.5, height - 65 - (11 * (i + 1)) + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
-                dwg.text(text = '%C9', position = (width - 110 + 0.5, height - 65 - (11 * (i + 1)) + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
+                dwg.text(text = 'C', position = (width - 110 + 0.5, height - 65 - (11 * (i + 1)) + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
                 dwg.text(text = 'Scale', position = (width - 50 + 0.5, height - 65 - (11 * (i + 1)) + 3), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
                 dwg.text(text = '1:1', position = (width - 50 + 0.5, height - 65 - (11 * (i + 1)) + 3 + 6.25), tsize = 3.5, linewidth = 0.35, color = color, heightAnchor = 'start', widthAnchor = 'start', group = "titleblock-text-editable")
             elif i == 1:
