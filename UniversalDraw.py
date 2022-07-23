@@ -172,12 +172,17 @@ class UniversalDraw:
     #                                                                                                                          middle                middle
     def text(self, text = "Dummy text", position = (0, 0), tsize = 0, linewidth = 0.15, color = '#000000', heightAnchor = 'start', widthAnchor = 'start', group = "nogroupe"):
         if heightAnchor == 'middle':
-            posHeightSVG = position[1] + (tsize*(3/10))/3
+            posHeightSVG = position[1] + ((tsize*(3/10))/3)
+        elif heightAnchor == 'top':
+            posHeightSVG = position[1] + tsize
         else:
             posHeightSVG = position[1]
 
         if heightAnchor == 'middle':
-            posHeightFeecad = position[1] + (tsize*(3/10)) + (tsize*(3/10))/3
+            posHeightFeecad = position[1] + ((tsize*(3/10))) + ((tsize*(3/10))/3)
+            print(((tsize*(3/10))) + ((tsize*(3/10))/3))
+        elif heightAnchor == 'top':
+            posHeightFeecad = position[1] + tsize
         else:
             posHeightFeecad = position[1]
 

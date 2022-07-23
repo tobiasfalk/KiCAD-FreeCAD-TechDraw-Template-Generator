@@ -56,6 +56,8 @@ class KiCAD5Template:
 
         if heightAnchor == 'start' and widthAnchor == 'start':
             anchor = '(justify bottom)'
+        elif heightAnchor == 'top' and widthAnchor == 'start':
+            anchor = '(justify top)'
         elif heightAnchor == 'middle' and widthAnchor == 'start':
             anchor = ''
         elif heightAnchor == 'start' and widthAnchor == 'middle':
@@ -116,6 +118,8 @@ class KiCAD6Template:
 
         if heightAnchor == 'start' and widthAnchor == 'start':
             anchor = '(justify bottom)'
+        elif heightAnchor == 'top' and widthAnchor == 'start':
+            anchor = '(justify top)'
         elif heightAnchor == 'middle' and widthAnchor == 'start':
             anchor = ''
         elif heightAnchor == 'start' and widthAnchor == 'middle':
@@ -177,6 +181,8 @@ class KiCAD7Template:
         if heightAnchor == 'start' and widthAnchor == 'start':
             anchor = '(justify bottom)'
             position= (position[0], position[1] + size[1]*(3/10))
+        elif heightAnchor == 'top' and widthAnchor == 'start':
+            anchor = '(justify top)'
         elif heightAnchor == 'middle' and widthAnchor == 'start':
             anchor = ''
         elif heightAnchor == 'start' and widthAnchor == 'middle':

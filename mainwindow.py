@@ -166,7 +166,7 @@ class MainWindow(QObject):
         print("Small Parts List: " + str(smallPartsList))
 
         stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        stdDraw.drawISO5457_ISO700_A()
+        stdDraw.drawISO5457_ISO700_B()
 
 
 if __name__ == "__main__":
