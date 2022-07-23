@@ -180,7 +180,6 @@ class UniversalDraw:
 
         if heightAnchor == 'middle':
             posHeightFeecad = position[1] + ((tsize*(3/10))) + ((tsize*(3/10))/3)
-            print(((tsize*(3/10))) + ((tsize*(3/10))/3))
         elif heightAnchor == 'top':
             posHeightFeecad = position[1] + tsize
         else:
