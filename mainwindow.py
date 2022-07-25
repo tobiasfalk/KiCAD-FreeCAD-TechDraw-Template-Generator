@@ -148,6 +148,7 @@ class MainWindow(QObject):
         style = self.window.SheetStyleComboBox.itemData(self.window.SheetStyleComboBox.currentIndex())
         if self.window.SheetSizeComboBox.currentText() == 'User defined':
             sizeString = self.window.NameLineEdit.text()
+            size = (self.window.sheetWidthDoubleSpinBox.value(), self.window.sheetHeightDoubleSpinBox.value())
         else:
             sizeString = self.window.SheetSizeComboBox.currentText()
         color = self.window.ColorLineEdit.text()

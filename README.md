@@ -19,3 +19,6 @@ After you installed you run the mainwindow.py with python 3(I tested it with 3.6
 
 ### FreeCAD
 - SVG text height is not he same as the real height
+
+### PDF
+- The text in the editable(form) is not centered if needed and a other font
