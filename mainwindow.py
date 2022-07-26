@@ -161,6 +161,7 @@ class MainWindow(QObject):
         smallPartsList = self.window.SmallPartsListCheckBox.isChecked()
         smallPartsListNumLines = self.window.SmallPartsListSpinBox.value()
         numRevisions = self.window.numRevSpinBox.value()
+        numPages = self.window.FullPartsListNumSheetsSpinBox.value()
 
         print("Generate:")
         print("Size: " + str(size))
@@ -174,8 +175,9 @@ class MainWindow(QObject):
         print("Full Parts List Small Felds: " + str(fullPartsListSmall))
         print("Full Parts List Num. Sheets: " + str(fullPartsListNumSheets))
         print("Small Parts List: " + str(smallPartsList))
+        print("numPages: " + str(numPages))
 
-        stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
+        stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines, numPages = numPages)
         if style == 0:
             stdDraw.drawISO5457_ISO700_A()
         elif style == 1:

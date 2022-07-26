@@ -18,6 +18,7 @@ from reportlab.graphics import renderPDF
 class PDFTemplate:
     FILE = None
     SIZE = (0,0)
+    INDEX = -1
     #                                                  With   Height
     def __init__(self,filename = 'noname.pdf', size = (100, 200), linewidth = 0.15, left_margin = 20, right_margin = 10, top_margin = 10, bottom_margin = 10):
         # get osifont from:
@@ -82,8 +83,11 @@ class PDFTemplate:
         self.FILE.rect(self.SIZE[0] * mm, self.SIZE[1] * mm, -10 * mm, -5 * mm, fill = 1)
 
     #                                                                                                                        
-    def text(self, text = "Dummy text", name = 'dummy', position = (0, 0), size = 5, linewidth = 0.15, heightAnchor = 'start', widthAnchor = 'start', editable = False, width=30):
+    def text(self, text = "Dummy text", position = (0, 0), size = 5, linewidth = 0.15, heightAnchor = 'start', widthAnchor = 'start', editable = False, width=30, id = '-1'):
         self.FILE.setLineWidth(linewidth * mm)
+        
+        if id == '-1':
+            id = str(self.INDEX)
         
         #if not editable:
         bSize = size
@@ -105,7 +109,7 @@ class PDFTemplate:
             self.FILE.setFont("osifont", size*mm)
             self.FILE.drawCentredString(position[0] * mm, hpos * mm, text)
         pass
-        
+    
         if editable:
             if widthAnchor == 'start':
                 wpos = position[0]
@@ -114,7 +118,7 @@ class PDFTemplate:
             else:
                 wpos = position[0]
             form = self.FILE.acroForm
-            form.textfieldRelative(name=name, tooltip='',
+            form.textfieldRelative(name = str(id), tooltip='',
                    value = text,
                    fontName='Helvetica', fontSize= size*mm,
                    height=size * mm,
@@ -123,4 +127,8 @@ class PDFTemplate:
                    borderColor=black, fillColor=transparent, 
                    width = width * mm,
                    textColor=black)
-    
+
+            self.INDEX -=1
+            
+    def newPage(self):
+        self.FILE.showPage()

@@ -31,6 +31,8 @@ class UniversalDraw:
     DXF = None
     DXF_MSP = None
     PDF = None
+    
+    PDF_ONLY = False
     def __init__(self, size = (100, 100), filename = 'export'):
         self.SIZE = size
         self.FILENAME = filename
@@ -77,216 +79,246 @@ class UniversalDraw:
         self.DXF.saveas(self.FILENAME + '.dxf')
 
     def line(self, start=(0, 0), end=(10, 0), linewidth = 0.15, color = '#000000', group = "nogroupe"):
-        self.KICAD5.line(start = start, end = end, linewidth = linewidth);
-        self.KICAD6.line(start = start, end = end, linewidth = linewidth);
-        self.KICAD7.line(start = start, end = end, linewidth = linewidth);
-        fObj = self.FREECAD.line(start = (start[0], start[1]), end = (end[0], end[1]), stroke_width = linewidth*mm, style = 'stroke:' + color + ';stroke-linecap:miter;stroke-miterlimit:4;fill:none')
-        sObj = self.SVG.line(start = (start[0]*mm, start[1]*mm), end = (end[0]*mm, end[1]*mm), stroke_width = linewidth*mm, style = 'stroke:' + color + ';stroke-linecap:miter;stroke-miterlimit:4;fill:none')
-        self.DXF_MSP.add_line((start[0], (self.SIZE[1] - start[1])), (end[0], (self.SIZE[1] - end[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
-        
-        self.PDF.line(start = (start[0], self.SIZE[1] - start[1]), end = (end[0], self.SIZE[1] - end[1]), linewidth = linewidth)
+        if not self.PDF_ONLY:
+            self.KICAD5.line(start = start, end = end, linewidth = linewidth);
+            self.KICAD6.line(start = start, end = end, linewidth = linewidth);
+            self.KICAD7.line(start = start, end = end, linewidth = linewidth);
+            fObj = self.FREECAD.line(start = (start[0], start[1]), end = (end[0], end[1]), stroke_width = linewidth*mm, style = 'stroke:' + color + ';stroke-linecap:miter;stroke-miterlimit:4;fill:none')
+            sObj = self.SVG.line(start = (start[0]*mm, start[1]*mm), end = (end[0]*mm, end[1]*mm), stroke_width = linewidth*mm, style = 'stroke:' + color + ';stroke-linecap:miter;stroke-miterlimit:4;fill:none')
+            self.DXF_MSP.add_line((start[0], (self.SIZE[1] - start[1])), (end[0], (self.SIZE[1] - end[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
+            
+            self.PDF.line(start = (start[0], self.SIZE[1] - start[1]), end = (end[0], self.SIZE[1] - end[1]), linewidth = linewidth)
 
-        if group == 'sheet-border':
-            self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
-            self.SVG_GROUP_SHEET_BORDER.add(sObj)
-        elif group == 'titleblock-structure':
-            self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
-        elif group == 'titleblock-text-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
-        elif group == 'titleblock-text-non-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
-        else:
-            self.FREECAD.add(fObj)
-            self.SVG.add(sObj)
+            if group == 'sheet-border':
+                self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
+                self.SVG_GROUP_SHEET_BORDER.add(sObj)
+            elif group == 'titleblock-structure':
+                self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
+            elif group == 'titleblock-text-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
+            elif group == 'titleblock-text-non-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
+            else:
+                self.FREECAD.add(fObj)
+                self.SVG.add(sObj)
+        else:    
+            self.PDF.line(start = (start[0], self.SIZE[1] - start[1]), end = (end[0], self.SIZE[1] - end[1]), linewidth = linewidth)
 
 
 
     def rect(self, start=(0, 0), end=(0, 0), linewidth = 0.15, color = '#000000', group = "nogroupe"):
-        self.KICAD5.rect(start = start, end = end, linewidth = linewidth)
-        self.KICAD6.rect(start = start, end = end, linewidth = linewidth)
-        self.KICAD7.rect(start = start, end = end, linewidth = linewidth)
-        fObj = self.FREECAD.rect(insert = (start[0], start[1]), size = ((end[0]-start[0]), (end[1]-start[1])), style = 'stroke:' + color + ';stroke-linecap:miter;stroke-width:' + str(linewidth) + 'mm;stroke-miterlimit:4;fill:none')
-        sObj = self.SVG.rect(insert = (start[0]*mm, start[1]*mm), size = ((end[0]-start[0])*mm, (end[1]-start[1])*mm), style = 'stroke:' + color + ';stroke-linecap:miter;stroke-width:' + str(linewidth) + 'mm;stroke-miterlimit:4;fill:none')
+        if not self.PDF_ONLY:
+            self.KICAD5.rect(start = start, end = end, linewidth = linewidth)
+            self.KICAD6.rect(start = start, end = end, linewidth = linewidth)
+            self.KICAD7.rect(start = start, end = end, linewidth = linewidth)
+            fObj = self.FREECAD.rect(insert = (start[0], start[1]), size = ((end[0]-start[0]), (end[1]-start[1])), style = 'stroke:' + color + ';stroke-linecap:miter;stroke-width:' + str(linewidth) + 'mm;stroke-miterlimit:4;fill:none')
+            sObj = self.SVG.rect(insert = (start[0]*mm, start[1]*mm), size = ((end[0]-start[0])*mm, (end[1]-start[1])*mm), style = 'stroke:' + color + ';stroke-linecap:miter;stroke-width:' + str(linewidth) + 'mm;stroke-miterlimit:4;fill:none')
+            
+            self.PDF.rect(start = (start[0], self.SIZE[1] - start[1]), end = (end[0], self.SIZE[1] - end[1]), linewidth = linewidth)
 
-        self.DXF_MSP.add_line((start[0], (self.SIZE[1] - start[1])), (start[0], (self.SIZE[1] - end[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
-        self.DXF_MSP.add_line((start[0], (self.SIZE[1] - end[1])),   (end[0], (self.SIZE[1] - end[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
-        self.DXF_MSP.add_line((end[0], (self.SIZE[1] - end[1])),     (end[0], (self.SIZE[1] - start[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
-        self.DXF_MSP.add_line((end[0], (self.SIZE[1] - start[1])),   (start[0], (self.SIZE[1] - start[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
-        
-        self.PDF.rect(start = (start[0], self.SIZE[1] - start[1]), end = (end[0], self.SIZE[1] - end[1]), linewidth = linewidth)
+            self.DXF_MSP.add_line((start[0], (self.SIZE[1] - start[1])), (start[0], (self.SIZE[1] - end[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
+            self.DXF_MSP.add_line((start[0], (self.SIZE[1] - end[1])),   (end[0], (self.SIZE[1] - end[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
+            self.DXF_MSP.add_line((end[0], (self.SIZE[1] - end[1])),     (end[0], (self.SIZE[1] - start[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
+            self.DXF_MSP.add_line((end[0], (self.SIZE[1] - start[1])),   (start[0], (self.SIZE[1] - start[1])), dxfattribs={"color": 7, "lineweight":(linewidth*100)});
 
-        if group == 'sheet-border':
-            self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
-            self.SVG_GROUP_SHEET_BORDER.add(sObj)
-        elif group == 'titleblock-structure':
-            self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
-        elif group == 'titleblock-text-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
-        elif group == 'titleblock-text-non-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
+            if group == 'sheet-border':
+                self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
+                self.SVG_GROUP_SHEET_BORDER.add(sObj)
+            elif group == 'titleblock-structure':
+                self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
+            elif group == 'titleblock-text-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
+            elif group == 'titleblock-text-non-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
+            else:
+                self.FREECAD.add(fObj)
+                self.SVG.add(sObj)
         else:
-            self.FREECAD.add(fObj)
-            self.SVG.add(sObj)
+            self.PDF.rect(start = (start[0], self.SIZE[1] - start[1]), end = (end[0], self.SIZE[1] - end[1]), linewidth = linewidth)
 
     def polygon(self, position = (0, 0), linewidth = 0, points = [(0, 0), (10, 0), (10, 5), (5, 5), (5, 10), (0, 10), (0, 0)], color = '#000000', fill = 'none', group = "nogroupe"):
-        points_offset = []
-        for p in points:
-            x = (p[0] + position[0])
-            y = (p[1] + position[1])
-            points_offset.append((x, y))
+        if not self.PDF_ONLY:
+            points_offset = []
+            for p in points:
+                x = (p[0] + position[0])
+                y = (p[1] + position[1])
+                points_offset.append((x, y))
 
-        points_offset_svg = []
-        for p in points:
-            x = (p[0] + position[0])*mm
-            y = (p[1] + position[1])*mm
-            points_offset_svg.append((x, y))
+            points_offset_svg = []
+            for p in points:
+                x = (p[0] + position[0])*mm
+                y = (p[1] + position[1])*mm
+                points_offset_svg.append((x, y))
 
-        points_offset_dxf = []
-        for p in points:
-            x = (p[0] + position[0])
-            y = (self.SIZE[1] - (p[1] + position[1]))
-            points_offset_dxf.append((x, y))
+            points_offset_dxf = []
+            for p in points:
+                x = (p[0] + position[0])
+                y = (self.SIZE[1] - (p[1] + position[1]))
+                points_offset_dxf.append((x, y))
 
-        hatch = self.DXF_MSP.add_hatch(dxfattribs={"color": 7});
-        hatch.paths.add_polyline_path(points_offset_dxf, is_closed=True)
-        self.KICAD5.polygon(position = (0, 0), rotation = 0, linewidth = linewidth, points = points_offset)
-        self.KICAD6.polygon(position = (0, 0), rotation = 0, linewidth = linewidth, points = points_offset)
-        self.KICAD7.polygon(position = (0, 0), rotation = 0, linewidth = linewidth, points = points_offset)
-        fObj = self.FREECAD.polygon(points = points_offset, style = 'stroke:' + color + ';stroke-width:' + str(linewidth) + 'mm;stroke-linecap:miter;stroke-miterlimit:4;fill:' + fill + '')
-        sObj = self.SVG.polygon(points = points_offset, style = 'stroke:' + color + ';stroke-width:' + str(linewidth) + 'mm;stroke-linecap:miter;stroke-miterlimit:4;fill:' + fill + '', transform="scale(3.7795)")
+            hatch = self.DXF_MSP.add_hatch(dxfattribs={"color": 7});
+            hatch.paths.add_polyline_path(points_offset_dxf, is_closed=True)
+            self.KICAD5.polygon(position = (0, 0), rotation = 0, linewidth = linewidth, points = points_offset)
+            self.KICAD6.polygon(position = (0, 0), rotation = 0, linewidth = linewidth, points = points_offset)
+            self.KICAD7.polygon(position = (0, 0), rotation = 0, linewidth = linewidth, points = points_offset)
+            fObj = self.FREECAD.polygon(points = points_offset, style = 'stroke:' + color + ';stroke-width:' + str(linewidth) + 'mm;stroke-linecap:miter;stroke-miterlimit:4;fill:' + fill + '')
+            sObj = self.SVG.polygon(points = points_offset, style = 'stroke:' + color + ';stroke-width:' + str(linewidth) + 'mm;stroke-linecap:miter;stroke-miterlimit:4;fill:' + fill + '', transform="scale(3.7795)")
 
-        if group == 'sheet-border':
-            self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
-            self.SVG_GROUP_SHEET_BORDER.add(sObj)
-        elif group == 'titleblock-structure':
-            self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
-        elif group == 'titleblock-text-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
-        elif group == 'titleblock-text-non-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
-        else:
-            self.FREECAD.add(fObj)
-            self.SVG.add(sObj)
+            if group == 'sheet-border':
+                self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
+                self.SVG_GROUP_SHEET_BORDER.add(sObj)
+            elif group == 'titleblock-structure':
+                self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
+            elif group == 'titleblock-text-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
+            elif group == 'titleblock-text-non-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
+            else:
+                self.FREECAD.add(fObj)
+                self.SVG.add(sObj)
 
     #                                                                                                                          middle                middle
-    def text(self, text = "Dummy text", position = (0, 0), tsize = 0, linewidth = 0.15, color = '#000000', heightAnchor = 'start', widthAnchor = 'start', group = "nogroupe", width = 65):
-        if heightAnchor == 'middle':
-            posHeightSVG = position[1] + ((tsize*(3/10))/3)
-        elif heightAnchor == 'top':
-            posHeightSVG = position[1] + tsize
-        else:
-            posHeightSVG = position[1]
+    def text(self, text = "Dummy text", position = (0, 0), tsize = 0, linewidth = 0.15, color = '#000000', heightAnchor = 'start', widthAnchor = 'start', group = "nogroupe", width = 65, id = -1):
+        if not self.PDF_ONLY:
+            if heightAnchor == 'middle':
+                posHeightSVG = position[1] + ((tsize*(3/10))/3)
+            elif heightAnchor == 'top':
+                posHeightSVG = position[1] + tsize
+            else:
+                posHeightSVG = position[1]
 
-        if heightAnchor == 'middle':
-            posHeightFeecad = position[1] + ((tsize*(3/10))) + ((tsize*(3/10))/3)
-        elif heightAnchor == 'top':
-            posHeightFeecad = position[1] + tsize
-        else:
-            posHeightFeecad = position[1]
+            if heightAnchor == 'middle':
+                posHeightFeecad = position[1] + ((tsize*(3/10))) + ((tsize*(3/10))/3)
+            elif heightAnchor == 'top':
+                posHeightFeecad = position[1] + tsize
+            else:
+                posHeightFeecad = position[1]
 
 
-        anchor = ''
-        anchorI = 0
-        posDXF = (position[0], (self.SIZE[1] - (position[1])))
-        if heightAnchor == 'start' and widthAnchor == 'start':
-            posDXF = ((position[0] + .6), (self.SIZE[1] - (position[1] + 1.12)))
-            anchor = 'BOTTOM_LEFT'
-            anchorI = 7
-        elif heightAnchor == 'middle' and widthAnchor == 'start':
-            posDXF = ((position[0] + .6), (self.SIZE[1] - (position[1] + 1.12)))
-            anchor = 'MIDDLE_LEFT'
-            anchorI = 4
-        elif heightAnchor == 'start' and widthAnchor == 'middle':
-            anchor = ' BOTTOM_CENTER'
-            anchorI = 8
-        elif heightAnchor == 'middle' and widthAnchor == 'middle':
-            anchor = 'MIDDLE_CENTER'
-            anchorI = 5
+            anchor = ''
+            anchorI = 0
+            posDXF = (position[0], (self.SIZE[1] - (position[1])))
+            if heightAnchor == 'start' and widthAnchor == 'start':
+                posDXF = ((position[0] + .6), (self.SIZE[1] - (position[1] + 1.12)))
+                anchor = 'BOTTOM_LEFT'
+                anchorI = 7
+            elif heightAnchor == 'middle' and widthAnchor == 'start':
+                posDXF = ((position[0] + .6), (self.SIZE[1] - (position[1] + 1.12)))
+                anchor = 'MIDDLE_LEFT'
+                anchorI = 4
+            elif heightAnchor == 'start' and widthAnchor == 'middle':
+                anchor = ' BOTTOM_CENTER'
+                anchorI = 8
+            elif heightAnchor == 'middle' and widthAnchor == 'middle':
+                anchor = 'MIDDLE_CENTER'
+                anchorI = 5
 
-        if text.find('\n') >= 0:
-            letters =  text.split('\n')
-            sObj = self.SVG.text('', insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-            lIndex = 0
-            for l in letters:
-                #sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-                if lIndex < len(letters)/2:
-                    sObj.add(self.SVG.tspan(l.replace('\n', ''), insert=(position[0]*mm, (posHeightSVG - (tsize*(3/10) + tsize/2))*mm)))
-                elif lIndex >= (len(letters)/2):
-                    sObj.add(self.SVG.tspan(l.replace('\n', ''), insert=(position[0]*mm, (posHeightSVG + (tsize*(3/10) + tsize/2))*mm)))
-                lIndex += 1
-        else:
-            sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-
-        if text != '%D':
-            self.KICAD5.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 0.5, tsize - 0.5), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-            self.KICAD6.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 0.5, tsize - 0.5), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-        else:
-            self.KICAD5.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 1, tsize - 1), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-            self.KICAD6.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 1, tsize - 1), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-        
-        self.KICAD7.text(text = text, position = (position[0], position[1]), size = (tsize,tsize), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-        
-        self.DXF_MSP.add_mtext(text, dxfattribs={"color": 7, "lineweight":(linewidth*100), 'char_height': (tsize),'style': 'iso', 'insert': posDXF, 'attachment_point': anchorI})#.set_pos(posDXF, align=anchor)
-
-        if group == 'titleblock-text-editable':
             if text.find('\n') >= 0:
                 letters =  text.split('\n')
-                #fObj = self.FREECAD.text_editable('', insert=(position[0], posHeightFeecad), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-                fObj = self.FREECAD.g()
+                sObj = self.SVG.text('', insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
                 lIndex = 0
                 for l in letters:
                     #sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
                     if lIndex < len(letters)/2:
-                        fObj.add(self.FREECAD.text_editable(l, insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))#self.SVG.tspan(l.replace('\n', ''), insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2)))))
+                        sObj.add(self.SVG.tspan(l.replace('\n', ''), insert=(position[0]*mm, (posHeightSVG - (tsize*(3/10) + tsize/2))*mm)))
                     elif lIndex >= (len(letters)/2):
-                        fObj.add(self.FREECAD.text_editable(l, insert=(position[0], (posHeightFeecad + (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))
+                        sObj.add(self.SVG.tspan(l.replace('\n', ''), insert=(position[0]*mm, (posHeightSVG + (tsize*(3/10) + tsize/2))*mm)))
                     lIndex += 1
             else:
-                fObj = self.FREECAD.text_editable(text, insert=(position[0], posHeightFeecad), font_size=str(tsize + (tsize*(3/10))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-        else:
-            if text.find('\n') >= 0:
-                letters =  text.split('\n')
-                #fObj = self.FREECAD.text('', insert=(position[0], posHeightFeecad), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-                fObj = self.FREECAD.g()
-                lIndex = 0
-                for l in letters:
-                    #sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-                    if lIndex < len(letters)/2:
-                        fObj.add(self.FREECAD.text(l, insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))#self.SVG.tspan(l.replace('\n', ''), insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2)))))
-                        self.PDF.text(text = l, position = (position[0], self.SIZE[1] - position[1] + (tsize*(3/10) + tsize/2)), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-                    elif lIndex >= (len(letters)/2):
-                        fObj.add(self.FREECAD.text(l, insert=(position[0], (posHeightFeecad + (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))
-                        self.PDF.text(text = l, position = (position[0], self.SIZE[1] - position[1] - (tsize*(3/10) + tsize/2)), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
-                    lIndex += 1
-            else:
-                fObj = self.FREECAD.text(text, insert=(position[0], posHeightFeecad), font_size=str(tsize + (tsize*(3/10))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
-                self.PDF.text(text = text, position = (position[0], self.SIZE[1] - position[1]), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
 
-        if group == 'sheet-border':
-            self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
-            self.SVG_GROUP_SHEET_BORDER.add(sObj)
-        elif group == 'titleblock-structure':
-            self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
-        elif group == 'titleblock-text-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
-            self.PDF.text(text = text, position = (position[0], self.SIZE[1] - position[1]), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor, editable=True, width = width)
-        elif group == 'titleblock-text-non-editable':
-            self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
-            self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
+            if text != '%D':
+                self.KICAD5.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 0.5, tsize - 0.5), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                self.KICAD6.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 0.5, tsize - 0.5), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+            else:
+                self.KICAD5.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 1, tsize - 1), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                self.KICAD6.text(text = text, position = (position[0] - 0.3, position[1]), size = (tsize - 1, tsize - 1), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+            
+            self.KICAD7.text(text = text, position = (position[0], position[1]), size = (tsize,tsize), linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+            
+            self.DXF_MSP.add_mtext(text, dxfattribs={"color": 7, "lineweight":(linewidth*100), 'char_height': (tsize),'style': 'iso', 'insert': posDXF, 'attachment_point': anchorI})#.set_pos(posDXF, align=anchor)
+
+            if group == 'titleblock-text-editable':
+                if text.find('\n') >= 0:
+                    letters =  text.split('\n')
+                    #fObj = self.FREECAD.text_editable('', insert=(position[0], posHeightFeecad), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
+                    fObj = self.FREECAD.g()
+                    lIndex = 0
+                    for l in letters:
+                        #sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
+                        if lIndex < len(letters)/2:
+                            fObj.add(self.FREECAD.text_editable(l, insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))#self.SVG.tspan(l.replace('\n', ''), insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2)))))
+                        elif lIndex >= (len(letters)/2):
+                            fObj.add(self.FREECAD.text_editable(l, insert=(position[0], (posHeightFeecad + (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))
+                        lIndex += 1
+                else:
+                    fObj = self.FREECAD.text_editable(text, insert=(position[0], posHeightFeecad), font_size=str(tsize + (tsize*(3/10))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
+            else:
+                if text.find('\n') >= 0:
+                    letters =  text.split('\n')
+                    #fObj = self.FREECAD.text('', insert=(position[0], posHeightFeecad), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
+                    fObj = self.FREECAD.g()
+                    lIndex = 0
+                    for l in letters:
+                        #sObj = self.SVG.text(text, insert=(position[0]*mm, posHeightSVG*mm), font_size=str((tsize + (tsize*(3/10)))*mm), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
+                        if lIndex < len(letters)/2:
+                            fObj.add(self.FREECAD.text(l, insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))#self.SVG.tspan(l.replace('\n', ''), insert=(position[0], (posHeightFeecad - (tsize*(3/10) + tsize/2)))))
+                            self.PDF.text(text = l, position = (position[0], self.SIZE[1] - position[1] + (tsize*(3/10) + tsize/2)), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                        elif lIndex >= (len(letters)/2):
+                            fObj.add(self.FREECAD.text(l, insert=(position[0], (posHeightFeecad + (tsize*(3/10) + tsize/2))), font_size=str((tsize + (tsize*(3/10)))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont'))
+                            self.PDF.text(text = l, position = (position[0], self.SIZE[1] - position[1] - (tsize*(3/10) + tsize/2)), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                        lIndex += 1
+                else:
+                    fObj = self.FREECAD.text(text, insert=(position[0], posHeightFeecad), font_size=str(tsize + (tsize*(3/10))), fill=color, style='text-anchor:' + widthAnchor + ';dominant-baseline:' + heightAnchor + ';font-family:osifont')
+                    self.PDF.text(text = text, position = (position[0], self.SIZE[1] - position[1]), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+
+            if group == 'sheet-border':
+                self.FREECAD_GROUP_SHEET_BORDER.add(fObj)
+                self.SVG_GROUP_SHEET_BORDER.add(sObj)
+            elif group == 'titleblock-structure':
+                self.FREECAD_GROUP_TITLEBLOCK_STRUCTURE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_STRUCTURE.add(sObj)
+            elif group == 'titleblock-text-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_EDITABLE.add(sObj)
+                self.PDF.text(text = text, position = (position[0], self.SIZE[1] - position[1]), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor, editable=True, width = width, id = id)
+            elif group == 'titleblock-text-non-editable':
+                self.FREECAD_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(fObj)
+                self.SVG_GROUP_TITLEBLOCK_TEXT_NON_EDITABLE.add(sObj)
+            else:
+                self.FREECAD.add(fObj)
+                self.SVG.add(sObj)
+                
         else:
-            self.FREECAD.add(fObj)
-            self.SVG.add(sObj)
+            if group == 'titleblock-text-editable':
+                self.PDF.text(text = text, position = (position[0], self.SIZE[1] - position[1]), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor, editable=True, width = width, id = id)
+            else:
+                if text.find('\n') >= 0:
+                    letters =  text.split('\n')
+                    lIndex = 0
+                    for l in letters:
+                        if lIndex < len(letters)/2:
+                            self.PDF.text(text = l, position = (position[0], self.SIZE[1] - position[1] + (tsize*(3/10) + tsize/2)), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                        elif lIndex >= (len(letters)/2):
+                            self.PDF.text(text = l, position = (position[0], self.SIZE[1] - position[1] - (tsize*(3/10) + tsize/2)), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+                        lIndex += 1
+                else:
+                    self.PDF.text(text = text, position = (position[0], self.SIZE[1] - position[1]), size = tsize, linewidth = linewidth, heightAnchor = heightAnchor, widthAnchor = widthAnchor)
+
+
 
     def drawCorners(self):
         self.PDF.drawCorners()
+    
+    def newPage(self):
+        self.PDF.newPage()
+        self.PDF_ONLY = True
