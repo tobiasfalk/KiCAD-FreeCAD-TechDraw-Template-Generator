@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459787.7270486113
+2459787.807372685
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459787.7270486113
+2459787.8073958335
   9
 $TDUUPDATE
  40
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-62B935E8-0CF7-11ED-A76D-08606E47A897
+8BC733F8-0D07-11ED-B720-08606E47A897
   9
 $VERSIONGUID
   2
-62DB52AE-0CF7-11ED-A76D-08606E47A897
+8C725B7A-0D07-11ED-B720-08606E47A897
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2839,8 +2839,7 @@ STYLE
 100
 AcDbSymbolTableRecord
 100
-AcDbTextStyleTableRecord
-  2
+AcDbTextStyleTableRecord  2
 LiberationSerif-Bold
  70
 0
@@ -4706,7 +4705,7 @@ BLOCK_RECORD
 AcDbSymbolTableRecord
 100
 AcDbBlockTableRecord
-  2
+   2
 *Paper_Space
 340
 1E
@@ -6501,8 +6500,7 @@ AcDbEntity
 370
 35
 100
-AcDbLine
- 10
+AcDbLine  10
 670.5
  20
 5.0
@@ -8383,8 +8381,7 @@ MTEXT
   5
 F4
 330
-17
-100
+17100
 AcDbEntity
   8
 0
@@ -10158,7 +10155,7 @@ Document state
 iso
   0
 MTEXT
-  5
+   5
 130
 330
 17
@@ -11933,8 +11930,7 @@ MTEXT
 330
 17
 100
-AcDbEntity
-  8
+AcDbEntity   8
 0
  62
 7
@@ -13695,8 +13691,7 @@ Model
  25
 183.204
  35
-0.0
-146
+0.0146
 0.0
  13
 0.0
@@ -15058,3 +15053,4 @@ X-Ray
 ENDSEC
   0
 EOF
+

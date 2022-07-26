@@ -1,3 +1,7 @@
+#!/usr/bin/python
+
+import multiprocessing
+
 from StandardDraw import StandardDraw
 
 SHEET_SIZES =  [#["ISO 216 4A0",            (2378, 1682)],
@@ -56,28 +60,67 @@ def createSheet(size, sizeString, color, numOptLines, revHistory, numRevisions, 
     stdDraw.drawISO5457_ISO700_A()
     
 def revHist(size, sizeString, numOptLines, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines):
-    #False
-    createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = False, numRevisions = 0, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-    createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = False, numRevisions = 0, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-    createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = False, numRevisions = 0, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-    createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = False, numRevisions = 0, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
+    try:
+        #False
+        p1 = multiprocessing.Process(target=createSheet, args=(size, sizeString,'#000000', numOptLines, False, 0, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+        p2 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, False, 0, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+        p3 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, False, 0, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+        p4 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, False, 0, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+        p1.start()
+        p2.start()
+        p3.start()
+        p4.start()
+        #True
+        if not fullPartsList:
+            p5 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 1, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p6 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 1, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p7 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 1, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p8 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 1, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p5.start()
+            p6.start()
+            p7.start()
+            p8.start()
+            
+            p9 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 2, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p10 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 2, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p11 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 2, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p12 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 2, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p9.start()
+            p10.start()
+            p11.start()
+            p12.start()
+            
+            p13 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 3, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p14 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 3, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p15 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 3, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p16 = multiprocessing.Process(target=createSheet, args=(size, sizeString, '#000000', numOptLines, True, 3, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines))
+            p13.start()
+            p14.start()
+            p15.start()
+            p16.start()
+
+        p1.join()
+        p2.join()
+        p3.join()
+        p4.join()
+        
+        p5.join()
+        p6.join()
+        p7.join()
+        p8.join()
+        
+        p9.join()
+        p10.join()
+        p11.join()
+        p12.join()
+        
+        p13.join()
+        p14.join()
+        p15.join()
+        p16.join()
     
-    #True
-    if not fullPartsList:
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 1, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 1, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 1, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 1, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 2, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 2, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 2, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 2, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 3, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 3, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 3, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
-        createSheet(size = size, sizeString = sizeString, color = '#000000', numOptLines = numOptLines, revHistory = True, numRevisions = 3, foldLinesDIN824_A = foldLinesDIN824_A, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
+    except:
+        print( "Error: unable to start thread")
 
 def optLines(size, sizeString, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines):
     revHist(size, sizeString, 0, foldLinesDIN824_A, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines)

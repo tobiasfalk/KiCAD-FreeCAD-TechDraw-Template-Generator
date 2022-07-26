@@ -1,3 +1,7 @@
+#!/usr/bin/python
+
+import thread
+
 # This Python file uses the following encoding: utf-8
 import os
 from pathlib import Path
