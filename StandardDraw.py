@@ -27,11 +27,13 @@ def numToABC(num):
 class StandardDraw:
     SIZE = None
     SIZE_STRING = None
+    CUTTING_MARKS = True
     COLOR = '#000000'
     NUM_OPT_LINES = 0
     REV_HISTORY = False
     NUMREVISIONS = 0
-    FOLD_LINES = False
+    FOLD_LINES_DIN824_A = False
+    FOLD_LINES_200_X_290 = False
     FULL_PARTS_LIST = False
     FULL_PARTS_LIST_SMALL_LINES = False
     FULL_PARTS_LIST_NUM_SHEETS = 1
@@ -51,14 +53,16 @@ class StandardDraw:
 
     DWG = None
 
-    def __init__(self, size = (100, 100), sizeString = 'User defined', color = '#000000', numOptLines = 0, revHistory = False, numRevisions = 0, foldLines = False, fullPartsList = False, fullPartsListSmallLines = False, fullPartsListNumSheets = 1, smallPartsList = False, smallPartsListNumLines = 1):
+    def __init__(self, size = (100, 100), sizeString = 'User defined', cuttingMarks = True, color = '#000000', numOptLines = 0, revHistory = False, numRevisions = 0, foldLinesDIN824_A = False, foldLines200x290 = False, fullPartsList = False, fullPartsListSmallLines = False, fullPartsListNumSheets = 1, smallPartsList = False, smallPartsListNumLines = 1):
         self.SIZE = size
         self.SIZE_STRING = sizeString
+        self.CUTTING_MARKS = cuttingMarks
         self.COLOR = color
         self.NUM_OPT_LINES = numOptLines
         self.REV_HISTORY = revHistory
         self.NUMREVISIONS = numRevisions
-        self.FOLD_LINES = foldLines
+        self.FOLD_LINES_DIN824_A = foldLinesDIN824_A
+        self.FOLD_LINES_200_X_290 = foldLines200x290
         self.FULL_PARTS_LIST = fullPartsList
         self.FULL_PARTS_LIST_SMALL_LINES = fullPartsListSmallLines
         self.FULL_PARTS_LIST_NUM_SHEETS = fullPartsListNumSheets
@@ -78,8 +82,9 @@ class StandardDraw:
             print('\tRevision History(revHistory)')
             print('\tSmall Parts list abouv the header(smallPartsList)')
             print('The mentined complications ver set to false or to the right value')
-        if self.FOLD_LINES and not self.SIZE in self.SHEET_SIZES_ISO_216_A:
-            self.FOLD_LINES = False
+        if (self.FOLD_LINES_DIN824_A or self.FOLD_LINES_200_X_290) and not self.SIZE in self.SHEET_SIZES_ISO_216_A:
+            self.FOLD_LINES_DIN824_A = False
+            self.FOLD_LINES_200_X_290 = False
             print('Sheet szise not in DIN 824-A present, option was disabled')
 
     def __del__(self):
@@ -88,12 +93,16 @@ class StandardDraw:
     def drawISO5457_ISO700_A(self):
         sizeStringFile = self.SIZE_STRING.replace(' ', '_')
         filename = sizeStringFile + '_ISO5457_ISO7200_A'
+        if not self.CUTTING_MARKS:
+            filename += '_ncm'
         if self.NUM_OPT_LINES > 0:
             filename += '+' + str(self.NUM_OPT_LINES)
         if self.REV_HISTORY:
             filename +='_rh+' + str(self.NUMREVISIONS)
-        if self.FOLD_LINES:
-            filename += '_fl'
+        if self.FOLD_LINES_DIN824_A:
+            filename += '_fl_DIN824_A'
+        if self.FOLD_LINES_200_X_290:
+            filename += '_fl_200x290'
         if self.FULL_PARTS_LIST:
             filename += '_fspl'
             if self.FULL_PARTS_LIST_SMALL_LINES:
@@ -128,17 +137,18 @@ class StandardDraw:
         width = size[0];
 
         # Cutting marks
-        # Top Left
-        self.DWG.polygon(linewidth = 0.0, points = [(0, 0), (10, 0), (10, 5), (5, 5), (5, 10), (0, 10), (0, 0)], color = color, fill = color, group = "sheet-border")
-        # Top Right
-        self.DWG.polygon(linewidth = 0.0, points = [(0+width, 0), (-10+width, 0), (-10+width, 5), (-5+width, 5), (-5+width, 10), (0+width, 10), (0+width, 0)], color = color, fill = color, group = "sheet-border")
-        # Bottom Right
-        self.DWG.polygon(linewidth = 0.0, points = [(0+width, 0+height), (-10+width, 0+height), (-10+width, -5+height), (-5+width, -5+height), (-5+width, -10+height), (0+width, -10+height), (0+width, -0+height)], color = color, fill = color, group = "sheet-border")
-        # Bottom Left
-        self.DWG.polygon(linewidth = 0.0, points = [(0, 0+height), (10, 0+height), (10, -5+height), (5, -5+height), (5, -10+height), (0, -10+height), (0, -0+height)], color = color, fill = color, group = "sheet-border")
-        
-        # the PDF lib has no polygons so i made a custom way to draw the cuting marks
-        self.DWG.drawCorners()
+        if self.CUTTING_MARKS:
+            # Top Left
+            self.DWG.polygon(linewidth = 0.0, points = [(0, 0), (10, 0), (10, 5), (5, 5), (5, 10), (0, 10), (0, 0)], color = color, fill = color, group = "sheet-border")
+            # Top Right
+            self.DWG.polygon(linewidth = 0.0, points = [(0+width, 0), (-10+width, 0), (-10+width, 5), (-5+width, 5), (-5+width, 10), (0+width, 10), (0+width, 0)], color = color, fill = color, group = "sheet-border")
+            # Bottom Right
+            self.DWG.polygon(linewidth = 0.0, points = [(0+width, 0+height), (-10+width, 0+height), (-10+width, -5+height), (-5+width, -5+height), (-5+width, -10+height), (0+width, -10+height), (0+width, -0+height)], color = color, fill = color, group = "sheet-border")
+            # Bottom Left
+            self.DWG.polygon(linewidth = 0.0, points = [(0, 0+height), (10, 0+height), (10, -5+height), (5, -5+height), (5, -10+height), (0, -10+height), (0, -0+height)], color = color, fill = color, group = "sheet-border")
+            
+            # the PDF lib has no polygons so i made a custom way to draw the cuting marks
+            self.DWG.drawCorners()
 
         # Sheet border
         self.DWG.rect(start=(0, 0), end=(width, height), linewidth = 0.35, color = color, group = "sheet-border")
@@ -345,8 +355,8 @@ class StandardDraw:
 
 
 
-        # Folding Lines, only for ISO 216 A sizes execpt for 4A0
-        if self.FOLD_LINES:
+        # Folding Lines(DIN824 A), only for ISO 216 A sizes execpt for 4A0
+        if self.FOLD_LINES_DIN824_A:
             if self.SIZE == (420, 297):
                 # Vertical
                 self.DWG.line(start=(125, 0), end=(125, 5), linewidth = 0.35, color = color, group = "sheet-border")
@@ -416,13 +426,22 @@ class StandardDraw:
                 w += 83
                 self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
                 self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
-                w += 190
+                w += 190 #1
                 self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
                 self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
-                w += 190
+                w += 190 #2
                 self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
                 self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
-                w += 190
+                w += 190 #3
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 190 #4
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 190 #5
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 190 #6
                 self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
                 self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
 
@@ -435,6 +454,132 @@ class StandardDraw:
                 self.DWG.line(start=(width, height-297-297), end=(width-5, height-297-297), linewidth = 0.35, color = color, group = "sheet-border")
                 self.DWG.line(start=(0, height-297-297-297), end=(15, height-297-297-297), linewidth = 0.35, color = color, group = "sheet-border")
                 self.DWG.line(start=(width, height-297-297-297), end=(width-5, height-297-297-297), linewidth = 0.35, color = color, group = "sheet-border")
+
+        # Folding Lines(200x290), only for ISO 216 A sizes execpt for 4A0
+        if self.FOLD_LINES_200_X_290:
+            if self.SIZE == (420, 297):
+                # Vertical
+                self.DWG.line(start=(125, 0), end=(125, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(125, height), end=(125, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(230, 0), end=(230, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(230, height), end=(230, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(410, 0), end=(410, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(410, height), end=(410, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                # Horizontal
+                self.DWG.line(start=(0, height-290), end=(15, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290), end=(width-5, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+            if self.SIZE == (594, 420):
+                # Vertical
+                self.DWG.line(start=(200, 0), end=(200, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(200, height), end=(200, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(380, 0), end=(380, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(380, height), end=(380, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(392, 0), end=(392, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(392, height), end=(392, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(404, 0), end=(404, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(404, height), end=(404, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(584, 0), end=(584, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(584, height), end=(584, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                self.DWG.line(start=(105, 0), end=(105, 5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                # Horizontal
+                self.DWG.line(start=(0, height-290), end=(15, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290), end=(width-5, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+            if self.SIZE == (841, 594):
+                # Vertical
+                self.DWG.line(start=(200, 0), end=(200, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(200, height), end=(200, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(380, 0), end=(380, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(380, height), end=(380, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(515.5, 0), end=(515.5, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(515.5, height), end=(515.5, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(651, 0), end=(651, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(651, height), end=(651, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(831, 0), end=(831, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(831, height), end=(831, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                self.DWG.line(start=(105, 0), end=(105, 5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                # Horizontal
+                self.DWG.line(start=(0, height-290), end=(15, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290), end=(width-5, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(0, height-290-290), end=(15, height-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290-290), end=(width-5, height-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+            if self.SIZE == (1189, 841):
+                # Vertical
+                self.DWG.line(start=(200, 0), end=(200, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(200, height), end=(200, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(380, 0), end=(380, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(380, height), end=(380, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(560, 0), end=(560, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(560, height), end=(560, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(740, 0), end=(740, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(740, height), end=(740, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(869.5, 0), end=(869.5, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(869.5, height), end=(869.5, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(999, 0), end=(999, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(999, height), end=(999, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(1179, 0), end=(1179, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(1179, height), end=(1179, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                self.DWG.line(start=(105, 0), end=(105, 5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                # Horizontal
+                self.DWG.line(start=(0, height-290), end=(15, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290), end=(width-5, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(0, height-290-290), end=(15, height-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290-290), end=(width-5, height-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+            if self.SIZE == (1682, 1189):
+                # Vertical
+                w = 0
+
+                w += 200
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 106
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 106
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #1
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #2
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #3
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #4
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #5
+                print('5:' + str(w))
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #6
+                print('6:' + str(w))
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+                w += 180 #7
+                print('7:' + str(w))
+                self.DWG.line(start=(w, 0), end=(w, 5), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(w, height), end=(w, height-5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                self.DWG.line(start=(105, 0), end=(105, 5), linewidth = 0.35, color = color, group = "sheet-border")
+
+                # Horizontal
+                self.DWG.line(start=(0, height-290), end=(15, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290), end=(width-5, height-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(0, height-290-290), end=(15, height-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290-290), end=(width-5, height-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(0, height-290-290-290), end=(15, height-290-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290-290-290), end=(width-5, height-290-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(0, height-290-290-290-290), end=(15, height-290-290-290-290), linewidth = 0.35, color = color, group = "sheet-border")
+                self.DWG.line(start=(width, height-290-290-290-290), end=(width-5, height-290-290-290-290), linewidth = 0.35, color = color, group = "sheet-border")
 
         # Full sheet parts list
         if self.FULL_PARTS_LIST:
@@ -558,7 +703,7 @@ class StandardDraw:
             filename += '+' + str(self.NUM_OPT_LINES)
         if self.REV_HISTORY:
             filename +='_rh+' + str(self.NUMREVISIONS)
-        if self.FOLD_LINES:
+        if self.FOLD_LINES_DIN824_A:
             filename += '_fl'
         if self.FULL_PARTS_LIST:
             filename += '_fspl'
@@ -802,7 +947,7 @@ class StandardDraw:
 
 
         # Folding Lines, only for ISO 216 A sizes execpt for 4A0
-        if self.FOLD_LINES:
+        if self.FOLD_LINES_DIN824_A:
             if self.SIZE == (420, 297):
                 # Vertical
                 dwg.line(start=(125, 0), end=(125, 5), linewidth = 0.35, color = color, group = "sheet-border")

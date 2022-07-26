@@ -51,6 +51,10 @@ class MainWindow(QObject):
     
     SHEET_STYLES =  [['ISO5457 ISO700 A',      0],
                      ['ISO5457 ISO700 B',      1]]
+    
+    FOLD_LINES =    [['None',          0],
+                     ['DIN824 A',      1],
+                     ['200mm x 290mm', 2]]
 
     CURRENT_SIZE = SHEET_SIZES[0][1]
     CURREN_SIZE_STRING = 'User defined'
@@ -62,6 +66,7 @@ class MainWindow(QObject):
         self.window.setWindowTitle("KiCAD & FreeCAD TechDraw Template Generator")
         self.load_sheet_sizes()
         self.load_sheet_styles()
+        self.load_fold_lines()
         self.init_sheet_spinBox()
         QObject.connect(self.window.SheetSizeComboBox, SIGNAL ('currentIndexChanged(int)'), self.SheetComboBoxChanged)
         QObject.connect(self.window.FullPartsListCheckBox, SIGNAL ('stateChanged(int)'), self.FullPartsListChanged)
@@ -87,6 +92,10 @@ class MainWindow(QObject):
     def init_sheet_spinBox(self):
         self.window.sheetWidthDoubleSpinBox.setSuffix(" mm")
         self.window.sheetHeightDoubleSpinBox.setSuffix(" mm")
+        
+    def load_fold_lines(self):
+        for f in self.FOLD_LINES:
+            self.window.foldingLinesComboBox.addItem(f[0], userData=f[1])
 
     def show(self):
         self.window.show()
@@ -159,31 +168,44 @@ class MainWindow(QObject):
             size = (self.window.sheetWidthDoubleSpinBox.value(), self.window.sheetHeightDoubleSpinBox.value())
         else:
             sizeString = self.window.SheetSizeComboBox.currentText()
+        cuttingMarks = self.window.cuttingMarksCheckBox.isChecked()
         color = self.window.ColorLineEdit.text()
         numOptLin = self.window.OptLinesSpinBox.value()
         revHistory = self.window.RevHistoryCheckBox.isChecked()
-        foldLines = self.window.foldingLinesCheckBox.isChecked()
+        foldLinesValue = self.window.foldingLinesComboBox.itemData(self.window.foldingLinesComboBox.currentIndex())
+        foldLinesText = self.window.foldingLinesComboBox.currentText()
         fullPartsList = self.window.FullPartsListCheckBox.isChecked()
         fullPartsListSmall = self.window.FullPartsListSmallCheckBox.isChecked()
         fullPartsListNumSheets = self.window.FullPartsListNumSheetsSpinBox.value()
         smallPartsList = self.window.SmallPartsListCheckBox.isChecked()
         smallPartsListNumLines = self.window.SmallPartsListSpinBox.value()
         numRevisions = self.window.numRevSpinBox.value()
+        
+        if foldLinesValue == 0:
+            foldLinesDIN824_A = False
+            foldLines200x290 = False
+        elif foldLinesValue == 1:
+            foldLinesDIN824_A = True
+            foldLines200x290 = False
+        elif foldLinesValue == 2:
+            foldLinesDIN824_A = False
+            foldLines200x290 = True
 
         print("Generate:")
         print("Size: " + str(size))
         print("Size String: " + sizeString)
+        print('Cutting marks: ' + str(cuttingMarks))
         print("Color: " + color)
         print("Num. Opt. Lines: " + str(numOptLin))
         print("Rev. History: " + str(revHistory))
         print("Num Rev.: " + str(numRevisions))
-        print("Folding Lines: " + str(foldLines))
+        print("Folding Lines: " + str(foldLinesText) + ', ' + str(foldLinesValue))
         print("Full Parts List: " + str(fullPartsList))
         print("Full Parts List Small Felds: " + str(fullPartsListSmall))
         print("Full Parts List Num. Sheets: " + str(fullPartsListNumSheets))
         print("Small Parts List: " + str(smallPartsList))
 
-        stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
+        stdDraw = StandardDraw(size = size, sizeString = sizeString, cuttingMarks = cuttingMarks, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLinesDIN824_A = foldLinesDIN824_A, foldLines200x290 = foldLines200x290, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
         if style == 0:
             stdDraw.drawISO5457_ISO700_A()
         elif style == 1:
@@ -197,3 +219,5 @@ if __name__ == "__main__":
     widget = MainWindow()
     widget.show()
     sys.exit(app.exec_())
+
+# foldingLinesComboBox
