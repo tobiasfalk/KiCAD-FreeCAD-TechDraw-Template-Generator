@@ -326,6 +326,9 @@
         <property name="enabled">
          <bool>false</bool>
         </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
        </widget>
       </item>
       <item>
@@ -421,7 +424,7 @@
      <x>0</x>
      <y>0</y>
      <width>580</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

@@ -51,7 +51,7 @@ class StandardDraw:
 
     DWG = None
 
-    def __init__(self, size = (100, 100), sizeString = 'User defined', color = '#000000', numOptLines = 0, revHistory = False, numRevisions = 0, foldLines = False, fullPartsList = False, fullPartsListSmallLines = False, fullPartsListNumSheets = 1, smallPartsList = False, smallPartsListNumLines = 1, numPages = 1):
+    def __init__(self, size = (100, 100), sizeString = 'User defined', color = '#000000', numOptLines = 0, revHistory = False, numRevisions = 0, foldLines = False, fullPartsList = False, fullPartsListSmallLines = False, fullPartsListNumSheets = 1, smallPartsList = False, smallPartsListNumLines = 1):
         self.SIZE = size
         self.SIZE_STRING = sizeString
         self.COLOR = color
@@ -64,7 +64,6 @@ class StandardDraw:
         self.FULL_PARTS_LIST_NUM_SHEETS = fullPartsListNumSheets
         self.SMALL_PARTS_LIST = smallPartsList
         self.SMALL_PARTS_LIST_NUM_LINES = smallPartsListNumLines
-        self.NUM_PAGES = numPages
 
         if self.NUM_OPT_LINES > 3:
             self.NUM_OPT_LINES = 3
@@ -105,21 +104,21 @@ class StandardDraw:
             filename += '_spl+' + str(self.SMALL_PARTS_LIST_NUM_LINES)
         if self.COLOR != '#000000':
             filename += '_c_' + self.COLOR.replace('#', '')
-        print(filename)
 
-        try:
-            os.mkdir("./out/");
-        except OSError as error:
-            pass
-
-        try:
-            os.mkdir("./out/" + filename);
-        except OSError as error:
-            pass
         
         if self.DWG == None:
+            print(filename)
+            try:
+                os.mkdir("./out/");
+            except OSError as error:
+                pass
+
+            try:
+                os.mkdir("./out/" + filename);
+            except OSError as error:
+                pass
+        
             self.DWG = UniversalDraw(size = self.SIZE, filename = "./out/" + filename + '/' + filename)
-            print('Create')
         
             
         size = self.SIZE
@@ -473,33 +472,33 @@ class StandardDraw:
                 self.DWG.line(start=(20, hPos), end=(width - 10, hPos), linewidth = 0.35, color = color, group = "sheet-border")
                 
                 if not self.FULL_PARTS_LIST_SMALL_LINES:
-                    self.DWG.text(text = 'Pos.' + str(h) + 'A', position = (27.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Qty.' + str(h) + 'A', position = (45, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Unit' + str(h) + 'A', position = (62.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Titel' + str(h) + 'A', position = (100, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Doc. number' + str(h) + 'A', position = (147.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Comment' + str(h) + 'A', position = (182.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_a_' + str(h) + '_' + str(self.NUM_PAGES))
+                    self.DWG.text(text = 'Pos.' + str(h) + 'A', position = (27.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Qty.' + str(h) + 'A', position = (45, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Unit' + str(h) + 'A', position = (62.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Titel' + str(h) + 'A', position = (100, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Doc. number' + str(h) + 'A', position = (147.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Comment' + str(h) + 'A', position = (182.5, hPos + 1.8 + 0.9 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
                 
-                    self.DWG.text(text = 'Pos.' + str(h) + 'B', position = (27.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_b_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Qty.' + str(h) + 'B', position = (45, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_b_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Unit' + str(h) + 'B', position = (62.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_b_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Titel' + str(h) + 'B', position = (100, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_b_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Doc. number' + str(h) + 'B', position = (147.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_b_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Comment' + str(h) + 'B', position = (182.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_c_' + str(h) + '_' + str(self.NUM_PAGES))
+                    self.DWG.text(text = 'Pos.' + str(h) + 'B', position = (27.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_b_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Qty.' + str(h) + 'B', position = (45, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_b_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Unit' + str(h) + 'B', position = (62.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_b_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Titel' + str(h) + 'B', position = (100, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_b_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Doc. number' + str(h) + 'B', position = (147.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_b_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Comment' + str(h) + 'B', position = (182.5, hPos + 9.65 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
                     
-                    self.DWG.text(text = 'Pos.' + str(h) + 'C', position = (27.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_c_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Qty.' + str(h) + 'C', position = (45, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_c_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Unit' + str(h) + 'C', position = (62.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_c_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Titel' + str(h) + 'C', position = (100, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_c_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Doc. number' + str(h) + 'C', position = (147.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_c_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Comment' + str(h) + 'C', position = (182.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_c_' + str(h) + '_' + str(self.NUM_PAGES))
+                    self.DWG.text(text = 'Pos.' + str(h) + 'C', position = (27.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Qty.' + str(h) + 'C', position = (45, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Unit' + str(h) + 'C', position = (62.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Titel' + str(h) + 'C', position = (100, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Doc. number' + str(h) + 'C', position = (147.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Comment' + str(h) + 'C', position = (182.5, hPos + 16.3 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_c_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
                 else:
-                    self.DWG.text(text = 'Pos.' + str(h) + 'A', position = (27.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Qty.' + str(h) + 'A', position = (45, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Unit' + str(h) + 'A', position = (62.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Titel' + str(h) + 'A', position = (100, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Doc. number' + str(h) + 'A', position = (147.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_a_' + str(h) + '_' + str(self.NUM_PAGES))
-                    self.DWG.text(text = 'Comment' + str(h) + 'A', position = (182.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_a_' + str(h) + '_' + str(self.NUM_PAGES))
+                    self.DWG.text(text = 'Pos.' + str(h) + 'A', position = (27.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'pos_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Qty.' + str(h) + 'A', position = (45, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 18, id = 'qty_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Unit' + str(h) + 'A', position = (62.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 13, id = 'unit_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Titel' + str(h) + 'A', position = (100, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 58, id = 'titel_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Doc. number' + str(h) + 'A', position = (147.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'doc_num_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
+                    self.DWG.text(text = 'Comment' + str(h) + 'A', position = (182.5, hPos + 5 - lineHeight), tsize = 2.5, linewidth = 0.35, color = color, heightAnchor = 'middle', widthAnchor = 'middle', group = "titleblock-text-editable", width = 33, id = 'comment_a_' + str(h) + '_' + str(self.FULL_PARTS_LIST_NUM_SHEETS))
         
         
         # Small parts list over the Titelblock
@@ -545,8 +544,8 @@ class StandardDraw:
             self.DWG.line(start=(width - 80, height - 75 - self.NUM_OPT_LINES * 11 - (self.SMALL_PARTS_LIST_NUM_LINES * 11)), end=(width - 80, height - 65 - self.NUM_OPT_LINES * 11), linewidth = 0.35, color = color, group = "titleblock-structure")
             self.DWG.line(start=(width - 45, height - 75 - self.NUM_OPT_LINES * 11 - (self.SMALL_PARTS_LIST_NUM_LINES * 11)), end=(width - 45, height - 65 - self.NUM_OPT_LINES * 11), linewidth = 0.35, color = color, group = "titleblock-structure")
             
-        self.NUM_PAGES -= 1
-        if self.NUM_PAGES > 0:
+        self.FULL_PARTS_LIST_NUM_SHEETS -= 1
+        if self.FULL_PARTS_LIST_NUM_SHEETS > 0:
             self.DWG.newPage()
             self.drawISO5457_ISO700_A()
         else:

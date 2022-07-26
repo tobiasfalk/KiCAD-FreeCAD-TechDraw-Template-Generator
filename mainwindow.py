@@ -36,8 +36,7 @@ class MainWindow(QObject):
                     ["ANSI Y14.1 C",           (559,  432)],
                     ["ANSI Y14.1 D",           (864,  559)],
                     ["ANSI Y14.1 E",           (1118, 864)],
-                    ["ANSI Y14.1 F",           (711,  1016)],
-                    ["Junior Legal",           (203,  127)],
+                    ["ANSI Y14.1 F",           (1016, 711)],
                     ["Legal",                  (356,  216)],
                     ["Tabloid (Ledger)",       (432,  279)],]
     
@@ -161,7 +160,6 @@ class MainWindow(QObject):
         smallPartsList = self.window.SmallPartsListCheckBox.isChecked()
         smallPartsListNumLines = self.window.SmallPartsListSpinBox.value()
         numRevisions = self.window.numRevSpinBox.value()
-        numPages = self.window.FullPartsListNumSheetsSpinBox.value()
 
         print("Generate:")
         print("Size: " + str(size))
@@ -175,9 +173,8 @@ class MainWindow(QObject):
         print("Full Parts List Small Felds: " + str(fullPartsListSmall))
         print("Full Parts List Num. Sheets: " + str(fullPartsListNumSheets))
         print("Small Parts List: " + str(smallPartsList))
-        print("numPages: " + str(numPages))
 
-        stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines, numPages = numPages)
+        stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLin, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmall, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
         if style == 0:
             stdDraw.drawISO5457_ISO700_A()
         elif style == 1:
