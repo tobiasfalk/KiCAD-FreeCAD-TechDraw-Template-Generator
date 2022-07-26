@@ -7,6 +7,7 @@ For using this script you need the following python library's:
 - pyside2
 - svgwrite
 - ezdxf
+- reportlab
 You also should install the osifont: https://github.com/hikikomori82/osifont
 After you installed you run the mainwindow.py with python 3(I tested it with 3.6.15 on opensuse 15.2)
 ## Styles
