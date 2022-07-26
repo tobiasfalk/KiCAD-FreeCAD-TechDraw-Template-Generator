@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459786.7061342592
+2459787.155798611
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459786.7061342592
+2459787.155798611
   9
 $TDUUPDATE
  40
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-03A1B436-0C2A-11ED-A754-08606E47A897
+78ABAB9C-0C84-11ED-B364-08606E47A897
   9
 $VERSIONGUID
   2
-03AB2F02-0C2A-11ED-A754-08606E47A897
+78BC0366-0C84-11ED-B364-08606E47A897
   9
 $EXTNAMES
 290
@@ -8535,7 +8535,7 @@ AcDbMText
  71
 7
   1
-B
+a_value
   7
 iso
   0
@@ -8595,7 +8595,7 @@ AcDbMText
  71
 7
   1
-C
+b_value
   7
 iso
   0
@@ -8921,7 +8921,7 @@ AcDbMText
  71
 7
   1
-Option X
+Option G
   7
 iso
   0
@@ -8951,7 +8951,7 @@ AcDbMText
  71
 7
   1
-Option X
+Option G Value
   7
 iso
   0
@@ -8981,7 +8981,7 @@ AcDbMText
  71
 7
   1
-Option Y
+Option H
   7
 iso
   0
@@ -9011,7 +9011,7 @@ AcDbMText
  71
 7
   1
-Option Y
+Option H Value
   7
 iso
   0
@@ -9041,7 +9041,7 @@ AcDbMText
  71
 7
   1
-Option Z
+Option I
   7
 iso
   0
@@ -9071,7 +9071,7 @@ AcDbMText
  71
 7
   1
-Option Z
+Option I Value
   7
 iso
   0
