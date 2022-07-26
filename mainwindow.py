@@ -38,7 +38,16 @@ class MainWindow(QObject):
                     ["ANSI Y14.1 E",           (1118, 864)],
                     ["ANSI Y14.1 F",           (1016, 711)],
                     ["Legal",                  (356,  216)],
-                    ["Tabloid (Ledger)",       (432,  279)],]
+                    ["Tabloid (Ledger)",       (432,  279)],
+                    ["Arch AL",                (305,  229)],
+                    ["Arch AP",                (229,  305)],
+                    ["Arch B",                 (457,  305)],
+                    ["Arch C",                 (610,  457)],
+                    ["Arch D",                 (914,  610)],
+                    ["Arch E",                 (1219, 914)],
+                    ["Arch E1",                (1067, 726)],
+                    ["Arch E2",                (965,  660)],
+                    ["Arch E3",                (991,  686)],]
     
     SHEET_STYLES =  [['ISO5457 ISO700 A',      0],
                      ['ISO5457 ISO700 B',      1]]

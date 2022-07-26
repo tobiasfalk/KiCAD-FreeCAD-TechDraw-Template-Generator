@@ -1,28 +1,29 @@
 from StandardDraw import StandardDraw
 
-SHEET_SIZES =  [["ISO 216 4A0",            (2378, 1682)],
-                ["ISO 216 2A0",            (1682, 1189)],
-                ["ISO 216 A0",             (1189, 841)],
-                ["ISO 216 A1",             (841,  594)],
+SHEET_SIZES =  [#["ISO 216 4A0",            (2378, 1682)],
+                #["ISO 216 2A0",            (1682, 1189)],
+                #["ISO 216 A0",             (1189, 841)],
+                #["ISO 216 A1",             (841,  594)],
                 ["ISO 216 A2",             (594,  420)],
                 ["ISO 216 A3",             (420,  297)],
                 ["ISO 216 A4L",            (297,  210)],
                 ["ISO 216 A4P",            (210,  297)],
-                ["ISO 216 B0",             (1414, 1000)],
-                ["ISO 216 B1",             (1000, 707)],
-                ["ISO 216 B2",             (707,  500)],
-                ["ISO 216 B3",             (500,  353)],
-                ["ISO 216 B4",             (353,  250)],
-                ["ISO 216 B3",             (250,  176)],
+                #["ISO 216 B0",             (1414, 1000)],
+                #["ISO 216 B1",             (1000, 707)],
+                #["ISO 216 B2",             (707,  500)],
+                #["ISO 216 B3",             (500,  353)],
+                #["ISO 216 B4",             (353,  250)],
+                #["ISO 216 B3",             (250,  176)],
                 ["ANSI Y14.1 AL (Letter)", (279,  216)],
                 ["ANSI Y14.1 AP (Letter)", (216,  279)],
                 ["ANSI Y14.1 B",           (432,  279)],
                 ["ANSI Y14.1 C",           (559,  432)],
-                ["ANSI Y14.1 D",           (864,  559)],
-                ["ANSI Y14.1 E",           (1118, 864)],
-                ["ANSI Y14.1 F",           (1016, 711)],
-                ["Legal",                  (356,  216)],
-                ["Tabloid (Ledger)",       (432,  279)],]
+                #["ANSI Y14.1 D",           (864,  559)],
+                #["ANSI Y14.1 E",           (1118, 864)],
+                #["ANSI Y14.1 F",           (1016, 711)],
+                #["Legal",                  (356,  216)],
+                #["Tabloid (Ledger)",       (432,  279)],
+                ]
 
 def createSheet(size, sizeString, color, numOptLines, revHistory, numRevisions, foldLines, fullPartsList, fullPartsListSmallLines, fullPartsListNumSheets, smallPartsList, smallPartsListNumLines):
     print("Generate:")
@@ -37,6 +38,9 @@ def createSheet(size, sizeString, color, numOptLines, revHistory, numRevisions, 
     print("Full Parts List Small Felds: " + str(fullPartsListSmallLines))
     print("Full Parts List Num. Sheets: " + str(fullPartsListNumSheets))
     print("Small Parts List: " + str(smallPartsList))
+    print()
+    print('-----------------------------------------------------------------------')
+    print()
 
     stdDraw = StandardDraw(size = size, sizeString = sizeString, color = color, numOptLines = numOptLines, revHistory = revHistory, numRevisions = numRevisions, foldLines = foldLines, fullPartsList = fullPartsList, fullPartsListSmallLines = fullPartsListSmallLines, fullPartsListNumSheets = fullPartsListNumSheets, smallPartsList = smallPartsList, smallPartsListNumLines = smallPartsListNumLines)
 
