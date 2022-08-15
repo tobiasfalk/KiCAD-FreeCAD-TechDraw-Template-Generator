@@ -11,15 +11,43 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Xml Svg REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Xml Svg REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-)
+        templateoptions.cpp
+        templateoptions.h
+        changetitelblockfield.cpp
+        changetitelblockfield.h
+        changetitelblockfield.ui
+        iso7200options.cpp
+        iso7200options.h
+        iso7200options.ui
+        asme_y14_35_width180.cpp
+        asme_y14_35_width180.h
+        asme_y14_35_width180.ui
+        fullsheetspartlistoptions.cpp
+        fullsheetspartlistoptions.h
+        fullsheetspartlistoptions.ui
+        smallpartslistoptions.cpp
+        smallpartslistoptions.h
+        smallpartslistoptions.ui
+        templategenkicad_5.cpp
+        templategenkicad_5.h
+        templategenkicad_6.cpp
+        templategenkicad_6.h
+        templategenkicad_7.cpp
+        templategenkicad_7.h
+        templategenfreecad.cpp
+        templategenfreecad.h
+        loadesavesettings.cpp
+        loadesavesettings.h
+        )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(KiCAD-FreeCAD-TechDraw-Template-Generator
@@ -44,7 +72,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(KiCAD-FreeCAD-TechDraw-Template-Generator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(KiCAD-FreeCAD-TechDraw-Template-Generator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Xml  Qt${QT_VERSION_MAJOR}::Svg)
 
 set_target_properties(KiCAD-FreeCAD-TechDraw-Template-Generator PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
