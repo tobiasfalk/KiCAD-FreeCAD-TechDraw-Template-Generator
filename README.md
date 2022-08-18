@@ -3,23 +3,30 @@ This small and crudely programmed Python script creates drawing sheet templates 
 ## Aims
 The aim of this Projekt was to create a unified template for KiCAD and FreeCAD TechDraw. The template is near the Standrats of ISO 5457 for the general Layout, ISO 7200 for the Titelblock, ASME Y14.35 for the optional Revision history and DIN 824 for the optional folding lines. For the font the osifont (https://github.com/hikikomori82/osifont) and for the DXF the iso font was used.
 ##  Usage
-For using this script you need the following python library's:
-- pyside2
-- svgwrite
-- ezdxf
-- reportlab
+- Qt
 You also should install the osifont: https://github.com/hikikomori82/osifont
-After you installed you run the mainwindow.py with python 3(I tested it with 3.6.15 on opensuse 15.2)
 ## Styles
-- ISO5457 ISO700 A, the text height of the legend/field description is 1.8mm and the normal text of the fields is 2.5mm except for the Titel and Legal Owner those are 5mm
-- ISO5457 ISO700 B, the text height of the legend/field description is 2.5mm and the normal text of the fields is 3.5mm except for the Titel and Legal Owner those are 7mm (only two Titel and Legal Owner lines except for 3 that are in the A version, the date and other field may not fit and in KICAD the standard field text size is 1.27mm and the 1.8 from the A version is closer to that)
+- ISO5457 ISO700
 ## Limitations
-### KiCAD
+### KiCAD 5
 - Not able to change the font(with 7(6.99) posable)
-- text height is not he same as the real height(with 7(6.99) posable)
+
+### KiCAD 6
+- Not able to change the font(with 7(6.99) posable)
+
+### KiCAD 7(6.99)
 
 ### FreeCAD
 - SVG text height is not he same as the real height
 
-### PDF
+### PDF(To be done)
 - The text in the editable(form) is not centered if needed and a other font
+
+### Eagle 6.5(To be done)
+
+## Variable Docu
+- &{N} Number of repition, see Rev. History
+- &{F} Field number, see the partslists
+
+## Logo inclutions
+It is posible to include a Logo in the Legal owner Field(name can be changed), this is ment for a Company Logo or somthing like this. The logo needs to be provided as SVG and the checkbox on the right site of the button needs to be checkt(will be checket after clicking it). The location is on the right bottom site of the Legal owner field of the Titelblock and th maximum width is 24mm, the moment the logo gets to a height of 30mm the width is reduced(the ratio will be keept). If text is included in the SVG it ma make öroblems so convert that to path.
