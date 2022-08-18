@@ -588,7 +588,7 @@ void TemplateGenKiCAD_7::drawTitelblockISO7200()
     drawText(Coordinate{lastLineLeft.X + 1.5 + 140, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt18"].Label, 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18);
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 7.5}, TITELBLOCKFIELDS["opt16"].ValueKiCAD6, 5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.5);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5 + 7.5}, TITELBLOCKFIELDS["opt17"].ValueKiCAD6, 5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.5);
-    drawText(Coordinate{lastLineLeft.X + 1.5 + 140, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt18"].ValueKiCAD6, 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18);
+    drawText(Coordinate{lastLineLeft.X + 1.5 + 140, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt18"].ValueKiCAD6, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25);
     lastLineLeft = Coordinate{lastLineLeft.X + 140, lastLineLeft.Y + 11};
     drawLine(lastLineLeft, Coordinate{PAGESIZE.width - 10, lastLineLeft.Y}, 0.35);
 

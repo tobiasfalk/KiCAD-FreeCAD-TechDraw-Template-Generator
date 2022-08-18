@@ -29,13 +29,13 @@ void FullSheetsPartListOptions::setFULLSHEETPARTSLISTFIELDS(const QMap<QString, 
 
 void FullSheetsPartListOptions::loadStdOptions()
 {
-    //                           name                    lable                              KiCAD 5 Value               KiCAD 6 Value
-    FULLSHEETPARTSLISTFIELDS.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},            QStringList{"${p&{N}&{L}}"}});
-    FULLSHEETPARTSLISTFIELDS.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},            QStringList{"${q&{N}&{L}}"}});
-    FULLSHEETPARTSLISTFIELDS.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},            QStringList{"${u&{N}&{L}}"}});
-    FULLSHEETPARTSLISTFIELDS.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},   QStringList{"${titel/name&{N}&{L}}"}});
-    FULLSHEETPARTSLISTFIELDS.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},   QStringList{"${docNumber&{N}&{L}}"}});
-    FULLSHEETPARTSLISTFIELDS.insert("opt6", TitelblockField{"Comment",             QStringList{"comment"},      QStringList{"${comment&{N}&{L}}"}});
+    //                           name                    lable                              KiCAD 5 Value               KiCAD 6 Value                   FreeCAD Name        FreeCAD Value
+    FULLSHEETPARTSLISTFIELDS.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},            QStringList{"${p&{N}&{L}}"},            "Pos.",             QStringList{"."}});
+    FULLSHEETPARTSLISTFIELDS.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},            QStringList{"${q&{N}&{L}}"},            "Qty.",             QStringList{"."}});
+    FULLSHEETPARTSLISTFIELDS.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},            QStringList{"${u&{N}&{L}}"},            "Unit",             QStringList{"."}});
+    FULLSHEETPARTSLISTFIELDS.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},   QStringList{"${titel/name&{N}&{L}}"},   "Titel",            QStringList{"."}});
+    FULLSHEETPARTSLISTFIELDS.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},   QStringList{"${docNumber&{N}&{L}}"},    "Doc. number",      QStringList{"."}});
+    FULLSHEETPARTSLISTFIELDS.insert("opt6", TitelblockField{"Comment",             QStringList{"comment"},      QStringList{"${comment&{N}&{L}}"},      "Comment",          QStringList{"."}});
 }
 
 void FullSheetsPartListOptions::loadButtonText()

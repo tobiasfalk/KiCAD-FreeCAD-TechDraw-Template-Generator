@@ -29,11 +29,11 @@ void SmallPartsListOptions::setSMALLPARTSLISTFIELDS(const QMap<QString, Titelblo
 void SmallPartsListOptions::loadStdOptions()
 {
     //                           name                    lable                              KiCAD 5 Value               KiCAD 6 Value
-    SMALLPARTSLISTFIELDS.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},            QStringList{"${p&{N}&{L}}"}});
-    SMALLPARTSLISTFIELDS.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},            QStringList{"${q&{N}&{L}}"}});
-    SMALLPARTSLISTFIELDS.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},            QStringList{"${u&{N}&{L}}"}});
-    SMALLPARTSLISTFIELDS.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},   QStringList{"${titel/name&{N}&{L}}"}});
-    SMALLPARTSLISTFIELDS.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},   QStringList{"${docNumber&{N}&{L}}"}});
+    SMALLPARTSLISTFIELDS.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},            QStringList{"${p&{N}&{L}}"},                    "Pos.",             QStringList{"."}});
+    SMALLPARTSLISTFIELDS.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},            QStringList{"${q&{N}&{L}}"},                    "Qty.",             QStringList{"."}});
+    SMALLPARTSLISTFIELDS.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},            QStringList{"${u&{N}&{L}}"},                    "Unit",             QStringList{"."}});
+    SMALLPARTSLISTFIELDS.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},   QStringList{"${titel/name&{N}&{L}}"},           "Titel",            QStringList{"."}});
+    SMALLPARTSLISTFIELDS.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},   QStringList{"${docNumber&{N}&{L}}"},            "Doc. number",      QStringList{"."}});
 }
 
 void SmallPartsListOptions::loadButtonText()

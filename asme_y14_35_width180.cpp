@@ -34,13 +34,13 @@ void ASME_Y14_35_Width180::on_buttonBox_rejected()
 
 void ASME_Y14_35_Width180::loadStdOptions()
 {
-    //                      name                     lable                              KiCAD 5 Value                                                                   KiCAD 6 Value
-    REVHISTORYFIELDS.insert("head",  TitelblockField{"Revision History",                QStringList{"-"},                                                               QStringList{"-"}});
-    REVHISTORYFIELDS.insert("opt1",  TitelblockField{"Zone",                            QStringList{"Z&{N} A", "Z&{N} B", "Z&{N} C"},                                   QStringList{"${zone&{N}A}", "${zone&{N}B}", "${zone&{N}C}"}});
-    REVHISTORYFIELDS.insert("opt2",  TitelblockField{"Rev.",                            QStringList{"R&{N} A", "R&{N} B", "R&{N} C"},                                   QStringList{"${rev&{N}A}", "${rev&{N}B}", "${rev&{N}C}"}});
-    REVHISTORYFIELDS.insert("opt3",  TitelblockField{"Description",                     QStringList{"Description &{N} A", "Description &{N} B", "Description &{N} C"},  QStringList{"${desc&{N}A}", "${desc&{N}B}", "${desc&{N}C}"}});
-    REVHISTORYFIELDS.insert("opt4",  TitelblockField{"Date",                            QStringList{"D&{N} A", "D&{N} B", "D&{N} C"},                                   QStringList{"${d&{N}A}", "${d&{N}B}", "${d&{N}C}"}});
-    REVHISTORYFIELDS.insert("opt5",  TitelblockField{"Created by",                      QStringList{"C by &{N} A", "C by &{N} B", "C by &{N} C"},                       QStringList{"${cBy&{N}A}", "${cBy&{N}B}", "${cBy&{N}C}"}});
+    //                      name                     lable                              KiCAD 5 Value                                                                   KiCAD 6 Value                                                   FreeCAD Name            FreeCAD Value
+    REVHISTORYFIELDS.insert("head",  TitelblockField{"Revision History",                QStringList{"-"},                                                               QStringList{"-"},                                               "Revision History",     QStringList{".", ".", "."}});
+    REVHISTORYFIELDS.insert("opt1",  TitelblockField{"Zone",                            QStringList{"Z&{N} A", "Z&{N} B", "Z&{N} C"},                                   QStringList{"${zone&{N}A}", "${zone&{N}B}", "${zone&{N}C}"},    "Z&{N}",                QStringList{".", ".", "."}});
+    REVHISTORYFIELDS.insert("opt2",  TitelblockField{"Rev.",                            QStringList{"R&{N} A", "R&{N} B", "R&{N} C"},                                   QStringList{"${rev&{N}A}", "${rev&{N}B}", "${rev&{N}C}"},       "R&{N}",                QStringList{".", ".", "."}});
+    REVHISTORYFIELDS.insert("opt3",  TitelblockField{"Description",                     QStringList{"Description &{N} A", "Description &{N} B", "Description &{N} C"},  QStringList{"${desc&{N}A}", "${desc&{N}B}", "${desc&{N}C}"},    "Description &{N}",     QStringList{".", ".", "."}});
+    REVHISTORYFIELDS.insert("opt4",  TitelblockField{"Date",                            QStringList{"D&{N} A", "D&{N} B", "D&{N} C"},                                   QStringList{"${d&{N}A}", "${d&{N}B}", "${d&{N}C}"},             "D&{N}",                QStringList{".", ".", "."}});
+    REVHISTORYFIELDS.insert("opt5",  TitelblockField{"Created by",                      QStringList{"C by &{N} A", "C by &{N} B", "C by &{ C"},                         QStringList{"${cBy&{N}A}", "${cBy&{N}B}", "${cBy&{N}C}"},       "C by &{N}",            QStringList{".", ".", "."}});
 }
 
 void ASME_Y14_35_Width180::loadButtonText()

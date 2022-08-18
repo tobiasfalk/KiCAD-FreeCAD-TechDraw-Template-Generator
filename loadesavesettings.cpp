@@ -340,6 +340,8 @@ void LoadeSaveSettings::saveSettings(QString dir)
         field.setAttribute("label", TITELBLOCKFIELDS.value(str).Label);
         field.setAttribute("valKiCAD5", stringListToString(TITELBLOCKFIELDS.value(str).ValueKiCAD5));
         field.setAttribute("valKiCAD6", stringListToString(TITELBLOCKFIELDS.value(str).ValueKiCAD6));
+        field.setAttribute("nameFreeCAD", TITELBLOCKFIELDS.value(str).NameFreeCAD);
+        field.setAttribute("valFreeCAD", stringListToString(TITELBLOCKFIELDS.value(str).ValueFreeCAD));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -356,6 +358,8 @@ void LoadeSaveSettings::saveSettings(QString dir)
         field.setAttribute("label", REVHISTORYFIELDS.value(str).Label);
         field.setAttribute("valKiCAD5", stringListToString(REVHISTORYFIELDS.value(str).ValueKiCAD5));
         field.setAttribute("valKiCAD6", stringListToString(REVHISTORYFIELDS.value(str).ValueKiCAD6));
+        field.setAttribute("nameFreeCAD", REVHISTORYFIELDS.value(str).NameFreeCAD);
+        field.setAttribute("valFreeCAD", stringListToString(REVHISTORYFIELDS.value(str).ValueFreeCAD));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -380,6 +384,8 @@ void LoadeSaveSettings::saveSettings(QString dir)
         field.setAttribute("label", SMALLPARTSLISTFIELDS.value(str).Label);
         field.setAttribute("valKiCAD5", stringListToString(SMALLPARTSLISTFIELDS.value(str).ValueKiCAD5));
         field.setAttribute("valKiCAD6", stringListToString(SMALLPARTSLISTFIELDS.value(str).ValueKiCAD6));
+        field.setAttribute("nameFreeCAD", SMALLPARTSLISTFIELDS.value(str).NameFreeCAD);
+        field.setAttribute("valFreeCAD", stringListToString(SMALLPARTSLISTFIELDS.value(str).ValueFreeCAD));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -396,6 +402,8 @@ void LoadeSaveSettings::saveSettings(QString dir)
         field.setAttribute("label", FULLSHEETPARTSLISTFIELDS.value(str).Label);
         field.setAttribute("valKiCAD5", stringListToString(FULLSHEETPARTSLISTFIELDS.value(str).ValueKiCAD5));
         field.setAttribute("valKiCAD6", stringListToString(FULLSHEETPARTSLISTFIELDS.value(str).ValueKiCAD6));
+        field.setAttribute("nameFreeCAD", FULLSHEETPARTSLISTFIELDS.value(str).NameFreeCAD);
+        field.setAttribute("valFreeCAD", stringListToString(FULLSHEETPARTSLISTFIELDS.value(str).ValueFreeCAD));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -451,6 +459,8 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     TITELBLOCKFIELDS[option.attribute("key")].Label = option.attribute("label");
                     TITELBLOCKFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
                     TITELBLOCKFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
+                    TITELBLOCKFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
+                    TITELBLOCKFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }
@@ -470,6 +480,8 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     REVHISTORYFIELDS[option.attribute("key")].Label = option.attribute("label");
                     REVHISTORYFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
                     REVHISTORYFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
+                    REVHISTORYFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
+                    REVHISTORYFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }
@@ -496,6 +508,8 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     SMALLPARTSLISTFIELDS[option.attribute("key")].Label = option.attribute("label");
                     SMALLPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
                     SMALLPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
+                    SMALLPARTSLISTFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
+                    SMALLPARTSLISTFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }
@@ -515,6 +529,8 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     FULLSHEETPARTSLISTFIELDS[option.attribute("key")].Label = option.attribute("label");
                     FULLSHEETPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
                     FULLSHEETPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
+                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
+                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }

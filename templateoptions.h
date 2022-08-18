@@ -59,6 +59,8 @@ struct TitelblockField
     QString Label;
     QStringList ValueKiCAD5;
     QStringList ValueKiCAD6;
+    QString NameFreeCAD;
+    QStringList ValueFreeCAD;
 };
 
 enum class PageStyle

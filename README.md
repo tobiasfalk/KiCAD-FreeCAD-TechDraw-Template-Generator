@@ -16,7 +16,7 @@ You also should install the osifont: https://github.com/hikikomori82/osifont
 
 ### KiCAD 7(6.99)
 
-### FreeCAD(To be done)
+### FreeCAD
 - SVG text height is not he same as the real height
 
 ### PDF(To be done)
@@ -29,4 +29,4 @@ You also should install the osifont: https://github.com/hikikomori82/osifont
 - &{F} Field number, see the partslists
 
 ## Logo inclutions
-It is posible to include a Logo in the Legal owner Field(name can be changed), this is ment for a Company Logo or somthing like this. The logo needs to be provided as SVG and the checkbox on the right site of the button needs to be checkt(will be checket after clicking it). The location is on the right bottom site of the Legal owner field of the Titelblock and th maximum width is 24mm, the moment the logo gets to a height of 30mm the width is reduced(the ratio will be keept).
+It is posible to include a Logo in the Legal owner Field(name can be changed), this is ment for a Company Logo or somthing like this. The logo needs to be provided as SVG and the checkbox on the right site of the button needs to be checkt(will be checket after clicking it). The location is on the right bottom site of the Legal owner field of the Titelblock and th maximum width is 24mm, the moment the logo gets to a height of 30mm the width is reduced(the ratio will be keept). If text is included in the SVG it ma make öroblems so convert that to path.

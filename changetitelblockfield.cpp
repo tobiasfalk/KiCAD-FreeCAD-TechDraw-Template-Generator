@@ -6,6 +6,8 @@ const TitelblockField &ChangeTitelblockField::getFIELD()
     FIELD.Label = ui->lableLineEdit->text();
     FIELD.ValueKiCAD5 = stringToStringList(ui->kiCAD5PlainTextEdit->toPlainText());
     FIELD.ValueKiCAD6 = stringToStringList(ui->kiCAD6PlainTextEdit->toPlainText());
+    FIELD.NameFreeCAD = ui->freeCADnameLineEdit->text();
+    FIELD.ValueFreeCAD = stringToStringList(ui->freeCADTextEdit->toPlainText());
     return FIELD;
 }
 
@@ -16,6 +18,8 @@ void ChangeTitelblockField::setFIELD(const TitelblockField &newFIELD)
     ui->lableLineEdit->setText(FIELD.Label);
     ui->kiCAD5PlainTextEdit->setPlainText(stringListToString(FIELD.ValueKiCAD5));
     ui->kiCAD6PlainTextEdit->setPlainText(stringListToString(FIELD.ValueKiCAD6));
+    ui->freeCADnameLineEdit->setText(FIELD.NameFreeCAD);
+    ui->freeCADTextEdit->setPlainText(stringListToString(FIELD.ValueFreeCAD));
 }
 
 QString ChangeTitelblockField::stringListToString(QStringList list)

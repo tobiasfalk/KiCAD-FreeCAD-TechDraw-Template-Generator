@@ -6,6 +6,7 @@
 #include "templategenkicad_5.h"
 #include "templategenkicad_6.h"
 #include "templategenkicad_7.h"
+#include "templategenfreecad.h"
 
 void MainWindow::initPageSizes()
 {
@@ -229,6 +230,34 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD.setLOGO(logo);
         KiCAD.setLOGODIR(logoDir);
         KiCAD.draw();
+    }
+
+    // FreeCAD
+    {
+        TemplateGenFreeCAD FreeCAD(this);
+        FreeCAD.setDIR(dir);
+        FreeCAD.setPAGESIZE(sheetSize);
+        FreeCAD.setSHEETNAME(sheetName);
+        FreeCAD.setPAGESTYLE(sheetStyle);
+        FreeCAD.setNUMOPTLINES(numOptLines);
+        FreeCAD.setTITELBLOCKFIELDS(titelblockFields);
+        FreeCAD.setTRIMMINGMARKS(trimmingMarks);
+        FreeCAD.setREVHISTORY(revHistory);
+        FreeCAD.setREVHISTORYSTYLE(getRevHistoryStyle());
+        FreeCAD.setNUMREVHISTORY(numRevHistory);
+        FreeCAD.setREVHISTORYFIELDS(revHistoryFields);
+        FreeCAD.setFOLDLINES(foldLines);
+        FreeCAD.setFOLDLINETARGET(foldLinesTaget);
+        FreeCAD.setSMALLPARTSLIST(smallPartsList);
+        FreeCAD.setNUMLINESMALLPARTSLIST(numLinesSmallPartsList);
+        FreeCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
+        FreeCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
+        FreeCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
+        FreeCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
+        FreeCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
+        FreeCAD.setLOGO(logo);
+        FreeCAD.setLOGODIR(logoDir);
+        FreeCAD.draw();
     }
 }
 
