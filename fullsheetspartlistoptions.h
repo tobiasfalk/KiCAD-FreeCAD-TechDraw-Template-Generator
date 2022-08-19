@@ -20,6 +20,7 @@ public:
 
     const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS() const;
     void setFULLSHEETPARTSLISTFIELDS(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS);
+    void resetToOrigin();
 
 private slots:
     void on_opt1PushButton_clicked();

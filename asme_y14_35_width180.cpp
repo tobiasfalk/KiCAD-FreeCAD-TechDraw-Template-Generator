@@ -27,6 +27,11 @@ void ASME_Y14_35_Width180::setREVHISTORYFIELDS(const QMap<QString, TitelblockFie
     loadButtonText();
 }
 
+void ASME_Y14_35_Width180::resetToOrigin()
+{
+    REVHISTORYFIELDS = REVHISTORYFIELDS_ORG;
+}
+
 void ASME_Y14_35_Width180::on_buttonBox_rejected()
 {
     REVHISTORYFIELDS = REVHISTORYFIELDS_ORG;
@@ -60,7 +65,10 @@ void ASME_Y14_35_Width180::on_headPushButton_clicked()
     changeWindow.setFIELD(REVHISTORYFIELDS["head"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    REVHISTORYFIELDS["head"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        REVHISTORYFIELDS["head"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -71,7 +79,10 @@ void ASME_Y14_35_Width180::on_opt1PushButton_clicked()
     changeWindow.setFIELD(REVHISTORYFIELDS["opt1"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    REVHISTORYFIELDS["opt1"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        REVHISTORYFIELDS["opt1"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -82,7 +93,10 @@ void ASME_Y14_35_Width180::on_opt2PushButton_clicked()
     changeWindow.setFIELD(REVHISTORYFIELDS["opt2"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    REVHISTORYFIELDS["opt2"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        REVHISTORYFIELDS["opt2"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -93,7 +107,10 @@ void ASME_Y14_35_Width180::on_opt3PushButton_clicked()
     changeWindow.setFIELD(REVHISTORYFIELDS["opt3"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    REVHISTORYFIELDS["opt3"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        REVHISTORYFIELDS["opt3"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -104,7 +121,10 @@ void ASME_Y14_35_Width180::on_opt4PushButton_clicked()
     changeWindow.setFIELD(REVHISTORYFIELDS["opt4"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    REVHISTORYFIELDS["opt4"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        REVHISTORYFIELDS["opt4"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -115,7 +135,10 @@ void ASME_Y14_35_Width180::on_opt5PushButton_clicked()
     changeWindow.setFIELD(REVHISTORYFIELDS["opt5"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    REVHISTORYFIELDS["opt5"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        REVHISTORYFIELDS["opt5"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 

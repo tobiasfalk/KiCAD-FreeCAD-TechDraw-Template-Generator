@@ -7,7 +7,10 @@ void ISO7200Options::on_opt1PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt1"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt1"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt1"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -17,7 +20,10 @@ void ISO7200Options::on_opt2PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt2"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt2"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt2"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -27,7 +33,10 @@ void ISO7200Options::on_opt3PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt3"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt3"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt3"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -37,7 +46,10 @@ void ISO7200Options::on_opt4PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt4"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt4"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt4"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -47,7 +59,10 @@ void ISO7200Options::on_opt5PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt5"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt5"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt5"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -57,7 +72,10 @@ void ISO7200Options::on_opt6PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt6"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt6"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt6"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -67,7 +85,10 @@ void ISO7200Options::on_opt7PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt7"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt7"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt7"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -77,7 +98,10 @@ void ISO7200Options::on_opt8PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt8"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt8"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt8"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -87,7 +111,10 @@ void ISO7200Options::on_opt9PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["op9"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt9"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt9"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -97,7 +124,10 @@ void ISO7200Options::on_opt10PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt10"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt10"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt10"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -107,7 +137,10 @@ void ISO7200Options::on_opt11PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt11"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt11"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt11"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -117,7 +150,10 @@ void ISO7200Options::on_opt12PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt12"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt12"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt12"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -127,7 +163,10 @@ void ISO7200Options::on_opt13PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt13"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt13"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt13"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -137,7 +176,10 @@ void ISO7200Options::on_opt14PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt14"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt14"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt14"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -147,7 +189,10 @@ void ISO7200Options::on_opt15PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt15"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt15"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt15"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -157,7 +202,10 @@ void ISO7200Options::on_opt16PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt16"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt16"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt16"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -167,7 +215,10 @@ void ISO7200Options::on_opt17PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt17"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt17"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt17"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -177,7 +228,10 @@ void ISO7200Options::on_opt18PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt18"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt18"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt18"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -187,7 +241,10 @@ void ISO7200Options::on_opt19PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt19"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt19"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt19"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -197,7 +254,10 @@ void ISO7200Options::on_opt20PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt20"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt20"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt20"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -207,7 +267,10 @@ void ISO7200Options::on_opt21PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt21"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt21"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt21"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -217,7 +280,10 @@ void ISO7200Options::on_opt22PushButton_clicked()
     changeWindow.setFIELD(TITELBLOCKFIELDS["opt22"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    TITELBLOCKFIELDS["opt22"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS["opt22"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 

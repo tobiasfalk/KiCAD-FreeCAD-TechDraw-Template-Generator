@@ -57,7 +57,10 @@ void SmallPartsListOptions::on_opt1PushButton_clicked()
     changeWindow.setFIELD(SMALLPARTSLISTFIELDS["opt1"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    SMALLPARTSLISTFIELDS["opt1"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        SMALLPARTSLISTFIELDS["opt1"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -68,7 +71,10 @@ void SmallPartsListOptions::on_opt2PushButton_clicked()
     changeWindow.setFIELD(SMALLPARTSLISTFIELDS["opt2"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    SMALLPARTSLISTFIELDS["opt2"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        SMALLPARTSLISTFIELDS["opt2"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -79,7 +85,10 @@ void SmallPartsListOptions::on_opt3PushButton_clicked()
     changeWindow.setFIELD(SMALLPARTSLISTFIELDS["opt3"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    SMALLPARTSLISTFIELDS["opt3"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        SMALLPARTSLISTFIELDS["opt3"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -90,7 +99,10 @@ void SmallPartsListOptions::on_opt4PushButton_clicked()
     changeWindow.setFIELD(SMALLPARTSLISTFIELDS["opt4"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    SMALLPARTSLISTFIELDS["opt4"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        SMALLPARTSLISTFIELDS["opt4"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 
@@ -101,7 +113,10 @@ void SmallPartsListOptions::on_opt5PushButton_clicked()
     changeWindow.setFIELD(SMALLPARTSLISTFIELDS["opt5"]);
     changeWindow.setModal(true);
     changeWindow.exec();
-    SMALLPARTSLISTFIELDS["opt5"] = changeWindow.getFIELD();
+    if(changeWindow.result())
+    {
+        SMALLPARTSLISTFIELDS["opt5"] = changeWindow.getFIELD();
+    }
     loadButtonText();
 }
 

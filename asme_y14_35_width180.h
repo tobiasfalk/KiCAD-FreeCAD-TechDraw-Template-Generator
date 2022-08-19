@@ -20,6 +20,7 @@ public:
 
     const QMap<QString, TitelblockField> &getREVHISTORYFIELDS() const;
     void setREVHISTORYFIELDS(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS);
+    void resetToOrigin();
 
 private slots:
     void on_buttonBox_rejected();
