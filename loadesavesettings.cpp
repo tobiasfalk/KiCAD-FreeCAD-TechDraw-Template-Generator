@@ -538,7 +538,17 @@ void LoadeSaveSettings::loadSettings(QString dir)
         else if(component.tagName() == "Logo")
         {
             LOGO = component.attribute("logo").toInt();
-            LOGODIR = component.attribute("logoDir");
+            if(component.attribute("logoDir")[0] == '.')
+            {
+                QString dirTmp = dir;
+                dirTmp.truncate(dir.lastIndexOf("/"));
+                dirTmp += "/" + component.attribute("logoDir");
+                LOGODIR = dirTmp;
+            }
+            else
+            {
+                LOGODIR = component.attribute("logoDir");
+            }
         }
         component = component.nextSibling().toElement();
     }

@@ -238,7 +238,6 @@ qint64 TemplateGenFreeCAD::drawText(Coordinate position, QString text, QString n
         obj2.appendChild(DOCUMENT.createTextNode(text));
         obj.appendChild(obj2);
         ROOT.appendChild(obj);
-        qDebug() << text;
     }
     else
     {
