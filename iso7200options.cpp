@@ -289,7 +289,7 @@ void ISO7200Options::on_opt22PushButton_clicked()
 
 void ISO7200Options::loadStdOptions()
 {
-    //                      name                     lable                              KiCAD 5 Value                               KiCAD 6 Value                               FreeCAD Name                    FreeCAD Value
+    //                      name                     label                              KiCAD 5 Value                               KiCAD 6 Value                               FreeCAD Name                    FreeCAD Value
     TITELBLOCKFIELDS.insert("opt1",  TitelblockField{"Option 1",                        QStringList{"Option 1 Value"},              QStringList{"${opt1Val}"},                  "Option 1",                     QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt2",  TitelblockField{"Option 2",                        QStringList{"Option 2 Value"},              QStringList{"${opt2Val}"},                  "Option 2",                     QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt3",  TitelblockField{"Option 3",                        QStringList{"Option 2 Value"},              QStringList{"${opt3Val}"},                  "Option 3",                     QStringList{"."}});
@@ -303,10 +303,10 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS.insert("opt11", TitelblockField{"Valid from to",                   QStringList{"%D to -"},                     QStringList{"${validFromTo}"},              "Valid from to",                QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt12", TitelblockField{"Document state",                  QStringList{"-"},                           QStringList{"${docState}"},                 "Document state",               QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt13", TitelblockField{"Approved by",                     QStringList{"%C1"},                         QStringList{"${approvedBy}"},               "Approved by",                  QStringList{"."}});
-    TITELBLOCKFIELDS.insert("opt14", TitelblockField{"Projekt",                         QStringList{"%C2"},                         QStringList{"${projekt}"},                  "Projekt",                      QStringList{"."}});
+    TITELBLOCKFIELDS.insert("opt14", TitelblockField{"Project",                         QStringList{"%C2"},                         QStringList{"${project}"},                  "Project",                      QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt15", TitelblockField{"Document type",                   QStringList{"%C3"},                         QStringList{"${docType}"},                  "Document type",                QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt16", TitelblockField{"Legal owner",                     QStringList{"%Y"},                          QStringList{"${COMPANY}"},                  "Legal owner",                  QStringList{"."}});
-    TITELBLOCKFIELDS.insert("opt17", TitelblockField{"Titel, Supplementary titel",      QStringList{"%T"},                          QStringList{"${TITLE}"},                    "Titel, Supplementary titel",   QStringList{"."}});
+    TITELBLOCKFIELDS.insert("opt17", TitelblockField{"Title, Supplementary title",      QStringList{"%T"},                          QStringList{"${TITLE}"},                    "Title, Supplementary title",   QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt18", TitelblockField{"Document number",                 QStringList{"%F"},                          QStringList{"${docNumber}"},                "Document number",              QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt19", TitelblockField{"Rev.",                            QStringList{"%R"},                          QStringList{"${REVISION}"},                 "Rev.",                         QStringList{"."}});
     TITELBLOCKFIELDS.insert("opt20", TitelblockField{"Date of issue",                   QStringList{"%D"},                          QStringList{"${ISSUE_DATE}"},               "Date of issue",                QStringList{"."}});

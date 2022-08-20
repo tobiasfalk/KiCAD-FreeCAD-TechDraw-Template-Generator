@@ -28,7 +28,7 @@ void SmallPartsListOptions::setSMALLPARTSLISTFIELDS(const QMap<QString, Titelblo
 
 void SmallPartsListOptions::loadStdOptions()
 {
-    //                           name                    lable                              KiCAD 5 Value               KiCAD 6 Value
+    //                           name                    label                              KiCAD 5 Value               KiCAD 6 Value
     SMALLPARTSLISTFIELDS.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},            QStringList{"${p&{N}&{L}}"},                    "Pos.",             QStringList{"."}});
     SMALLPARTSLISTFIELDS.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},            QStringList{"${q&{N}&{L}}"},                    "Qty.",             QStringList{"."}});
     SMALLPARTSLISTFIELDS.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},            QStringList{"${u&{N}&{L}}"},                    "Unit",             QStringList{"."}});
