@@ -113,7 +113,7 @@
       <item>
        <widget class="QPushButton" name="loadFielsPushButton">
         <property name="text">
-         <string>Load settins fiele</string>
+         <string>Load settings file</string>
         </property>
        </widget>
       </item>
@@ -235,7 +235,7 @@
       <item>
        <widget class="QCheckBox" name="trimmingMarksCheckBox">
         <property name="text">
-         <string>Trimming marks(smal black corners)</string>
+         <string>Trimming marks (small black corners)</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -462,7 +462,7 @@
       <item>
        <widget class="QCheckBox" name="SmallPartsListCheckBox">
         <property name="text">
-         <string>Smal parts list(direktly over the header)</string>
+         <string>Small parts list (directly over the header)</string>
         </property>
        </widget>
       </item>

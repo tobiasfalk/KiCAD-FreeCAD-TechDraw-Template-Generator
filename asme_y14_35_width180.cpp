@@ -39,7 +39,7 @@ void ASME_Y14_35_Width180::on_buttonBox_rejected()
 
 void ASME_Y14_35_Width180::loadStdOptions()
 {
-    //                      name                     lable                              KiCAD 5 Value                                                                   KiCAD 6 Value                                                   FreeCAD Name            FreeCAD Value
+    //                      name                     label                              KiCAD 5 Value                                                                   KiCAD 6 Value                                                   FreeCAD Name            FreeCAD Value
     REVHISTORYFIELDS.insert("head",  TitelblockField{"Revision History",                QStringList{"-"},                                                               QStringList{"-"},                                               "Revision History",     QStringList{".", ".", "."}});
     REVHISTORYFIELDS.insert("opt1",  TitelblockField{"Zone",                            QStringList{"Z&{N} A", "Z&{N} B", "Z&{N} C"},                                   QStringList{"${zone&{N}A}", "${zone&{N}B}", "${zone&{N}C}"},    "Z&{N}",                QStringList{".", ".", "."}});
     REVHISTORYFIELDS.insert("opt2",  TitelblockField{"Rev.",                            QStringList{"R&{N} A", "R&{N} B", "R&{N} C"},                                   QStringList{"${rev&{N}A}", "${rev&{N}B}", "${rev&{N}C}"},       "R&{N}",                QStringList{".", ".", "."}});

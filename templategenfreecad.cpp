@@ -696,7 +696,7 @@ void TemplateGenFreeCAD::drawFoldLines(double depth)
         {
             double indexWidth = 0;
             double indexWidthMax = PAGESIZE.width;
-            // Left uper corner
+            // Left upper corner
             if(PAGESIZE.height > 297)
             {
                 drawLine(Coordinate{105, 0}, Coordinate{105, depth}, 0.35);
@@ -851,15 +851,15 @@ void TemplateGenFreeCAD::drawLogoTitelblockISO7200()
 
     // Prepare a QImage with desired characteritisc
     int widthPx = 2268; // 24mm bei 2400dpi(KiCAD scale 0.125)
-    double widthMM = widthPx / 94.4882;// 2400dpi ot p/mm
+    double widthMM = widthPx / 94.4882;// 2400dpi to p/mm
     int heightPx = int(widthPx * (double(size.height())/size.width()));
-    double heightMM = heightPx / 94.4882;// 2400dpi ot p/mm
+    double heightMM = heightPx / 94.4882;// 2400dpi to p/mm
     if(heightPx > 2268)
     {
         heightPx = 2835;// 30mm bei 2400dpi(KiCAD scale 0.25)
-        heightMM = heightPx / 94.4882;// 2400dpi ot p/mm
+        heightMM = heightPx / 94.4882;// 2400dpi to p/mm
         widthPx = int(heightPx * (double(size.width())/size.height()));
-        widthMM = widthPx / 94.4882;// 2400dpi ot p/mm
+        widthMM = widthPx / 94.4882;// 2400dpi to p/mm
     }
 
     QFile file(LOGODIR);

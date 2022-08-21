@@ -34,7 +34,7 @@ void FullSheetsPartListOptions::resetToOrigin()
 
 void FullSheetsPartListOptions::loadStdOptions()
 {
-    //                           name                    lable                              KiCAD 5 Value               KiCAD 6 Value                   FreeCAD Name        FreeCAD Value
+    //                           name                    label                              KiCAD 5 Value               KiCAD 6 Value                   FreeCAD Name        FreeCAD Value
     FULLSHEETPARTSLISTFIELDS.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},            QStringList{"${p&{N}&{L}}"},            "Pos.",             QStringList{"."}});
     FULLSHEETPARTSLISTFIELDS.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},            QStringList{"${q&{N}&{L}}"},            "Qty.",             QStringList{"."}});
     FULLSHEETPARTSLISTFIELDS.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},            QStringList{"${u&{N}&{L}}"},            "Unit",             QStringList{"."}});
