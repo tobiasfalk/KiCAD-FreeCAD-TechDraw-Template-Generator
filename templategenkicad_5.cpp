@@ -42,7 +42,7 @@ bool TemplateGenKiCAD_5::init()
 {
     if((PAGESIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + 8 + ((2.5 * 1.5) * NUMLINESMALLPARTSLIST + 3) * NUMPARTSSMALLPARTSLIST)) && SMALLPARTSLIST)
     {
-        CENTERINGMARKS.Reight = false;
+        CENTERINGMARKS.Right = false;
         if(PAGESIZE.width / 2 < 190)
         {
             CENTERINGMARKS.Left = false;
@@ -50,7 +50,7 @@ bool TemplateGenKiCAD_5::init()
     }
     if(FULLSHEETPARTSLIST)
     {
-        CENTERINGMARKS.Reight = false;
+        CENTERINGMARKS.Right = false;
         CENTERINGMARKS.Left = false;
         CENTERINGMARKS.Top = false;
     }
@@ -64,7 +64,7 @@ bool TemplateGenKiCAD_5::init()
     }
     if(PAGESIZE.height / 2 > (PAGESIZE.height - 11 * (5 + NUMOPTLINES) + 0) || (PAGESIZE.height / 2 < (10 + 8 + NUMREVHISTORY * 13.5) && REVHISTORY))
     {
-        CENTERINGMARKS.Reight = false;
+        CENTERINGMARKS.Right = false;
     }
     if((PAGESIZE.height / 2 > (PAGESIZE.height - 11 * (5 + NUMOPTLINES) + 0)) && (PAGESIZE.width / 2 < 190))
     {
@@ -327,7 +327,7 @@ void TemplateGenKiCAD_5::drawDrawingBorderISO5457()
         {
             drawLine(Coordinate{15, PAGESIZE.height/2}, Coordinate{20, PAGESIZE.height/2}, 0.7);
         }
-        if(CENTERINGMARKS.Reight)
+        if(CENTERINGMARKS.Right)
         {
             drawLine(Coordinate{PAGESIZE.width - 5, PAGESIZE.height/2}, Coordinate{PAGESIZE.width - 20, PAGESIZE.height/2}, 0.7);
         }

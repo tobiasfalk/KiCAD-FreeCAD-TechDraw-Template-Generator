@@ -51,7 +51,7 @@ struct CenteringMarks
     bool Top;
     bool Bottom;
     bool Left;
-    bool Reight;
+    bool Right;
 };
 
 struct TitelblockField
