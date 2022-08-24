@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -49,6 +49,11 @@ set(PROJECT_SOURCES
         templategenfreecad.h
         loadesavesettings.cpp
         loadesavesettings.h
+        KiCAD_Symbol_Scaler/kicad_symbol_scaler.cpp
+        KiCAD_Symbol_Scaler/kicad_symbol_scaler.h
+        KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.cpp
+        KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.h
+        KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.ui
         )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

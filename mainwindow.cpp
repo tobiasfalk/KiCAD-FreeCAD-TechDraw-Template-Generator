@@ -8,6 +8,8 @@
 #include "templategenkicad_7.h"
 #include "templategenfreecad.h"
 
+#include "KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.h"
+
 void MainWindow::initPageSizes()
 {
     foreach(PageSize sheet, PAGESIZES)
@@ -556,4 +558,12 @@ void MainWindow::on_logoPushButton_clicked()
     }
 }
 
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    KiCAD_Symbol_Scaler_UI scaler_ui;
+    scaler_ui.setModal(true);
+    scaler_ui.exec();
+}
 
