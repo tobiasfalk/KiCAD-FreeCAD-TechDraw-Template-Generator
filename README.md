@@ -1,32 +1,62 @@
 # KiCAD FreeCAD TechDraw Template Generator
-This small and crudely programmed Python script creates drawing sheet templates for FreeCAD and KiCAD that are mostly identical.
+
+This small and crudely programmed Python script creates drawing sheet templates for [FreeCAD](https://freecad.org) and [KiCAD](https://kicad.org) that are mostly identical.
+
 ## Aims
-The aim of this Projekt was to create a unified template for KiCAD and FreeCAD TechDraw. The template is near the Standrats of ISO 5457 for the general Layout, ISO 7200 for the Titelblock, ASME Y14.35 for the optional Revision history and DIN 824 for the optional folding lines. For the font the osifont (https://github.com/hikikomori82/osifont) and for the DXF the iso font was used.
-##  Usage
-- Qt
-You also should install the osifont: https://github.com/hikikomori82/osifont
+
+The aim of this Project was to create a unified template for KiCAD and FreeCAD TechDraw. The template is similar to the ISO 5457 standard for the general layout; ISO 7200 for the Titleblock; ASME Y14.35 for the optional revision history; and DIN 824 for the optional folding lines. 
+
+For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO font was used for DXF.
+
+## Prerequisites
+
+* Qt
+* [Osifont](https://github.com/hikikomori82/osifont)
+
+## Usage
+
 ## Styles
 - ISO5457 ISO700
+
 ## Limitations
+
 ### KiCAD 5
-- Not able to change the font(with 7(6.99) posable)
+
+* Not able to change the font (with 7(6.99) possible)
 
 ### KiCAD 6
-- Not able to change the font(with 7(6.99) posable)
+
+* Not able to change the font (with 7(6.99) possible)
 
 ### KiCAD 7(6.99)
 
 ### FreeCAD
-- SVG text height is not he same as the real height
 
-### PDF(To be done)
-- The text in the editable(form) is not centered if needed and a other font
+* SVG text height is not the same as the real height
 
-### Eagle 6.5(To be done)
+### PDF
+
+(To be done)
+
+* The text in the editable (form) is not centered if needed and another font
+
+### Eagle 6.5 
+
+(To be done)
 
 ## Variable Docu
-- &{N} Number of repition, see Rev. History
-- &{F} Field number, see the partslists
 
-## Logo inclutions
-It is posible to include a Logo in the Legal owner Field(name can be changed), this is ment for a Company Logo or somthing like this. The logo needs to be provided as SVG and the checkbox on the right site of the button needs to be checkt(will be checket after clicking it). The location is on the right bottom site of the Legal owner field of the Titelblock and th maximum width is 24mm, the moment the logo gets to a height of 30mm the width is reduced(the ratio will be keept). If text is included in the SVG it ma make öroblems so convert that to path.
+* `&{N}` Number of repetition, see Rev. History
+* `&{F}` Field number, see the partslists
+
+## Logo (Branding)
+
+It is possible to include a Logo in the Legal owner Field (name can be modified). This is meant for a company logo or brand. The specification for the logo: 
+
+* SVG format
+* maximum width is 24mm
+* the checkbox on the right side of the button needs to be checked (will be checked after clicking it). 
+* the location is on the right bottom side of the Legal owner field of the Titleblock 
+ 
+**Notes**  
+Once the logo gets reaches a height of 30mm the width is reduced (the ratio will be kept). If text is included in the SVG it may create problems, so convert that to path.
