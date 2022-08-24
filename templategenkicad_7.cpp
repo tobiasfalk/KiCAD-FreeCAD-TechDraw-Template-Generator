@@ -7,7 +7,7 @@
 
 QString TemplateGenKiCAD_7::getFILEENDING()
 {
-    return "_ki6.kicad_wks";
+    return "_ki7.kicad_wks";
 }
 
 bool TemplateGenKiCAD_7::writeBase()

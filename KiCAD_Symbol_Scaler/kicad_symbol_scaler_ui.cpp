@@ -54,10 +54,11 @@ void KiCAD_Symbol_Scaler_UI::on_pushButton_clicked()
                 KiCAD_Symbol_Scaler scaler;
                 scaler.setLines(lines);
                 scaler.setScale(ui->scaleToDoubleSpinBox->value());
+                scaler.setLibName(lib.toStdString());
                 scaler.scale();
                 lines = scaler.getLines();
 
-                QFile file(FOLDER + "/" + lib);
+                QFile file(FOLDER + "/" + QString::number(scaler.getScale()).replace('.', '_') + "_" + lib);
                 if(file.open(QIODevice::WriteOnly))
                 {
                     foreach (std::string line, lines)
