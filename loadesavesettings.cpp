@@ -25,14 +25,36 @@ void LoadeSaveSettings::setSHEETSTYLE(PageStyle newSHEETSTYLE)
     finisheD.pagestylE = true;
 }
 
-const QMap<QString, TitelblockField> &LoadeSaveSettings::getTITELBLOCKFIELDS() const
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getTITELBLOCKFIELDS_FREECAD() const
 {
-    return TITELBLOCKFIELDS;
+    return TITELBLOCKFIELDS_FREECAD;
 }
 
-void LoadeSaveSettings::setTITELBLOCKFIELDS(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS)
+void LoadeSaveSettings::setTITELBLOCKFIELDS_FREECAD(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_FREECAD)
 {
-    TITELBLOCKFIELDS = newTITELBLOCKFIELDS;
+    TITELBLOCKFIELDS_FREECAD = newTITELBLOCKFIELDS_FREECAD;
+    finisheD.titelblockfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getTITELBLOCKFIELDS_KICAD5() const
+{
+    return TITELBLOCKFIELDS_KICAD5;
+}
+
+void LoadeSaveSettings::setTITELBLOCKFIELDS_KICAD5(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD5)
+{
+    TITELBLOCKFIELDS_KICAD5 = newTITELBLOCKFIELDS_KICAD5;
+    finisheD.titelblockfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getTITELBLOCKFIELDS_KICAD6() const
+{
+    return TITELBLOCKFIELDS_KICAD5;
+}
+
+void LoadeSaveSettings::setTITELBLOCKFIELDS_KICAD6(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD6)
+{
+    TITELBLOCKFIELDS_KICAD6 = newTITELBLOCKFIELDS_KICAD6;
     finisheD.titelblockfieldS = true;
 }
 
@@ -135,14 +157,36 @@ void LoadeSaveSettings::setNUMPARTSSMALLPARTSLIST(quint64 newNUMPARTSSMALLPARTSL
     finisheD.numpartssmallpartslisT = true;
 }
 
-const QMap<QString, TitelblockField> &LoadeSaveSettings::getSMALLPARTSLISTFIELDS() const
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getSMALLPARTSLISTFIELDS_FREECAD() const
 {
-    return SMALLPARTSLISTFIELDS;
+    return SMALLPARTSLISTFIELDS_FREECAD;
 }
 
-void LoadeSaveSettings::setSMALLPARTSLISTFIELDS(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS)
+void LoadeSaveSettings::setSMALLPARTSLISTFIELDS_FREECAD(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_FREECAD)
 {
-    SMALLPARTSLISTFIELDS = newSMALLPARTSLISTFIELDS;
+    SMALLPARTSLISTFIELDS_FREECAD = newSMALLPARTSLISTFIELDS_FREECAD;
+    finisheD.smallpartslistfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getSMALLPARTSLISTFIELDS_KICAD5() const
+{
+    return SMALLPARTSLISTFIELDS_KICAD5;
+}
+
+void LoadeSaveSettings::setSMALLPARTSLISTFIELDS_KICAD5(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_KICAD5)
+{
+    SMALLPARTSLISTFIELDS_KICAD5 = newSMALLPARTSLISTFIELDS_KICAD5;
+    finisheD.smallpartslistfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getSMALLPARTSLISTFIELDS_KICAD6() const
+{
+    return SMALLPARTSLISTFIELDS_KICAD6;
+}
+
+void LoadeSaveSettings::setSMALLPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_KICAD6)
+{
+    SMALLPARTSLISTFIELDS_KICAD6 = newSMALLPARTSLISTFIELDS_KICAD6;
     finisheD.smallpartslistfieldS = true;
 }
 
@@ -212,25 +256,69 @@ void LoadeSaveSettings::setREVHISTORYSTYLE(RevHistoryStyle newREVHISTORYSTYLE)
     finisheD.revhistorystylE = true;
 }
 
-const QMap<QString, TitelblockField> &LoadeSaveSettings::getREVHISTORYFIELDS() const
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getREVHISTORYFIELDS_FREECAD() const
 {
-    return REVHISTORYFIELDS;
+    return REVHISTORYFIELDS_FREECAD;
 }
 
-void LoadeSaveSettings::setREVHISTORYFIELDS(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS)
+void LoadeSaveSettings::setREVHISTORYFIELDS_FREECAD(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_FREECAD)
 {
-    REVHISTORYFIELDS = newREVHISTORYFIELDS;
+    REVHISTORYFIELDS_FREECAD = newREVHISTORYFIELDS_FREECAD;
     finisheD.revhistoryfieldS = true;
 }
 
-const QMap<QString, TitelblockField> &LoadeSaveSettings::getFULLSHEETPARTSLISTFIELDS() const
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getREVHISTORYFIELDS_KICAD5() const
 {
-    return FULLSHEETPARTSLISTFIELDS;
+    return REVHISTORYFIELDS_KICAD5;
 }
 
-void LoadeSaveSettings::setFULLSHEETPARTSLISTFIELDS(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS)
+void LoadeSaveSettings::setREVHISTORYFIELDS_KICAD5(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_KICAD5)
 {
-    FULLSHEETPARTSLISTFIELDS = newFULLSHEETPARTSLISTFIELDS;
+    REVHISTORYFIELDS_KICAD5 = newREVHISTORYFIELDS_KICAD5;
+    finisheD.revhistoryfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getREVHISTORYFIELDS_KICAD6() const
+{
+    return REVHISTORYFIELDS_KICAD6;
+}
+
+void LoadeSaveSettings::setREVHISTORYFIELDS_KICAD6(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_KICAD6)
+{
+    REVHISTORYFIELDS_KICAD6 = newREVHISTORYFIELDS_KICAD6;
+    finisheD.revhistoryfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getFULLSHEETPARTSLISTFIELDS_FREECAD() const
+{
+    return FULLSHEETPARTSLISTFIELDS_FREECAD;
+}
+
+void LoadeSaveSettings::setFULLSHEETPARTSLISTFIELDS_FREECAD(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_FREECAD)
+{
+    FULLSHEETPARTSLISTFIELDS_FREECAD = newFULLSHEETPARTSLISTFIELDS_FREECAD;
+    finisheD.fullsheetpartlistfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getFULLSHEETPARTSLISTFIELDS_KICAD5() const
+{
+    return FULLSHEETPARTSLISTFIELDS_KICAD5;
+}
+
+void LoadeSaveSettings::setFULLSHEETPARTSLISTFIELDS_KICAD5(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD5)
+{
+    FULLSHEETPARTSLISTFIELDS_KICAD5 = newFULLSHEETPARTSLISTFIELDS_KICAD5;
+    finisheD.fullsheetpartlistfieldS = true;
+}
+
+const QMap<QString, TitelblockField> &LoadeSaveSettings::getFULLSHEETPARTSLISTFIELDS_KICAD6() const
+{
+    return FULLSHEETPARTSLISTFIELDS_KICAD6;
+}
+
+void LoadeSaveSettings::setFULLSHEETPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD6)
+{
+    FULLSHEETPARTSLISTFIELDS_KICAD6 = newFULLSHEETPARTSLISTFIELDS_KICAD6;
     finisheD.fullsheetpartlistfieldS = true;
 }
 
@@ -333,15 +421,15 @@ void LoadeSaveSettings::saveSettings(QString dir)
     settings.setAttribute("style", getSheetStyleString());
     settings.setAttribute("numOptLines", NUMOPTLINES);
     settings.setAttribute("trimmingMarks", TRIMMINGMARKS);
-    foreach (const QString &str, TITELBLOCKFIELDS.keys())
+    foreach (const QString &str, TITELBLOCKFIELDS_FREECAD.keys())
     {
         QDomElement field = document.createElement("Opt");
         field.setAttribute("key", str);
-        field.setAttribute("label", TITELBLOCKFIELDS.value(str).Label);
-        field.setAttribute("valKiCAD5", stringListToString(TITELBLOCKFIELDS.value(str).ValueKiCAD5));
-        field.setAttribute("valKiCAD6", stringListToString(TITELBLOCKFIELDS.value(str).ValueKiCAD6));
-        field.setAttribute("nameFreeCAD", TITELBLOCKFIELDS.value(str).NameFreeCAD);
-        field.setAttribute("valFreeCAD", stringListToString(TITELBLOCKFIELDS.value(str).ValueFreeCAD));
+        field.setAttribute("label", TITELBLOCKFIELDS_FREECAD.value(str).Label);
+        field.setAttribute("valKiCAD5", stringListToString(TITELBLOCKFIELDS_KICAD5.value(str).Value));
+        field.setAttribute("valKiCAD6", stringListToString(TITELBLOCKFIELDS_KICAD6.value(str).Value));
+        field.setAttribute("nameFreeCAD", TITELBLOCKFIELDS_FREECAD.value(str).Name);
+        field.setAttribute("valFreeCAD", stringListToString(TITELBLOCKFIELDS_FREECAD.value(str).Value));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -351,15 +439,15 @@ void LoadeSaveSettings::saveSettings(QString dir)
     settings.setAttribute("revHistory", REVHISTORY);
     settings.setAttribute("style", getRevHistoryStyleString());
     settings.setAttribute("num", NUMREVHISTORY);
-    foreach (const QString &str, REVHISTORYFIELDS.keys())
+    foreach (const QString &str, REVHISTORYFIELDS_FREECAD.keys())
     {
         QDomElement field = document.createElement("Opt");
         field.setAttribute("key", str);
-        field.setAttribute("label", REVHISTORYFIELDS.value(str).Label);
-        field.setAttribute("valKiCAD5", stringListToString(REVHISTORYFIELDS.value(str).ValueKiCAD5));
-        field.setAttribute("valKiCAD6", stringListToString(REVHISTORYFIELDS.value(str).ValueKiCAD6));
-        field.setAttribute("nameFreeCAD", REVHISTORYFIELDS.value(str).NameFreeCAD);
-        field.setAttribute("valFreeCAD", stringListToString(REVHISTORYFIELDS.value(str).ValueFreeCAD));
+        field.setAttribute("label", REVHISTORYFIELDS_FREECAD.value(str).Label);
+        field.setAttribute("valKiCAD5", stringListToString(REVHISTORYFIELDS_KICAD5.value(str).Value));
+        field.setAttribute("valKiCAD6", stringListToString(REVHISTORYFIELDS_KICAD6.value(str).Value));
+        field.setAttribute("nameFreeCAD", REVHISTORYFIELDS_FREECAD.value(str).Name);
+        field.setAttribute("valFreeCAD", stringListToString(REVHISTORYFIELDS_FREECAD.value(str).Value));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -377,15 +465,15 @@ void LoadeSaveSettings::saveSettings(QString dir)
     settings.setAttribute("smallPartsList", SMALLPARTSLIST);
     settings.setAttribute("numLines", NUMLINESSMALLPARTSLIST);
     settings.setAttribute("numParts", NUMPARTSSMALLPARTSLIST);
-    foreach (const QString &str, SMALLPARTSLISTFIELDS.keys())
+    foreach (const QString &str, SMALLPARTSLISTFIELDS_FREECAD.keys())
     {
         QDomElement field = document.createElement("Opt");
         field.setAttribute("key", str);
-        field.setAttribute("label", SMALLPARTSLISTFIELDS.value(str).Label);
-        field.setAttribute("valKiCAD5", stringListToString(SMALLPARTSLISTFIELDS.value(str).ValueKiCAD5));
-        field.setAttribute("valKiCAD6", stringListToString(SMALLPARTSLISTFIELDS.value(str).ValueKiCAD6));
-        field.setAttribute("nameFreeCAD", SMALLPARTSLISTFIELDS.value(str).NameFreeCAD);
-        field.setAttribute("valFreeCAD", stringListToString(SMALLPARTSLISTFIELDS.value(str).ValueFreeCAD));
+        field.setAttribute("label", SMALLPARTSLISTFIELDS_FREECAD.value(str).Label);
+        field.setAttribute("valKiCAD5", stringListToString(SMALLPARTSLISTFIELDS_KICAD5.value(str).Value));
+        field.setAttribute("valKiCAD6", stringListToString(SMALLPARTSLISTFIELDS_KICAD6.value(str).Value));
+        field.setAttribute("nameFreeCAD", SMALLPARTSLISTFIELDS_FREECAD.value(str).Name);
+        field.setAttribute("valFreeCAD", stringListToString(SMALLPARTSLISTFIELDS_FREECAD.value(str).Value));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -395,15 +483,15 @@ void LoadeSaveSettings::saveSettings(QString dir)
     settings.setAttribute("fullSheetPartsList", FULLSHEETPARTSLIST);
     settings.setAttribute("numLines", NUMLINESFULLSHEETPARTSLIST);
     settings.setAttribute("numSheets", NUMSHEETSFULLSHEETPARTSLIST);
-    foreach (const QString &str, FULLSHEETPARTSLISTFIELDS.keys())
+    foreach (const QString &str, FULLSHEETPARTSLISTFIELDS_FREECAD.keys())
     {
         QDomElement field = document.createElement("Opt");
         field.setAttribute("key", str);
-        field.setAttribute("label", FULLSHEETPARTSLISTFIELDS.value(str).Label);
-        field.setAttribute("valKiCAD5", stringListToString(FULLSHEETPARTSLISTFIELDS.value(str).ValueKiCAD5));
-        field.setAttribute("valKiCAD6", stringListToString(FULLSHEETPARTSLISTFIELDS.value(str).ValueKiCAD6));
-        field.setAttribute("nameFreeCAD", FULLSHEETPARTSLISTFIELDS.value(str).NameFreeCAD);
-        field.setAttribute("valFreeCAD", stringListToString(FULLSHEETPARTSLISTFIELDS.value(str).ValueFreeCAD));
+        field.setAttribute("label", FULLSHEETPARTSLISTFIELDS_FREECAD.value(str).Label);
+        field.setAttribute("valKiCAD5", stringListToString(FULLSHEETPARTSLISTFIELDS_KICAD5.value(str).Value));
+        field.setAttribute("valKiCAD6", stringListToString(FULLSHEETPARTSLISTFIELDS_KICAD6.value(str).Value));
+        field.setAttribute("nameFreeCAD", FULLSHEETPARTSLISTFIELDS_FREECAD.value(str).Name);
+        field.setAttribute("valFreeCAD", stringListToString(FULLSHEETPARTSLISTFIELDS_FREECAD.value(str).Value));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -456,11 +544,15 @@ void LoadeSaveSettings::loadSettings(QString dir)
                 option.nextSibling().toElement();
                 if(option.tagName() == "Opt")
                 {
-                    TITELBLOCKFIELDS[option.attribute("key")].Label = option.attribute("label");
-                    TITELBLOCKFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
-                    TITELBLOCKFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
-                    TITELBLOCKFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
-                    TITELBLOCKFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
+                    TITELBLOCKFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
+                    TITELBLOCKFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
+                    TITELBLOCKFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    TITELBLOCKFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
+                    TITELBLOCKFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
+                    TITELBLOCKFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    TITELBLOCKFIELDS_KICAD5[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    TITELBLOCKFIELDS_KICAD6[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    TITELBLOCKFIELDS_FREECAD[option.attribute("key")].Value = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }
@@ -477,11 +569,15 @@ void LoadeSaveSettings::loadSettings(QString dir)
                 option.nextSibling().toElement();
                 if(option.tagName() == "Opt")
                 {
-                    REVHISTORYFIELDS[option.attribute("key")].Label = option.attribute("label");
-                    REVHISTORYFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
-                    REVHISTORYFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
-                    REVHISTORYFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
-                    REVHISTORYFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
+                    REVHISTORYFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
+                    REVHISTORYFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
+                    REVHISTORYFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    REVHISTORYFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
+                    REVHISTORYFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
+                    REVHISTORYFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    REVHISTORYFIELDS_KICAD5[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    REVHISTORYFIELDS_KICAD6[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    REVHISTORYFIELDS_FREECAD[option.attribute("key")].Value = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }
@@ -505,11 +601,15 @@ void LoadeSaveSettings::loadSettings(QString dir)
                 option.nextSibling().toElement();
                 if(option.tagName() == "Opt")
                 {
-                    SMALLPARTSLISTFIELDS[option.attribute("key")].Label = option.attribute("label");
-                    SMALLPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
-                    SMALLPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
-                    SMALLPARTSLISTFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
-                    SMALLPARTSLISTFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
+                    SMALLPARTSLISTFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
+                    SMALLPARTSLISTFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
+                    SMALLPARTSLISTFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    SMALLPARTSLISTFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
+                    SMALLPARTSLISTFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
+                    SMALLPARTSLISTFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    SMALLPARTSLISTFIELDS_KICAD5[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    SMALLPARTSLISTFIELDS_KICAD6[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    SMALLPARTSLISTFIELDS_FREECAD[option.attribute("key")].Value = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }
@@ -526,11 +626,15 @@ void LoadeSaveSettings::loadSettings(QString dir)
                 option.nextSibling().toElement();
                 if(option.tagName() == "Opt")
                 {
-                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].Label = option.attribute("label");
-                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD5 = option.attribute("valKiCAD5").split("&{n}");
-                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].ValueKiCAD6 = option.attribute("valKiCAD6").split("&{n}");
-                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].NameFreeCAD = option.attribute("nameFreeCAD");
-                    FULLSHEETPARTSLISTFIELDS[option.attribute("key")].ValueFreeCAD = option.attribute("valFreeCAD").split("&{n}");
+                    FULLSHEETPARTSLISTFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
+                    FULLSHEETPARTSLISTFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
+                    FULLSHEETPARTSLISTFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    FULLSHEETPARTSLISTFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
+                    FULLSHEETPARTSLISTFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
+                    FULLSHEETPARTSLISTFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    FULLSHEETPARTSLISTFIELDS_KICAD5[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    FULLSHEETPARTSLISTFIELDS_KICAD6[option.attribute("key")].Name = option.attribute("nameFreeCAD");
+                    FULLSHEETPARTSLISTFIELDS_FREECAD[option.attribute("key")].Value = option.attribute("valFreeCAD").split("&{n}");
                     option = option.nextSibling().toElement();
                 }
             }

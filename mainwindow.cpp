@@ -128,30 +128,31 @@ void MainWindow::on_GeneratePushButton_clicked()
                                                  | QFileDialog::DontResolveSymlinks);
     if(dir.size() > 0)
     {
-        PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
-        QString sheetName = ui->NameLineEdit->text();
-        PageStyle sheetStyle = getPageStyle();
-        QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS();
-        qint64 numOptLines = ui->OptLinesSpinBox->value();
-        qint64 numRevHistory = ui->numRevSpinBox->value();
-        QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS();
-        bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
-        bool revHistory = ui->RevHistoryCheckBox->isChecked();
-        bool foldLines = ui->foldLinesCheckBox->isChecked();
-        PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
-        bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
-        quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
-        quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
-        QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS();
-        bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
-        quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-        quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-        QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS();
-        bool logo = ui->logoCheckBox->isChecked();
-        QString logoDir = LOGODIR;
 
         // KiCAD 5
         {
+            PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+            QString sheetName = ui->NameLineEdit->text();
+            PageStyle sheetStyle = getPageStyle();
+            QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
+            qint64 numOptLines = ui->OptLinesSpinBox->value();
+            qint64 numRevHistory = ui->numRevSpinBox->value();
+            QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD5();
+            bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+            bool revHistory = ui->RevHistoryCheckBox->isChecked();
+            bool foldLines = ui->foldLinesCheckBox->isChecked();
+            PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+            bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+            quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+            QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD5();
+            bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+            quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD5();
+            bool logo = ui->logoCheckBox->isChecked();
+            QString logoDir = LOGODIR;
+
             TemplateGenKiCAD_5 KiCAD(this);
             KiCAD.setDIR(dir);
             KiCAD.setPAGESIZE(sheetSize);
@@ -180,6 +181,28 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         // KiCAD 6
         {
+            PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+            QString sheetName = ui->NameLineEdit->text();
+            PageStyle sheetStyle = getPageStyle();
+            QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
+            qint64 numOptLines = ui->OptLinesSpinBox->value();
+            qint64 numRevHistory = ui->numRevSpinBox->value();
+            QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
+            bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+            bool revHistory = ui->RevHistoryCheckBox->isChecked();
+            bool foldLines = ui->foldLinesCheckBox->isChecked();
+            PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+            bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+            quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+            QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
+            bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+            quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
+            bool logo = ui->logoCheckBox->isChecked();
+            QString logoDir = LOGODIR;
+
             TemplateGenKiCAD_6 KiCAD(this);
             KiCAD.setDIR(dir);
             KiCAD.setPAGESIZE(sheetSize);
@@ -208,6 +231,28 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         // KiCAD 7
         {
+            PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+            QString sheetName = ui->NameLineEdit->text();
+            PageStyle sheetStyle = getPageStyle();
+            QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
+            qint64 numOptLines = ui->OptLinesSpinBox->value();
+            qint64 numRevHistory = ui->numRevSpinBox->value();
+            QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
+            bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+            bool revHistory = ui->RevHistoryCheckBox->isChecked();
+            bool foldLines = ui->foldLinesCheckBox->isChecked();
+            PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+            bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+            quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+            QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
+            bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+            quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
+            bool logo = ui->logoCheckBox->isChecked();
+            QString logoDir = LOGODIR;
+
             TemplateGenKiCAD_7 KiCAD(this);
             KiCAD.setDIR(dir);
             KiCAD.setPAGESIZE(sheetSize);
@@ -236,6 +281,28 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         // FreeCAD
         {
+            PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+            QString sheetName = ui->NameLineEdit->text();
+            PageStyle sheetStyle = getPageStyle();
+            QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
+            qint64 numOptLines = ui->OptLinesSpinBox->value();
+            qint64 numRevHistory = ui->numRevSpinBox->value();
+            QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_FREECAD();
+            bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+            bool revHistory = ui->RevHistoryCheckBox->isChecked();
+            bool foldLines = ui->foldLinesCheckBox->isChecked();
+            PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+            bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+            quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+            QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_FREECAD();
+            bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+            quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
+            bool logo = ui->logoCheckBox->isChecked();
+            QString logoDir = LOGODIR;
+
             TemplateGenFreeCAD FreeCAD(this);
             FreeCAD.setDIR(dir);
             FreeCAD.setPAGESIZE(sheetSize);
@@ -377,18 +444,26 @@ void MainWindow::on_loadFielsPushButton_clicked()
         LoadeSaveSettings file(this);
         file.loadSettings(fileName);
         ui->SheetSizeComboBox->setCurrentText(file.getSHEETSIZE().sizeString);
-        ISO7200OPTIONS->setTITELBLOCKFIELDS(file.getTITELBLOCKFIELDS());
+        ISO7200OPTIONS->setTITELBLOCKFIELDS_KICAD5(file.getTITELBLOCKFIELDS_KICAD5());
+        ISO7200OPTIONS->setTITELBLOCKFIELDS_KICAD6(file.getTITELBLOCKFIELDS_KICAD6());
+        ISO7200OPTIONS->setTITELBLOCKFIELDS_FREECAD(file.getTITELBLOCKFIELDS_FREECAD());
         ui->RevHistoryCheckBox->setChecked(file.getREVHISTORY());
         ui->revHistoryStyleComboBox->setCurrentText(getRevHistoryStyleString(file.getREVHISTORYSTYLE()));
-        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS(file.getREVHISTORYFIELDS());
+        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_KICAD5(file.getREVHISTORYFIELDS_KICAD5());
+        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_KICAD6(file.getREVHISTORYFIELDS_KICAD6());
+        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_FREECAD(file.getREVHISTORYFIELDS_FREECAD());
         ui->foldLinesCheckBox->setChecked(file.getFOLDLINES());
         ui->foldingLinesComboBox->setCurrentText(file.getFOLDLINESTARGET().sizeString);
         ui->SmallPartsListCheckBox->setChecked(file.getSMALLPARTSLIST());
-        SMALLPARTSLISTSOPTIONS->setSMALLPARTSLISTFIELDS(file.getSMALLPARTSLISTFIELDS());
+        SMALLPARTSLISTSOPTIONS->setSMALLPARTSLISTFIELDS_KICAD5(file.getSMALLPARTSLISTFIELDS_KICAD5());
+        SMALLPARTSLISTSOPTIONS->setSMALLPARTSLISTFIELDS_KICAD6(file.getSMALLPARTSLISTFIELDS_KICAD6());
+        SMALLPARTSLISTSOPTIONS->setSMALLPARTSLISTFIELDS_FREECAD(file.getSMALLPARTSLISTFIELDS_FREECAD());
         ui->SmallPartsListNumLinesPerFieldSpinBox->setValue(file.getNUMLINESSMALLPARTSLIST());
         ui->SmallPartsListNumPartsSpinBox->setValue(file.getNUMPARTSSMALLPARTSLIST());
         ui->FullPartsListCheckBox->setChecked(file.getFULLSHEETPARTSLIST());
-        FULLSHEETPARTLISTOPIONS->setFULLSHEETPARTSLISTFIELDS(file.getFULLSHEETPARTSLISTFIELDS());
+        FULLSHEETPARTLISTOPIONS->setFULLSHEETPARTSLISTFIELDS_KICAD5(file.getFULLSHEETPARTSLISTFIELDS_KICAD5());
+        FULLSHEETPARTLISTOPIONS->setFULLSHEETPARTSLISTFIELDS_KICAD6(file.getFULLSHEETPARTSLISTFIELDS_KICAD6());
+        FULLSHEETPARTLISTOPIONS->setFULLSHEETPARTSLISTFIELDS_FREECAD(file.getFULLSHEETPARTSLISTFIELDS_FREECAD());
         ui->FullPartsListNumLinesPerFieldSpinBox->setValue(file.getNUMLINESFULLSHEETPARTSLIST());
         ui->FullPartsListNumSheetsSpinBox->setValue(file.getNUMSHEETSFULLSHEETPARTSLIST());
         ui->logoCheckBox->setChecked(file.getLOGO());
@@ -407,10 +482,14 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
         QString sheetName = ui->NameLineEdit->text();
         PageStyle sheetStyle = getPageStyle();
-        QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS();
+        QMap<QString, TitelblockField> titelblockFields_KICAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
+        QMap<QString, TitelblockField> titelblockFields_KICAD6 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
+        QMap<QString, TitelblockField> titelblockFields_FREECAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
         qint64 numOptLines = ui->OptLinesSpinBox->value();
         qint64 numRevHistory = ui->numRevSpinBox->value();
-        QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS();
+        QMap<QString, TitelblockField> revHistoryFields_KICAD5 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD5();
+        QMap<QString, TitelblockField> revHistoryFields_KICAD6 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
+        QMap<QString, TitelblockField> revHistoryFields_FREECAD = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_FREECAD();
         bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
@@ -418,11 +497,15 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
         quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
         quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
-        QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS();
+        QMap<QString, TitelblockField> smallPartsListFileds_KICAD5 = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD5();
+        QMap<QString, TitelblockField> smallPartsListFileds_KICAD6 = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
+        QMap<QString, TitelblockField> smallPartsListFileds_FREECAD = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_FREECAD();
         bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
         quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
         quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-        QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS();
+        QMap<QString, TitelblockField> fullSheetPartsListFields_KICAD5 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD5();
+        QMap<QString, TitelblockField> fullSheetPartsListFields_KICAD6 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
+        QMap<QString, TitelblockField> fullSheetPartsListFields_FREECAD = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
         bool logo = ui->logoCheckBox->isChecked();
         QString logoDir = LOGODIR;
 
@@ -431,22 +514,30 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         file.setSHEETNAME(sheetName);
         file.setSHEETSTYLE(sheetStyle);
         file.setNUMOPTLINES(numOptLines);
-        file.setTITELBLOCKFIELDS(titelblockFields);
+        file.setTITELBLOCKFIELDS_KICAD5(titelblockFields_KICAD5);
+        file.setTITELBLOCKFIELDS_KICAD6(titelblockFields_KICAD6);
+        file.setTITELBLOCKFIELDS_FREECAD(titelblockFields_FREECAD);
         file.setTRIMMINGMARKS(trimmingMarks);
         file.setREVHISTORY(revHistory);
         file.setREVHISTORYSTYLE(getRevHistoryStyle());
         file.setNUMREVHISTORY(numRevHistory);
-        file.setREVHISTORYFIELDS(revHistoryFields);
+        file.setREVHISTORYFIELDS_KICAD5(revHistoryFields_KICAD5);
+        file.setREVHISTORYFIELDS_KICAD6(revHistoryFields_KICAD6);
+        file.setREVHISTORYFIELDS_FREECAD(revHistoryFields_FREECAD);
         file.setFOLDLINES(foldLines);
         file.setFOLDLINESTARGET(foldLinesTaget);
         file.setSMALLPARTSLIST(smallPartsList);
         file.setNUMLINESSMALLPARTSLIST(numLinesSmallPartsList);
         file.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
-        file.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
+        file.setSMALLPARTSLISTFIELDS_KICAD5(smallPartsListFileds_KICAD5);
+        file.setSMALLPARTSLISTFIELDS_KICAD6(smallPartsListFileds_KICAD6);
+        file.setSMALLPARTSLISTFIELDS_FREECAD(smallPartsListFileds_FREECAD);
         file.setFULLSHEETPARTSLIST(fullSheetPartsList);
         file.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
         file.setNUMSHEETSFULLSHEETPARTSLIST(numSheetsFullSheetPartsList);
-        file.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
+        file.setFULLSHEETPARTSLISTFIELDS_KICAD5(fullSheetPartsListFields_KICAD5);
+        file.setFULLSHEETPARTSLISTFIELDS_KICAD6(fullSheetPartsListFields_KICAD6);
+        file.setFULLSHEETPARTSLISTFIELDS_FREECAD(fullSheetPartsListFields_FREECAD);
         file.setLOGO(logo);
         file.setLOGODIR(logoDir);
         file.saveSettings(fileName);

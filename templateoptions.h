@@ -51,16 +51,14 @@ struct CenteringMarks
     bool Top;
     bool Bottom;
     bool Left;
-    bool Reight;
+    bool Right;
 };
 
 struct TitelblockField
 {
     QString Label;
-    QStringList ValueKiCAD5;
-    QStringList ValueKiCAD6;
-    QString NameFreeCAD;
-    QStringList ValueFreeCAD;
+    QStringList Value;
+    QString Name;
 };
 
 enum class PageStyle
@@ -88,6 +86,8 @@ enum class TextWidthAnchor
 };
 
 QStringList NumToABC(qint64 num);
+int ggT(int zahl1, int zahl2);
+int kgV(int zahl1, int zahl2);
 bool allFinisheD(FinisheD finisheD);
 void printFinisheD(FinisheD finisheD);
 

@@ -42,8 +42,14 @@ private slots:
 private:
     Ui::ISO7200Options *ui;
 
-    QMap<QString, TitelblockField> TITELBLOCKFIELDS;
-    QMap<QString, TitelblockField> TITELBLOCKFIELDS_ORG;
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_FREECAD;
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_FREECAD_ORG;
+
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD5;
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD5_ORG;
+
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6;
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6_ORG;
 
 
     void loadStdOptions();
@@ -52,8 +58,12 @@ private:
 public:
     explicit ISO7200Options(QWidget *parent = nullptr);
     ~ISO7200Options();
-    const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS() const;
-    void setTITELBLOCKFIELDS(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS);
+    const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_FREECAD() const;
+    void setTITELBLOCKFIELDS_FREECAD(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_FREECAD);
+    const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_KICAD5() const;
+    void setTITELBLOCKFIELDS_KICAD5(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD5);
+    const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_KICAD6() const;
+    void setTITELBLOCKFIELDS_KICAD6(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD6);
 };
 
 #endif // ISO7200OPTIONS_H

@@ -1,25 +1,49 @@
 #include "changetitelblockfield.h"
 #include "ui_changetitelblockfield.h"
 
-const TitelblockField &ChangeTitelblockField::getFIELD()
+const TitelblockField &ChangeTitelblockField::getFIELD_FREECAD()
 {
-    FIELD.Label = ui->lableLineEdit->text();
-    FIELD.ValueKiCAD5 = stringToStringList(ui->kiCAD5PlainTextEdit->toPlainText());
-    FIELD.ValueKiCAD6 = stringToStringList(ui->kiCAD6PlainTextEdit->toPlainText());
-    FIELD.NameFreeCAD = ui->freeCADnameLineEdit->text();
-    FIELD.ValueFreeCAD = stringToStringList(ui->freeCADTextEdit->toPlainText());
-    return FIELD;
+    FIELD_FREECAD.Label = ui->lableLineEdit->text();
+    FIELD_FREECAD.Name = ui->freeCADnameLineEdit->text();
+    FIELD_FREECAD.Value = stringToStringList(ui->freeCADTextEdit->toPlainText());
+    return FIELD_FREECAD;
 }
 
-void ChangeTitelblockField::setFIELD(const TitelblockField &newFIELD)
+void ChangeTitelblockField::setFIELD_FREECAD(const TitelblockField &newFIELD_FREECAD)
 {
-    FIELD = newFIELD;
-    FIELD_ORG = FIELD;
-    ui->lableLineEdit->setText(FIELD.Label);
-    ui->kiCAD5PlainTextEdit->setPlainText(stringListToString(FIELD.ValueKiCAD5));
-    ui->kiCAD6PlainTextEdit->setPlainText(stringListToString(FIELD.ValueKiCAD6));
-    ui->freeCADnameLineEdit->setText(FIELD.NameFreeCAD);
-    ui->freeCADTextEdit->setPlainText(stringListToString(FIELD.ValueFreeCAD));
+    FIELD_FREECAD = newFIELD_FREECAD;
+    FIELD_FREECAD_ORG = FIELD_FREECAD;
+    ui->lableLineEdit->setText(FIELD_FREECAD.Label);
+    ui->freeCADnameLineEdit->setText(FIELD_FREECAD.Name);
+    ui->freeCADTextEdit->setPlainText(stringListToString(FIELD_FREECAD.Value));
+}
+
+const TitelblockField &ChangeTitelblockField::getFIELD_KICAD5()
+{
+    FIELD_KICAD5.Label = ui->lableLineEdit->text();
+    FIELD_KICAD5.Value = stringToStringList(ui->kiCAD5PlainTextEdit->toPlainText());
+    return FIELD_KICAD5;
+}
+
+void ChangeTitelblockField::setFIELD_KICAD5(const TitelblockField &newFIELD_KICAD5)
+{
+    FIELD_KICAD5 = newFIELD_KICAD5;
+    FIELD_KICAD5_ORG = newFIELD_KICAD5;
+    ui->kiCAD5PlainTextEdit->setPlainText(stringListToString(FIELD_KICAD5.Value));
+}
+
+const TitelblockField &ChangeTitelblockField::getFIELD_KICAD6()
+{
+    FIELD_KICAD6.Label = ui->lableLineEdit->text();
+    FIELD_KICAD6.Value = stringToStringList(ui->kiCAD6PlainTextEdit->toPlainText());
+    return FIELD_KICAD6;
+}
+
+void ChangeTitelblockField::setFIELD_KICAD6(const TitelblockField &newFIELD_KICAD6)
+{
+    FIELD_KICAD6 = newFIELD_KICAD6;
+    FIELD_KICAD5_ORG = newFIELD_KICAD6;
+    ui->kiCAD6PlainTextEdit->setPlainText(stringListToString(FIELD_KICAD6.Value));
 }
 
 QString ChangeTitelblockField::stringListToString(QStringList list)
@@ -52,6 +76,6 @@ ChangeTitelblockField::~ChangeTitelblockField()
 
 void ChangeTitelblockField::on_buttonBox_rejected()
 {
-    FIELD = FIELD_ORG;
+    FIELD_FREECAD = FIELD_FREECAD_ORG;
 }
 

@@ -31,6 +31,21 @@ QStringList NumToABC(qint64 num)
     return ret;
 }
 
+// https://net-developers.de/2008/09/24/c-kleinstes-gemeinsames-vielfaches-kgv-und-groster-gemeinsamer-teiler-ggt/
+int ggT(int zahl1, int zahl2)
+{
+  if(zahl2 == 0)
+  {
+   return zahl1;
+  }
+
+  return ggT(zahl2, zahl1%zahl2);
+}
+int kgV(int zahl1, int zahl2)
+{
+   return (zahl1*zahl2)/ggT(zahl1, zahl2);
+}
+
 bool allFinisheD(FinisheD finisheD)
 {
     if(!finisheD.diR)

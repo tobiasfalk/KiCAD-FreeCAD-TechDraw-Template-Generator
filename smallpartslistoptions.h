@@ -18,8 +18,14 @@ public:
     explicit SmallPartsListOptions(QWidget *parent = nullptr);
     ~SmallPartsListOptions();
 
-    const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS() const;
-    void setSMALLPARTSLISTFIELDS(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS);
+    const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_FREECAD() const;
+    void setSMALLPARTSLISTFIELDS_FREECAD(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_FREECAD);
+
+    const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_KICAD5() const;
+    void setSMALLPARTSLISTFIELDS_KICAD5(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_KICAD5);
+
+    const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_KICAD6() const;
+    void setSMALLPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_KICAD6);
 
 private slots:
     void on_buttonBox_rejected();
@@ -37,8 +43,14 @@ private slots:
 private:
     Ui::SmallPartsListOptions *ui;
 
-    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS;
-    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_ORG;
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_FREECAD;
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_FREECAD_ORG;
+
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD5;
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD5_ORG;
+
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD6;
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD6_ORG;
 
 
     void loadStdOptions();

@@ -57,7 +57,7 @@ private:
                                                     PageSize{"B2",                      707,   500},
                                                     PageSize{"B3",                      500,   353},
                                                     PageSize{"B4",                      353,   250},
-                                                    PageSize{"B3",                      250,   176},
+                                                    PageSize{"B5",                      250,   176},
                                                     PageSize{"ANSI Y14.1 AL (Letter)",  279,   216},
                                                     PageSize{"ANSI Y14.1 AP (Letter)",  216,   279},
                                                     PageSize{"ANSI Y14.1 B",            432,   279},
@@ -83,11 +83,10 @@ private:
 
     ISO7200Options *ISO7200OPTIONS = new ISO7200Options(this);
     ASME_Y14_35_Width180 *ASME_Y14_35_WIDTH180 = new ASME_Y14_35_Width180(this);
-
     FullSheetsPartListOptions *FULLSHEETPARTLISTOPIONS = new FullSheetsPartListOptions(this);
     SmallPartsListOptions *SMALLPARTSLISTSOPTIONS = new SmallPartsListOptions(this);
 
-    QString LOGODIR = "";
+    QString LOGODIR = "&";
 
     void initPageSizes();
     void initPageStyles();

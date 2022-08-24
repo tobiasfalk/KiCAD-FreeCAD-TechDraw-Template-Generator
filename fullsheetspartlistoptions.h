@@ -18,8 +18,15 @@ public:
     explicit FullSheetsPartListOptions(QWidget *parent = nullptr);
     ~FullSheetsPartListOptions();
 
-    const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS() const;
-    void setFULLSHEETPARTSLISTFIELDS(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS);
+    const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_FREECAD() const;
+    void setFULLSHEETPARTSLISTFIELDS_FREECAD(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_FREECAD);
+
+    const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_KICAD5() const;
+    void setFULLSHEETPARTSLISTFIELDS_KICAD5(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD5);
+
+    const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_KICAD6() const;
+    void setFULLSHEETPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD6);
+
     void resetToOrigin();
 
 private slots:
@@ -38,8 +45,14 @@ private slots:
 private:
     Ui::FullSheetsPartListOptions *ui;
 
-    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS;
-    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_ORG;
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_FREECAD;
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_FREECAD_ORG;
+
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD5;
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD5_ORG;
+
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6;
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6_ORG;
 
 
     void loadStdOptions();

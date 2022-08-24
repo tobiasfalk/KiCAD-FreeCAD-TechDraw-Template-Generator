@@ -37,6 +37,8 @@ set(PROJECT_SOURCES
         smallpartslistoptions.cpp
         smallpartslistoptions.h
         smallpartslistoptions.ui
+        templategen.cpp
+        templategen.h
         templategenkicad_5.cpp
         templategenkicad_5.h
         templategenkicad_6.cpp

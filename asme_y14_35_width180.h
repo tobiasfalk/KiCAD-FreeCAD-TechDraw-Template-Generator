@@ -18,9 +18,15 @@ public:
     explicit ASME_Y14_35_Width180(QWidget *parent = nullptr);
     ~ASME_Y14_35_Width180();
 
-    const QMap<QString, TitelblockField> &getREVHISTORYFIELDS() const;
-    void setREVHISTORYFIELDS(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS);
+    const QMap<QString, TitelblockField> &getREVHISTORYFIELDS_FREECAD() const;
+    void setREVHISTORYFIELDS_FREECAD(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_FREECAD);
     void resetToOrigin();
+
+    const QMap<QString, TitelblockField> &getREVHISTORYFIELDS_KICAD5() const;
+    void setREVHISTORYFIELDS_KICAD5(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_KICAD5);
+
+    const QMap<QString, TitelblockField> &getREVHISTORYFIELDS_KICAD6() const;
+    void setREVHISTORYFIELDS_KICAD6(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_KICAD6);
 
 private slots:
     void on_buttonBox_rejected();
@@ -40,8 +46,12 @@ private slots:
 private:
     Ui::ASME_Y14_35_Width180 *ui;
 
-    QMap<QString, TitelblockField> REVHISTORYFIELDS;
-    QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_FREECAD;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG_FREECAD;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_KICAD5;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG_KICAD5;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_KICAD6;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG_KICAD6;
 
 
     void loadStdOptions();
