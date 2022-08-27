@@ -35,10 +35,9 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 * SVG text height is not the same as the real height
 
 ### PDF
+This is mostyl meant for printing as a template for hand drawing.
 
-(To be done)
-
-* The text in the editable (form) is not centered if needed and another font
+* The text in the "editable fields" is not editable
 
 ### Eagle 6.5 
 

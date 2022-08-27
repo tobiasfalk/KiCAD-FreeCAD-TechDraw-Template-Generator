@@ -84,6 +84,15 @@ void FullSheetsPartListOptions::loadStdOptions()
     FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt4", TitelblockField{"Titel",               QStringList{":"},                        "Titel"});
     FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt5", TitelblockField{"Doc. number",         QStringList{":"},                        "Doc. number"});
     FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt6", TitelblockField{"Comment",             QStringList{":"},                        "Comment"});
+
+    // PDF
+    //                           key                    label                                  Value                        Name
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt1", TitelblockField{"Pos.",                QStringList{""},                        "Pos."});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt2", TitelblockField{"Qty.",                QStringList{""},                        "Qty."});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt3", TitelblockField{"Unit",                QStringList{""},                        "Unit"});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt4", TitelblockField{"Titel",               QStringList{""},                        "Titel"});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt5", TitelblockField{"Doc. number",         QStringList{""},                        "Doc. number"});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt6", TitelblockField{"Comment",             QStringList{""},                        "Comment"});
 }
 
 void FullSheetsPartListOptions::loadButtonText()
@@ -102,6 +111,7 @@ void FullSheetsPartListOptions::on_opt1PushButton_clicked()
     changeWindow.setFIELD_FREECAD(FULLSHEETPARTSLISTFIELDS_FREECAD["opt1"]);
     changeWindow.setFIELD_KICAD5(FULLSHEETPARTSLISTFIELDS_KICAD5["opt1"]);
     changeWindow.setFIELD_KICAD6(FULLSHEETPARTSLISTFIELDS_KICAD6["opt1"]);
+    changeWindow.setFIELD_PDF(FULLSHEETPARTSLISTFIELDS_PDF["opt1"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -109,6 +119,7 @@ void FullSheetsPartListOptions::on_opt1PushButton_clicked()
         FULLSHEETPARTSLISTFIELDS_FREECAD["opt1"] = changeWindow.getFIELD_FREECAD();
         FULLSHEETPARTSLISTFIELDS_KICAD5["opt1"] = changeWindow.getFIELD_KICAD5();
         FULLSHEETPARTSLISTFIELDS_KICAD6["opt1"] = changeWindow.getFIELD_KICAD6();
+        FULLSHEETPARTSLISTFIELDS_PDF["opt1"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -120,6 +131,7 @@ void FullSheetsPartListOptions::on_opt2PushButton_clicked()
     changeWindow.setFIELD_FREECAD(FULLSHEETPARTSLISTFIELDS_FREECAD["opt2"]);
     changeWindow.setFIELD_KICAD5(FULLSHEETPARTSLISTFIELDS_KICAD5["opt2"]);
     changeWindow.setFIELD_KICAD6(FULLSHEETPARTSLISTFIELDS_KICAD6["opt2"]);
+    changeWindow.setFIELD_PDF(FULLSHEETPARTSLISTFIELDS_PDF["opt2"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -127,6 +139,7 @@ void FullSheetsPartListOptions::on_opt2PushButton_clicked()
         FULLSHEETPARTSLISTFIELDS_FREECAD["opt2"] = changeWindow.getFIELD_FREECAD();
         FULLSHEETPARTSLISTFIELDS_KICAD5["opt2"] = changeWindow.getFIELD_KICAD5();
         FULLSHEETPARTSLISTFIELDS_KICAD6["opt2"] = changeWindow.getFIELD_KICAD6();
+        FULLSHEETPARTSLISTFIELDS_PDF["opt2"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -138,6 +151,7 @@ void FullSheetsPartListOptions::on_opt3PushButton_clicked()
     changeWindow.setFIELD_FREECAD(FULLSHEETPARTSLISTFIELDS_FREECAD["opt3"]);
     changeWindow.setFIELD_KICAD5(FULLSHEETPARTSLISTFIELDS_KICAD5["opt3"]);
     changeWindow.setFIELD_KICAD6(FULLSHEETPARTSLISTFIELDS_KICAD6["opt3"]);
+    changeWindow.setFIELD_PDF(FULLSHEETPARTSLISTFIELDS_PDF["opt3"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -145,6 +159,7 @@ void FullSheetsPartListOptions::on_opt3PushButton_clicked()
         FULLSHEETPARTSLISTFIELDS_FREECAD["opt3"] = changeWindow.getFIELD_FREECAD();
         FULLSHEETPARTSLISTFIELDS_KICAD5["opt3"] = changeWindow.getFIELD_KICAD5();
         FULLSHEETPARTSLISTFIELDS_KICAD6["opt3"] = changeWindow.getFIELD_KICAD6();
+        FULLSHEETPARTSLISTFIELDS_PDF["opt3"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -156,6 +171,7 @@ void FullSheetsPartListOptions::on_opt4PushButton_clicked()
     changeWindow.setFIELD_FREECAD(FULLSHEETPARTSLISTFIELDS_FREECAD["opt4"]);
     changeWindow.setFIELD_KICAD5(FULLSHEETPARTSLISTFIELDS_KICAD5["opt4"]);
     changeWindow.setFIELD_KICAD6(FULLSHEETPARTSLISTFIELDS_KICAD6["opt4"]);
+    changeWindow.setFIELD_PDF(FULLSHEETPARTSLISTFIELDS_PDF["opt4"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -163,6 +179,7 @@ void FullSheetsPartListOptions::on_opt4PushButton_clicked()
         FULLSHEETPARTSLISTFIELDS_FREECAD["opt4"] = changeWindow.getFIELD_FREECAD();
         FULLSHEETPARTSLISTFIELDS_KICAD5["opt4"] = changeWindow.getFIELD_KICAD5();
         FULLSHEETPARTSLISTFIELDS_KICAD6["opt4"] = changeWindow.getFIELD_KICAD6();
+        FULLSHEETPARTSLISTFIELDS_PDF["opt4"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -174,6 +191,7 @@ void FullSheetsPartListOptions::on_opt5PushButton_clicked()
     changeWindow.setFIELD_FREECAD(FULLSHEETPARTSLISTFIELDS_FREECAD["opt5"]);
     changeWindow.setFIELD_KICAD5(FULLSHEETPARTSLISTFIELDS_KICAD5["opt5"]);
     changeWindow.setFIELD_KICAD6(FULLSHEETPARTSLISTFIELDS_KICAD6["opt5"]);
+    changeWindow.setFIELD_PDF(FULLSHEETPARTSLISTFIELDS_PDF["opt5"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -181,6 +199,7 @@ void FullSheetsPartListOptions::on_opt5PushButton_clicked()
         FULLSHEETPARTSLISTFIELDS_FREECAD["opt5"] = changeWindow.getFIELD_FREECAD();
         FULLSHEETPARTSLISTFIELDS_KICAD5["opt5"] = changeWindow.getFIELD_KICAD5();
         FULLSHEETPARTSLISTFIELDS_KICAD6["opt5"] = changeWindow.getFIELD_KICAD6();
+        FULLSHEETPARTSLISTFIELDS_PDF["opt5"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -191,6 +210,7 @@ void FullSheetsPartListOptions::on_opt6PushButton_clicked()
     changeWindow.setFIELD_FREECAD(FULLSHEETPARTSLISTFIELDS_FREECAD["opt6"]);
     changeWindow.setFIELD_KICAD5(FULLSHEETPARTSLISTFIELDS_KICAD5["opt6"]);
     changeWindow.setFIELD_KICAD6(FULLSHEETPARTSLISTFIELDS_KICAD6["opt6"]);
+    changeWindow.setFIELD_PDF(FULLSHEETPARTSLISTFIELDS_PDF["opt6"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -198,7 +218,19 @@ void FullSheetsPartListOptions::on_opt6PushButton_clicked()
         FULLSHEETPARTSLISTFIELDS_FREECAD["opt6"] = changeWindow.getFIELD_FREECAD();
         FULLSHEETPARTSLISTFIELDS_KICAD5["opt6"] = changeWindow.getFIELD_KICAD5();
         FULLSHEETPARTSLISTFIELDS_KICAD6["opt6"] = changeWindow.getFIELD_KICAD6();
+        FULLSHEETPARTSLISTFIELDS_PDF["opt6"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
+}
+
+const QMap<QString, TitelblockField> &FullSheetsPartListOptions::getFULLSHEETPARTSLISTFIELDS_PDF() const
+{
+    return FULLSHEETPARTSLISTFIELDS_PDF;
+}
+
+void FullSheetsPartListOptions::setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_PDF)
+{
+    FULLSHEETPARTSLISTFIELDS_PDF = newFULLSHEETPARTSLISTFIELDS_PDF;
+    FULLSHEETPARTSLISTFIELDS_PDF_ORG = newFULLSHEETPARTSLISTFIELDS_PDF;
 }
 

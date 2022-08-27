@@ -46,6 +46,19 @@ void ChangeTitelblockField::setFIELD_KICAD6(const TitelblockField &newFIELD_KICA
     ui->kiCAD6PlainTextEdit->setPlainText(stringListToString(FIELD_KICAD6.Value));
 }
 
+const TitelblockField &ChangeTitelblockField::getFIELD_PDF()
+{
+    FIELD_PDF.Label = ui->lableLineEdit->text();
+    FIELD_PDF.Value = stringToStringList(ui->pdfTextEdit->toPlainText());
+    return FIELD_PDF;
+}
+
+void ChangeTitelblockField::setFIELD_PDF(const TitelblockField &newFIELD_PDF)
+{
+    FIELD_PDF = newFIELD_PDF;
+    FIELD_PDF_ORG = newFIELD_PDF;
+}
+
 QString ChangeTitelblockField::stringListToString(QStringList list)
 {
     QString ret = list[0];

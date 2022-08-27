@@ -454,6 +454,32 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_KICAD6.insert("opt21", TitelblockField{"Lang.",                           QStringList{"${lang}"},                     "Lang."});
     TITELBLOCKFIELDS_KICAD6.insert("opt22", TitelblockField{"Sheet",                           QStringList{"${#}/${##}"},                  "Sheet"});
     TITELBLOCKFIELDS_KICAD6_ORG = TITELBLOCKFIELDS_KICAD6;
+
+    // PDF
+    //                      key                     label                                       Value                                       Name
+    TITELBLOCKFIELDS_PDF.insert("opt1",  TitelblockField{"Option 1",                        QStringList{""},                           "Option 1"});
+    TITELBLOCKFIELDS_PDF.insert("opt2",  TitelblockField{"Option 2",                        QStringList{""},                           "Option 2"});
+    TITELBLOCKFIELDS_PDF.insert("opt3",  TitelblockField{"Option 3",                        QStringList{""},                           "Option 3"});
+    TITELBLOCKFIELDS_PDF.insert("opt4",  TitelblockField{"Surface treatment",               QStringList{""},                           "Surface treatment"});
+    TITELBLOCKFIELDS_PDF.insert("opt5",  TitelblockField{"Weight",                          QStringList{""},                           "Weight"});
+    TITELBLOCKFIELDS_PDF.insert("opt6",  TitelblockField{"Standard",                        QStringList{""},                           "Standard"});
+    TITELBLOCKFIELDS_PDF.insert("opt7",  TitelblockField{"Option 7",                        QStringList{""},                           "Option 7"});
+    TITELBLOCKFIELDS_PDF.insert("opt8",  TitelblockField{"Raw dimensions",                  QStringList{""},                           "Raw dimensions"});
+    TITELBLOCKFIELDS_PDF.insert("opt9",  TitelblockField{"Scale",                           QStringList{""},                           "Scale"});
+    TITELBLOCKFIELDS_PDF.insert("opt10", TitelblockField{"Created by",                      QStringList{""},                           "Created by"});
+    TITELBLOCKFIELDS_PDF.insert("opt11", TitelblockField{"Valid from to",                   QStringList{""},                           "Valid from to"});
+    TITELBLOCKFIELDS_PDF.insert("opt12", TitelblockField{"Document state",                  QStringList{""},                           "Document state"});
+    TITELBLOCKFIELDS_PDF.insert("opt13", TitelblockField{"Approved by",                     QStringList{""},                           "Approved by"});
+    TITELBLOCKFIELDS_PDF.insert("opt14", TitelblockField{"Project",                         QStringList{""},                           "Project"});
+    TITELBLOCKFIELDS_PDF.insert("opt15", TitelblockField{"Document type",                   QStringList{""},                           "Document type"});
+    TITELBLOCKFIELDS_PDF.insert("opt16", TitelblockField{"Legal owner",                     QStringList{""},                           "Legal owner"});
+    TITELBLOCKFIELDS_PDF.insert("opt17", TitelblockField{"Title, Supplementary title",      QStringList{""},                           "Title, Supplementary title"});
+    TITELBLOCKFIELDS_PDF.insert("opt18", TitelblockField{"Document number",                 QStringList{""},                           "Document number"});
+    TITELBLOCKFIELDS_PDF.insert("opt19", TitelblockField{"Rev.",                            QStringList{""},                           "Rev."});
+    TITELBLOCKFIELDS_PDF.insert("opt20", TitelblockField{"Date of issue",                   QStringList{""},                           "Date of issue"});
+    TITELBLOCKFIELDS_PDF.insert("opt21", TitelblockField{"Lang.",                           QStringList{"EN"},                          "Lang."});
+    TITELBLOCKFIELDS_PDF.insert("opt22", TitelblockField{"Sheet",                           QStringList{""},                           "Sheet"});
+    TITELBLOCKFIELDS_PDF_ORG = TITELBLOCKFIELDS_PDF;
 }
 
 void ISO7200Options::loadButtonText()
@@ -505,6 +531,17 @@ const QMap<QString, TitelblockField> &ISO7200Options::getTITELBLOCKFIELDS_FREECA
 void ISO7200Options::on_buttonBox_rejected()
 {
     TITELBLOCKFIELDS_FREECAD = TITELBLOCKFIELDS_FREECAD_ORG;
+}
+
+const QMap<QString, TitelblockField> &ISO7200Options::getTITELBLOCKFIELDS_PDF() const
+{
+    return TITELBLOCKFIELDS_PDF;
+}
+
+void ISO7200Options::setTITELBLOCKFIELDS_PDF(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_PDF)
+{
+    TITELBLOCKFIELDS_PDF = newTITELBLOCKFIELDS_PDF;
+    TITELBLOCKFIELDS_PDF_ORG = newTITELBLOCKFIELDS_PDF;
 }
 
 const QMap<QString, TitelblockField> &ISO7200Options::getTITELBLOCKFIELDS_KICAD6() const

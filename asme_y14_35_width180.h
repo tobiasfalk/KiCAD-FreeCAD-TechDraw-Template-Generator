@@ -28,6 +28,9 @@ public:
     const QMap<QString, TitelblockField> &getREVHISTORYFIELDS_KICAD6() const;
     void setREVHISTORYFIELDS_KICAD6(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_KICAD6);
 
+    const QMap<QString, TitelblockField> &getREVHISTORYFIELDS_PDF() const;
+    void setREVHISTORYFIELDS_PDF(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_PDF);
+
 private slots:
     void on_buttonBox_rejected();
 
@@ -52,6 +55,8 @@ private:
     QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG_KICAD5;
     QMap<QString, TitelblockField> REVHISTORYFIELDS_KICAD6;
     QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG_KICAD6;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_PDF;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_ORG_PDF;
 
 
     void loadStdOptions();

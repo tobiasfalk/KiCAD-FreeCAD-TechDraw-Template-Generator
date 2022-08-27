@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>472</width>
+    <width>616</width>
     <height>372</height>
    </rect>
   </property>
@@ -96,6 +96,20 @@
        </item>
        <item>
         <widget class="QTextEdit" name="freeCADTextEdit"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>PDF</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="pdfTextEdit"/>
        </item>
       </layout>
      </item>

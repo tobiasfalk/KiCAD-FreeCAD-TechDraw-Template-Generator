@@ -17,6 +17,7 @@ private:
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_FREECAD;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD5;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6;
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_PDF;
     qint64 NUMOPTLINES;
     bool TRIMMINGMARKS;
     bool REVHISTORY;
@@ -25,6 +26,7 @@ private:
     QMap<QString, TitelblockField> REVHISTORYFIELDS_FREECAD;
     QMap<QString, TitelblockField> REVHISTORYFIELDS_KICAD5;
     QMap<QString, TitelblockField> REVHISTORYFIELDS_KICAD6;
+    QMap<QString, TitelblockField> REVHISTORYFIELDS_PDF;
     bool FOLDLINES;
     PageSize FOLDLINESTARGET;
     bool SMALLPARTSLIST;
@@ -33,12 +35,14 @@ private:
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_FREECAD;
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD5;
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD6;
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_PDF;
     bool FULLSHEETPARTSLIST;
     quint64 NUMLINESFULLSHEETPARTSLIST;
     quint64 NUMSHEETSFULLSHEETPARTSLIST;
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_FREECAD;
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD5;
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6;
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_PDF;
 
     bool LOGO;
     QString LOGODIR;
@@ -145,6 +149,18 @@ public:
 
     const QString &getSHEETNAME() const;
     void setSHEETNAME(const QString &newSHEETNAME);
+
+    const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_PDF() const;
+    void setTITELBLOCKFIELDS_PDF(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_PDF);
+
+    const QMap<QString, TitelblockField> &getREVHISTORYFIELDS_PDF() const;
+    void setREVHISTORYFIELDS_PDF(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_PDF);
+
+    const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_PDF() const;
+    void setSMALLPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_PDF);
+
+    const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_PDF() const;
+    void setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_PDF);
 
 signals:
 

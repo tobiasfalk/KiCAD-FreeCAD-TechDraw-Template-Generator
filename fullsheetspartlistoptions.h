@@ -29,6 +29,9 @@ public:
 
     void resetToOrigin();
 
+    const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_PDF() const;
+    void setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_PDF);
+
 private slots:
     void on_opt1PushButton_clicked();
 
@@ -53,6 +56,9 @@ private:
 
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6;
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6_ORG;
+
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_PDF;
+    QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_PDF_ORG;
 
 
     void loadStdOptions();

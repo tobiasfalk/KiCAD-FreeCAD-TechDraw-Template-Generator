@@ -27,6 +27,9 @@ public:
     const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_KICAD6() const;
     void setSMALLPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_KICAD6);
 
+    const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_PDF() const;
+    void setSMALLPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_PDF);
+
 private slots:
     void on_buttonBox_rejected();
 
@@ -51,6 +54,9 @@ private:
 
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD6;
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_KICAD6_ORG;
+
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_PDF;
+    QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS_PDF_ORG;
 
 
     void loadStdOptions();

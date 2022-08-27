@@ -23,6 +23,8 @@ private:
     TitelblockField FIELD_KICAD5_ORG;
     TitelblockField FIELD_KICAD6;
     TitelblockField FIELD_KICAD6_ORG;
+    TitelblockField FIELD_PDF;
+    TitelblockField FIELD_PDF_ORG;
 
     QString stringListToString(QStringList list);
     QStringList stringToStringList(QString str);
@@ -39,6 +41,9 @@ public:
 
     const TitelblockField &getFIELD_KICAD6();
     void setFIELD_KICAD6(const TitelblockField &newFIELD_KICAD6);
+
+    const TitelblockField &getFIELD_PDF();
+    void setFIELD_PDF(const TitelblockField &newFIELD_PDF);
 
 private slots:
     void on_buttonBox_rejected();

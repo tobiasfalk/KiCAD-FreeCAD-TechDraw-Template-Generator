@@ -7,6 +7,7 @@
 #include "templategenkicad_6.h"
 #include "templategenkicad_7.h"
 #include "templategenfreecad.h"
+#include "templategenpdf.h"
 
 #include "KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.h"
 
@@ -329,6 +330,56 @@ void MainWindow::on_GeneratePushButton_clicked()
             FreeCAD.setLOGO(logo);
             FreeCAD.setLOGODIR(logoDir);
             FreeCAD.draw();
+        }
+
+        // PDF
+        {
+            PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+            QString sheetName = ui->NameLineEdit->text();
+            PageStyle sheetStyle = getPageStyle();
+            QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
+            qint64 numOptLines = ui->OptLinesSpinBox->value();
+            qint64 numRevHistory = ui->numRevSpinBox->value();
+            QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+            bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+            bool revHistory = ui->RevHistoryCheckBox->isChecked();
+            bool foldLines = ui->foldLinesCheckBox->isChecked();
+            PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+            bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+            quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+            QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
+            bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+            quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
+            bool logo = ui->logoCheckBox->isChecked();
+            QString logoDir = LOGODIR;
+
+            TemplateGenPDF PDF(this);
+            PDF.setDIR(dir);
+            PDF.setPAGESIZE(sheetSize);
+            PDF.setSHEETNAME(sheetName);
+            PDF.setPAGESTYLE(sheetStyle);
+            PDF.setNUMOPTLINES(numOptLines);
+            PDF.setTITELBLOCKFIELDS(titelblockFields);
+            PDF.setTRIMMINGMARKS(trimmingMarks);
+            PDF.setREVHISTORY(revHistory);
+            PDF.setREVHISTORYSTYLE(getRevHistoryStyle());
+            PDF.setNUMREVHISTORY(numRevHistory);
+            PDF.setREVHISTORYFIELDS(revHistoryFields);
+            PDF.setFOLDLINES(foldLines);
+            PDF.setFOLDLINETARGET(foldLinesTaget);
+            PDF.setSMALLPARTSLIST(smallPartsList);
+            PDF.setNUMLINESMALLPARTSLIST(numLinesSmallPartsList);
+            PDF.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
+            PDF.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
+            PDF.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            PDF.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
+            PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
+            PDF.setLOGO(logo);
+            PDF.setLOGODIR(logoDir);
+            PDF.draw();
         }
     }
 }

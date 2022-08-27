@@ -51,6 +51,9 @@ private:
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6_ORG;
 
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_PDF;
+    QMap<QString, TitelblockField> TITELBLOCKFIELDS_PDF_ORG;
+
 
     void loadStdOptions();
     void loadButtonText();
@@ -64,6 +67,8 @@ public:
     void setTITELBLOCKFIELDS_KICAD5(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD5);
     const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_KICAD6() const;
     void setTITELBLOCKFIELDS_KICAD6(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD6);
+    const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_PDF() const;
+    void setTITELBLOCKFIELDS_PDF(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_PDF);
 };
 
 #endif // ISO7200OPTIONS_H

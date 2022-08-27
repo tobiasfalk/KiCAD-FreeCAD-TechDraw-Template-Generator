@@ -73,6 +73,14 @@ void SmallPartsListOptions::loadStdOptions()
     SMALLPARTSLISTFIELDS_FREECAD.insert("opt3", TitelblockField{"Unit",                QStringList{"."},            "Unit"});
     SMALLPARTSLISTFIELDS_FREECAD.insert("opt4", TitelblockField{"Titel",               QStringList{"."},            "Titel"});
     SMALLPARTSLISTFIELDS_FREECAD.insert("opt5", TitelblockField{"Doc. number",         QStringList{"."},            "Doc. number"});
+
+    // PDF
+    //                           key                    label                              Value             name
+    SMALLPARTSLISTFIELDS_PDF.insert("opt1", TitelblockField{"Pos.",                QStringList{""},            "Pos."});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt2", TitelblockField{"Qty.",                QStringList{""},            "Qty."});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt3", TitelblockField{"Unit",                QStringList{""},            "Unit"});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt4", TitelblockField{"Titel",               QStringList{""},            "Titel"});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt5", TitelblockField{"Doc. number",         QStringList{""},            "Doc. number"});
 }
 
 void SmallPartsListOptions::loadButtonText()
@@ -98,6 +106,7 @@ void SmallPartsListOptions::on_opt1PushButton_clicked()
     changeWindow.setFIELD_FREECAD(SMALLPARTSLISTFIELDS_FREECAD["opt1"]);
     changeWindow.setFIELD_KICAD5(SMALLPARTSLISTFIELDS_KICAD5["opt1"]);
     changeWindow.setFIELD_KICAD6(SMALLPARTSLISTFIELDS_KICAD6["opt1"]);
+    changeWindow.setFIELD_PDF(SMALLPARTSLISTFIELDS_PDF["opt1"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -105,6 +114,7 @@ void SmallPartsListOptions::on_opt1PushButton_clicked()
         SMALLPARTSLISTFIELDS_FREECAD["opt1"] = changeWindow.getFIELD_FREECAD();
         SMALLPARTSLISTFIELDS_KICAD5["opt1"] = changeWindow.getFIELD_KICAD5();
         SMALLPARTSLISTFIELDS_KICAD6["opt1"] = changeWindow.getFIELD_KICAD6();
+        SMALLPARTSLISTFIELDS_PDF["opt1"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -116,6 +126,7 @@ void SmallPartsListOptions::on_opt2PushButton_clicked()
     changeWindow.setFIELD_FREECAD(SMALLPARTSLISTFIELDS_FREECAD["opt2"]);
     changeWindow.setFIELD_KICAD5(SMALLPARTSLISTFIELDS_KICAD5["opt2"]);
     changeWindow.setFIELD_KICAD6(SMALLPARTSLISTFIELDS_KICAD6["opt2"]);
+    changeWindow.setFIELD_PDF(SMALLPARTSLISTFIELDS_PDF["opt2"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -123,6 +134,7 @@ void SmallPartsListOptions::on_opt2PushButton_clicked()
         SMALLPARTSLISTFIELDS_FREECAD["opt2"] = changeWindow.getFIELD_FREECAD();
         SMALLPARTSLISTFIELDS_KICAD5["opt2"] = changeWindow.getFIELD_KICAD5();
         SMALLPARTSLISTFIELDS_KICAD6["opt2"] = changeWindow.getFIELD_KICAD6();
+        SMALLPARTSLISTFIELDS_PDF["opt2"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -134,6 +146,7 @@ void SmallPartsListOptions::on_opt3PushButton_clicked()
     changeWindow.setFIELD_FREECAD(SMALLPARTSLISTFIELDS_FREECAD["opt3"]);
     changeWindow.setFIELD_KICAD5(SMALLPARTSLISTFIELDS_KICAD5["opt3"]);
     changeWindow.setFIELD_KICAD6(SMALLPARTSLISTFIELDS_KICAD6["opt3"]);
+    changeWindow.setFIELD_PDF(SMALLPARTSLISTFIELDS_PDF["opt3"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -141,6 +154,7 @@ void SmallPartsListOptions::on_opt3PushButton_clicked()
         SMALLPARTSLISTFIELDS_FREECAD["opt3"] = changeWindow.getFIELD_FREECAD();
         SMALLPARTSLISTFIELDS_KICAD5["opt3"] = changeWindow.getFIELD_KICAD5();
         SMALLPARTSLISTFIELDS_KICAD6["opt3"] = changeWindow.getFIELD_KICAD6();
+        SMALLPARTSLISTFIELDS_PDF["opt3"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -152,6 +166,7 @@ void SmallPartsListOptions::on_opt4PushButton_clicked()
     changeWindow.setFIELD_FREECAD(SMALLPARTSLISTFIELDS_FREECAD["opt4"]);
     changeWindow.setFIELD_KICAD5(SMALLPARTSLISTFIELDS_KICAD5["opt4"]);
     changeWindow.setFIELD_KICAD6(SMALLPARTSLISTFIELDS_KICAD6["opt4"]);
+    changeWindow.setFIELD_PDF(SMALLPARTSLISTFIELDS_PDF["opt4"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -159,6 +174,7 @@ void SmallPartsListOptions::on_opt4PushButton_clicked()
         SMALLPARTSLISTFIELDS_FREECAD["opt4"] = changeWindow.getFIELD_FREECAD();
         SMALLPARTSLISTFIELDS_KICAD5["opt4"] = changeWindow.getFIELD_KICAD5();
         SMALLPARTSLISTFIELDS_KICAD6["opt4"] = changeWindow.getFIELD_KICAD6();
+        SMALLPARTSLISTFIELDS_PDF["opt4"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -170,6 +186,7 @@ void SmallPartsListOptions::on_opt5PushButton_clicked()
     changeWindow.setFIELD_FREECAD(SMALLPARTSLISTFIELDS_FREECAD["opt5"]);
     changeWindow.setFIELD_KICAD5(SMALLPARTSLISTFIELDS_KICAD5["opt5"]);
     changeWindow.setFIELD_KICAD6(SMALLPARTSLISTFIELDS_KICAD6["opt5"]);
+    changeWindow.setFIELD_PDF(SMALLPARTSLISTFIELDS_PDF["opt5"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -177,7 +194,19 @@ void SmallPartsListOptions::on_opt5PushButton_clicked()
         SMALLPARTSLISTFIELDS_FREECAD["opt5"] = changeWindow.getFIELD_FREECAD();
         SMALLPARTSLISTFIELDS_KICAD5["opt5"] = changeWindow.getFIELD_KICAD5();
         SMALLPARTSLISTFIELDS_KICAD6["opt5"] = changeWindow.getFIELD_KICAD6();
+        SMALLPARTSLISTFIELDS_PDF["opt5"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
+}
+
+const QMap<QString, TitelblockField> &SmallPartsListOptions::getSMALLPARTSLISTFIELDS_PDF() const
+{
+    return SMALLPARTSLISTFIELDS_PDF;
+}
+
+void SmallPartsListOptions::setSMALLPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_PDF)
+{
+    SMALLPARTSLISTFIELDS_PDF = newSMALLPARTSLISTFIELDS_PDF;
+    SMALLPARTSLISTFIELDS_PDF_ORG = newSMALLPARTSLISTFIELDS_PDF;
 }
 
