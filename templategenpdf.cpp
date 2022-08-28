@@ -1,5 +1,6 @@
 #include "templategenpdf.h"
 #include <QPainterPath>
+#include <math.h>
 
 
 QString TemplateGenPDF::getFILEENDING()
@@ -73,7 +74,8 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
 {
     QFont qFont(font);
     QFont qFontA(font);
-    qFont.setPointSizeF((textSize/18897.6378) * 2.8346456692913 );//18897.6378
+    qFont.setPointSizeF(((textSize * std::sqrt(2))/18897.6378) * 2.8346456692913 );//18897.6378; * (1+double(7)/18)
+    qDebug() << text << ":" << textSize << ":" << qFont.pointSizeF();
     qFontA.setPointSizeF(100);
     double posX = position.X;
     double posY = position.Y;
