@@ -86,20 +86,20 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
     }
     else if(textWidthAnchor == TextWidthAnchor::Center)
     {
-        posX -= (textSize * std::sqrt(2) * (fm.size(Qt::TextDontPrint, text).width()/double(100))) / 2;
+        posX -= (textSize * (fm.size(Qt::TextDontPrint, text).width()/double(100))) / 2;
     }
     else if(textWidthAnchor == TextWidthAnchor::Right)
     {
-        posX -= (textSize * std::sqrt(2) * (fm.size(Qt::TextDontPrint, text).width()/double(100)));
+        posX -= (textSize * (fm.size(Qt::TextDontPrint, text).width()/double(100)));
     }
 
     if(textHeightAnchor == TextHeightAnchor::Top)
     {
-        posY += textSize * std::sqrt(2);
+        posY += textSize;
     }
     else if(textHeightAnchor == TextHeightAnchor::Middle)
     {
-        posY += (textSize * std::sqrt(2) / 2);
+        posY += (textSize / 2);
     }
     else if(textHeightAnchor == TextHeightAnchor::Bottom)
     {
