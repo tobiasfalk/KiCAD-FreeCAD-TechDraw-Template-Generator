@@ -44,6 +44,8 @@ This is mostyl meant for printing as a template for hand drawing.
 
 (To be done)
 
+* No logo inlcution.
+
 ## Variable Docu
 
 * `&{N}` Number of repetition, see Rev. History
