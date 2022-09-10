@@ -38,6 +38,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 This is mostyl meant for printing as a template for hand drawing.
 
 * The text in the "editable fields" is not editable
+* The logo inclution si not working(it draws a rectangle ther where the logo should be)
 
 ### Eagle 6.5 
 

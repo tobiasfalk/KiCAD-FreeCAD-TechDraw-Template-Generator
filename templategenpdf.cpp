@@ -2,7 +2,6 @@
 #include <QPainterPath>
 #include <math.h>
 
-
 QString TemplateGenPDF::getFILEENDING()
 {
     return ".pdf";
@@ -112,10 +111,43 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
 
     PAINTER->setFont(qFont);
     PAINTER->drawText(QPointF(posX, posY), text);
+    return text.length();
 }
 
 void TemplateGenPDF::drawLogoTitelblockISO7200()
 {
+    // Load SVG
+    RENDERER = new QSvgRenderer(LOGODIR);
+    QSize size = RENDERER->defaultSize();
+    qDebug() << size;
+
+    double widthMM = 24;
+    double heightMM =  24 * (double(RENDERER->defaultSize().height())/RENDERER->defaultSize().width());
+    if(heightMM > 24)
+    {
+        heightMM = 30;
+        widthMM = 30 * (double(RENDERER->defaultSize().width())/RENDERER->defaultSize().height());
+    }
+    QPen pen(Qt::black);
+    pen.setStyle(Qt::SolidLine);
+    pen.setWidthF(0.1);
+    PAINTER->setPen(pen);
+    PAINTER->setBrush(Qt::NoBrush);
+
+    QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
+    PAINTER->drawRect(rectangle);
+    RENDERER->render(PAINTER, rectangle);
+
+
+
+    //QImage image(widthPx, heightPx, QImage::Format_ARGB32);
+    //image.fill(0x00FFFFFF);  // partly transparent background
+
+    // Get QPainter that paints to the image
+    //QPainter painter(&image);
+    //renderer.render(&painter);
+
+    //PAINTER->drawImage(30,30, image);
 }
 
 TemplateGenPDF::TemplateGenPDF(QObject *parent)

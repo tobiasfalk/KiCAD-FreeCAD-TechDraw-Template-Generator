@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QPainter>
 #include <QPdfWriter>
+#include <QSvgRenderer>
 
 
 class TemplateGenPDF : public TemplateGen
@@ -15,6 +16,7 @@ protected:
     bool writeBase();
     QPdfWriter *PDFWRITER;
     QPainter *PAINTER;
+    QSvgRenderer *RENDERER;
 
     void drawLine(Coordinate start, Coordinate end, double lineWidth);
     void drawRect(Coordinate start, Coordinate end, double lineWidth);
