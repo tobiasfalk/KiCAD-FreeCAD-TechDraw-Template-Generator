@@ -14,10 +14,18 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+///
+/// \brief The MainWindow class
+///
+/// The MainWindow class creates and manages the main Window
+///
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private slots:
+    ///
+    /// \brief on_GeneratePushButton_clicked generates all the Templaest
+    ///
     void on_GeneratePushButton_clicked();
 
     void on_SheetSizeComboBox_currentTextChanged(const QString &arg1);
@@ -44,6 +52,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    ///
+    /// \brief PAGESIZES is a list of all the pagesize(sheetsizes)
+    ///
     // Sizes in mm                                            Designation               width  height
     QList<PageSize> PAGESIZES = QList<PageSize>   { PageSize{"User defined",            0,     0},
                                                     PageSize{"4A0",                     2378,  1682},
@@ -79,6 +90,9 @@ private:
                                                     PageSize{"Arch E2",                 965,   660},
                                                     PageSize{"Arch E3",                 991,   686}};
 
+    ///
+    /// \brief FOLDLINESTARGET is a list of pagesizes(sheetsizes) to withch the foldlines will be created
+    ///
     // Sizes in mm                                                  Designation               width  height
     QList<PageSize> FOLDLINESTARGET = QList<PageSize>   { PageSize{"A4P with border",         210,   297},
                                                           PageSize{"200mmX290mm with border",             0,     0},};
