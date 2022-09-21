@@ -18,6 +18,21 @@ protected:
     QTextStream *XMLTEXTSTREM;
     QDomDocument DOCUMENT;
     QDomElement ROOT;
+    QDomElement DRAWING;
+    QDomElement LIBRARY;
+    QDomElement PACKAGES;
+    QDomElement SYMBOLS;
+    QDomElement DEVICESETS;
+
+    QDomElement CSYMBOL;
+    QDomElement CPACKAGE;
+    QDomElement CDEVICS;
+
+    QList<QDomElement> OPACKAGES;
+    QList<QDomElement> OSYMBOLS;
+    QList<QDomElement> ODEVICESETS;
+
+    QList<QString> ONAMELIST;
 
     void drawLine(Coordinate start, Coordinate end, double lineWidth);
     void drawRect(Coordinate start, Coordinate end, double lineWidth);

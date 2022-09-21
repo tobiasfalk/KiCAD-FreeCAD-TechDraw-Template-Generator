@@ -7,6 +7,7 @@ void ISO7200Options::on_opt1PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt1"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt1"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt1"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt1"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -14,6 +15,7 @@ void ISO7200Options::on_opt1PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt1"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt1"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt1"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt1"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -24,6 +26,7 @@ void ISO7200Options::on_opt2PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt2"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt2"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt2"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt2"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -31,6 +34,7 @@ void ISO7200Options::on_opt2PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt2"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt2"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt2"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt2"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -41,6 +45,7 @@ void ISO7200Options::on_opt3PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt3"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt3"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt3"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt3"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -48,6 +53,7 @@ void ISO7200Options::on_opt3PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt3"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt3"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt3"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt3"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -58,6 +64,7 @@ void ISO7200Options::on_opt4PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt4"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt4"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt4"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt4"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -65,6 +72,7 @@ void ISO7200Options::on_opt4PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt4"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt4"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt4"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt4"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -75,6 +83,7 @@ void ISO7200Options::on_opt5PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt5"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt5"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt5"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt5"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -82,6 +91,7 @@ void ISO7200Options::on_opt5PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt5"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt5"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt5"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt5"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -92,6 +102,7 @@ void ISO7200Options::on_opt6PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt6"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt6"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt6"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt6"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -99,6 +110,7 @@ void ISO7200Options::on_opt6PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt6"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt6"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt6"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt6"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -109,6 +121,7 @@ void ISO7200Options::on_opt7PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt7"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt7"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt7"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt7"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -116,6 +129,7 @@ void ISO7200Options::on_opt7PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt7"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt7"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt7"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt7"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -126,6 +140,7 @@ void ISO7200Options::on_opt8PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt8"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt8"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt8"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt8"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -133,6 +148,7 @@ void ISO7200Options::on_opt8PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt8"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt8"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt8"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt8"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -143,6 +159,7 @@ void ISO7200Options::on_opt9PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt9"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt9"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt9"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt9"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -150,6 +167,7 @@ void ISO7200Options::on_opt9PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt9"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt9"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt9"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt9"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -160,6 +178,7 @@ void ISO7200Options::on_opt10PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt10"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt10"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt10"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt10"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -167,6 +186,7 @@ void ISO7200Options::on_opt10PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt10"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt10"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt10"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt10"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -177,6 +197,7 @@ void ISO7200Options::on_opt11PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt11"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt11"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt11"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt11"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -184,6 +205,7 @@ void ISO7200Options::on_opt11PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt11"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt11"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt11"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt11"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -194,6 +216,7 @@ void ISO7200Options::on_opt12PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt12"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt12"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt12"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt12"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -201,6 +224,7 @@ void ISO7200Options::on_opt12PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt12"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt12"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt12"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt12"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -211,6 +235,7 @@ void ISO7200Options::on_opt13PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt13"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt13"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt13"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt13"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -218,6 +243,7 @@ void ISO7200Options::on_opt13PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt13"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt13"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt13"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt13"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -228,6 +254,7 @@ void ISO7200Options::on_opt14PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt14"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt14"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt14"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt14"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -235,6 +262,7 @@ void ISO7200Options::on_opt14PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt14"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt14"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt14"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt14"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -245,6 +273,7 @@ void ISO7200Options::on_opt15PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt15"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt15"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt15"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt15"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -252,6 +281,7 @@ void ISO7200Options::on_opt15PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt15"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt15"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt15"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt15"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -262,6 +292,7 @@ void ISO7200Options::on_opt16PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt16"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt16"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt16"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt16"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -269,6 +300,7 @@ void ISO7200Options::on_opt16PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt16"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt16"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt16"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt16"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -279,6 +311,7 @@ void ISO7200Options::on_opt17PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt17"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt17"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt17"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt17"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -286,6 +319,7 @@ void ISO7200Options::on_opt17PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt17"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt17"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt17"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt17"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -296,6 +330,7 @@ void ISO7200Options::on_opt18PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt18"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt18"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt18"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt18"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -303,6 +338,7 @@ void ISO7200Options::on_opt18PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt18"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt18"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt18"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt18"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -313,6 +349,7 @@ void ISO7200Options::on_opt19PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt19"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt19"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt19"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt19"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -320,6 +357,7 @@ void ISO7200Options::on_opt19PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt19"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt19"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt19"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt19"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -330,6 +368,7 @@ void ISO7200Options::on_opt20PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt20"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt20"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt20"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt20"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -337,6 +376,7 @@ void ISO7200Options::on_opt20PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt20"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt20"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt20"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt20"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -347,6 +387,7 @@ void ISO7200Options::on_opt21PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt21"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt21"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt21"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt21"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -354,6 +395,7 @@ void ISO7200Options::on_opt21PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt21"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt21"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt21"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt21"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }
@@ -364,6 +406,7 @@ void ISO7200Options::on_opt22PushButton_clicked()
     changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt22"]);
     changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt22"]);
     changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt22"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt22"]);
     changeWindow.setModal(true);
     changeWindow.exec();
     if(changeWindow.result())
@@ -371,6 +414,7 @@ void ISO7200Options::on_opt22PushButton_clicked()
         TITELBLOCKFIELDS_FREECAD["opt22"] = changeWindow.getFIELD_FREECAD();
         TITELBLOCKFIELDS_KICAD5["opt22"] = changeWindow.getFIELD_KICAD5();
         TITELBLOCKFIELDS_KICAD6["opt22"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt22"] = changeWindow.getFIELD_PDF();
     }
     loadButtonText();
 }

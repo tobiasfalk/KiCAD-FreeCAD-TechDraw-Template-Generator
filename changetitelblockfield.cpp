@@ -57,6 +57,7 @@ void ChangeTitelblockField::setFIELD_PDF(const TitelblockField &newFIELD_PDF)
 {
     FIELD_PDF = newFIELD_PDF;
     FIELD_PDF_ORG = newFIELD_PDF;
+    ui->pdfTextEdit->setPlainText(stringListToString(FIELD_PDF.Value));
 }
 
 QString ChangeTitelblockField::stringListToString(QStringList list)
