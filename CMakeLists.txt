@@ -74,6 +74,8 @@ set(PROJECT_SOURCES
         templategenfreecad.h
         templategenpdf.cpp
         templategenpdf.h
+        templategeneagle.cpp
+        templategeneagle.h
         loadesavesettings.cpp
         loadesavesettings.h
         KiCAD_Symbol_Scaler/kicad_symbol_scaler.cpp

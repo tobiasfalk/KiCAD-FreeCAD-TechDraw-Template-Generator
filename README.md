@@ -35,14 +35,16 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 * SVG text height is not the same as the real height
 
 ### PDF
-This is mostyl meant for printing as a template for hand drawing.
+This is mostly meant for printing as a template for hand drawing.
 
 * The text in the "editable fields" is not editable
-* The logo inclution si not working(it draws a rectangle ther where the logo should be)
+* The logo inclusion si not working(it draws a rectangle there where the logo should be)
 
 ### Eagle 6.5 
 
-(To be done)
+* No logo inclusion.
+* The text in the "editable fields" is not editable and need to be set before generation(in the PDF FIled)
+* No osifont
 
 ## Variable Docu
 
