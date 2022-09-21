@@ -10,6 +10,9 @@ namespace Ui {
 class ChangeTitelblockField;
 }
 
+///
+/// \brief The ChangeTitelblockField class changes a field(titelblockfield).
+///
 class ChangeTitelblockField : public QDialog
 {
     Q_OBJECT
