@@ -162,6 +162,8 @@ bool TemplateGenEagle::writeBase()
 
 void TemplateGenEagle::drawLine(Coordinate start, Coordinate end, double lineWidth)
 {
+    start = Coordinate{start.X - 5, start.Y + 5};
+    end = Coordinate{end.X - 5, end.Y + 5};
     QDomElement wireSym = DOCUMENT.createElement("wire");
     wireSym.setAttribute("x1", start.X);
     wireSym.setAttribute("y1", PAGESIZE.height - start.Y);
@@ -183,6 +185,8 @@ void TemplateGenEagle::drawLine(Coordinate start, Coordinate end, double lineWid
 
 void TemplateGenEagle::drawRect(Coordinate start, Coordinate end, double lineWidth)
 {
+    start = Coordinate{start.X - 5, start.Y + 5};
+    end = Coordinate{end.X - 5, end.Y + 5};
     QDomElement wireSymA = DOCUMENT.createElement("wire");
     wireSymA.setAttribute("x1", start.X);
     wireSymA.setAttribute("y1", PAGESIZE.height - start.Y);
@@ -258,6 +262,7 @@ void TemplateGenEagle::drawRect(Coordinate start, Coordinate end, double lineWid
 
 void TemplateGenEagle::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth)
 {
+    position = Coordinate{position.X - 5, position.Y - 5};
     QDomElement polygonSym = DOCUMENT.createElement("polygon");
     polygonSym.setAttribute("width", lineWidth);
     polygonSym.setAttribute("layer", "94");
@@ -284,6 +289,7 @@ void TemplateGenEagle::drawPoly(Coordinate position, QList<Coordinate> points, d
 
 qint64 TemplateGenEagle::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
 {
+    position = Coordinate{position.X - 5, position.Y + 5};
     QDomElement textSym = DOCUMENT.createElement("text");
     textSym.setAttribute("x", position.X);
     textSym.setAttribute("y", PAGESIZE.height - position.Y);
