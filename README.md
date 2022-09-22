@@ -10,7 +10,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ## Prerequisites
 
-* Qt
+* Qt or newer
 * [Osifont](https://github.com/hikikomori82/osifont)
 
 ## Usage
