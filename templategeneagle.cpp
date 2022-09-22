@@ -13,7 +13,7 @@ bool TemplateGenEagle::writeBase()
         QFile file(DIR + "/sheet_template_eagle_6-5.lbr");
         if(!file.open(QFile::ReadOnly | QFile::Text))
         {
-            qDebug() << "Cannot read file" << file.errorString();
+            qWarning() << "Cannot read file" << file.errorString();
             exit(0);
         }
 
@@ -27,13 +27,11 @@ bool TemplateGenEagle::writeBase()
         // Loop while there is a child
         while(!componentA.isNull())
         {
-            qDebug() << componentA.tagName();
             if(componentA.tagName() == "library")
             {
                 QDomElement componentB = componentA.firstChild().toElement();
                 while(!componentB.isNull())
                 {
-                    qDebug() << componentB.tagName();
                     QDomElement componentC = componentB.firstChild().toElement();
                     while(!componentC.isNull())
                     {
@@ -73,7 +71,6 @@ bool TemplateGenEagle::writeBase()
             do
             {
                 name = createFileName().remove(DIR + "/") + "_" + QString::number(i++);
-                qDebug() << name;
             }while(ONAMELIST.indexOf(name) >= 0);
         }
 

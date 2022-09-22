@@ -159,7 +159,7 @@ void TemplateGenFreeCAD::drawLogoTitelblockISO7200()
     QFile file(LOGODIR);
     if(!file.open(QFile::ReadOnly | QFile::Text))
     {
-        qDebug() << "Cannot read file" << file.errorString();
+        qWarning() << "Cannot read file" << file.errorString();
         exit(0);
     }
 

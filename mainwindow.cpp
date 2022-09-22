@@ -469,7 +469,7 @@ void MainWindow::on_sheetTitelblockFieldsPushButton_clicked()
     }
     else
     {
-        qDebug() << "None";
+        qWarning() << "None";
     }
 }
 
@@ -482,7 +482,7 @@ void MainWindow::on_revHistoryStylePushButton_clicked()
     }
     else
     {
-        qDebug() << "None";
+        qWarning() << "None";
     }
 }
 

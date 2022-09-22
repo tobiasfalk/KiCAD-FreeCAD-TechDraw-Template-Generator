@@ -117,9 +117,8 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
 void TemplateGenPDF::drawLogoTitelblockISO7200()
 {
     // Load SVG
-    RENDERER = new QSvgRenderer(LOGODIR);
+    /*RENDERER = new QSvgRenderer(LOGODIR);
     QSize size = RENDERER->defaultSize();
-    qDebug() << size;
 
     double widthMM = 24;
     double heightMM =  24 * (double(RENDERER->defaultSize().height())/RENDERER->defaultSize().width());
@@ -136,7 +135,7 @@ void TemplateGenPDF::drawLogoTitelblockISO7200()
 
     QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
     PAINTER->drawRect(rectangle);
-    RENDERER->render(PAINTER, rectangle);
+    RENDERER->render(PAINTER, rectangle);*/
 
 
 

@@ -558,6 +558,31 @@ void TemplateGen::drawFoldLines(double depth)
                 indexHeight -= 297;
             }
 
+        }else if(FOLDLINETARGET.sizeString == "200mmX290mm with border" && PAGESIZE.height >= 290 && PAGESIZE.width >= 200)
+        {
+            double len = 0; // length of the blocck
+            int num = 0; // number of blocks
+            do
+            {
+                num++;
+                len = (PAGESIZE.width - 210) / num;
+            }while(len > 180 || num % 2 != 0);
+
+            drawVerFoldLine(PAGESIZE.width - 10, depth);
+
+            for(int i = 1; i <= num; i++)
+            {
+                drawVerFoldLine(20 + len * i, depth);
+            }
+
+            // Horizontal
+            double indexHeight = PAGESIZE.height - 290;
+            while(indexHeight > 0)
+            {
+                drawHorFoldLine(indexHeight, depth);
+                indexHeight -= 290;
+            }
+
         }
         break;
     }
