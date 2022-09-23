@@ -638,7 +638,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
         }
         else if(component.tagName() == "Foldlines")
         {
-            FOLDLINES = component.attribute("Foldlines").toInt();
+            FOLDLINES = component.attribute("foldlines").toInt();
             FOLDLINESTARGET.sizeString = component.attribute("targetString");
             FOLDLINESTARGET.width = component.attribute("targetWidth").toDouble();
             FOLDLINESTARGET.height = component.attribute("targetHeight").toDouble();
