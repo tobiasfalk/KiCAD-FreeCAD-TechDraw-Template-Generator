@@ -383,7 +383,6 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.draw();
         }
 
-        // PDF
         // Eagle
         {
             PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
