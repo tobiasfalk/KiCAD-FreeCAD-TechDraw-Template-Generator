@@ -62,3 +62,8 @@ It is possible to include a Logo in the Legal owner Field (name can be modified)
  
 **Notes**  
 Once the logo gets reaches a height of 30mm the width is reduced (the ratio will be kept). If text is included in the SVG it may create problems, so convert that to path.
+
+## To do
+
+* Implementation of insertion a CSV for the Partlist
+* Complete Doxygen Documentation

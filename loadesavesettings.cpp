@@ -436,7 +436,7 @@ void LoadeSaveSettings::saveSettings(QString dir)
     QFile xmlFile(dir);
     if (!xmlFile.open(QFile::WriteOnly | QFile::Text ))
     {
-        qDebug() << "Already opened or there is another issue";
+        qWarning() << "Already opened or there is another issue";
         xmlFile.close();
     }
     QTextStream xmlContent(&xmlFile);
@@ -556,7 +556,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
     QFile file(dir);
     if(!file.open(QFile::ReadOnly | QFile::Text))
     {
-        qDebug() << "Cannot read file" << file.errorString();
+        qWarning() << "Cannot read file" << file.errorString();
         exit(0);
     }
 
