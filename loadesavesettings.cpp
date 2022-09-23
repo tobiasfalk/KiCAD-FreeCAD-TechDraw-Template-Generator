@@ -591,6 +591,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     TITELBLOCKFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
                     TITELBLOCKFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
                     TITELBLOCKFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    TITELBLOCKFIELDS_PDF[option.attribute("key")].Label = option.attribute("label");
                     TITELBLOCKFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
                     TITELBLOCKFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
                     TITELBLOCKFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
@@ -620,6 +621,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     REVHISTORYFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
                     REVHISTORYFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
                     REVHISTORYFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    REVHISTORYFIELDS_PDF[option.attribute("key")].Label = option.attribute("label");
                     REVHISTORYFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
                     REVHISTORYFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
                     REVHISTORYFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
@@ -656,6 +658,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     SMALLPARTSLISTFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
                     SMALLPARTSLISTFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
                     SMALLPARTSLISTFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    SMALLPARTSLISTFIELDS_PDF[option.attribute("key")].Label = option.attribute("label");
                     SMALLPARTSLISTFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
                     SMALLPARTSLISTFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
                     SMALLPARTSLISTFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
@@ -685,6 +688,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     FULLSHEETPARTSLISTFIELDS_FREECAD[option.attribute("key")].Label = option.attribute("label");
                     FULLSHEETPARTSLISTFIELDS_KICAD5[option.attribute("key")].Label = option.attribute("label");
                     FULLSHEETPARTSLISTFIELDS_KICAD6[option.attribute("key")].Label = option.attribute("label");
+                    FULLSHEETPARTSLISTFIELDS_PDF[option.attribute("key")].Label = option.attribute("label");
                     FULLSHEETPARTSLISTFIELDS_KICAD5[option.attribute("key")].Value = option.attribute("valKiCAD5").split("&{n}");
                     FULLSHEETPARTSLISTFIELDS_KICAD6[option.attribute("key")].Value = option.attribute("valKiCAD6").split("&{n}");
                     FULLSHEETPARTSLISTFIELDS_FREECAD[option.attribute("key")].Name = option.attribute("nameFreeCAD");
