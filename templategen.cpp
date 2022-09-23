@@ -306,11 +306,7 @@ void TemplateGen::drawDrawingBorderISO5457()
                 lastBottomLine = lineX;
             }
 
-            if(lineX >= PAGESIZE.width - 60 && lastBottomLine >= PAGESIZE.width - 60)
-            {
-                drawText(Coordinate{lineX + 25, PAGESIZE.height - 7.5}, PAGESIZE.sizeString, "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-            }
-            else if(lineX >= PAGESIZE.width - 60)
+            if(lineX >= PAGESIZE.width - 80)
             {
                 drawText(Coordinate{lastBottomLine + (PAGESIZE.width - lastBottomLine) / 2, PAGESIZE.height - 7.5}, PAGESIZE.sizeString, "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
