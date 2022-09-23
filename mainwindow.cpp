@@ -384,6 +384,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         }
 
         // PDF
+        // Eagle
         {
             PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
             QString sheetName = ui->NameLineEdit->text();
