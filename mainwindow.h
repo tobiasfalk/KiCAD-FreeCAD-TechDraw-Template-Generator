@@ -95,7 +95,7 @@ private:
     ///
     // Sizes in mm                                                  Designation               width  height
     QList<PageSize> FOLDLINESTARGET = QList<PageSize>   { PageSize{"A4P with border",         210,   297},
-                                                          PageSize{"200mmX290mm with border",             0,     0},};
+                                                          PageSize{"200mmX290mm with border",             200,     290},};
 
     ISO7200Options *ISO7200OPTIONS = new ISO7200Options(this);
     ASME_Y14_35_Width180 *ASME_Y14_35_WIDTH180 = new ASME_Y14_35_Width180(this);
