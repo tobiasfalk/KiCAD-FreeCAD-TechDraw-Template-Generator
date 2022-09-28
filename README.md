@@ -39,7 +39,7 @@ This is mostly meant for printing as a template for hand drawing.
 
 * The text in the "editable fields" is not editable
 * The logo inclusion si not working(it draws a rectangle there where the logo should be)
-* Qt includes random spaces
+* Qt includes random spaces under Windows
 
 ### Eagle 6.5 
 
