@@ -39,6 +39,8 @@ protected:
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS;
     bool LOGO;
     QString LOGODIR;
+    bool DESCRIPTION;
+    quint64 DESCRIPTIONNUMLINES;
 
     qint64 NAMEINDEX = 0;
     CenteringMarks CENTERINGMARKS{true, true, true, true};
@@ -145,6 +147,12 @@ public:
     const QString &getSHEETNAME() const;
     void setSHEETNAME(const QString &newSHEETNAME);
 
+
+    bool getDESCRIPTION() const;
+    void setDESCRIPTION(bool newDESCRIPTION);
+
+    quint64 getDESCRIPTIONNUMLINES() const;
+    void setDESCRIPTIONNUMLINES(quint64 newDESCRIPTIONNUMLINES);
 
 signals:
 

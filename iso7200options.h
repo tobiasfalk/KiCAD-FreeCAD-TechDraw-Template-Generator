@@ -39,6 +39,8 @@ private slots:
 
     void on_buttonBox_rejected();
 
+    void on_opt23PushButton_clicked();
+
 private:
     Ui::ISO7200Options *ui;
 

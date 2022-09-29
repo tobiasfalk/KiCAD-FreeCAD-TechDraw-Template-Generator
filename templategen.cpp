@@ -1,7 +1,37 @@
 #include "templategen.h"
 
+bool TemplateGen::getDESCRIPTION() const
+{
+    return DESCRIPTION;
+}
+
+void TemplateGen::setDESCRIPTION(bool newDESCRIPTION)
+{
+    DESCRIPTION = newDESCRIPTION;
+    finisheD.descriptioN = true;
+}
+
+quint64 TemplateGen::getDESCRIPTIONNUMLINES() const
+{
+    return DESCRIPTIONNUMLINES;
+}
+
+void TemplateGen::setDESCRIPTIONNUMLINES(quint64 newDESCRIPTIONNUMLINES)
+{
+    DESCRIPTIONNUMLINES = newDESCRIPTIONNUMLINES;
+    finisheD.descriptionnumlineS = true;
+}
+
 bool TemplateGen::init()
 {
+    if(DESCRIPTION && PAGESIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + (2.5 * 1.5) * (DESCRIPTIONNUMLINES + 1) + 3.7))
+    {
+        CENTERINGMARKS.Right = false;
+        if(PAGESIZE.width / 2 < 190)
+        {
+            CENTERINGMARKS.Left = false;
+        }
+    }
     if((PAGESIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + 8 + ((2.5 * 1.5) * NUMLINESMALLPARTSLIST + 3) * NUMPARTSSMALLPARTSLIST)) && SMALLPARTSLIST)
     {
         CENTERINGMARKS.Right = false;
@@ -33,7 +63,6 @@ bool TemplateGen::init()
         CENTERINGMARKS.Left = false;
     }
 
-    finisheD.numsheetsfullsheetpartslisT = true;
     if(allFinisheD(finisheD))
     {
         return writeBase();
@@ -62,6 +91,12 @@ QString TemplateGen::createFileName()
     if(NUMOPTLINES > 0)
     {
         ret += "+" + QString::number(NUMOPTLINES);
+    }
+
+    // description field
+    if(DESCRIPTION)
+    {
+        ret += "+d" + QString::number(DESCRIPTIONNUMLINES);
     }
 
     if(FOLDLINES)
@@ -412,7 +447,14 @@ void TemplateGen::drawTitelblockISO7200()
 {
     // Frame
     Coordinate topLeft = Coordinate{PAGESIZE.width - 190, PAGESIZE.height - 10 - 11 * (5 + NUMOPTLINES)};
-    TOPLEFTITELBLOCKCORNER = topLeft;
+    double descHeight = 0;
+    if(DESCRIPTION)
+    {
+        descHeight = (2.5 * 1.5) * (DESCRIPTIONNUMLINES + 1) + 3.7;
+        drawRect(Coordinate{topLeft.X, topLeft.Y - descHeight}, Coordinate{PAGESIZE.width - 10, topLeft.Y}, 0.7);
+        drawText(Coordinate{topLeft.X + 1.5, topLeft.Y - descHeight + 1.5}, TITELBLOCKFIELDS["opt23"].Label, TITELBLOCKFIELDS["opt23"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
+        drawText(Coordinate{topLeft.X + 1.5, topLeft.Y - descHeight + 1.5 + 4.75}, TITELBLOCKFIELDS["opt23"].Value, TITELBLOCKFIELDS["opt23"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
+    }
     drawRect(topLeft, Coordinate{PAGESIZE.width - 10, PAGESIZE.height - 10}, 0.7);
     // Vertical
     drawLine(Coordinate{topLeft.X + 80, topLeft.Y}, Coordinate{topLeft.X + 80, PAGESIZE.height-10}, 0.35);
@@ -492,7 +534,8 @@ void TemplateGen::drawTitelblockISO7200()
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt21"].Value, TITELBLOCKFIELDS["opt21"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt22"].Value, TITELBLOCKFIELDS["opt22"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
 
-    topLeft = Coordinate{PAGESIZE.width - 190, PAGESIZE.height - 10 - 11 * (5 + NUMOPTLINES)};
+    topLeft = Coordinate{PAGESIZE.width - 190, PAGESIZE.height - 10 - 11 * (5 + NUMOPTLINES) - descHeight};
+    TOPLEFTITELBLOCKCORNER = topLeft;
 }
 
 void TemplateGen::drawRevHistoryASME_Y14_35_Width180()

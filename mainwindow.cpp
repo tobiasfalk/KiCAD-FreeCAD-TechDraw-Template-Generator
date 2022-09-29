@@ -152,10 +152,11 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD5();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD5();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
+            bool description = ui->DescriptionCheckBox->isChecked();
+            quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
             TemplateGenKiCAD_5 KiCAD(this);
             KiCAD.setDIR(dir);
@@ -180,6 +181,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             KiCAD.setLOGO(logo);
             KiCAD.setLOGODIR(logoDir);
+            KiCAD.setDESCRIPTION(description);
+            KiCAD.setDESCRIPTIONNUMLINES(descriptionNumLines);
             KiCAD.draw();
         }
 
@@ -202,10 +205,11 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
+            bool description = ui->DescriptionCheckBox->isChecked();
+            quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
             TemplateGenKiCAD_6 KiCAD(this);
             KiCAD.setDIR(dir);
@@ -230,6 +234,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             KiCAD.setLOGO(logo);
             KiCAD.setLOGODIR(logoDir);
+            KiCAD.setDESCRIPTION(description);
+            KiCAD.setDESCRIPTIONNUMLINES(descriptionNumLines);
             KiCAD.draw();
         }
 
@@ -252,10 +258,11 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
+            bool description = ui->DescriptionCheckBox->isChecked();
+            quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
             TemplateGenKiCAD_7 KiCAD(this);
             KiCAD.setDIR(dir);
@@ -280,6 +287,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             KiCAD.setLOGO(logo);
             KiCAD.setLOGODIR(logoDir);
+            KiCAD.setDESCRIPTION(description);
+            KiCAD.setDESCRIPTIONNUMLINES(descriptionNumLines);
             KiCAD.draw();
         }
 
@@ -302,10 +311,11 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_FREECAD();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
+            bool description = ui->DescriptionCheckBox->isChecked();
+            quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
             TemplateGenFreeCAD FreeCAD(this);
             FreeCAD.setDIR(dir);
@@ -330,6 +340,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             FreeCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             FreeCAD.setLOGO(logo);
             FreeCAD.setLOGODIR(logoDir);
+            FreeCAD.setDESCRIPTION(description);
+            FreeCAD.setDESCRIPTIONNUMLINES(descriptionNumLines);
             FreeCAD.draw();
         }
 
@@ -352,10 +364,11 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
+            bool description = ui->DescriptionCheckBox->isChecked();
+            quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
             TemplateGenPDF PDF(this);
             PDF.setDIR(dir);
@@ -380,6 +393,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             PDF.setLOGO(logo);
             PDF.setLOGODIR(logoDir);
+            PDF.setDESCRIPTION(description);
+            PDF.setDESCRIPTIONNUMLINES(descriptionNumLines);
             PDF.draw();
         }
 
@@ -402,10 +417,11 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-            quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
+            bool description = ui->DescriptionCheckBox->isChecked();
+            quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
             TemplateGenEagle PDF(this);
             PDF.setDIR(dir);
@@ -430,6 +446,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             PDF.setLOGO(logo);
             PDF.setLOGODIR(logoDir);
+            PDF.setDESCRIPTION(description);
+            PDF.setDESCRIPTIONNUMLINES(descriptionNumLines);
             PDF.draw();
         }
     }
@@ -492,16 +510,12 @@ void MainWindow::on_FullPartsListCheckBox_stateChanged(int arg1)
     {
         ui->FullPartsListNumLinesPerFieldLabel->setEnabled(true);
         ui->FullPartsListNumLinesPerFieldSpinBox->setEnabled(true);
-        ui->FullPartsListNumSheetsLabel->setEnabled(true);
-        ui->FullPartsListNumSheetsSpinBox->setEnabled(true);
         ui->SmallPartsListCheckBox->setEnabled(false);
     }
     else
     {
         ui->FullPartsListNumLinesPerFieldLabel->setEnabled(false);
         ui->FullPartsListNumLinesPerFieldSpinBox->setEnabled(false);
-        ui->FullPartsListNumSheetsLabel->setEnabled(false);
-        ui->FullPartsListNumSheetsSpinBox->setEnabled(false);
         ui->SmallPartsListCheckBox->setEnabled(true);
     }
 }
@@ -573,7 +587,6 @@ void MainWindow::on_loadFielsPushButton_clicked()
         FULLSHEETPARTLISTOPIONS->setFULLSHEETPARTSLISTFIELDS_FREECAD(file.getFULLSHEETPARTSLISTFIELDS_FREECAD());
         FULLSHEETPARTLISTOPIONS->setFULLSHEETPARTSLISTFIELDS_PDF(file.getFULLSHEETPARTSLISTFIELDS_PDF());
         ui->FullPartsListNumLinesPerFieldSpinBox->setValue(file.getNUMLINESFULLSHEETPARTSLIST());
-        ui->FullPartsListNumSheetsSpinBox->setValue(file.getNUMSHEETSFULLSHEETPARTSLIST());
         ui->logoCheckBox->setChecked(file.getLOGO());
         LOGODIR = file.getLOGODIR();
     }
@@ -613,7 +626,6 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         QMap<QString, TitelblockField> smallPartsListFileds_PDF = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
         bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
         quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
-        quint64 numSheetsFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
         QMap<QString, TitelblockField> fullSheetPartsListFields_KICAD5 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD5();
         QMap<QString, TitelblockField> fullSheetPartsListFields_KICAD6 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
         QMap<QString, TitelblockField> fullSheetPartsListFields_FREECAD = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
@@ -649,7 +661,6 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         file.setSMALLPARTSLISTFIELDS_PDF(smallPartsListFileds_PDF);
         file.setFULLSHEETPARTSLIST(fullSheetPartsList);
         file.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
-        file.setNUMSHEETSFULLSHEETPARTSLIST(numSheetsFullSheetPartsList);
         file.setFULLSHEETPARTSLISTFIELDS_KICAD5(fullSheetPartsListFields_KICAD5);
         file.setFULLSHEETPARTSLISTFIELDS_KICAD6(fullSheetPartsListFields_KICAD6);
         file.setFULLSHEETPARTSLISTFIELDS_FREECAD(fullSheetPartsListFields_FREECAD);

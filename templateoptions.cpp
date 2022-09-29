@@ -128,15 +128,19 @@ bool allFinisheD(FinisheD finisheD)
     {
         return false;
     }
-    else if(!finisheD.numsheetsfullsheetpartslisT)
-    {
-        return false;
-    }
     else if(!finisheD.logO)
     {
         return false;
     }
     else if(!finisheD.logodiR)
+    {
+        return false;
+    }
+    else if(!finisheD.descriptioN)
+    {
+        return false;
+    }
+    else if(!finisheD.descriptionnumlineS)
     {
         return false;
     }
@@ -165,7 +169,8 @@ void printFinisheD(FinisheD finisheD)
     qDebug() << "fullsheetpartslist: " << finisheD.fullsheetpartslisT;
     qDebug() << "numlinesfullsheetpartslisT: " << finisheD.numlinesfullsheetpartslisT;
     qDebug() << "fullsheetpartlistfieldS: " << finisheD.fullsheetpartlistfieldS;
-    qDebug() << "numsheetsfullsheetpartslisT: " << finisheD.numsheetsfullsheetpartslisT;
     qDebug() << "logO: " << finisheD.logO;
     qDebug() << "logodiR: " << finisheD.logodiR;
+    qDebug() << "descriptioN: " << finisheD.descriptioN;
+    qDebug() << "descriptionnumlineS: " << finisheD.descriptionnumlineS;
 }

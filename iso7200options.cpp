@@ -445,6 +445,7 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_FREECAD.insert("opt20", TitelblockField{"Date of issue",                   QStringList{"."},                           "Date of issue"});
     TITELBLOCKFIELDS_FREECAD.insert("opt21", TitelblockField{"Lang.",                           QStringList{"EN"},                          "Lang."});
     TITELBLOCKFIELDS_FREECAD.insert("opt22", TitelblockField{"Sheet",                           QStringList{"."},                           "Sheet"});
+    TITELBLOCKFIELDS_FREECAD.insert("opt23", TitelblockField{"Description",                     QStringList{"."},                           "Description"});
     TITELBLOCKFIELDS_FREECAD_ORG = TITELBLOCKFIELDS_FREECAD;
 
     // KiCAD 5
@@ -471,6 +472,7 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_KICAD5.insert("opt20", TitelblockField{"Date of issue",                   QStringList{"%D"},                           "Date of issue"});
     TITELBLOCKFIELDS_KICAD5.insert("opt21", TitelblockField{"Lang.",                           QStringList{"EN"},                           "Lang."});
     TITELBLOCKFIELDS_KICAD5.insert("opt22", TitelblockField{"Sheet",                           QStringList{"%S/%N"},                        "Sheet"});
+    TITELBLOCKFIELDS_KICAD5.insert("opt23", TitelblockField{"Description",                     QStringList{"Description"},                  "Description"});
     TITELBLOCKFIELDS_KICAD5_ORG = TITELBLOCKFIELDS_KICAD5;
 
     // KiCAD 6
@@ -497,6 +499,7 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_KICAD6.insert("opt20", TitelblockField{"Date of issue",                   QStringList{"${ISSUE_DATE}"},               "Date of issue"});
     TITELBLOCKFIELDS_KICAD6.insert("opt21", TitelblockField{"Lang.",                           QStringList{"${lang}"},                     "Lang."});
     TITELBLOCKFIELDS_KICAD6.insert("opt22", TitelblockField{"Sheet",                           QStringList{"${#}/${##}"},                  "Sheet"});
+    TITELBLOCKFIELDS_KICAD6.insert("opt23", TitelblockField{"Description",                     QStringList{"${description_&{N}}"},         "Description"});
     TITELBLOCKFIELDS_KICAD6_ORG = TITELBLOCKFIELDS_KICAD6;
 
     // PDF
@@ -521,8 +524,9 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_PDF.insert("opt18", TitelblockField{"Document number",                 QStringList{""},                           "Document number"});
     TITELBLOCKFIELDS_PDF.insert("opt19", TitelblockField{"Rev.",                            QStringList{""},                           "Rev."});
     TITELBLOCKFIELDS_PDF.insert("opt20", TitelblockField{"Date of issue",                   QStringList{""},                           "Date of issue"});
-    TITELBLOCKFIELDS_PDF.insert("opt21", TitelblockField{"Lang.",                           QStringList{"EN"},                          "Lang."});
+    TITELBLOCKFIELDS_PDF.insert("opt21", TitelblockField{"Lang.",                           QStringList{"EN"},                         "Lang."});
     TITELBLOCKFIELDS_PDF.insert("opt22", TitelblockField{"Sheet",                           QStringList{""},                           "Sheet"});
+    TITELBLOCKFIELDS_PDF.insert("opt23", TitelblockField{"Description",                     QStringList{""},                           "Description"});
     TITELBLOCKFIELDS_PDF_ORG = TITELBLOCKFIELDS_PDF;
 }
 
@@ -550,6 +554,7 @@ void ISO7200Options::loadButtonText()
     ui->opt20PushButton->setText("Option 20: " + TITELBLOCKFIELDS_FREECAD["opt20"].Label);
     ui->opt21PushButton->setText("Option 21: " + TITELBLOCKFIELDS_FREECAD["opt21"].Label);
     ui->opt22PushButton->setText("Option 22: " + TITELBLOCKFIELDS_FREECAD["opt22"].Label);
+    ui->opt23PushButton->setText("Option 23: " + TITELBLOCKFIELDS_FREECAD["opt23"].Label);
 }
 
 ISO7200Options::ISO7200Options(QWidget *parent) :
@@ -614,6 +619,26 @@ void ISO7200Options::setTITELBLOCKFIELDS_FREECAD(const QMap<QString, TitelblockF
 {
     TITELBLOCKFIELDS_FREECAD = newTITELBLOCKFIELDS_FREECAD;
     TITELBLOCKFIELDS_FREECAD_ORG = newTITELBLOCKFIELDS_FREECAD;
+    loadButtonText();
+}
+
+
+void ISO7200Options::on_opt23PushButton_clicked()
+{
+    ChangeTitelblockField changeWindow;
+    changeWindow.setFIELD_FREECAD(TITELBLOCKFIELDS_FREECAD["opt23"]);
+    changeWindow.setFIELD_KICAD5(TITELBLOCKFIELDS_KICAD5["opt23"]);
+    changeWindow.setFIELD_KICAD6(TITELBLOCKFIELDS_KICAD6["opt23"]);
+    changeWindow.setFIELD_PDF(TITELBLOCKFIELDS_PDF["opt23"]);
+    changeWindow.setModal(true);
+    changeWindow.exec();
+    if(changeWindow.result())
+    {
+        TITELBLOCKFIELDS_FREECAD["opt23"] = changeWindow.getFIELD_FREECAD();
+        TITELBLOCKFIELDS_KICAD5["opt23"] = changeWindow.getFIELD_KICAD5();
+        TITELBLOCKFIELDS_KICAD6["opt23"] = changeWindow.getFIELD_KICAD6();
+        TITELBLOCKFIELDS_PDF["opt23"] = changeWindow.getFIELD_PDF();
+    }
     loadButtonText();
 }
 

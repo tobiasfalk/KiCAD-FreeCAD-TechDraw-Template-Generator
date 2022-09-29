@@ -28,9 +28,10 @@ struct FinisheD
     bool fullsheetpartslisT= false;
     bool numlinesfullsheetpartslisT = false;
     bool fullsheetpartlistfieldS = false;
-    bool numsheetsfullsheetpartslisT = false;
     bool logO = false;
     bool logodiR = false;
+    bool descriptioN = false;
+    bool descriptionnumlineS = false;
 };
 
 struct PageSize

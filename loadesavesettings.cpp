@@ -212,17 +212,6 @@ void LoadeSaveSettings::setNUMLINESFULLSHEETPARTSLIST(quint64 newNUMLINESFULLSHE
     finisheD.numlinesfullsheetpartslisT = true;
 }
 
-quint64 LoadeSaveSettings::getNUMSHEETSFULLSHEETPARTSLIST() const
-{
-    return NUMSHEETSFULLSHEETPARTSLIST;
-}
-
-void LoadeSaveSettings::setNUMSHEETSFULLSHEETPARTSLIST(quint64 newNUMLINESSHEETFULLSHEETPARTSLIST)
-{
-    NUMSHEETSFULLSHEETPARTSLIST = newNUMLINESSHEETFULLSHEETPARTSLIST;
-    finisheD.numsheetsfullsheetpartslisT = true;
-}
-
 bool LoadeSaveSettings::getLOGO() const
 {
     return LOGO;
@@ -525,7 +514,6 @@ void LoadeSaveSettings::saveSettings(QString dir)
     settings.setAttribute("name", "FullSheetPartsList");
     settings.setAttribute("fullSheetPartsList", FULLSHEETPARTSLIST);
     settings.setAttribute("numLines", NUMLINESFULLSHEETPARTSLIST);
-    settings.setAttribute("numSheets", NUMSHEETSFULLSHEETPARTSLIST);
     foreach (const QString &str, FULLSHEETPARTSLISTFIELDS_FREECAD.keys())
     {
         QDomElement field = document.createElement("Opt");
@@ -676,7 +664,6 @@ void LoadeSaveSettings::loadSettings(QString dir)
         else if(component.tagName() == "FullSheetPartsList")
         {
             FULLSHEETPARTSLIST = component.attribute("fullSheetPartsList").toInt();
-            NUMSHEETSFULLSHEETPARTSLIST = component.attribute("numSheets").toInt();
             NUMLINESFULLSHEETPARTSLIST = component.attribute("numLines").toInt();
             QDomElement option = component.firstChild().toElement();
 
