@@ -415,6 +415,39 @@ QString LoadeSaveSettings::stringListToString(QStringList list)
     return ret;
 }
 
+QString LoadeSaveSettings::setProjectionMethod(ProjectionMethodType methode)
+{
+    switch (methode) {
+    case ProjectionMethodType::None:
+        return "none";
+        break;
+    case ProjectionMethodType::FirstAngle:
+        return "firstAngle";
+        break;
+    case ProjectionMethodType::ThirdAngle:
+        return "thirdAngle";
+        break;
+    default:
+        return "none";
+        break;
+    }
+}
+
+ProjectionMethodType LoadeSaveSettings::getProjectionMethod(QString methode)
+{
+    if(methode == "none")
+    {
+        return ProjectionMethodType::None;
+    }else if(methode == "firstAngle")
+    {
+        return ProjectionMethodType::FirstAngle;
+    }else if(methode == "thirdAngle")
+    {
+        return ProjectionMethodType::ThirdAngle;
+    }
+    return ProjectionMethodType::None;
+}
+
 LoadeSaveSettings::LoadeSaveSettings(QObject *parent) : QObject(parent)
 {
 
@@ -460,6 +493,7 @@ void LoadeSaveSettings::saveSettings(QString dir)
         field.setAttribute("nameFreeCAD", TITELBLOCKFIELDS_FREECAD.value(str).Name);
         field.setAttribute("valFreeCAD", stringListToString(TITELBLOCKFIELDS_FREECAD.value(str).Value));
         field.setAttribute("valPDF", stringListToString(TITELBLOCKFIELDS_PDF.value(str).Value));
+        field.setAttribute("projectionMethod", setProjectionMethod(TITELBLOCKFIELDS_FREECAD.value(str).ProjectionMethod));
         settings.appendChild(field);
     }
     root.appendChild(settings);
@@ -589,6 +623,10 @@ void LoadeSaveSettings::loadSettings(QString dir)
                     if(!option.attribute("valPDF").isNull())
                     {
                         TITELBLOCKFIELDS_PDF[option.attribute("key")].Value = option.attribute("valPDF").split("&{n}");
+                    }
+                    if(!option.attribute("projectionMethod").isNull())
+                    {
+                        TITELBLOCKFIELDS_PDF[option.attribute("key")].ProjectionMethod = getProjectionMethod(option.attribute("projectionMethod"));
                     }
                     option = option.nextSibling().toElement();
                 }

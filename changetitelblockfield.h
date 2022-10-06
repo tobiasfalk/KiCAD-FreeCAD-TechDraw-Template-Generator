@@ -32,6 +32,9 @@ private:
     QString stringListToString(QStringList list);
     QStringList stringToStringList(QString str);
 
+    void setProjectionMethod(ProjectionMethodType methode);
+    ProjectionMethodType getProjectionMethod();
+
 public:
     explicit ChangeTitelblockField(QWidget *parent = nullptr);
     ~ChangeTitelblockField();

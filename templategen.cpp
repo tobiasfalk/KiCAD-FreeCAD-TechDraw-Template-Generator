@@ -472,6 +472,9 @@ void TemplateGen::drawTitelblockISO7200()
             drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt1"].Value, TITELBLOCKFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
             drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt2"].Value, TITELBLOCKFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
             drawText(Coordinate{lastLineLeft.X + 1.5 + 140, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt3"].Value, TITELBLOCKFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 80, lastLineLeft.Y}, TITELBLOCKFIELDS["opt1"].ProjectionMethod);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 140, lastLineLeft.Y}, TITELBLOCKFIELDS["opt2"].ProjectionMethod);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 200, lastLineLeft.Y}, TITELBLOCKFIELDS["opt3"].ProjectionMethod);
         }
         else if((NUMOPTLINES == 3 && i == 1) || (NUMOPTLINES == 2 && i == 0))
         {
@@ -481,6 +484,9 @@ void TemplateGen::drawTitelblockISO7200()
             drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt4"].Value, TITELBLOCKFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
             drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt5"].Value, TITELBLOCKFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
             drawText(Coordinate{lastLineLeft.X + 1.5 + 140, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt6"].Value, TITELBLOCKFIELDS["opt6"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 80, lastLineLeft.Y}, TITELBLOCKFIELDS["opt4"].ProjectionMethod);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 140, lastLineLeft.Y}, TITELBLOCKFIELDS["opt5"].ProjectionMethod);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 200, lastLineLeft.Y}, TITELBLOCKFIELDS["opt6"].ProjectionMethod);
         }
         else if((NUMOPTLINES == 3 && i == 2) || (NUMOPTLINES == 2 && i == 1) || (NUMOPTLINES == 1 && i == 0))
         {
@@ -490,6 +496,9 @@ void TemplateGen::drawTitelblockISO7200()
             drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt7"].Value, TITELBLOCKFIELDS["opt7"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
             drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt8"].Value, TITELBLOCKFIELDS["opt8"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
             drawText(Coordinate{lastLineLeft.X + 1.5 + 140, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt9"].Value, TITELBLOCKFIELDS["opt9"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 80, lastLineLeft.Y}, TITELBLOCKFIELDS["opt7"].ProjectionMethod);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 140, lastLineLeft.Y}, TITELBLOCKFIELDS["opt8"].ProjectionMethod);
+            drawProjectionMethod(Coordinate{lastLineLeft.X + 200, lastLineLeft.Y}, TITELBLOCKFIELDS["opt9"].ProjectionMethod);
         }
 
         lastLineLeft = Coordinate{lastLineLeft.X, lastLineLeft.Y + 11};
@@ -745,6 +754,41 @@ void TemplateGen::drawISO5457_ISO7200()
     drawDrawingBorderISO5457();
 
     drawTitelblockISO7200();
+}
+
+void TemplateGen::drawProjectionMethod(Coordinate at, ProjectionMethodType what)
+{
+    const double unit = double(11)/24;
+    qDebug() << unit;
+    switch (what) {
+    case ProjectionMethodType::None:
+        break;
+    case ProjectionMethodType::FirstAngle:
+        break;
+    case ProjectionMethodType::ThirdAngle:
+        qDebug() << "A";
+        drawLine(Coordinate{7 * -unit + at.X, 1.7 * unit + at.Y}, Coordinate{-7 * unit + at.X, 22.3 * unit + at.Y}, .35);
+        drawLine(Coordinate{7 * -unit + at.X, 22 * unit + at.Y}, Coordinate{-27 * unit + at.X, 16 * unit + at.Y}, .35);
+        drawLine(Coordinate{27 * -unit + at.X, 16.3 * unit + at.Y}, Coordinate{-27 * unit + at.X, 7.7 * unit + at.Y}, .35);
+        drawLine(Coordinate{27 * -unit + at.X, 8 * unit + at.Y}, Coordinate{-7 * unit + at.X, 2 * unit + at.Y}, .35);
+
+        drawCircle(Coordinate{40 * -unit + at.X, 12 * unit + at.Y}, 5 * unit, .35);
+        drawCircle(Coordinate{40 * -unit + at.X, 12 * unit + at.Y}, 10 * unit, .35);
+        break;
+    }
+}
+
+void TemplateGen::drawDot(Coordinate at, double lineWidth)
+{
+    drawLine(Coordinate{at.X - lineWidth/2, at.Y}, Coordinate{at.X + lineWidth/2, at.Y}, lineWidth);
+}
+
+void TemplateGen::drawDotLine(Coordinate start, Coordinate end, double lineWidth)
+{
+}
+
+void TemplateGen::drawSlimDotLine(Coordinate start, Coordinate end, double lineWidth)
+{
 }
 
 void TemplateGen::draw()

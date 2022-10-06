@@ -53,6 +53,9 @@ private:
     RevHistoryStyle toRevHistoryStyle(QString style);
 
     QString stringListToString(QStringList list);
+
+    QString setProjectionMethod(ProjectionMethodType methode);
+    ProjectionMethodType getProjectionMethod(QString methode);
 public:
     explicit LoadeSaveSettings(QObject *parent = nullptr);
 

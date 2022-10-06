@@ -55,11 +55,19 @@ struct CenteringMarks
     bool Right;
 };
 
+enum class ProjectionMethodType
+{
+    None,
+    FirstAngle,
+    ThirdAngle,
+};
+
 struct TitelblockField
 {
     QString Label;
     QStringList Value;
     QString Name;
+    ProjectionMethodType ProjectionMethod;
 };
 
 enum class PageStyle

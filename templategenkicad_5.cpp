@@ -52,6 +52,10 @@ void TemplateGenKiCAD_5::drawPoly(Coordinate position, QList<Coordinate> points,
     NAMEINDEX++;
 }
 
+void TemplateGenKiCAD_5::drawCircle(Coordinate center, double radius, double lineWidth)
+{
+}
+
 qint64 TemplateGenKiCAD_5::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
 {
     QString anchorString = "";

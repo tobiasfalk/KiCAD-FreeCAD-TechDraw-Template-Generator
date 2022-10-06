@@ -69,6 +69,10 @@ void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, dou
     PAINTER->fillPath(path, brush);
 }
 
+void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth)
+{
+}
+
 qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
 {
     QFont qFont(font);

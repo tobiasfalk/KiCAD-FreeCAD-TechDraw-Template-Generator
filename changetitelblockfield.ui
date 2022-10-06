@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>616</width>
-    <height>372</height>
+    <height>437</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,6 +114,16 @@
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string>Projection Method:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="projectionMethodComboBox"/>
    </item>
    <item>
     <spacer name="verticalSpacer">
