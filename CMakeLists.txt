@@ -21,7 +21,7 @@ if(BUILD_DOC)
         set(DOC_INPUT_ROOT_DIRS ${CMAKE_HOME_DIRECTORY} CACHE PATH "Path from where to start to parse")    ## used in the doxyfile.in
         set(DOC_EXCLUDE_PATTERNS_DIRS ${CMAKE_BINARY_DIR} CACHE STRING "Regex patterns exclusion")          ## used in the doxyfile.in
         set(DOC_COMMON_IMG_PATH ${CMAKE_CURRENT_SOURCE_DIR} CACHE PATH "Path from which doxygen will be able to found referenced images")## used in the doxyfile.in
-        configure_file(Doxyfile.in ${CMAKE_BINARY_DIR}/doxyfile @ONLY)
+        configure_file(Src/Doxyfile.in ${CMAKE_BINARY_DIR}/doxyfile @ONLY)
         add_custom_target(Build_Doc COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_BINARY_DIR}/doxyfile"
             WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
             COMMENT "Building user's documentation into doxyDoc build dir..."
@@ -41,48 +41,48 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Xml Svg REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Xml Svg REQUIRED)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        templateoptions.cpp
-        templateoptions.h
-        changetitelblockfield.cpp
-        changetitelblockfield.h
-        changetitelblockfield.ui
-        iso7200options.cpp
-        iso7200options.h
-        iso7200options.ui
-        asme_y14_35_width180.cpp
-        asme_y14_35_width180.h
-        asme_y14_35_width180.ui
-        fullsheetspartlistoptions.cpp
-        fullsheetspartlistoptions.h
-        fullsheetspartlistoptions.ui
-        smallpartslistoptions.cpp
-        smallpartslistoptions.h
-        smallpartslistoptions.ui
-        templategen.cpp
-        templategen.h
-        templategenkicad_5.cpp
-        templategenkicad_5.h
-        templategenkicad_6.cpp
-        templategenkicad_6.h
-        templategenkicad_7.cpp
-        templategenkicad_7.h
-        templategenfreecad.cpp
-        templategenfreecad.h
-        templategenpdf.cpp
-        templategenpdf.h
-        templategeneagle.cpp
-        templategeneagle.h
-        loadesavesettings.cpp
-        loadesavesettings.h
-        KiCAD_Symbol_Scaler/kicad_symbol_scaler.cpp
-        KiCAD_Symbol_Scaler/kicad_symbol_scaler.h
-        KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.cpp
-        KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.h
-        KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.ui
+        Src/main.cpp
+        Src/mainwindow.cpp
+        Src/mainwindow.h
+        Src/mainwindow.ui
+        Src/templateoptions.cpp
+        Src/templateoptions.h
+        Src/changetitelblockfield.cpp
+        Src/changetitelblockfield.h
+        Src/changetitelblockfield.ui
+        Src/iso7200options.cpp
+        Src/iso7200options.h
+        Src/iso7200options.ui
+        Src/asme_y14_35_width180.cpp
+        Src/asme_y14_35_width180.h
+        Src/asme_y14_35_width180.ui
+        Src/fullsheetspartlistoptions.cpp
+        Src/fullsheetspartlistoptions.h
+        Src/fullsheetspartlistoptions.ui
+        Src/smallpartslistoptions.cpp
+        Src/smallpartslistoptions.h
+        Src/smallpartslistoptions.ui
+        Src/templategen.cpp
+        Src/templategen.h
+        Src/templategenkicad_5.cpp
+        Src/templategenkicad_5.h
+        Src/templategenkicad_6.cpp
+        Src/templategenkicad_6.h
+        Src/templategenkicad_7.cpp
+        Src/templategenkicad_7.h
+        Src/templategenfreecad.cpp
+        Src/templategenfreecad.h
+        Src/templategenpdf.cpp
+        Src/templategenpdf.h
+        Src/templategeneagle.cpp
+        Src/templategeneagle.h
+        Src/loadesavesettings.cpp
+        Src/loadesavesettings.h
+        Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler.cpp
+        Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler.h
+        Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.cpp
+        Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.h
+        Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.ui
         )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

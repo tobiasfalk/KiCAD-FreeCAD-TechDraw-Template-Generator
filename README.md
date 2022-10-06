@@ -13,7 +13,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 * Qt 5.12 or newer
 * [Osifont](https://github.com/hikikomori82/osifont)
 
-# Feture
+# Feature
 
 ## Usage
 
