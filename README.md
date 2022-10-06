@@ -69,3 +69,4 @@ Once the logo gets reaches a height of 30mm the width is reduced (the ratio will
 * Implementation of insertion a CSV for the Partlist
 * Complete Doxygen Documentation
 * PDF Logo and Text problems
+* Implementation of Projektion Method in field
