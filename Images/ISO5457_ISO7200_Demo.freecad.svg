@@ -1,159 +1,182 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" version="1.1" xmlns:freecad="http://www.freecadweb.org/wiki/index.php?title=Svg_Namespace" height="130mm" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" id="svg2" width="210mm" viewBox="0 0 210 130" xmlns:dc="http://purl.org/dc/elements/1.1/">
- <polygon points="0,0 10,0 10,5 5,5 5,10 0,10 " style="fill:black;stroke:black;stroke-width:0"/>
- <polygon points="210,0 200,0 200,5 205,5 205,10 210,10 " style="fill:black;stroke:black;stroke-width:0"/>
- <polygon points="210,130 200,130 200,125 205,125 205,120 210,120 " style="fill:black;stroke:black;stroke-width:0"/>
- <polygon points="0,130 10,130 10,125 5,125 5,120 0,120 " style="fill:black;stroke:black;stroke-width:0"/>
- <rect height="120" y="5" x="15" width="190" style="fill:none;stroke:black;stroke-width:0.35"/>
- <rect height="110" y="10" x="20" width="180" style="fill:none;stroke:black;stroke-width:0.7"/>
- <line x2="105" y2="20" x1="105" style="stroke:black;stroke-width:0.7" y1="5"/>
- <line x2="105" y2="120" x1="105" style="stroke:black;stroke-width:0.7" y1="125"/>
- <line x2="20" y2="65" x1="15" style="stroke:black;stroke-width:0.7" y1="65"/>
- <line x2="200" y2="65" x1="205" style="stroke:black;stroke-width:0.7" y1="65"/>
- <line x2="55" y2="10" x1="55" style="stroke:black;stroke-width:0.35" y1="5"/>
- <line x2="55" y2="120" x1="55" style="stroke:black;stroke-width:0.35" y1="125"/>
- <text y="9.25" x="30" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">1</text>
- <text y="9.25" x="80" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">2</text>
- <text y="9.25" x="130" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">3</text>
- <line x2="155" y2="10" x1="155" style="stroke:black;stroke-width:0.35" y1="5"/>
- <text y="9.25" x="180" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">4</text>
- <line x2="155" y2="120" x1="155" style="stroke:black;stroke-width:0.35" y1="125"/>
- <text y="124.25" x="182.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">210x130</text>
- <line x2="20" y2="15" x1="15" style="stroke:black;stroke-width:0.35" y1="15"/>
- <line x2="200" y2="15" x1="205" style="stroke:black;stroke-width:0.35" y1="15"/>
- <text y="14.25" x="17.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">A</text>
- <text y="41.75" x="17.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">B</text>
- <text y="91.75" x="17.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">C</text>
- <line x2="20" y2="115" x1="15" style="stroke:black;stroke-width:0.35" y1="115"/>
- <text y="119.25" x="17.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;">D</text>
- <line x2="200" y2="115" x1="205" style="stroke:black;stroke-width:0.35" y1="115"/>
- <rect height="88" y="32" x="20" width="180" style="fill:none;stroke:black;stroke-width:0.7"/>
- <line x2="100" y2="120" x1="100" style="stroke:black;stroke-width:0.35" y1="32"/>
- <line x2="160" y2="120" x1="160" style="stroke:black;stroke-width:0.35" y1="32"/>
- <line x2="172" y2="120" x1="172" style="stroke:black;stroke-width:0.35" y1="98"/>
- <text y="35.3" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Option 1</text>
- <text y="35.3" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Option 2</text>
- <text y="35.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Option 3</text>
- <text y="40.75" x="21.5" freecad:editable="Option 14" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="40.75" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="40.75" x="101.5" freecad:editable="Option 24" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="40.75" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="40.75" x="161.5" freecad:editable="Option 34" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="40.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="200" y2="43" x1="20" style="stroke:black;stroke-width:0.35" y1="43"/>
- <text y="46.3" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Surface treatment</text>
- <text y="46.3" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Weight</text>
- <text y="46.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Standard</text>
- <text y="51.75" x="21.5" freecad:editable="Surface treatment4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="51.75" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="51.75" x="101.5" freecad:editable="Weight4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="51.75" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="51.75" x="161.5" freecad:editable="Standard4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="51.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="200" y2="54" x1="20" style="stroke:black;stroke-width:0.35" y1="54"/>
- <text y="57.3" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Raw dimensions</text>
- <text y="57.3" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Projection</text>
- <text y="57.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Scale</text>
- <text y="62.75" x="21.5" freecad:editable="Raw dimensions4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="62.75" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="62.75" x="101.5" freecad:editable="Projection4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="62.75" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="62.75" x="161.5" freecad:editable="Scale4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="62.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="157.083" y2="63.6667" x1="157.083" style="stroke:black;stroke-width:0.35" y1="55.3333"/>
- <line x2="148.75" y2="61.1667" x1="157.083" style="stroke:black;stroke-width:0.35" y1="63.6667"/>
- <line x2="148.75" y2="57.8333" x1="148.75" style="stroke:black;stroke-width:0.35" y1="61.1667"/>
- <line x2="157.083" y2="55.3333" x1="148.75" style="stroke:black;stroke-width:0.35" y1="57.8333"/>
- <circle cx="143.333" cy="59.5" r="2.08333" fill="none" style="stroke:black;stroke-width:0.35"/>
- <circle cx="143.333" cy="59.5" r="4.16667" fill="none" style="stroke:black;stroke-width:0.35"/>
- <line x2="139.773" y2="59.5" x1="138.333" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="140.493" y2="59.5" x1="140.133" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="142.293" y2="59.5" x1="140.853" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="143.013" y2="59.5" x1="142.653" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="144.813" y2="59.5" x1="143.373" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="145.533" y2="59.5" x1="145.173" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="147.333" y2="59.5" x1="145.893" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="148.053" y2="59.5" x1="147.693" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="149.853" y2="59.5" x1="148.413" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="150.573" y2="59.5" x1="150.213" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="152.373" y2="59.5" x1="150.933" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="153.093" y2="59.5" x1="152.733" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="154.893" y2="59.5" x1="153.453" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="155.613" y2="59.5" x1="155.253" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="157.413" y2="59.5" x1="155.973" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="157.917" y2="59.5" x1="157.773" style="stroke:black;stroke-width:0.18" y1="59.5"/>
- <line x2="143.333" y2="55.94" x1="143.333" style="stroke:black;stroke-width:0.18" y1="54.5"/>
- <line x2="143.333" y2="56.66" x1="143.333" style="stroke:black;stroke-width:0.18" y1="56.3"/>
- <line x2="143.333" y2="58.46" x1="143.333" style="stroke:black;stroke-width:0.18" y1="57.02"/>
- <line x2="143.333" y2="59.18" x1="143.333" style="stroke:black;stroke-width:0.18" y1="58.82"/>
- <line x2="143.333" y2="60.98" x1="143.333" style="stroke:black;stroke-width:0.18" y1="59.54"/>
- <line x2="143.333" y2="61.7" x1="143.333" style="stroke:black;stroke-width:0.18" y1="61.34"/>
- <line x2="143.333" y2="63.5" x1="143.333" style="stroke:black;stroke-width:0.18" y1="62.06"/>
- <line x2="143.333" y2="64.22" x1="143.333" style="stroke:black;stroke-width:0.18" y1="63.86"/>
- <line x2="200" y2="65" x1="20" style="stroke:black;stroke-width:0.35" y1="65"/>
- <text y="68.3" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Created by</text>
- <text y="68.3" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Valid from to</text>
- <text y="68.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Document state</text>
- <text y="73.75" x="21.5" freecad:editable="Created by4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="73.75" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="73.75" x="101.5" freecad:editable="Valid from to4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="73.75" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="73.75" x="161.5" freecad:editable="Document state4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="73.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="200" y2="76" x1="20" style="stroke:black;stroke-width:0.35" y1="76"/>
- <text y="79.3" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Approved by</text>
- <text y="79.3" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Project</text>
- <text y="79.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Document type</text>
- <text y="84.75" x="21.5" freecad:editable="Approved by4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="84.75" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="84.75" x="101.5" freecad:editable="Project4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="84.75" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;"></tspan>
- </text>
- <text y="84.75" x="161.5" freecad:editable="Document type4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="84.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="200" y2="87" x1="20" style="stroke:black;stroke-width:0.35" y1="87"/>
- <text y="90.3" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Legal owner</text>
- <text y="90.3" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Title, Supplementary title</text>
- <text y="90.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Document number</text>
- <text y="101" x="21.5" freecad:editable="Legal owner4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;">
-  <tspan y="101" x="21.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;">.</tspan>
- </text>
- <text y="101" x="101.5" freecad:editable="Title, Supplementary title4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;">
-  <tspan y="101" x="101.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;">.</tspan>
- </text>
- <text y="95.75" x="161.5" freecad:editable="Document number4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="95.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="200" y2="98" x1="160" style="stroke:black;stroke-width:0.35" y1="98"/>
- <text y="101.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Rev.</text>
- <text y="101.3" x="173.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Date of issue</text>
- <text y="106.75" x="161.5" freecad:editable="Rev.4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="106.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <text y="106.75" x="173.5" freecad:editable="Date of issue4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="106.75" x="173.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
- <line x2="200" y2="109" x1="160" style="stroke:black;stroke-width:0.35" y1="109"/>
- <text y="112.3" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Lang.</text>
- <text y="112.3" x="173.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;">Sheet</text>
- <text y="117.75" x="161.5" freecad:editable="Lang.4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="117.75" x="161.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">EN</tspan>
- </text>
- <text y="117.75" x="173.5" freecad:editable="Sheet4" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">
-  <tspan y="117.75" x="173.5" style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;">.</tspan>
- </text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="210mm" height="130mm" version="1.1" viewBox="0 0 210 130" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:freecad="http://www.freecadweb.org/wiki/index.php?title=Svg_Namespace" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g stroke-width="0">
+  <polygon points="0 0 10 0 10 5 5 5 5 10 0 10"/>
+  <polygon points="210 0 200 0 200 5 205 5 205 10 210 10"/>
+  <polygon points="210 130 200 130 200 125 205 125 205 120 210 120"/>
+  <polygon points="0 130 10 130 10 125 5 125 5 120 0 120"/>
+ </g>
+ <g stroke="#000">
+  <rect x="15" y="5" width="190" height="120" fill="none" stroke-width=".35"/>
+  <g stroke-width=".7">
+   <rect x="20" y="10" width="180" height="110" fill="none"/>
+   <line x1="105" x2="105" y1="5" y2="20"/>
+   <line x1="105" x2="105" y1="125" y2="120"/>
+   <line x1="15" x2="20" y1="65" y2="65"/>
+   <line x1="205" x2="200" y1="65" y2="65"/>
+  </g>
+  <line x1="55" x2="55" y1="5" y2="10" stroke-width=".35"/>
+  <line x1="55" x2="55" y1="125" y2="120" stroke-width=".35"/>
+ </g>
+ <g fill="#000000" font-family="osifont" font-size="4.8611" text-anchor="middle">
+  <text x="30" y="9.25">1</text>
+  <text x="80" y="9.25">2</text>
+  <text x="130" y="9.25">3</text>
+ </g>
+ <line x1="155" x2="155" y1="5" y2="10" stroke="#000" stroke-width=".35"/>
+ <text x="180" y="9.25" fill="#000000" font-family="osifont" font-size="4.8611" text-anchor="middle">4</text>
+ <line x1="155" x2="155" y1="125" y2="120" stroke="#000" stroke-width=".35"/>
+ <text x="182.5" y="124.25" fill="#000000" font-family="osifont" font-size="4.8611" text-anchor="middle">210x130</text>
+ <line x1="15" x2="20" y1="15" y2="15" stroke="#000" stroke-width=".35"/>
+ <line x1="205" x2="200" y1="15" y2="15" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont" font-size="4.8611" text-anchor="middle">
+  <text x="17.5" y="14.25">A</text>
+  <text x="17.5" y="41.75">B</text>
+  <text x="17.5" y="91.75">C</text>
+ </g>
+ <line x1="15" x2="20" y1="115" y2="115" stroke="#000" stroke-width=".35"/>
+ <text x="17.5" y="119.25" fill="#000000" font-family="osifont" font-size="4.8611" text-anchor="middle">D</text>
+ <g stroke="#000">
+  <line x1="205" x2="200" y1="115" y2="115" stroke-width=".35"/>
+  <rect x="20" y="32" width="180" height="88" fill="none" stroke-width=".7"/>
+  <g stroke-width=".35">
+   <line x1="100" x2="100" y1="32" y2="120"/>
+   <line x1="160" x2="160" y1="32" y2="120"/>
+   <line x1="172" x2="172" y1="98" y2="120"/>
+  </g>
+ </g>
+ <g fill="#000000" font-family="osifont">
+  <g font-size="2.5">
+   <text x="21.5" y="35.3">Option 1</text>
+   <text x="101.5" y="35.3">Option 2</text>
+   <text x="161.5" y="35.3">Option 3</text>
+  </g>
+  <g font-size="3.4722">
+   <text x="21.5" y="40.75" freecad:editable="Option 14"><tspan x="21.5" y="40.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="101.5" y="40.75" freecad:editable="Option 24"><tspan x="101.5" y="40.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="161.5" y="40.75" freecad:editable="Option 34"><tspan x="161.5" y="40.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+  </g>
+ </g>
+ <line x1="20" x2="200" y1="43" y2="43" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont">
+  <g font-size="2.5">
+   <text x="21.5" y="46.3">Surface treatment</text>
+   <text x="101.5" y="46.3">Weight</text>
+   <text x="161.5" y="46.3">Standard</text>
+  </g>
+  <g font-size="3.4722">
+   <text x="21.5" y="51.75" freecad:editable="Surface treatment4"><tspan x="21.5" y="51.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="101.5" y="51.75" freecad:editable="Weight4"><tspan x="101.5" y="51.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="161.5" y="51.75" freecad:editable="Standard4"><tspan x="161.5" y="51.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+  </g>
+ </g>
+ <line x1="20" x2="200" y1="54" y2="54" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont">
+  <g font-size="2.5">
+   <text x="21.5" y="57.3">Raw dimensions</text>
+   <text x="101.5" y="57.3">Projection</text>
+   <text x="161.5" y="57.3">Scale</text>
+  </g>
+  <g font-size="3.4722">
+   <text x="21.5" y="62.75" freecad:editable="Raw dimensions4"><tspan x="21.5" y="62.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="101.5" y="62.75" freecad:editable="Projection4"><tspan x="101.5" y="62.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="161.5" y="62.75" freecad:editable="Scale4"><tspan x="161.5" y="62.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+  </g>
+ </g>
+ <g stroke="#000">
+  <g stroke-width=".35">
+   <line x1="157.08" x2="157.08" y1="55.333" y2="63.667"/>
+   <line x1="157.08" x2="148.75" y1="63.667" y2="61.167"/>
+   <line x1="148.75" x2="148.75" y1="61.167" y2="57.833"/>
+   <line x1="148.75" x2="157.08" y1="57.833" y2="55.333"/>
+   <circle cx="143.33" cy="59.5" r="2.0833" fill="none"/>
+   <circle cx="143.33" cy="59.5" r="4.1667" fill="none"/>
+  </g>
+  <g stroke-width=".18">
+   <line x1="138.33" x2="139.77" y1="59.5" y2="59.5"/>
+   <line x1="140.13" x2="140.49" y1="59.5" y2="59.5"/>
+   <line x1="140.85" x2="142.29" y1="59.5" y2="59.5"/>
+   <line x1="142.65" x2="143.01" y1="59.5" y2="59.5"/>
+   <line x1="143.37" x2="144.81" y1="59.5" y2="59.5"/>
+   <line x1="145.17" x2="145.53" y1="59.5" y2="59.5"/>
+   <line x1="145.89" x2="147.33" y1="59.5" y2="59.5"/>
+   <line x1="147.69" x2="148.05" y1="59.5" y2="59.5"/>
+   <line x1="148.41" x2="149.85" y1="59.5" y2="59.5"/>
+   <line x1="150.21" x2="150.57" y1="59.5" y2="59.5"/>
+   <line x1="150.93" x2="152.37" y1="59.5" y2="59.5"/>
+   <line x1="152.73" x2="153.09" y1="59.5" y2="59.5"/>
+   <line x1="153.45" x2="154.89" y1="59.5" y2="59.5"/>
+   <line x1="155.25" x2="155.61" y1="59.5" y2="59.5"/>
+   <line x1="155.97" x2="157.41" y1="59.5" y2="59.5"/>
+   <line x1="157.77" x2="157.92" y1="59.5" y2="59.5"/>
+   <line x1="143.33" x2="143.33" y1="54.5" y2="55.94"/>
+   <line x1="143.33" x2="143.33" y1="56.3" y2="56.66"/>
+   <line x1="143.33" x2="143.33" y1="57.02" y2="58.46"/>
+   <line x1="143.33" x2="143.33" y1="58.82" y2="59.18"/>
+   <line x1="143.33" x2="143.33" y1="59.54" y2="60.98"/>
+   <line x1="143.33" x2="143.33" y1="61.34" y2="61.7"/>
+   <line x1="143.33" x2="143.33" y1="62.06" y2="63.5"/>
+   <line x1="143.33" x2="143.33" y1="63.86" y2="64.22"/>
+  </g>
+  <line x1="20" x2="200" y1="65" y2="65" stroke-width=".35"/>
+ </g>
+ <g fill="#000000" font-family="osifont">
+  <g font-size="2.5">
+   <text x="21.5" y="68.3">Created by</text>
+   <text x="101.5" y="68.3">Valid from to</text>
+   <text x="161.5" y="68.3">Document state</text>
+  </g>
+  <g font-size="3.4722">
+   <text x="21.5" y="73.75" freecad:editable="Created by4"><tspan x="21.5" y="73.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="101.5" y="73.75" freecad:editable="Valid from to4"><tspan x="101.5" y="73.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="161.5" y="73.75" freecad:editable="Document state4"><tspan x="161.5" y="73.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+  </g>
+ </g>
+ <line x1="20" x2="200" y1="76" y2="76" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont">
+  <g font-size="2.5">
+   <text x="21.5" y="79.3">Approved by</text>
+   <text x="101.5" y="79.3">Project</text>
+   <text x="161.5" y="79.3">Document type</text>
+  </g>
+  <g font-size="3.4722">
+   <text x="21.5" y="84.75" freecad:editable="Approved by4"><tspan x="21.5" y="84.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+   <text x="101.5" y="84.75" freecad:editable="Project4"><tspan x="101.5" y="84.75" fill="#000000" font-family="osifont" font-size="3.4722"/></text>
+   <text x="161.5" y="84.75" freecad:editable="Document type4"><tspan x="161.5" y="84.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+  </g>
+ </g>
+ <line x1="20" x2="200" y1="87" y2="87" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont">
+  <g font-size="2.5">
+   <text x="21.5" y="90.3">Legal owner</text>
+   <text x="101.5" y="90.3">Title, Supplementary title</text>
+   <text x="161.5" y="90.3">Document number</text>
+  </g>
+  <text x="21.5" y="101" font-size="6.9444" freecad:editable="Legal owner4"><tspan x="21.5" y="101" fill="#000000" font-family="osifont" font-size="6.9444">.</tspan></text>
+  <text x="101.5" y="101" font-size="6.9444" freecad:editable="Title, Supplementary title4"><tspan x="101.5" y="101" fill="#000000" font-family="osifont" font-size="6.9444">.</tspan></text>
+  <text x="161.5" y="95.75" font-size="3.4722" freecad:editable="Document number4"><tspan x="161.5" y="95.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+ </g>
+ <line x1="160" x2="200" y1="98" y2="98" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont">
+  <text x="161.5" y="101.3" font-size="2.5">Rev.</text>
+  <text x="173.5" y="101.3" font-size="2.5">Date of issue</text>
+  <text x="161.5" y="106.75" font-size="3.4722" freecad:editable="Rev.4"><tspan x="161.5" y="106.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+  <text x="173.5" y="106.75" font-size="3.4722" freecad:editable="Date of issue4"><tspan x="173.5" y="106.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+ </g>
+ <line x1="160" x2="200" y1="109" y2="109" stroke="#000" stroke-width=".35"/>
+ <g fill="#000000" font-family="osifont">
+  <text x="161.5" y="112.3" font-size="2.5">Lang.</text>
+  <text x="173.5" y="112.3" font-size="2.5">Sheet</text>
+  <text x="161.5" y="117.75" font-size="3.4722" freecad:editable="Lang.4"><tspan x="161.5" y="117.75" fill="#000000" font-family="osifont" font-size="3.4722">EN</tspan></text>
+  <text x="173.5" y="117.75" font-size="3.4722" freecad:editable="Sheet4"><tspan x="173.5" y="117.75" fill="#000000" font-family="osifont" font-size="3.4722">.</tspan></text>
+ </g>
 </svg>
