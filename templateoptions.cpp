@@ -174,3 +174,10 @@ void printFinisheD(FinisheD finisheD)
     qDebug() << "descriptioN: " << finisheD.descriptioN;
     qDebug() << "descriptionnumlineS: " << finisheD.descriptionnumlineS;
 }
+
+double lineLenght(Coordinate start, Coordinate end)
+{
+    double deltaX = std::abs(start.X - end.X);
+    double deltaY = std::abs(start.Y - end.Y);
+    return sqrt(deltaX * deltaX + deltaY * deltaY);
+}

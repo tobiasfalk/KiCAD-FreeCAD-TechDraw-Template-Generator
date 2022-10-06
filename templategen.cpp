@@ -759,21 +759,21 @@ void TemplateGen::drawISO5457_ISO7200()
 void TemplateGen::drawProjectionMethod(Coordinate at, ProjectionMethodType what)
 {
     const double unit = double(11)/24;
-    qDebug() << unit;
     switch (what) {
     case ProjectionMethodType::None:
         break;
     case ProjectionMethodType::FirstAngle:
         break;
     case ProjectionMethodType::ThirdAngle:
-        qDebug() << "A";
-        drawLine(Coordinate{7 * -unit + at.X, 1.7 * unit + at.Y}, Coordinate{-7 * unit + at.X, 22.3 * unit + at.Y}, .35);
+        drawLine(Coordinate{7 * -unit + at.X, 2 * unit + at.Y}, Coordinate{-7 * unit + at.X, 22 * unit + at.Y}, .35);
         drawLine(Coordinate{7 * -unit + at.X, 22 * unit + at.Y}, Coordinate{-27 * unit + at.X, 16 * unit + at.Y}, .35);
-        drawLine(Coordinate{27 * -unit + at.X, 16.3 * unit + at.Y}, Coordinate{-27 * unit + at.X, 7.7 * unit + at.Y}, .35);
+        drawLine(Coordinate{27 * -unit + at.X, 16 * unit + at.Y}, Coordinate{-27 * unit + at.X, 8 * unit + at.Y}, .35);
         drawLine(Coordinate{27 * -unit + at.X, 8 * unit + at.Y}, Coordinate{-7 * unit + at.X, 2 * unit + at.Y}, .35);
 
         drawCircle(Coordinate{40 * -unit + at.X, 12 * unit + at.Y}, 5 * unit, .35);
         drawCircle(Coordinate{40 * -unit + at.X, 12 * unit + at.Y}, 10 * unit, .35);
+
+        drawDotLine(Coordinate{20, 10}, Coordinate{200,200}, 1);
         break;
     }
 }
@@ -785,10 +785,29 @@ void TemplateGen::drawDot(Coordinate at, double lineWidth)
 
 void TemplateGen::drawDotLine(Coordinate start, Coordinate end, double lineWidth)
 {
+    Coordinate current = start;
+    while(lineLenght(current, end) > 13)
+    {
+        current = drawLineAdv(current, end, 8 * lineWidth, lineWidth);
+        current = drawLineAdv(current, end, 2 * lineWidth, 0);// 2 * lineWidth empty
+        current = drawLineAdv(current, end, 1 * lineWidth, lineWidth);
+        current = drawLineAdv(current, end, 2 * lineWidth, 0);// 2 * lineWidth empty
+    }
 }
 
 void TemplateGen::drawSlimDotLine(Coordinate start, Coordinate end, double lineWidth)
 {
+}
+
+Coordinate TemplateGen::drawLineAdv(Coordinate start, Coordinate end, double length, double lineWidth)
+{
+    double lenghtBase = lineLenght(start, end);
+    Coordinate target{start.X-( (length * (start.X - end.X) ) / lenghtBase), start.Y-( (length * (start.Y - end.Y) ) / lenghtBase)};
+    if(lineWidth != 0)
+    {
+        drawLine(start, target, lineWidth);
+    }
+    return target;
 }
 
 void TemplateGen::draw()

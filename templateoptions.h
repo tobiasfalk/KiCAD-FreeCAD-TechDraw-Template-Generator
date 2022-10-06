@@ -99,5 +99,6 @@ int ggT(int zahl1, int zahl2);
 int kgV(int zahl1, int zahl2);
 bool allFinisheD(FinisheD finisheD);
 void printFinisheD(FinisheD finisheD);
+double lineLenght(Coordinate start, Coordinate end);
 
 #endif // TEMPLATEOPTIONS_H

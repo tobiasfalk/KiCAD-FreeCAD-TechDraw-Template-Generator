@@ -70,6 +70,16 @@ protected:
     void drawDotLine(Coordinate start, Coordinate end, double lineWidth);
     void drawSlimDotLine(Coordinate start, Coordinate end, double lineWidth);
 
+    ///
+    /// \brief drawLineAdv draws part of a line betwen two points
+    /// \param start
+    /// \param end
+    /// \param length
+    /// \param lineWidth
+    /// \return returns the end point of the drawn line
+    ///
+    Coordinate drawLineAdv(Coordinate start, Coordinate end, double length, double lineWidth);
+
 
     virtual void drawLine(Coordinate start, Coordinate end, double lineWidth) = 0;
     virtual void drawRect(Coordinate start, Coordinate end, double lineWidth) = 0;
