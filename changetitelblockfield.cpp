@@ -87,16 +87,16 @@ void ChangeTitelblockField::setProjectionMethod(ProjectionMethodType methode)
 {
     switch (methode) {
     case ProjectionMethodType::None:
-        ui->projectionMethodComboBox->addItem("None");
+        ui->projectionMethodComboBox->setCurrentText("None");
         break;
     case ProjectionMethodType::FirstAngle:
-        ui->projectionMethodComboBox->addItem("First Angle");
+        ui->projectionMethodComboBox->setCurrentText("First Angle");
         break;
     case ProjectionMethodType::ThirdAngle:
-        ui->projectionMethodComboBox->addItem("Third Angle");
+        ui->projectionMethodComboBox->setCurrentText("Third Angle");
         break;
     default:
-        ui->projectionMethodComboBox->addItem("None");
+        ui->projectionMethodComboBox->setCurrentText("None");
         break;
     }
 }
@@ -121,6 +121,9 @@ ChangeTitelblockField::ChangeTitelblockField(QWidget *parent) :
     ui(new Ui::ChangeTitelblockField)
 {
     ui->setupUi(this);
+    ui->projectionMethodComboBox->addItem("None");
+    ui->projectionMethodComboBox->addItem("First Angle");
+    ui->projectionMethodComboBox->addItem("Third Angle");
 }
 
 ChangeTitelblockField::~ChangeTitelblockField()

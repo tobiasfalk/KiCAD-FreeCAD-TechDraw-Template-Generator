@@ -1,4 +1,4 @@
-^# KiCAD FreeCAD TechDraw Template Generator
+# KiCAD FreeCAD TechDraw Template Generator
 
 This small and crudely programmed Qt Program creates drawing sheet templates for [FreeCAD](https://freecad.org) and [KiCAD](https://kicad.org) that are mostly identical.
 
@@ -10,8 +10,10 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ## Prerequisites
 
-* Qt or newer
+* Qt 5.12 or newer
 * [Osifont](https://github.com/hikikomori82/osifont)
+
+# Feture
 
 ## Usage
 
@@ -23,12 +25,16 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 ### KiCAD 5
 
 * Not able to change the font (with 7(6.99) possible)
+* No Circlys(Used for Projektion)
 
 ### KiCAD 6
 
 * Not able to change the font (with 7(6.99) possible)
+* No Circlys(Used for Projektion)
 
 ### KiCAD 7(6.99)
+
+* No Circlys(Used for Projektion)
 
 ### FreeCAD
 
@@ -69,4 +75,4 @@ Once the logo gets reaches a height of 30mm the width is reduced (the ratio will
 * Implementation of insertion a CSV for the Partlist
 * Complete Doxygen Documentation
 * PDF Logo and Text problems
-* Implementation of Projektion Method in field
+* Ploygon without fill

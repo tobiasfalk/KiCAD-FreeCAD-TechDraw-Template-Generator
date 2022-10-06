@@ -71,6 +71,15 @@ void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, dou
 
 void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth)
 {
+    QPen pen(Qt::black);
+    pen.setStyle(Qt::SolidLine);
+    pen.setWidthF(lineWidth);
+    PAINTER->setPen(pen);
+    PAINTER->setBrush(Qt::NoBrush);
+
+    QRectF rectangle(center.X - radius, center.Y - radius, radius * 2, radius * 2);
+
+    PAINTER->drawEllipse(rectangle);
 }
 
 qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)

@@ -436,7 +436,7 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_FREECAD.insert("opt11", TitelblockField{"Valid from to",                   QStringList{"."},                           "Valid from to", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt12", TitelblockField{"Document state",                  QStringList{"."},                           "Document state", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt13", TitelblockField{"Approved by",                     QStringList{"."},                           "Approved by", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_FREECAD.insert("opt14", TitelblockField{"Project",                         QStringList{"."},                           "Project", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt14", TitelblockField{"Project",                         QStringList{""},                            "Project", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt15", TitelblockField{"Document type",                   QStringList{"."},                           "Document type", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt16", TitelblockField{"Legal owner",                     QStringList{"."},                           "Legal owner", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt17", TitelblockField{"Title, Supplementary title",      QStringList{"."},                           "Title, Supplementary title", ProjectionMethodType::None});
@@ -457,7 +457,7 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_KICAD5.insert("opt5",  TitelblockField{"Weight",                          QStringList{"Weight Value"},                 "Weight", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD5.insert("opt6",  TitelblockField{"Standard",                        QStringList{"Standard Value"},               "Standard", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD5.insert("opt7",  TitelblockField{"Raw dimensions",                  QStringList{"Raw dimensions Value"},         "Raw dimensions", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_KICAD5.insert("opt8",  TitelblockField{"Projection",                      QStringList{"Projection Value"},             "Projection", ProjectionMethodType::ThirdAngle});
+    TITELBLOCKFIELDS_KICAD5.insert("opt8",  TitelblockField{"Projection",                      QStringList{""},                             "Projection", ProjectionMethodType::ThirdAngle});
     TITELBLOCKFIELDS_KICAD5.insert("opt9",  TitelblockField{"Scale",                           QStringList{"Scale Value"},                  "Scale", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD5.insert("opt10", TitelblockField{"Created by",                      QStringList{"%C0"},                          "Created by", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD5.insert("opt11", TitelblockField{"Valid from to",                   QStringList{"%D to -"},                      "Valid from to", ProjectionMethodType::None});
@@ -483,8 +483,8 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_KICAD6.insert("opt4",  TitelblockField{"Surface treatment",               QStringList{"${surfaceTreatmentValue}"},    "Surface treatment", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD6.insert("opt5",  TitelblockField{"Weight",                          QStringList{"${weightValue}"},              "Weight", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD6.insert("opt6",  TitelblockField{"Standard",                        QStringList{"${standardValue}"},            "Standard", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_KICAD6.insert("opt7",  TitelblockField{"Raw dimensions",                  QStringList{"${opt7Val}"},                  "Raw dimensions", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_KICAD6.insert("opt8",  TitelblockField{"Projection",                      QStringList{"${rawDimValue}"},              "Projection", ProjectionMethodType::ThirdAngle});
+    TITELBLOCKFIELDS_KICAD6.insert("opt7",  TitelblockField{"Raw dimensions",                  QStringList{"${rawDimValue}"},              "Raw dimensions", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_KICAD6.insert("opt8",  TitelblockField{"Projection",                      QStringList{""},                            "Projection", ProjectionMethodType::ThirdAngle});
     TITELBLOCKFIELDS_KICAD6.insert("opt9",  TitelblockField{"Scale",                           QStringList{"${scaleVal}"},                 "Scale", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD6.insert("opt10", TitelblockField{"Created by",                      QStringList{"${createdBy}"},                "Created by", ProjectionMethodType::None});
     TITELBLOCKFIELDS_KICAD6.insert("opt11", TitelblockField{"Valid from to",                   QStringList{"${validFromTo}"},              "Valid from to", ProjectionMethodType::None});

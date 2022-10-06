@@ -33,6 +33,13 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
+        <widget class="QRadioButton" name="radioButton">
+         <property name="text">
+          <string>RadioButton</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label">
          <property name="font">
           <font>
