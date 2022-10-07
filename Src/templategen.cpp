@@ -753,6 +753,10 @@ void TemplateGen::drawFullSheetPartsList()
     }
 }
 
+void TemplateGen::drawFullSheetPartsListCSV()
+{
+}
+
 void TemplateGen::drawISO5457_ISO7200()
 {
     if(TRIMMINGMARKS)

@@ -62,6 +62,11 @@ protected:
     void drawFoldLines(double depth);
     void drawSmallPartsList();
     void drawFullSheetPartsList();
+    ///
+    /// \brief drawFullSheetPartsListCSV draws the Ful sheet parts list with filled values from a CSV file
+    ///
+    void drawFullSheetPartsListCSV();
+
 
     void drawISO5457_ISO7200();
 

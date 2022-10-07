@@ -46,6 +46,8 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ![Logo image](Images/Logo_Demo.svg)
 
+* CSV inclusion, KiCAD with bom_csv_grouped_by_value_with_fp
+
 
 ## Usage
 
