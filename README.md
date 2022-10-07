@@ -42,6 +42,11 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 ![Small Parts list image](Images/SmallPartsList_Demo.svg)
 
 
+* Logo inclusion in to the Legal owner field
+
+![Logo image](Images/Logo_Demo.svg)
+
+
 ## Usage
 
 ![Gui image](Images/Gui.png)
