@@ -10,26 +10,68 @@ namespace Ui {
 class FullSheetsPartListOptions;
 }
 
+///
+/// \brief The FullSheetsPartListOptions class is able to change all the field values of the Full sheet part list
+///
 class FullSheetsPartListOptions : public QDialog
 {
     Q_OBJECT
 
 public:
+    ///
+    /// \brief FullSheetsPartListOptions constructor
+    /// \param parent
+    ///
     explicit FullSheetsPartListOptions(QWidget *parent = nullptr);
+    ///
+    /// \brief FullSheetsPartListOptions deconstructor
+    ///
     ~FullSheetsPartListOptions();
 
+    ///
+    /// \brief getFULLSHEETPARTSLISTFIELDS_FREECAD is the getter function
+    /// \return
+    ///
     const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_FREECAD() const;
+    ///
+    /// \brief setFULLSHEETPARTSLISTFIELDS_FREECAD is the setter function
+    /// \param newFULLSHEETPARTSLISTFIELDS_FREECAD
+    ///
     void setFULLSHEETPARTSLISTFIELDS_FREECAD(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_FREECAD);
 
+    ///
+    /// \brief getFULLSHEETPARTSLISTFIELDS_KICAD5 is the getter function
+    /// \return
+    ///
     const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_KICAD5() const;
+    ///
+    /// \brief setFULLSHEETPARTSLISTFIELDS_KICAD5 is the setter function
+    /// \param newFULLSHEETPARTSLISTFIELDS_KICAD5
+    ///
     void setFULLSHEETPARTSLISTFIELDS_KICAD5(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD5);
 
+    ///
+    /// \brief getFULLSHEETPARTSLISTFIELDS_KICAD6 is the getter function
+    /// \return
+    ///
     const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_KICAD6() const;
+    ///
+    /// \brief setFULLSHEETPARTSLISTFIELDS_KICAD6 is the setter function
+    /// \param newFULLSHEETPARTSLISTFIELDS_KICAD6
+    ///
     void setFULLSHEETPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD6);
 
     void resetToOrigin();
 
+    ///
+    /// \brief getFULLSHEETPARTSLISTFIELDS_PDF is the getter function
+    /// \return
+    ///
     const QMap<QString, TitelblockField> &getFULLSHEETPARTSLISTFIELDS_PDF() const;
+    ///
+    /// \brief setFULLSHEETPARTSLISTFIELDS_PDF is the setter function
+    /// \param newFULLSHEETPARTSLISTFIELDS_PDF
+    ///
     void setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_PDF);
 
 private slots:
