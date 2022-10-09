@@ -26,6 +26,11 @@ protected:
     qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont");
 
     void drawLogoTitelblockISO7200();
+
+    ///
+    /// \brief newPage creates a new emty Page
+    ///
+    void newPage();
 public:
     explicit TemplateGenFreeCAD(QObject *parent = nullptr);
     ~TemplateGenFreeCAD();

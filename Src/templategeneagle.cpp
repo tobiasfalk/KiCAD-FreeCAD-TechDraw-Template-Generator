@@ -8,153 +8,166 @@ QString TemplateGenEagle::getFILEENDING()
 
 bool TemplateGenEagle::writeBase()
 {
-    if(QFile::exists(DIR + "/sheet_template_eagle_6-5.lbr"))
+    if(!FULLSHEETPARTSLISTCSVKiCAD)
     {
-        QFile file(DIR + "/sheet_template_eagle_6-5.lbr");
-        if(!file.open(QFile::ReadOnly | QFile::Text))
+        qDebug() << "A";
+        if(QFile::exists(DIR + "/sheet_template_eagle_6-5.lbr"))
         {
-            qWarning() << "Cannot read file" << file.errorString();
-            exit(0);
-        }
-
-        QDomDocument xmlBOM;
-        xmlBOM.setContent(&file);
-        QDomElement root=xmlBOM.documentElement();
-
-        // Get the first child of the root (Markup COMPONENT is expected)
-        QDomElement componentA = root.firstChild().toElement().firstChild().toElement();
-
-        // Loop while there is a child
-        while(!componentA.isNull())
-        {
-            if(componentA.tagName() == "library")
+            QFile file(DIR + "/sheet_template_eagle_6-5.lbr");
+            if(!file.open(QFile::ReadOnly | QFile::Text))
             {
-                QDomElement componentB = componentA.firstChild().toElement();
-                while(!componentB.isNull())
-                {
-                    QDomElement componentC = componentB.firstChild().toElement();
-                    while(!componentC.isNull())
-                    {
-                        if(componentC.tagName() == "package")
-                        {
-                            OPACKAGES.append(componentC);
-                        } else if(componentC.tagName() == "symbol")
-                        {
-                            OSYMBOLS.append(componentC);
-                            ONAMELIST.append(componentC.attribute("name"));
-                        } else if(componentC.tagName() == "deviceset")
-                        {
-                            ODEVICESETS.append(componentC);
-                        }
-                        componentC = componentC.nextSibling().toElement();
-                    }
-                    componentB = componentB.nextSibling().toElement();
-                }
+                qWarning() << "Cannot read file" << file.errorString();
+                exit(0);
             }
-            componentA = componentA.nextSibling().toElement();
-        }
-    }
-    FILE = new QFile(DIR + "/sheet_template_eagle_6-5.lbr");
-    if(FILE->open(QIODeviceBase::WriteOnly))
-    {
-        FILE->write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-        FILE->write("<!DOCTYPE eagle SYSTEM \"eagle.dtd\">\n");
-        XMLTEXTSTREM = new QTextStream(FILE);
-        ROOT = DOCUMENT.createElement("eagle");
-        ROOT.setAttribute("version", "6.5.0");
 
-        QString name = createFileName().remove(DIR + "/");
+            QDomDocument xmlBOM;
+            xmlBOM.setContent(&file);
+            QDomElement root=xmlBOM.documentElement();
 
-        if(ONAMELIST.indexOf(createFileName().remove(DIR + "/")) >= 0)
-        {
-            int i = 0;
-            do
+            // Get the first child of the root (Markup COMPONENT is expected)
+            QDomElement componentA = root.firstChild().toElement().firstChild().toElement();
+
+            // Loop while there is a child
+            while(!componentA.isNull())
             {
-                name = createFileName().remove(DIR + "/") + "_" + QString::number(i++);
-            }while(ONAMELIST.indexOf(name) >= 0);
+                if(componentA.tagName() == "library")
+                {
+                    QDomElement componentB = componentA.firstChild().toElement();
+                    while(!componentB.isNull())
+                    {
+                        QDomElement componentC = componentB.firstChild().toElement();
+                        while(!componentC.isNull())
+                        {
+                            if(componentC.tagName() == "package")
+                            {
+                                OPACKAGES.append(componentC);
+                            } else if(componentC.tagName() == "symbol")
+                            {
+                                OSYMBOLS.append(componentC);
+                                ONAMELIST.append(componentC.attribute("name"));
+                            } else if(componentC.tagName() == "deviceset")
+                            {
+                                ODEVICESETS.append(componentC);
+                            }
+                            componentC = componentC.nextSibling().toElement();
+                        }
+                        componentB = componentB.nextSibling().toElement();
+                    }
+                }
+                componentA = componentA.nextSibling().toElement();
+            }
         }
+        FILE = new QFile(DIR + "/sheet_template_eagle_6-5.lbr");
+        if(FILE->open(QIODeviceBase::WriteOnly))
+        {
+            FILE->write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            FILE->write("<!DOCTYPE eagle SYSTEM \"eagle.dtd\">\n");
+            XMLTEXTSTREM = new QTextStream(FILE);
+            ROOT = DOCUMENT.createElement("eagle");
+            ROOT.setAttribute("version", "6.5.0");
+
+            QString name = createFileName().remove(DIR + "/");
+
+            if(ONAMELIST.indexOf(createFileName().remove(DIR + "/")) >= 0)
+            {
+                int i = 0;
+                do
+                {
+                    name = createFileName().remove(DIR + "/") + "_" + QString::number(i++);
+                }while(ONAMELIST.indexOf(name) >= 0);
+            }
 
 
-        DRAWING = DOCUMENT.createElement("drawing");
-        LIBRARY = DOCUMENT.createElement("library");
-        PACKAGES = DOCUMENT.createElement("packages");
-        SYMBOLS = DOCUMENT.createElement("symbols");
-        DEVICESETS = DOCUMENT.createElement("devicesets");
+            DRAWING = DOCUMENT.createElement("drawing");
+            LIBRARY = DOCUMENT.createElement("library");
+            PACKAGES = DOCUMENT.createElement("packages");
+            SYMBOLS = DOCUMENT.createElement("symbols");
+            DEVICESETS = DOCUMENT.createElement("devicesets");
 
-        CSYMBOL = DOCUMENT.createElement("symbol");
-        CSYMBOL.setAttribute("name", name);
-        CPACKAGE = DOCUMENT.createElement("package");
-        CPACKAGE.setAttribute("name", name);
+            CSYMBOL = DOCUMENT.createElement("symbol");
+            CSYMBOL.setAttribute("name", name);
+            CPACKAGE = DOCUMENT.createElement("package");
+            CPACKAGE.setAttribute("name", name);
 
-        CDEVICS = DOCUMENT.createElement("deviceset");
-        CDEVICS.setAttribute("name", name);
+            CDEVICS = DOCUMENT.createElement("deviceset");
+            CDEVICS.setAttribute("name", name);
 
-        QDomElement settings = DOCUMENT.createElement("settings");
-        QDomElement settingA = DOCUMENT.createElement("setting");
-        settingA.setAttribute("alwaysvectorfont", "no");
-        QDomElement settingB = DOCUMENT.createElement("setting");
-        settingB.setAttribute("verticaltext", "up");
-        settings.appendChild(settingA);
-        settings.appendChild(settingB);
-        DRAWING.appendChild(settings);
-        QDomElement grid = DOCUMENT.createElement("grid");
-        grid.setAttribute("distance", "0.1");
-        grid.setAttribute("unitdist", "inch");
-        grid.setAttribute("unit", "inch");
-        grid.setAttribute("style", "lines");
-        grid.setAttribute("multiple", "1");
-        grid.setAttribute("display", "no");
-        grid.setAttribute("altdistance", "0.01");
-        grid.setAttribute("altunitdist", "inch");
-        grid.setAttribute("altunit", "inch");
-        DRAWING.appendChild(grid);
-        QDomElement layers = DOCUMENT.createElement("layers");
-        QDomElement layer94 = DOCUMENT.createElement("layer");
-        layer94.setAttribute("number", "94");
-        layer94.setAttribute("name", "Symbols");
-        layer94.setAttribute("color", "4");
-        layer94.setAttribute("fill", "1");
-        layer94.setAttribute("visible", "yes");
-        layer94.setAttribute("active", "yes");
-        layers.appendChild(layer94);
-        QDomElement layer48 = DOCUMENT.createElement("layer");
-        layer48.setAttribute("number", "48");
-        layer48.setAttribute("name", "Document");
-        layer48.setAttribute("color", "7");
-        layer48.setAttribute("fill", "1");
-        layer48.setAttribute("visible", "yes");
-        layer48.setAttribute("active", "yes");
-        layers.appendChild(layer48);
-        DRAWING.appendChild(layers);
+            QDomElement settings = DOCUMENT.createElement("settings");
+            QDomElement settingA = DOCUMENT.createElement("setting");
+            settingA.setAttribute("alwaysvectorfont", "no");
+            QDomElement settingB = DOCUMENT.createElement("setting");
+            settingB.setAttribute("verticaltext", "up");
+            settings.appendChild(settingA);
+            settings.appendChild(settingB);
+            DRAWING.appendChild(settings);
+            QDomElement grid = DOCUMENT.createElement("grid");
+            grid.setAttribute("distance", "0.1");
+            grid.setAttribute("unitdist", "inch");
+            grid.setAttribute("unit", "inch");
+            grid.setAttribute("style", "lines");
+            grid.setAttribute("multiple", "1");
+            grid.setAttribute("display", "no");
+            grid.setAttribute("altdistance", "0.01");
+            grid.setAttribute("altunitdist", "inch");
+            grid.setAttribute("altunit", "inch");
+            DRAWING.appendChild(grid);
+            QDomElement layers = DOCUMENT.createElement("layers");
+            QDomElement layer94 = DOCUMENT.createElement("layer");
+            layer94.setAttribute("number", "94");
+            layer94.setAttribute("name", "Symbols");
+            layer94.setAttribute("color", "4");
+            layer94.setAttribute("fill", "1");
+            layer94.setAttribute("visible", "yes");
+            layer94.setAttribute("active", "yes");
+            layers.appendChild(layer94);
+            QDomElement layer48 = DOCUMENT.createElement("layer");
+            layer48.setAttribute("number", "48");
+            layer48.setAttribute("name", "Document");
+            layer48.setAttribute("color", "7");
+            layer48.setAttribute("fill", "1");
+            layer48.setAttribute("visible", "yes");
+            layer48.setAttribute("active", "yes");
+            layers.appendChild(layer48);
+            DRAWING.appendChild(layers);
 
-        // Symol Deice
-        QDomElement gates_s = DOCUMENT.createElement("gates");
-        QDomElement gate_s = DOCUMENT.createElement("gate");
-        gate_s.setAttribute("name", "G$1");
-        gate_s.setAttribute("symbol", name);
-        gate_s.setAttribute("x", 0);
-        gate_s.setAttribute("y", 0);
-        gates_s.appendChild(gate_s);
-        CDEVICS.appendChild(gates_s);
+            // Symol Deice
+            QDomElement gates_s = DOCUMENT.createElement("gates");
+            QDomElement gate_s = DOCUMENT.createElement("gate");
+            gate_s.setAttribute("name", "G$1");
+            gate_s.setAttribute("symbol", name);
+            gate_s.setAttribute("x", 0);
+            gate_s.setAttribute("y", 0);
+            gates_s.appendChild(gate_s);
+            CDEVICS.appendChild(gates_s);
 
-        QDomElement devices_s = DOCUMENT.createElement("devices");
-        QDomElement device_s = DOCUMENT.createElement("device");
-        device_s.setAttribute("name", "");
-        QDomElement technologies_s = DOCUMENT.createElement("technologies");
-        QDomElement technology_s = DOCUMENT.createElement("technology");
-        technology_s.setAttribute("name", "");
-        technologies_s.appendChild(technology_s);
-        device_s.appendChild(technologies_s);
-        devices_s.appendChild(device_s);
-        CDEVICS.appendChild(devices_s);
+            QDomElement devices_s = DOCUMENT.createElement("devices");
+            QDomElement device_s = DOCUMENT.createElement("device");
+            device_s.setAttribute("name", "");
+            QDomElement technologies_s = DOCUMENT.createElement("technologies");
+            QDomElement technology_s = DOCUMENT.createElement("technology");
+            technology_s.setAttribute("name", "");
+            technologies_s.appendChild(technology_s);
+            device_s.appendChild(technologies_s);
+            devices_s.appendChild(device_s);
+            CDEVICS.appendChild(devices_s);
 
+            return true;
+        }
+        else
+        {
+            qCritical() << "Could not open File(EAGLE 6.5)";
+            return false;
+        }
+    }else
+    {
+        qDebug() << "B";
+        NODRAW = true;
         return true;
     }
-    else
-    {
-        qCritical() << "Could not open File(EAGLE 6.5)";
-        return false;
-    }
+}
+
+void TemplateGenEagle::newPage()
+{
 }
 
 void TemplateGenEagle::drawLine(Coordinate start, Coordinate end, double lineWidth)
@@ -366,38 +379,42 @@ void TemplateGenEagle::drawLogoTitelblockISO7200()
 TemplateGenEagle::TemplateGenEagle(QObject *parent)
     : TemplateGen{parent}
 {
+
 }
 
 TemplateGenEagle::~TemplateGenEagle()
 {
-    foreach (QDomElement pack, OPACKAGES)
+    if(!NODRAW)
     {
-        PACKAGES.appendChild(pack);
-    }
-    foreach (QDomElement sym, OSYMBOLS)
-    {
-        SYMBOLS.appendChild(sym);
-    }
-    foreach (QDomElement devic, ODEVICESETS)
-    {
-        DEVICESETS.appendChild(devic);
-    }
+        foreach (QDomElement pack, OPACKAGES)
+        {
+            PACKAGES.appendChild(pack);
+        }
+        foreach (QDomElement sym, OSYMBOLS)
+        {
+            SYMBOLS.appendChild(sym);
+        }
+        foreach (QDomElement devic, ODEVICESETS)
+        {
+            DEVICESETS.appendChild(devic);
+        }
 
-    SYMBOLS.appendChild(CSYMBOL);
-    PACKAGES.appendChild(CPACKAGE);
-    DEVICESETS.appendChild(CDEVICS);
-    //DEVICESETS.appendChild(CDEVICP);
-    LIBRARY.appendChild(PACKAGES);
-    LIBRARY.appendChild(SYMBOLS);
-    LIBRARY.appendChild(DEVICESETS);
-    DRAWING.appendChild(LIBRARY);
-    ROOT.appendChild(DRAWING);
-    DOCUMENT.appendChild(ROOT);
-    *XMLTEXTSTREM << DOCUMENT.toString();
-    //FILE->write(")\n");
-    XMLTEXTSTREM->flush();
-    FILE->flush();
-    FILE->close();
-    free(XMLTEXTSTREM);
-    free(FILE);
+        SYMBOLS.appendChild(CSYMBOL);
+        PACKAGES.appendChild(CPACKAGE);
+        DEVICESETS.appendChild(CDEVICS);
+        //DEVICESETS.appendChild(CDEVICP);
+        LIBRARY.appendChild(PACKAGES);
+        LIBRARY.appendChild(SYMBOLS);
+        LIBRARY.appendChild(DEVICESETS);
+        DRAWING.appendChild(LIBRARY);
+        ROOT.appendChild(DRAWING);
+        DOCUMENT.appendChild(ROOT);
+        *XMLTEXTSTREM << DOCUMENT.toString();
+        //FILE->write(")\n");
+        XMLTEXTSTREM->flush();
+        FILE->flush();
+        FILE->close();
+        free(XMLTEXTSTREM);
+        free(FILE);
+    }
 }

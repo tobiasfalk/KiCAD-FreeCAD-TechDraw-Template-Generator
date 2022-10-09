@@ -126,7 +126,7 @@ Once the logo gets reaches a height of 30mm the width is reduced (the ratio will
 
 ## To do
 
-* Implementation of insertion a CSV for the Partlist
+* Implementation of insertion a CSV for the Partlist with other format than KiCAD BOM
 * Complete Doxygen Documentation
 * PDF Logo and Text problems
 * Polygon without fill for use in Projektion Methode symbol

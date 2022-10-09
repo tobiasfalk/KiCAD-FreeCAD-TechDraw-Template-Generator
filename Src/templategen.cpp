@@ -1,4 +1,6 @@
 #include "templategen.h"
+#include <QFont>
+#include <QFontMetrics>
 
 bool TemplateGen::getDESCRIPTION() const
 {
@@ -22,8 +24,44 @@ void TemplateGen::setDESCRIPTIONNUMLINES(quint64 newDESCRIPTIONNUMLINES)
     finisheD.descriptionnumlineS = true;
 }
 
+const QString &TemplateGen::getBOMCSVFILE() const
+{
+    return BOMCSVFILE;
+}
+
+void TemplateGen::setBOMCSVFILE(const QString &newBOMCSVFILE)
+{
+    BOMCSVFILE = newBOMCSVFILE;
+}
+
+bool TemplateGen::getFULLSHEETPARTSLISTCSVKiCAD() const
+{
+    return FULLSHEETPARTSLISTCSVKiCAD;
+}
+
+void TemplateGen::setFULLSHEETPARTSLISTCSVKiCAD(bool newFULLSHEETPARTSLISTCSVKiCAD)
+{
+    FULLSHEETPARTSLISTCSVKiCAD = newFULLSHEETPARTSLISTCSVKiCAD;
+    finisheD.fullsheetpartslistcsvkicaD = true;
+}
+
+const QString &TemplateGen::getFULLSHEETPARTSLISTCSVFILE() const
+{
+    return FULLSHEETPARTSLISTCSVFILE;
+}
+
+void TemplateGen::setFULLSHEETPARTSLISTCSVFILE(const QString &newFULLSHEETPARTSLISTCSVFILE)
+{
+    FULLSHEETPARTSLISTCSVFILE = newFULLSHEETPARTSLISTCSVFILE;
+    finisheD.fullsheetpartslistcsvfilE = true;
+}
+
 bool TemplateGen::init()
 {
+    if(NOINIT > 0)
+    {
+        return true;
+    }
     if(DESCRIPTION && PAGESIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + (2.5 * 1.5) * (DESCRIPTIONNUMLINES + 1) + 3.7))
     {
         CENTERINGMARKS.Right = false;
@@ -78,6 +116,10 @@ bool TemplateGen::init()
 
 QString TemplateGen::createFileName()
 {
+    if(FULLSHEETPARTSLISTCSVKiCAD)
+    {
+        return DIR + "/" + PAGESIZE.sizeString.replace(" ", "_") + "Partlist_" + QString::number(SHEETINDEX + 1) + getFILEENDING();
+    }
     QString ret =  DIR + "/" + PAGESIZE.sizeString.replace(" ", "_");
 
     switch (PAGESTYLE)
@@ -169,6 +211,185 @@ qint64 TemplateGen::drawText(Coordinate position, QStringList text, QString name
         }
     }
     return -1;
+}
+
+QList<QString> TemplateGen::readBOMKiCAD(QString fileDIR)
+{
+    QList<QString> ret;
+    QFile inputFile(fileDIR);
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       bool parts = false;
+       while (!in.atEnd())
+       {
+           QString line = in.readLine();
+           if(parts)
+           {
+               ret.push_back(line);
+           }else if(line == "\"Ref\",\"Qnty\",\"Value\",\"Cmp name\",\"Footprint\",\"Description\",\"Vendor\"")
+           {
+               parts = true;
+           }
+       }
+       inputFile.close();
+    }
+    return ret;
+}
+
+int TemplateGen::splitBOMlineKiCAD(QString line, QStringList &opt1Val, QStringList &opt2Val, QStringList &opt3Val, QStringList &opt4Val, QStringList &opt5Val, QStringList &opt6Val)
+{
+    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
+    double left = TOPLEFTDRAWINGCORNER.X;
+    double right = TOPRIGHTDRAWINGCORNER.X;
+    double top = TOPRIGHTDRAWINGCORNER.Y;
+    double bottom = TOPLEFTITELBLOCKCORNER.Y;
+    double fieldHeight = (2.5 * 1.5) * NUMLINESFULLSHEETPARTSLIST + 3;
+    // Vertival
+    drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (7/double(36)), top}, Coordinate{left + width * (7/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (21/double(36)), top}, Coordinate{left + width * (21/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (29/double(36)), top}, Coordinate{left + width * (29/double(36)), bottom}, 0.35);
+
+    QStringList splitedLine = line.split("\",\"");
+    splitedLine = splitedLine.replaceInStrings("\",\"", "");
+    splitedLine = splitedLine.replaceInStrings("\"", "");
+
+    opt1Val = QStringList{"42"};
+    opt2Val = splitBOMValKiCAD(splitedLine.at(0), width * (2/double(36)));
+    opt3Val = splitBOMValKiCAD(splitedLine.at(1), width * (3/double(36)));
+    opt4Val = splitBOMValKiCAD(splitedLine.at(3), width * (14/double(36)));
+    opt5Val = splitBOMValKiCAD(splitedLine.at(2), width * (8/double(36)));
+    opt6Val = splitBOMValKiCAD(splitedLine.at(5), width * (7/double(36)) - 5);
+
+    int numLines = 0;
+    if(opt1Val.size() > numLines)
+    {
+        numLines = opt1Val.size();
+    }
+    if(opt2Val.size() > numLines)
+    {
+        numLines = opt2Val.size();
+    }
+    if(opt3Val.size() > numLines)
+    {
+        numLines = opt3Val.size();
+    }
+    if(opt4Val.size() > numLines)
+    {
+        numLines = opt4Val.size();
+    }
+    if(opt5Val.size() > numLines)
+    {
+        numLines = opt5Val.size();
+    }
+    if(opt6Val.size() > numLines)
+    {
+        numLines = opt6Val.size();
+    }
+
+    return numLines;
+}
+
+QStringList TemplateGen::splitBOMValKiCAD(QString val, double targetLenght)
+{
+    QStringList ret;
+    // get text length
+    QFont qFontA("osifont");
+    qFontA.setPointSizeF(100);
+    QFontMetrics fm(qFontA);
+    double length = (2.5 * (fm.size(Qt::TextDontPrint, val).width()/double(100)));
+    if(length > targetLenght && val.contains(' '))
+    {
+        QString wVal = val;
+        if(wVal[0] == ' ')
+        {
+            wVal = wVal.remove(0, 1);
+        }
+        if(wVal[wVal.length() - 1] == ' ')
+        {
+            wVal = wVal.chopped(1);
+        }
+        if(wVal[wVal.length() - 1] == ',')
+        {
+            wVal = wVal.chopped(1);
+        }
+        if(wVal[wVal.length() - 1] == ' ' && wVal[wVal.length() - 2] == ',')
+        {
+            wVal = wVal.chopped(2);
+        }
+
+        int lastSpIndex = -1;
+        int i = 0;
+        while ((2.5 * (fm.size(Qt::TextDontPrint, wVal).width()/double(100))) > targetLenght - 5 && i < wVal.length())
+        {
+            if(wVal[0] == ' ' || wVal[0] == ',')
+            {
+                wVal = wVal.remove(0, 1);
+            }
+            if(wVal[wVal.length() - 1] == ' ')
+            {
+                wVal = wVal.chopped(1);
+            }
+            if(wVal[wVal.length() - 1] == ',')
+            {
+                wVal = wVal.chopped(1);
+            }
+
+            if(wVal[i] == ' ')
+            {
+                lastSpIndex = i;
+            }
+            if((2.5 * (fm.size(Qt::TextDontPrint, wVal.chopped(wVal.length() - i - 1)).width()/double(100))) >= targetLenght - 5)
+            {
+                if(lastSpIndex > 0)
+                {
+                    ret.append(wVal.chopped(wVal.length() - lastSpIndex - 1));
+                    wVal = wVal.remove(0, lastSpIndex + 1);
+                    lastSpIndex = -1;
+                    i = 0;
+                }else
+                {
+                    ret.append(wVal.chopped(wVal.length() - i - 1));
+                    wVal = wVal.remove(0, i + 1);
+                    lastSpIndex = -1;
+                    i = 0;
+                }
+            }
+            i++;
+        };
+        if(wVal.length() > 0)
+        {
+            ret.append(wVal);
+        }
+
+        return ret;
+    } else
+    if(length > targetLenght)
+    {
+        QString wVal = val;
+        do
+        {
+            int i = 0;
+            bool continu = true;
+            while(continu && i <= wVal.length())
+            {
+                i++;
+                if((2.5 * (fm.size(Qt::TextDontPrint, wVal.chopped(wVal.length() - i - 1)).width()/double(100))) >= targetLenght - 5)
+                {
+                    ret.append(wVal.chopped(wVal.length() - i - 1));
+                    wVal = wVal.remove(0, i + 1);
+                    continu = false;
+                }
+            }
+        }while((2.5 * (fm.size(Qt::TextDontPrint, wVal).width()/double(100))) > targetLenght);
+        ret.append(wVal);
+        return ret;
+    } else
+    {
+        return QStringList{val};
+    }
 }
 
 void TemplateGen::drawVerFoldLine(double x, double depth)
@@ -753,8 +974,82 @@ void TemplateGen::drawFullSheetPartsList()
     }
 }
 
-void TemplateGen::drawFullSheetPartsListCSV()
+void TemplateGen::drawFullSheetPartsListCSVKiCAD()
 {
+    if(PARTINDEX == 0)
+    {
+        BOM = readBOMKiCAD(FULLSHEETPARTSLISTCSVFILE);
+    }
+    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
+    double left = TOPLEFTDRAWINGCORNER.X;
+    double right = TOPRIGHTDRAWINGCORNER.X;
+    double top = TOPRIGHTDRAWINGCORNER.Y;
+    double bottom = TOPLEFTITELBLOCKCORNER.Y;
+    double fieldHeight = (2.5 * 1.5) * 1 + 3;
+    // Vertival
+    drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (7/double(36)), top}, Coordinate{left + width * (7/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (21/double(36)), top}, Coordinate{left + width * (21/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (29/double(36)), top}, Coordinate{left + width * (29/double(36)), bottom}, 0.35);
+
+    // Head
+    drawText(Coordinate{left + (width * (2/double(36))) / 2, top + 2}, "1", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, top + 2}, "2", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, top + 2}, "3", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, top + 2}, "4", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 2}, "5", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 2}, "6", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawLine(Coordinate{left, top + 4}, Coordinate{right, top + 4}, 0.35);
+    drawText(Coordinate{left + (width * (2/double(36))) / 2, top + 6}, "Pos.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, top + 6}, "Ref.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, top + 6}, "Qty.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, top + 6}, "Name", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 6}, "Value", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 6}, "Description", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawLine(Coordinate{left, top + 8}, Coordinate{right, top + 8}, 0.7);
+    drawLine(Coordinate{left, bottom}, Coordinate{right, bottom}, 0.7);
+    top += 8;
+    // Part list
+    double indexTop = top;
+    int i = PARTINDEX;
+    QStringList opt1Val;
+    QStringList opt2Val;
+    QStringList opt3Val;
+    QStringList opt4Val;
+    QStringList opt5Val;
+    QStringList opt6Val;
+    QString line = BOM.first();
+    int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+    fieldHeight = (2.5 * 1.5) * lines + 3;
+    while(indexTop + fieldHeight <= bottom && BOM.size() > 0)
+    {
+        i++;
+        line = BOM.first();
+        BOM.pop_front();
+        lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+        fieldHeight = (2.5 * 1.5) * lines + 3;
+
+        drawText(Coordinate{left + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, QString::number(i), FULLSHEETPARTSLISTFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true);
+        drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, indexTop + fieldHeight/2}, opt2Val, FULLSHEETPARTSLISTFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, opt3Val, FULLSHEETPARTSLISTFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, indexTop + fieldHeight/2}, opt4Val, FULLSHEETPARTSLISTFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, indexTop + fieldHeight/2}, opt5Val, FULLSHEETPARTSLISTFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2 , indexTop + fieldHeight/2}, opt6Val, FULLSHEETPARTSLISTFIELDS["opt6"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
+        indexTop +=fieldHeight;
+    }
+    drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
+    PARTINDEX = i;
+
+
+    if(BOM.size() > 0)
+    {
+        newPage();
+        SHEETINDEX++;
+        draw();
+    }
+    //}
 }
 
 void TemplateGen::drawISO5457_ISO7200()
@@ -880,6 +1175,10 @@ void TemplateGen::draw()
 {
     if(init())
     {
+        if(NODRAW)
+        {
+            return;
+        }
         qint64 foldlinesDepth = 0;
         switch (PAGESTYLE)
         {
@@ -903,7 +1202,7 @@ void TemplateGen::draw()
             drawFoldLines(foldlinesDepth);
         }
 
-        if(FULLSHEETPARTSLIST)
+        if(FULLSHEETPARTSLIST && !FULLSHEETPARTSLISTCSVKiCAD)
         {
             drawFullSheetPartsList();
         }
@@ -916,6 +1215,11 @@ void TemplateGen::draw()
         if(LOGO)
         {
             drawLogoTitelblockISO7200();
+        }
+
+        if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSVKiCAD)// needs to be last
+        {
+            drawFullSheetPartsListCSVKiCAD();
         }
     }
 }

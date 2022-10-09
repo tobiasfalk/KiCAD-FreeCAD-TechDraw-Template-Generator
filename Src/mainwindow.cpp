@@ -152,6 +152,7 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD5();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD5();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
@@ -177,6 +178,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             KiCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             KiCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            KiCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             KiCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             KiCAD.setLOGO(logo);
@@ -205,6 +208,7 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
@@ -230,6 +234,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             KiCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             KiCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            KiCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             KiCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             KiCAD.setLOGO(logo);
@@ -258,6 +264,7 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
@@ -283,6 +290,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             KiCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             KiCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            KiCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             KiCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             KiCAD.setLOGO(logo);
@@ -311,6 +320,7 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_FREECAD();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
@@ -336,6 +346,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             FreeCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             FreeCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             FreeCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            FreeCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            FreeCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             FreeCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             FreeCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             FreeCAD.setLOGO(logo);
@@ -364,6 +376,7 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
@@ -389,6 +402,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             PDF.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             PDF.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            PDF.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            PDF.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             PDF.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             PDF.setLOGO(logo);
@@ -417,6 +432,7 @@ void MainWindow::on_GeneratePushButton_clicked()
             QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
             bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
             quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+            bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
             QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
             bool logo = ui->logoCheckBox->isChecked();
             QString logoDir = LOGODIR;
@@ -442,6 +458,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             PDF.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             PDF.setFULLSHEETPARTSLIST(fullSheetPartsList);
+            PDF.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            PDF.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             PDF.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
             PDF.setLOGO(logo);
@@ -510,12 +528,16 @@ void MainWindow::on_FullPartsListCheckBox_stateChanged(int arg1)
     {
         ui->FullPartsListNumLinesPerFieldLabel->setEnabled(true);
         ui->FullPartsListNumLinesPerFieldSpinBox->setEnabled(true);
+        ui->selectCSVBOMpushButton->setEnabled(true);
+        ui->insertBomCheckBox->setEnabled(true);
         ui->SmallPartsListCheckBox->setEnabled(false);
     }
     else
     {
         ui->FullPartsListNumLinesPerFieldLabel->setEnabled(false);
         ui->FullPartsListNumLinesPerFieldSpinBox->setEnabled(false);
+        ui->selectCSVBOMpushButton->setEnabled(false);
+        ui->insertBomCheckBox->setEnabled(false);
         ui->SmallPartsListCheckBox->setEnabled(true);
     }
 }
@@ -690,5 +712,18 @@ void MainWindow::on_pushButton_2_clicked()
     KiCAD_Symbol_Scaler_UI scaler_ui;
     scaler_ui.setModal(true);
     scaler_ui.exec();
+}
+
+
+void MainWindow::on_selectCSVBOMpushButton_clicked()
+{
+    ui->insertBomCheckBox->setChecked(true);
+    QString dir = QFileDialog::getOpenFileName(this, "Open File",
+                                               "/home",
+                                               "BOMs (*.csv);;All files (*.*)");
+    if(dir.size() > 0)
+    {
+        BOMDIR = dir;
+    }
 }
 

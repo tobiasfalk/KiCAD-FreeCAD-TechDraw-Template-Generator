@@ -34,6 +34,11 @@ protected:
 
     QList<QString> ONAMELIST;
 
+    ///
+    /// \brief newPage creates a new emty Page
+    ///
+    void newPage();
+
     void drawLine(Coordinate start, Coordinate end, double lineWidth);
     void drawRect(Coordinate start, Coordinate end, double lineWidth);
     void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth);

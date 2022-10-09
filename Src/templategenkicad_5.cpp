@@ -12,16 +12,22 @@ QString TemplateGenKiCAD_5::getFILEENDING()
 
 bool TemplateGenKiCAD_5::writeBase()
 {
-    FILE = new QFile(createFileName());
-    if(FILE->open(QIODeviceBase::WriteOnly))
+    if(!FULLSHEETPARTSLISTCSVKiCAD)
     {
-        FILE->write("(page_layout\n  (setup (textsize 0 0)(linewidth 0)(textlinewidth 0)\n  (left_margin 0)(right_margin 0)(top_margin 0)(bottom_margin 0))\n");
-        return true;
-    }
-    else
+        FILE = new QFile(createFileName());
+        if(FILE->open(QIODeviceBase::WriteOnly))
+        {
+            FILE->write("(page_layout\n  (setup (textsize 0 0)(linewidth 0)(textlinewidth 0)\n  (left_margin 0)(right_margin 0)(top_margin 0)(bottom_margin 0))\n");
+            return true;
+        }
+        else
+        {
+            qCritical() << "Could not open File(KiCAD 5)";
+            return false;
+        }
+    }else
     {
-        qCritical() << "Could not open File(KiCAD 5)";
-        return false;
+        NODRAW = true;
     }
 }
 
@@ -166,13 +172,20 @@ void TemplateGenKiCAD_5::drawLogoTitelblockISO7200()
     FILE->write(data.toLatin1());
 }
 
+void TemplateGenKiCAD_5::newPage()
+{
+}
+
 TemplateGenKiCAD_5::TemplateGenKiCAD_5(QObject *parent) : TemplateGen(parent)
 {
 }
 
 TemplateGenKiCAD_5::~TemplateGenKiCAD_5()
 {
-    FILE->write(")\n");
-    FILE->flush();
-    free(FILE);
+    if(!NODRAW)
+    {
+        FILE->write(")\n");
+        FILE->flush();
+        free(FILE);
+    }
 }

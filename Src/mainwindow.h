@@ -50,6 +50,8 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_selectCSVBOMpushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     ///
@@ -103,6 +105,7 @@ private:
     SmallPartsListOptions *SMALLPARTSLISTSOPTIONS = new SmallPartsListOptions(this);
 
     QString LOGODIR = "&";
+    QString BOMDIR = "&";
 
     void initPageSizes();
     void initPageStyles();

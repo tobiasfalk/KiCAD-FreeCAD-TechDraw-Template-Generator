@@ -37,16 +37,25 @@ protected:
     bool FULLSHEETPARTSLIST;
     quint64 NUMLINESFULLSHEETPARTSLIST;
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS;
+    bool FULLSHEETPARTSLISTCSVKiCAD;
+    QString FULLSHEETPARTSLISTCSVFILE;
     bool LOGO;
     QString LOGODIR;
     bool DESCRIPTION;
     quint64 DESCRIPTIONNUMLINES;
+    QString BOMCSVFILE;
 
+    bool NOINIT = false;
+    bool NODRAW = false;
+    qint64 PARTINDEX = 0;
+    qint64 SHEETINDEX = 0;
     qint64 NAMEINDEX = 0;
     CenteringMarks CENTERINGMARKS{true, true, true, true};
     Coordinate TOPRIGHTDRAWINGCORNER;
     Coordinate TOPLEFTDRAWINGCORNER;
     Coordinate TOPLEFTITELBLOCKCORNER;
+
+    QList<QString> BOM;
 
     bool init();
 
@@ -63,9 +72,14 @@ protected:
     void drawSmallPartsList();
     void drawFullSheetPartsList();
     ///
-    /// \brief drawFullSheetPartsListCSV draws the Ful sheet parts list with filled values from a CSV file
+    /// \brief drawFullSheetPartsListCSVKiCAD draws the Ful sheet parts list with filled values from a CSV file
     ///
-    void drawFullSheetPartsListCSV();
+    void drawFullSheetPartsListCSVKiCAD();
+
+    ///
+    /// \brief newPage creates a new emty Page
+    ///
+    virtual void newPage() = 0;
 
 
     void drawISO5457_ISO7200();
@@ -94,6 +108,32 @@ protected:
     qint64 drawText(Coordinate position, QStringList text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, qint64 index = 0);
 
     virtual void drawLogoTitelblockISO7200() = 0;
+
+    ///
+    /// \brief readBOMKiCAD reads all the parts out of the Kicad BOM file and puts it line by line in to the BOM List
+    /// \param fileDIR the file directory
+    /// \return the reulting lsit
+    ///
+    QList<QString> readBOMKiCAD(QString fileDIR);
+    ///
+    /// \brief splitBOMlineKiCAD splits the KiCAD BOM line int to it diferant options/values
+    /// \param line the line to be splited
+    /// \param opt1Val
+    /// \param opt2Val
+    /// \param opt3Val
+    /// \param opt4Val
+    /// \param opt5Val
+    /// \param opt6Val
+    /// \return the number of lines neded
+    ///
+    int splitBOMlineKiCAD(QString line, QStringList &opt1Val, QStringList &opt2Val, QStringList &opt3Val, QStringList &opt4Val, QStringList &opt5Val, QStringList &opt6Val);
+    ///
+    /// \brief splitBOMValKiCAD splits the text of val in to peaces that fit in to a field of the lenght of targetLength
+    /// \param val
+    /// \param targetLenght
+    /// \return
+    ///
+    QStringList splitBOMValKiCAD(QString val, double targetLenght);
 public:
     explicit TemplateGen(QObject *parent = nullptr);
 
@@ -174,6 +214,15 @@ public:
 
     quint64 getDESCRIPTIONNUMLINES() const;
     void setDESCRIPTIONNUMLINES(quint64 newDESCRIPTIONNUMLINES);
+
+    const QString &getBOMCSVFILE() const;
+    void setBOMCSVFILE(const QString &newBOMCSVFILE);
+
+    bool getFULLSHEETPARTSLISTCSVKiCAD() const;
+    void setFULLSHEETPARTSLISTCSVKiCAD(bool newFULLSHEETPARTSLISTCSVKiCAD);
+
+    const QString &getFULLSHEETPARTSLISTCSVFILE() const;
+    void setFULLSHEETPARTSLISTCSVFILE(const QString &newFULLSHEETPARTSLISTCSVFILE);
 
 signals:
 

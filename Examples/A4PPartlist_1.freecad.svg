@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg height="297mm" xmlns:svg="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:freecad="http://www.freecadweb.org/wiki/index.php?title=Svg_Namespace" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" version="1.1" width="210mm" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" id="svg2">
+ <polygon style="fill:black;stroke:black;stroke-width:0" points="0,0 10,0 10,5 5,5 5,10 0,10 "/>
+ <polygon style="fill:black;stroke:black;stroke-width:0" points="210,0 200,0 200,5 205,5 205,10 210,10 "/>
+ <polygon style="fill:black;stroke:black;stroke-width:0" points="210,297 200,297 200,292 205,292 205,287 210,287 "/>
+ <polygon style="fill:black;stroke:black;stroke-width:0" points="0,297 10,297 10,292 5,292 5,287 0,287 "/>
+ <rect height="287" style="fill:none;stroke:black;stroke-width:0.35" y="5" width="190" x="15"/>
+ <rect height="277" style="fill:none;stroke:black;stroke-width:0.7" y="10" width="180" x="20"/>
+ <line x1="105" y1="5" style="stroke:black;stroke-width:0.7" x2="105" y2="10"/>
+ <line x1="105" y1="292" style="stroke:black;stroke-width:0.7" x2="105" y2="287"/>
+ <line x1="15" y1="148.5" style="stroke:black;stroke-width:0.7" x2="20" y2="148.5"/>
+ <line x1="205" y1="148.5" style="stroke:black;stroke-width:0.7" x2="200" y2="148.5"/>
+ <line x1="55" y1="5" style="stroke:black;stroke-width:0.35" x2="55" y2="10"/>
+ <line x1="55" y1="292" style="stroke:black;stroke-width:0.35" x2="55" y2="287"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="9.25" x="30">1</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="9.25" x="80">2</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="9.25" x="130">3</text>
+ <line x1="155" y1="5" style="stroke:black;stroke-width:0.35" x2="155" y2="10"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="9.25" x="180">4</text>
+ <line x1="155" y1="292" style="stroke:black;stroke-width:0.35" x2="155" y2="287"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="291.25" x="182.5">A4P</text>
+ <line x1="15" y1="98.5" style="stroke:black;stroke-width:0.35" x2="20" y2="98.5"/>
+ <line x1="205" y1="98.5" style="stroke:black;stroke-width:0.35" x2="200" y2="98.5"/>
+ <line x1="15" y1="48.5" style="stroke:black;stroke-width:0.35" x2="20" y2="48.5"/>
+ <line x1="205" y1="48.5" style="stroke:black;stroke-width:0.35" x2="200" y2="48.5"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="25.25" x="17.5">A</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="75.25" x="17.5">B</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="125.25" x="17.5">C</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="175.25" x="17.5">D</text>
+ <line x1="15" y1="198.5" style="stroke:black;stroke-width:0.35" x2="20" y2="198.5"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="225.25" x="17.5">E</text>
+ <line x1="205" y1="198.5" style="stroke:black;stroke-width:0.35" x2="200" y2="198.5"/>
+ <line x1="15" y1="248.5" style="stroke:black;stroke-width:0.35" x2="20" y2="248.5"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 4.86111; text-anchor: middle;" y="269.5" x="17.5">F</text>
+ <line x1="205" y1="248.5" style="stroke:black;stroke-width:0.35" x2="200" y2="248.5"/>
+ <rect height="55" style="fill:none;stroke:black;stroke-width:0.7" y="232" width="180" x="20"/>
+ <line x1="100" y1="232" style="stroke:black;stroke-width:0.35" x2="100" y2="287"/>
+ <line x1="160" y1="232" style="stroke:black;stroke-width:0.35" x2="160" y2="287"/>
+ <line x1="172" y1="265" style="stroke:black;stroke-width:0.35" x2="172" y2="287"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="235.3" x="21.5">Created by</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="235.3" x="101.5">Valid from to</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="235.3" x="161.5">Document state</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Created by4" y="240.75" x="21.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="240.75" x="21.5">.</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Valid from to4" y="240.75" x="101.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="240.75" x="101.5">.</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Document state4" y="240.75" x="161.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="240.75" x="161.5">.</tspan>
+ </text>
+ <line x1="20" y1="243" style="stroke:black;stroke-width:0.35" x2="200" y2="243"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="246.3" x="21.5">Approved by</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="246.3" x="101.5">Project</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="246.3" x="161.5">Document type</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Approved by4" y="251.75" x="21.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="251.75" x="21.5">.</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Project4" y="251.75" x="101.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="251.75" x="101.5"></tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Document type4" y="251.75" x="161.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="251.75" x="161.5">.</tspan>
+ </text>
+ <line x1="20" y1="254" style="stroke:black;stroke-width:0.35" x2="200" y2="254"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="257.3" x="21.5">Legal owner</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="257.3" x="101.5">Title, Supplementary title</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="257.3" x="161.5">Document number</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;" freecad:editable="Legal owner4" y="268" x="21.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;" y="268" x="21.5">.</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;" freecad:editable="Title, Supplementary title4" y="268" x="101.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 6.94444; text-anchor: start;" y="268" x="101.5">.</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Document number4" y="262.75" x="161.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="262.75" x="161.5">.</tspan>
+ </text>
+ <line x1="160" y1="265" style="stroke:black;stroke-width:0.35" x2="200" y2="265"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="268.3" x="161.5">Rev.</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="268.3" x="173.5">Date of issue</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Rev.4" y="273.75" x="161.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="273.75" x="161.5">.</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Date of issue4" y="273.75" x="173.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="273.75" x="173.5">.</tspan>
+ </text>
+ <line x1="160" y1="276" style="stroke:black;stroke-width:0.35" x2="200" y2="276"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="279.3" x="161.5">Lang.</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: start;" y="279.3" x="173.5">Sheet</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Lang.4" y="284.75" x="161.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="284.75" x="161.5">EN</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" freecad:editable="Sheet4" y="284.75" x="173.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: start;" y="284.75" x="173.5">.</tspan>
+ </text>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="12.9" x="25">1</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="12.9" x="37.5">2</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="12.9" x="50">3</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="12.9" x="90">4</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="12.9" x="145">5</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="12.9" x="182.5">6</text>
+ <line x1="20" y1="14" style="stroke:black;stroke-width:0.35" x2="200" y2="14"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="16.9" x="25">Pos.</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="16.9" x="37.5">Ref.</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="16.9" x="50">Qty.</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="16.9" x="90">Name</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="16.9" x="145">Value</text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 2.5; text-anchor: middle;" y="16.9" x="182.5">Description</text>
+ <line x1="20" y1="18" style="stroke:black;stroke-width:0.7" x2="200" y2="18"/>
+ <line x1="20" y1="232" style="stroke:black;stroke-width:0.7" x2="200" y2="232"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="37.625" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="37.625" x="25">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.20" y="22" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="22" x="37.5">C1, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.21" y="25.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="25.75" x="37.5">C8, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.22" y="29.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="29.5" x="37.5">aaa</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.23" y="33.25" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="33.25" x="37.5">aaa</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.24" y="37" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="37" x="37.5">aa </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.25" y="40.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="40.75" x="37.5">aaa</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.26" y="44.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="44.5" x="37.5">aaa</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.27" y="48.25" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="48.25" x="37.5">aa </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.28" y="52" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="52" x="37.5">a</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit5" y="37.625" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="37.625" x="50">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel5" y="37.625" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="37.625" x="90">C</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number5" y="37.625" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="37.625" x="145">2uF</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment20" y="35.125" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="35.125" x="182.5">Unpolarized </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment21" y="38.875" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="38.875" x="182.5">capacitor</tspan>
+ </text>
+ <line x1="20" y1="18" style="stroke:black;stroke-width:0.35" x2="200" y2="18"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="61.25" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="61.25" x="25">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.30" y="58.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="58.75" x="37.5">C2, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.31" y="62.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="62.5" x="37.5">C6</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit6" y="61.25" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="61.25" x="50">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel6" y="61.25" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="61.25" x="90">C</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number6" y="61.25" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="61.25" x="145">100n</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment30" y="58.75" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="58.75" x="182.5">Unpolarized </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment31" y="62.5" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="62.5" x="182.5">capacitor</tspan>
+ </text>
+ <line x1="20" y1="54.75" style="stroke:black;stroke-width:0.35" x2="200" y2="54.75"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="71.75" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="71.75" x="25">3</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.7" y="71.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="71.75" x="37.5">C3, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit7" y="71.75" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="71.75" x="50">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel7" y="71.75" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="71.75" x="90">C</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number7" y="71.75" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="71.75" x="145">66pF</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment40" y="69.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="69.25" x="182.5">Unpolarized </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment41" y="73" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="73" x="182.5">capacitor</tspan>
+ </text>
+ <line x1="20" y1="65.25" style="stroke:black;stroke-width:0.35" x2="200" y2="65.25"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="82.25" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="82.25" x="25">4</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.50" y="79.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="79.75" x="37.5">C4, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.51" y="83.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="83.5" x="37.5">C5</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit8" y="82.25" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="82.25" x="50">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel8" y="82.25" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="82.25" x="90">CP-Device</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number8" y="82.25" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="82.25" x="145">33u/25V</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment8" y="82.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="82.25" x="182.5"></tspan>
+ </text>
+ <line x1="20" y1="75.75" style="stroke:black;stroke-width:0.35" x2="200" y2="75.75"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="92.75" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="92.75" x="25">5</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.60" y="90.25" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="90.25" x="37.5">C7, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.61" y="94" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="94" x="37.5">C10</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit9" y="92.75" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="92.75" x="50">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel9" y="92.75" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="92.75" x="90">C</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number9" y="92.75" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="92.75" x="145">220p</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment60" y="90.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="90.25" x="182.5">Unpolarized </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment61" y="94" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="94" x="182.5">capacitor</tspan>
+ </text>
+ <line x1="20" y1="86.25" style="stroke:black;stroke-width:0.35" x2="200" y2="86.25"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="103.25" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="103.25" x="25">6</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.70" y="100.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="100.75" x="37.5">C8, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.71" y="104.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="104.5" x="37.5">C9</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit10" y="103.25" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="103.25" x="50">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel10" y="103.25" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="103.25" x="90">CP-Device</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number10" y="103.25" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="103.25" x="145">1000µ/25V</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment10" y="103.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="103.25" x="182.5"></tspan>
+ </text>
+ <line x1="20" y1="96.75" style="stroke:black;stroke-width:0.35" x2="200" y2="96.75"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="113.75" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="113.75" x="25">7</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.11" y="113.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="113.75" x="37.5">C11, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit11" y="113.75" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="113.75" x="50">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel11" y="113.75" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="113.75" x="90">C</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number11" y="113.75" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="113.75" x="145">150pF</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment80" y="111.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="111.25" x="182.5">Unpolarized </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment81" y="115" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="115" x="182.5">capacitor</tspan>
+ </text>
+ <line x1="20" y1="107.25" style="stroke:black;stroke-width:0.35" x2="200" y2="107.25"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="122.375" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="122.375" x="25">8</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.12" y="122.375" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="122.375" x="37.5">M1, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit12" y="122.375" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="122.375" x="50">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel12" y="122.375" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="122.375" x="90">Oszi-Devices_tobiasfalk</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number12" y="122.375" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="122.375" x="145">Oszi</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment12" y="122.375" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="122.375" x="182.5"></tspan>
+ </text>
+ <line x1="20" y1="117.75" style="stroke:black;stroke-width:0.35" x2="200" y2="117.75"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="131" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="131" x="25">9</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.100" y="128.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="128.5" x="37.5">NG1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.101" y="132.25" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="132.25" x="37.5">NG2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit13" y="131" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="131" x="50">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel13" y="131" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="131" x="90">NG-Devices_tobiasfalk</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number13" y="131" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="131" x="145">NG</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment13" y="131" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="131" x="182.5"></tspan>
+ </text>
+ <line x1="20" y1="124.5" style="stroke:black;stroke-width:0.35" x2="200" y2="124.5"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="147.125" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="147.125" x="25">10</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.110" y="142.75" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="142.75" x="37.5">Q1, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.111" y="146.5" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="146.5" x="37.5">Q2, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.112" y="150.25" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="150.25" x="37.5">Q3</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit14" y="147.125" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="147.125" x="50">3</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel14" y="147.125" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="147.125" x="90">BC413</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number14" y="147.125" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="147.125" x="145">BC413</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment110" y="139" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="139" x="182.5">0.1A Ic, 30V </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment111" y="142.75" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="142.75" x="182.5">Vce, Small </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment112" y="146.5" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="146.5" x="182.5">Signal NPN </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment113" y="150.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="150.25" x="182.5">Transistor, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment114" y="154" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="154" x="182.5">TO-92</tspan>
+ </text>
+ <line x1="20" y1="135" style="stroke:black;stroke-width:0.35" x2="200" y2="135"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="168.875" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="168.875" x="25">11</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.120" y="166.375" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="166.375" x="37.5">Q4, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.121" y="170.125" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="170.125" x="37.5">Q5</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit15" y="168.875" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="168.875" x="50">2</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel15" y="168.875" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="168.875" x="90">BC559</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number15" y="168.875" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="168.875" x="145">BC559</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment120" y="160.75" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="160.75" x="182.5">0.1A Ic, 30V </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment121" y="164.5" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="164.5" x="182.5">Vce, PNP </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment122" y="168.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="168.25" x="182.5">Small Signal </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment123" y="172" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="172" x="182.5">Transistor, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment124" y="175.75" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="175.75" x="182.5">TO-92</tspan>
+ </text>
+ <line x1="20" y1="156.75" style="stroke:black;stroke-width:0.35" x2="200" y2="156.75"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="190.625" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="190.625" x="25">12</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.16" y="190.625" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="190.625" x="37.5">Q15, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit16" y="190.625" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="190.625" x="50">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel16" y="190.625" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="190.625" x="90">Q_NPN_Darlington_BCE</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number16" y="190.625" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="190.625" x="145">NPN BDW83</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment130" y="182.5" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="182.5" x="182.5">NPN </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment131" y="186.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="186.25" x="182.5">Darlington </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment132" y="190" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="190" x="182.5">transistor, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment133" y="193.75" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="193.75" x="182.5">base/collector/</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment134" y="197.5" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="197.5" x="182.5">emitter</tspan>
+ </text>
+ <line x1="20" y1="178.5" style="stroke:black;stroke-width:0.35" x2="200" y2="178.5"/>
+ <line x1="30" y1="10" style="stroke:black;stroke-width:0.35" x2="30" y2="232"/>
+ <line x1="45" y1="10" style="stroke:black;stroke-width:0.35" x2="45" y2="232"/>
+ <line x1="55" y1="10" style="stroke:black;stroke-width:0.35" x2="55" y2="232"/>
+ <line x1="125" y1="10" style="stroke:black;stroke-width:0.35" x2="125" y2="232"/>
+ <line x1="165" y1="10" style="stroke:black;stroke-width:0.35" x2="165" y2="232"/>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Pos." y="212.375" x="25">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="212.375" x="25">13</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Qty.17" y="212.375" x="37.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="212.375" x="37.5">Q16, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Unit17" y="212.375" x="50">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="212.375" x="50">1</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Titel17" y="212.375" x="90">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="212.375" x="90">Q_PNP_Darlington_BCE</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Doc. number17" y="212.375" x="145">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="212.375" x="145">PNP BDW84</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment140" y="204.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="204.25" x="182.5">PNP </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment141" y="208" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="208" x="182.5">Darlington </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment142" y="211.75" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="211.75" x="182.5">transistor, </tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment143" y="215.5" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="215.5" x="182.5">base/collector/</tspan>
+ </text>
+ <text style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" freecad:editable="Comment144" y="219.25" x="182.5">
+  <tspan style="fill: #000000; stroke: none; font-family: osifont; font-size: 3.47222; text-anchor: middle;" y="219.25" x="182.5">emitter</tspan>
+ </text>
+ <line x1="20" y1="200.25" style="stroke:black;stroke-width:0.35" x2="200" y2="200.25"/>
+ <line x1="20" y1="222" style="stroke:black;stroke-width:0.35" x2="200" y2="222"/>
+</svg>

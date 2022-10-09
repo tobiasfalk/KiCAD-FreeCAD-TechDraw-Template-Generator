@@ -24,6 +24,11 @@ protected:
 
     virtual void drawLogoTitelblockISO7200();
 
+    ///
+    /// \brief newPage creates a new emty Page
+    ///
+    void newPage();
+
 public:
     explicit TemplateGenKiCAD_5(QObject *parent = nullptr);
     ~TemplateGenKiCAD_5();

@@ -183,6 +183,18 @@ void TemplateGenFreeCAD::drawLogoTitelblockISO7200()
     ROOT. appendChild(root);
 }
 
+void TemplateGenFreeCAD::newPage()
+{
+    *XMLTEXTSTREM << DOCUMENT.toString();
+    //FILE->write(")\n");
+    XMLTEXTSTREM->flush();
+    FILE->flush();
+    free(XMLTEXTSTREM);
+    free(FILE);
+    DOCUMENT = QDomDocument();
+    ROOT = QDomElement();
+}
+
 TemplateGenFreeCAD::TemplateGenFreeCAD(QObject *parent) : TemplateGen(parent)
 {
 }

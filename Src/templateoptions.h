@@ -26,6 +26,8 @@ struct FinisheD
     bool numlinessmallpartslisT = false;
     bool smallpartslistfieldS = false;
     bool fullsheetpartslisT= false;
+    bool fullsheetpartslistcsvkicaD= false;
+    bool fullsheetpartslistcsvfilE= false;
     bool numlinesfullsheetpartslisT = false;
     bool fullsheetpartlistfieldS = false;
     bool logO = false;

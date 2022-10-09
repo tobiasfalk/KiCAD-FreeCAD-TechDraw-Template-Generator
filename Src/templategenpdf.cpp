@@ -18,6 +18,12 @@ bool TemplateGenPDF::writeBase()
     return true;
 }
 
+void TemplateGenPDF::newPage()
+{
+    PDFWRITER->newPage();
+    NOINIT = true;
+}
+
 void TemplateGenPDF::drawLine(Coordinate start, Coordinate end, double lineWidth)
 {
     QPen pen(Qt::black);
