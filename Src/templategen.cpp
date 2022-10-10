@@ -245,12 +245,6 @@ int TemplateGen::splitBOMlineKiCAD(QString line, QStringList &opt1Val, QStringLi
     double top = TOPRIGHTDRAWINGCORNER.Y;
     double bottom = TOPLEFTITELBLOCKCORNER.Y;
     double fieldHeight = (2.5 * 1.5) * NUMLINESFULLSHEETPARTSLIST + 3;
-    // Vertival
-    drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (7/double(36)), top}, Coordinate{left + width * (7/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (21/double(36)), top}, Coordinate{left + width * (21/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (29/double(36)), top}, Coordinate{left + width * (29/double(36)), bottom}, 0.35);
 
     QStringList splitedLine = line.split("\",\"");
     splitedLine = splitedLine.replaceInStrings("\",\"", "");
@@ -261,7 +255,7 @@ int TemplateGen::splitBOMlineKiCAD(QString line, QStringList &opt1Val, QStringLi
     opt3Val = splitBOMValKiCAD(splitedLine.at(1), width * (3/double(36)));
     opt4Val = splitBOMValKiCAD(splitedLine.at(3), width * (14/double(36)));
     opt5Val = splitBOMValKiCAD(splitedLine.at(2), width * (8/double(36)));
-    opt6Val = splitBOMValKiCAD(splitedLine.at(5), width * (7/double(36)) - 5);
+    opt6Val = splitBOMValKiCAD(splitedLine.at(5), width * (5/double(36)));
 
     int numLines = 0;
     if(opt1Val.size() > numLines)
@@ -1035,7 +1029,7 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
         drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, opt3Val, FULLSHEETPARTSLISTFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
         drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, indexTop + fieldHeight/2}, opt4Val, FULLSHEETPARTSLISTFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
         drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, indexTop + fieldHeight/2}, opt5Val, FULLSHEETPARTSLISTFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2 - 1.25, indexTop + fieldHeight/2}, opt6Val, FULLSHEETPARTSLISTFIELDS["opt6"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2 - 2, indexTop + fieldHeight/2}, opt6Val, FULLSHEETPARTSLISTFIELDS["opt6"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
         drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
         indexTop +=fieldHeight;
     }
