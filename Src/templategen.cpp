@@ -34,15 +34,15 @@ void TemplateGen::setBOMCSVFILE(const QString &newBOMCSVFILE)
     BOMCSVFILE = newBOMCSVFILE;
 }
 
-bool TemplateGen::getFULLSHEETPARTSLISTCSVKiCAD() const
+bool TemplateGen::getFULLSHEETPARTSLISTCSV() const
 {
-    return FULLSHEETPARTSLISTCSVKiCAD;
+    return FULLSHEETPARTSLISTCSV;
 }
 
-void TemplateGen::setFULLSHEETPARTSLISTCSVKiCAD(bool newFULLSHEETPARTSLISTCSVKiCAD)
+void TemplateGen::setFULLSHEETPARTSLISTCSV(bool newFULLSHEETPARTSLISTCSV)
 {
-    FULLSHEETPARTSLISTCSVKiCAD = newFULLSHEETPARTSLISTCSVKiCAD;
-    finisheD.fullsheetpartslistcsvkicaD = true;
+    FULLSHEETPARTSLISTCSV = newFULLSHEETPARTSLISTCSV;
+    finisheD.fullsheetpartslistcsV = true;
 }
 
 const QString &TemplateGen::getFULLSHEETPARTSLISTCSVFILE() const
@@ -54,6 +54,17 @@ void TemplateGen::setFULLSHEETPARTSLISTCSVFILE(const QString &newFULLSHEETPARTSL
 {
     FULLSHEETPARTSLISTCSVFILE = newFULLSHEETPARTSLISTCSVFILE;
     finisheD.fullsheetpartslistcsvfilE = true;
+}
+
+BOMStyles TemplateGen::getFULLSHEETPARTLISTCSVSTYLE() const
+{
+    return FULLSHEETPARTLISTCSVSTYLE;
+}
+
+void TemplateGen::setFULLSHEETPARTLISTCSVSTYLE(BOMStyles newFULLSHEETPARTCSVLISTSTYLE)
+{
+    FULLSHEETPARTLISTCSVSTYLE = newFULLSHEETPARTCSVLISTSTYLE;
+    finisheD.fullsheetpartslistcsvstylE = true;
 }
 
 bool TemplateGen::init()
@@ -116,7 +127,7 @@ bool TemplateGen::init()
 
 QString TemplateGen::createFileName()
 {
-    if(FULLSHEETPARTSLISTCSVKiCAD)
+    if(FULLSHEETPARTSLISTCSV)
     {
         return DIR + "/" + PAGESIZE.sizeString.replace(" ", "_") + "Partlist_" + QString::number(SHEETINDEX + 1) + getFILEENDING();
     }
@@ -1196,7 +1207,7 @@ void TemplateGen::draw()
             drawFoldLines(foldlinesDepth);
         }
 
-        if(FULLSHEETPARTSLIST && !FULLSHEETPARTSLISTCSVKiCAD)
+        if(FULLSHEETPARTSLIST && !FULLSHEETPARTSLISTCSV)
         {
             drawFullSheetPartsList();
         }
@@ -1211,7 +1222,7 @@ void TemplateGen::draw()
             drawLogoTitelblockISO7200();
         }
 
-        if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSVKiCAD)// needs to be last
+        if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSV && FULLSHEETPARTLISTCSVSTYLE == BOMStyles::KiCAD)// needs to be last
         {
             drawFullSheetPartsListCSVKiCAD();
         }

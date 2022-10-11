@@ -9,19 +9,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
+    <width>850</width>
     <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>750</width>
+    <width>850</width>
     <height>700</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>750</width>
+    <width>850</width>
     <height>700</height>
    </size>
   </property>
@@ -456,7 +456,7 @@
       <item>
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>  </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -477,6 +477,13 @@
         </property>
         <property name="text">
          <string>Insert BOM</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="csvBOMComboBox">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -667,8 +674,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>750</width>
-     <height>23</height>
+     <width>850</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

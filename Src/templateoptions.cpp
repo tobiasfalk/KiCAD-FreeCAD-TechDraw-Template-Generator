@@ -120,7 +120,11 @@ bool allFinisheD(FinisheD finisheD)
     {
         return false;
     }
-    else if(!finisheD.fullsheetpartslistcsvkicaD)
+    else if(!finisheD.fullsheetpartslistcsV)
+    {
+        return false;
+    }
+    else if(!finisheD.fullsheetpartslistcsvstylE)
     {
         return false;
     }

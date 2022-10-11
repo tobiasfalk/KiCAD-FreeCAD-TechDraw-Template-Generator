@@ -26,7 +26,8 @@ struct FinisheD
     bool numlinessmallpartslisT = false;
     bool smallpartslistfieldS = false;
     bool fullsheetpartslisT= false;
-    bool fullsheetpartslistcsvkicaD= false;
+    bool fullsheetpartslistcsV= false;
+    bool fullsheetpartslistcsvstylE= false;
     bool fullsheetpartslistcsvfilE= false;
     bool numlinesfullsheetpartslisT = false;
     bool fullsheetpartlistfieldS = false;
@@ -94,6 +95,12 @@ enum class TextWidthAnchor
     Left,
     Center,
     Right,
+};
+
+enum class BOMStyles
+{
+    Standard,
+    KiCAD,
 };
 
 QStringList NumToABC(qint64 num);

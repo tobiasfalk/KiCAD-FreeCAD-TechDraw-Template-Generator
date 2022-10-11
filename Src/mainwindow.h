@@ -111,12 +111,14 @@ private:
     void initPageStyles();
     void initRevHistoryStyles();
     void initFoldLinesTarget();
+    void initBOMStyles();
 
     PageStyle getPageStyle();
     PageSize getPageSize(QString sizeString, double width = 0, double height = 0);
     PageSize getFoldLinesTarget(QString sizeString);
     RevHistoryStyle getRevHistoryStyle();
     QString getRevHistoryStyleString(RevHistoryStyle style);
+    BOMStyles getBOMStyle();
 
     QString LASTDIR = "/home/tobias/tmp/";
 public:

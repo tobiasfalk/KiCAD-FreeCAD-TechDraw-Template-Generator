@@ -12,7 +12,7 @@ QString TemplateGenKiCAD_7::getFILEENDING()
 
 bool TemplateGenKiCAD_7::writeBase()
 {
-    if(!FULLSHEETPARTSLISTCSVKiCAD)
+    if(!FULLSHEETPARTSLISTCSV)
     {
         FILE = new QFile(createFileName());
         if(FILE->open(QIODeviceBase::WriteOnly))
@@ -28,6 +28,7 @@ bool TemplateGenKiCAD_7::writeBase()
     }else
     {
         NODRAW = true;
+        return true;
     }
 }
 

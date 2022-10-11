@@ -46,7 +46,8 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ![Logo image](Images/Logo_Demo.svg)
 
-* CSV inclusion, KiCAD with bom_csv_grouped_by_value_with_fp
+* CSV inclusion, KiCAD with bom_csv_grouped_by_value_with_fp or Standard where in the first line the size in percentage to the drawing with(0.1 for 10% or 0.5 for 50%). The second line defines the Titel of the column,
+all the lines below that are the Parts that are to be drawn
 
 
 ## Usage

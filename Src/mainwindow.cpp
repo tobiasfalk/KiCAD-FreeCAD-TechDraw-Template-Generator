@@ -38,6 +38,13 @@ void MainWindow::initFoldLinesTarget()
     }
 }
 
+void MainWindow::initBOMStyles()
+{
+    ui->csvBOMComboBox->addItem("KiCAD bom_csv_grouped_by_value_with_fp");
+    ui->csvBOMComboBox->addItem("Standart as in CSV");
+    ui->csvBOMComboBox->setCurrentText("Standart as in CSV");
+}
+
 PageStyle MainWindow::getPageStyle()
 {
     if(ui->SheetStyleComboBox->currentText() == "ISO5457 ISO7200")
@@ -110,6 +117,18 @@ QString MainWindow::getRevHistoryStyleString(RevHistoryStyle style)
     return ret;
 }
 
+BOMStyles MainWindow::getBOMStyle()
+{
+    if(ui->csvBOMComboBox->currentText() == "KiCAD bom_csv_grouped_by_value_with_fp")
+    {
+        return BOMStyles::KiCAD;
+    }else if(ui->csvBOMComboBox->currentText() == "Standart as in CSV")
+    {
+        return BOMStyles::Standard;
+    }
+    return BOMStyles::Standard;
+}
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -117,6 +136,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initPageStyles();
     initRevHistoryStyles();
     initFoldLinesTarget();
+    initBOMStyles();
 }
 
 MainWindow::~MainWindow()
@@ -178,7 +198,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             KiCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             KiCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
-            KiCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
             KiCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             KiCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
@@ -234,7 +255,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             KiCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             KiCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
-            KiCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
             KiCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             KiCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
@@ -290,7 +312,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             KiCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             KiCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             KiCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
-            KiCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+            KiCAD.setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
             KiCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             KiCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             KiCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
@@ -346,7 +369,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             FreeCAD.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             FreeCAD.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             FreeCAD.setFULLSHEETPARTSLIST(fullSheetPartsList);
-            FreeCAD.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            FreeCAD.setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+            FreeCAD.setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
             FreeCAD.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             FreeCAD.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             FreeCAD.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
@@ -402,7 +426,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             PDF.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             PDF.setFULLSHEETPARTSLIST(fullSheetPartsList);
-            PDF.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            PDF.setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+            PDF.setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
             PDF.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             PDF.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
@@ -458,7 +483,8 @@ void MainWindow::on_GeneratePushButton_clicked()
             PDF.setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
             PDF.setSMALLPARTSLISTFIELDS(smallPartsListFileds);
             PDF.setFULLSHEETPARTSLIST(fullSheetPartsList);
-            PDF.setFULLSHEETPARTSLISTCSVKiCAD(fullSheetPartsListCSV);
+            PDF.setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+            PDF.setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
             PDF.setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
             PDF.setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
             PDF.setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
@@ -530,6 +556,7 @@ void MainWindow::on_FullPartsListCheckBox_stateChanged(int arg1)
         ui->FullPartsListNumLinesPerFieldSpinBox->setEnabled(true);
         ui->selectCSVBOMpushButton->setEnabled(true);
         ui->insertBomCheckBox->setEnabled(true);
+        ui->csvBOMComboBox->setEnabled(true);
         ui->SmallPartsListCheckBox->setEnabled(false);
     }
     else
@@ -538,6 +565,7 @@ void MainWindow::on_FullPartsListCheckBox_stateChanged(int arg1)
         ui->FullPartsListNumLinesPerFieldSpinBox->setEnabled(false);
         ui->selectCSVBOMpushButton->setEnabled(false);
         ui->insertBomCheckBox->setEnabled(false);
+        ui->csvBOMComboBox->setEnabled(false);
         ui->SmallPartsListCheckBox->setEnabled(true);
     }
 }
