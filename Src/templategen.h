@@ -50,6 +50,7 @@ protected:
     bool NODRAW = false;
     qint64 PARTINDEX = 0;
     qint64 SHEETINDEX = 0;
+    qint64 NUMSHEETS = 1;
     qint64 NAMEINDEX = 0;
     CenteringMarks CENTERINGMARKS{true, true, true, true};
     Coordinate TOPRIGHTDRAWINGCORNER;
@@ -73,14 +74,24 @@ protected:
     void drawSmallPartsList();
     void drawFullSheetPartsList();
     ///
-    /// \brief drawFullSheetPartsListCSVKiCAD draws the Ful sheet parts list with filled values from a CSV file
+    /// \brief drawFullSheetPartsListCSVKiCAD draws the Ful sheet parts list with filled values from a CSV file generated ba KiCAD
     ///
     void drawFullSheetPartsListCSVKiCAD();
+    ///
+    /// \brief drawFullSheetPartsListCSVStd draws the Ful sheet parts list with filled values from a CSV file
+    ///
+    void drawFullSheetPartsListCSVStd();
 
     ///
     /// \brief newPage creates a new emty Page
     ///
     virtual void newPage() = 0;
+    ///
+    /// \brief fullSheetPartsListNumPages calculaes how many paes are needed to display the BOM
+    /// \return tne number of pages
+    ///
+    int fullSheetPartsListNumPagesKiCAD();
+    QString getSheetFieldKey();
 
 
     void drawISO5457_ISO7200();
@@ -116,6 +127,7 @@ protected:
     /// \return the reulting lsit
     ///
     QList<QString> readBOMKiCAD(QString fileDIR);
+    QList<QString> readBOMStd(QString fileDIR);
     ///
     /// \brief splitBOMlineKiCAD splits the KiCAD BOM line int to it diferant options/values
     /// \param line the line to be splited

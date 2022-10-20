@@ -235,13 +235,31 @@ QList<QString> TemplateGen::readBOMKiCAD(QString fileDIR)
        while (!in.atEnd())
        {
            QString line = in.readLine();
-           if(parts)
+           if(parts && line != "")
            {
                ret.push_back(line);
-           }else if(line == "\"Ref\",\"Qnty\",\"Value\",\"Cmp name\",\"Footprint\",\"Description\",\"Vendor\"")
+           }else if(line.contains("\"Ref\",\"Qnty\",\"Value\",\"Cmp name\",\"Footprint\",\"Description\",\"Vendor\""))
            {
                parts = true;
            }
+       }
+       inputFile.close();
+    }
+    return ret;
+}
+
+QList<QString> TemplateGen::readBOMStd(QString fileDIR)
+{
+    QList<QString> ret;
+    QFile inputFile(fileDIR);
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       bool parts = false;
+       while (!in.atEnd())
+       {
+           QString line = in.readLine();
+
        }
        inputFile.close();
     }
@@ -673,6 +691,12 @@ void TemplateGen::drawTitelblockISO7200()
 {
     // Frame
     Coordinate topLeft = Coordinate{PAGESIZE.width - 190, PAGESIZE.height - 10 - 11 * (5 + NUMOPTLINES)};
+    TOPLEFTITELBLOCKCORNER = topLeft;
+    if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSV && FULLSHEETPARTLISTCSVSTYLE == BOMStyles::KiCAD)// needs to be last
+    {
+        QString key = getSheetFieldKey();
+        TITELBLOCKFIELDS[key].Value = QList{QString::number(SHEETINDEX + 1) + "/" + QString::number(fullSheetPartsListNumPagesKiCAD())};
+    }
     double descHeight = 0;
     if(DESCRIPTION)
     {
@@ -1054,7 +1078,149 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
         SHEETINDEX++;
         draw();
     }
-    //}
+}
+
+void TemplateGen::drawFullSheetPartsListCSVStd()
+{
+    if(PARTINDEX == 0)
+    {
+        BOM = readBOMStd(FULLSHEETPARTSLISTCSVFILE);
+    }
+    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
+    double left = TOPLEFTDRAWINGCORNER.X;
+    double right = TOPRIGHTDRAWINGCORNER.X;
+    double top = TOPRIGHTDRAWINGCORNER.Y;
+    double bottom = TOPLEFTITELBLOCKCORNER.Y;
+    double fieldHeight = (2.5 * 1.5) * 1 + 3;
+    // Vertival
+    drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (7/double(36)), top}, Coordinate{left + width * (7/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (21/double(36)), top}, Coordinate{left + width * (21/double(36)), bottom}, 0.35);
+    drawLine(Coordinate{left + width * (29/double(36)), top}, Coordinate{left + width * (29/double(36)), bottom}, 0.35);
+
+    // Head
+    drawText(Coordinate{left + (width * (2/double(36))) / 2, top + 2}, "1", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, top + 2}, "2", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, top + 2}, "3", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, top + 2}, "4", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 2}, "5", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 2}, "6", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawLine(Coordinate{left, top + 4}, Coordinate{right, top + 4}, 0.35);
+    drawText(Coordinate{left + (width * (2/double(36))) / 2, top + 6}, "Pos.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, top + 6}, "Ref.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, top + 6}, "Qty.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, top + 6}, "Name", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 6}, "Value", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 6}, "Description", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawLine(Coordinate{left, top + 8}, Coordinate{right, top + 8}, 0.7);
+    drawLine(Coordinate{left, bottom}, Coordinate{right, bottom}, 0.7);
+    top += 8;
+    // Part list
+    double indexTop = top;
+    int i = PARTINDEX;
+    QStringList opt1Val;
+    QStringList opt2Val;
+    QStringList opt3Val;
+    QStringList opt4Val;
+    QStringList opt5Val;
+    QStringList opt6Val;
+    QString line = BOM.first();
+    int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+    fieldHeight = (2.5 * 1.5) * lines + 3;
+    while(indexTop + fieldHeight <= bottom && BOM.size() > 0)
+    {
+        i++;
+        line = BOM.first();
+        BOM.pop_front();
+        lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+        fieldHeight = (2.5 * 1.5) * lines + 3;
+
+        drawText(Coordinate{left + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, QString::number(i), FULLSHEETPARTSLISTFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true);
+        drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, indexTop + fieldHeight/2}, opt2Val, FULLSHEETPARTSLISTFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, opt3Val, FULLSHEETPARTSLISTFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, indexTop + fieldHeight/2}, opt4Val, FULLSHEETPARTSLISTFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, indexTop + fieldHeight/2}, opt5Val, FULLSHEETPARTSLISTFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2 - 2, indexTop + fieldHeight/2}, opt6Val, FULLSHEETPARTSLISTFIELDS["opt6"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+        drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
+        indexTop +=fieldHeight;
+    }
+    drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
+    PARTINDEX = i;
+
+
+    if(BOM.size() > 0)
+    {
+        newPage();
+        SHEETINDEX++;
+        draw();
+    }
+}
+
+int TemplateGen::fullSheetPartsListNumPagesKiCAD()
+{
+    int partindex = 0;
+    int sheetindex = 0;
+    bool stillCounting = true;
+    QList<QString> bom = readBOMKiCAD(FULLSHEETPARTSLISTCSVFILE);
+
+    do
+    {
+        double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
+        double left = TOPLEFTDRAWINGCORNER.X;
+        double right = TOPRIGHTDRAWINGCORNER.X;
+        double top = TOPRIGHTDRAWINGCORNER.Y;
+        double bottom = TOPLEFTITELBLOCKCORNER.Y;
+        double fieldHeight = (2.5 * 1.5) * 1 + 3;
+        top += 8;
+        double indexTop = top;
+        int i = partindex;
+        QStringList opt1Val;
+        QStringList opt2Val;
+        QStringList opt3Val;
+        QStringList opt4Val;
+        QStringList opt5Val;
+        QStringList opt6Val;
+        QString line = bom.first();
+        int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+        fieldHeight = (2.5 * 1.5) * lines + 3;
+        while(indexTop + fieldHeight <= bottom && bom.size() > 0)
+        {
+            i++;
+            line = bom.first();
+            bom.pop_front();
+            lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+            fieldHeight = (2.5 * 1.5) * lines + 3;
+
+            indexTop +=fieldHeight;
+        }
+        partindex = i;
+
+
+        if(bom.size() > 0)
+        {
+            sheetindex++;
+        }else
+        {
+            sheetindex++;
+            stillCounting = false;
+        }
+    }while(stillCounting);
+    return sheetindex;
+}
+
+QString TemplateGen::getSheetFieldKey()
+{
+    QList<QString> keys = TITELBLOCKFIELDS.keys();
+    QList<TitelblockField> field = TITELBLOCKFIELDS.values();
+    for(int i = 0; i < keys.size(); i++)
+    {
+        if(field[i].Label == "Sheet" || field[i].Label == "Seite")
+        {
+            return keys[i];
+        }
+    }
+    return "opt1";
 }
 
 void TemplateGen::drawISO5457_ISO7200()
