@@ -10,7 +10,6 @@ bool TemplateGenEagle::writeBase()
 {
     if(!FULLSHEETPARTSLISTCSV)
     {
-        qDebug() << "A";
         if(QFile::exists(DIR + "/sheet_template_eagle_6-5.lbr"))
         {
             QFile file(DIR + "/sheet_template_eagle_6-5.lbr");
@@ -160,7 +159,6 @@ bool TemplateGenEagle::writeBase()
         }
     }else
     {
-        qDebug() << "B";
         NODRAW = true;
         return true;
     }

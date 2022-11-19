@@ -1261,7 +1261,6 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
         //Write Values
         for(int c = 0; c < BOMStd.size() ; c++)
         {
-            qDebug() << BOMStd[c].Values.first() << "/" << splitBOMValStd(BOMStd[c].Values.first(), BOMStd[c].Width - 2);
             drawText(Coordinate{left + widthOffset + BOMStd[c].Width/2, indexTop + fieldHeight/2}, splitBOMValStd(BOMStd[c].Values.first(), BOMStd[c].Width - 2), FULLSHEETPARTSLISTFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
             widthOffset += BOMStd[c].Width;
             BOMStd[c].Values.pop_front();
