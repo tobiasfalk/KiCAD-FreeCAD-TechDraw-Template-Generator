@@ -115,7 +115,7 @@ protected:
 
     virtual void drawLine(Coordinate start, Coordinate end, double lineWidth) = 0;
     virtual void drawRect(Coordinate start, Coordinate end, double lineWidth) = 0;
-    virtual void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth) = 0;
+    virtual void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill = true) = 0;
     virtual void drawCircle(Coordinate center, double radius, double lineWidth) = 0;
     virtual qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont") = 0;
     qint64 drawText(Coordinate position, QStringList text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, qint64 index = 0);

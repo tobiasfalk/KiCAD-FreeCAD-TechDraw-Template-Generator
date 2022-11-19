@@ -66,7 +66,7 @@ void TemplateGenFreeCAD::drawRect(Coordinate start, Coordinate end, double lineW
     ROOT.appendChild(obj);
 }
 
-void TemplateGenFreeCAD::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth)
+void TemplateGenFreeCAD::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
 {
     QString pointsString = "";
     foreach (Coordinate cord, points)
@@ -75,7 +75,12 @@ void TemplateGenFreeCAD::drawPoly(Coordinate position, QList<Coordinate> points,
     }
     QDomElement obj = DOCUMENT.createElement("polygon");
     obj.setAttribute("points", pointsString);
-    obj.setAttribute("style", "fill:black;stroke:black;stroke-width:" + QString::number(lineWidth));
+    QString style = "fill:black;stroke:black;stroke-width:";
+    if(!fill)
+    {
+        style = "fill:none;stroke:black;stroke-width:";
+    }
+    obj.setAttribute("style", style + QString::number(lineWidth));
     ROOT.appendChild(obj);
 }
 

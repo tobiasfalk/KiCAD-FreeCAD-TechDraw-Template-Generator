@@ -6,6 +6,7 @@ const TitelblockField &ChangeTitelblockField::getFIELD_FREECAD()
     FIELD_FREECAD.Label = ui->lableLineEdit->text();
     FIELD_FREECAD.Name = ui->freeCADnameLineEdit->text();
     FIELD_FREECAD.Value = stringToStringList(ui->freeCADTextEdit->toPlainText());
+    FIELD_FREECAD.ProjectionMethod = getProjectionMethod();
     return FIELD_FREECAD;
 }
 

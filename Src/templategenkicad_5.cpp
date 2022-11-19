@@ -46,17 +46,28 @@ void TemplateGenKiCAD_5::drawRect(Coordinate start, Coordinate end, double lineW
     NAMEINDEX++;
 }
 
-void TemplateGenKiCAD_5::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth)
+void TemplateGenKiCAD_5::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
 {
-    QString lineString = "  (polygon (name " + QString::number(NAMEINDEX) + ") (pos " + QString::number(position.X) + " " + QString::number(position.Y) + " ltcorner) (rotate 0) (linewidth " + QString::number(lineWidth) + ")\n";
-    lineString += "    (pts ";
-    foreach(Coordinate pt, points)
+    if(fill)
     {
-        lineString += "(xy " + QString::number(pt.X) + " " + QString::number(pt.Y) + ") ";
+        QString lineString = "  (polygon (name " + QString::number(NAMEINDEX) + ") (pos " + QString::number(position.X) + " " + QString::number(position.Y) + " ltcorner) (rotate 0) (linewidth " + QString::number(lineWidth) + ")\n";
+        lineString += "    (pts ";
+        foreach(Coordinate pt, points)
+        {
+            lineString += "(xy " + QString::number(pt.X) + " " + QString::number(pt.Y) + ") ";
+        }
+        lineString += "))\n";
+        FILE->write(lineString.toLatin1());
+        NAMEINDEX++;
+    }else
+    {
+        int i = 1;
+        for(i = 1; i < points.size(); i++)
+        {
+            drawLine(Coordinate{points[i - 1].X + position.X, points[i - 1].Y + position.Y}, Coordinate{points[i].X + position.X, points[i].Y + position.Y}, lineWidth);
+        }
+        drawLine(Coordinate{points[i - 1].X + position.X, points[i - 1].Y + position.Y}, Coordinate{points[0].X + position.X, points[0].Y + position.Y}, lineWidth);
     }
-    lineString += "))\n";
-    FILE->write(lineString.toLatin1());
-    NAMEINDEX++;
 }
 
 void TemplateGenKiCAD_5::drawCircle(Coordinate center, double radius, double lineWidth)

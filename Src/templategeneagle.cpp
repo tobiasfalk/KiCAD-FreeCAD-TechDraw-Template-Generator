@@ -270,7 +270,7 @@ void TemplateGenEagle::drawRect(Coordinate start, Coordinate end, double lineWid
     CPACKAGE.appendChild(wirePackD);
 }
 
-void TemplateGenEagle::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth)
+void TemplateGenEagle::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
 {
     position = Coordinate{position.X - 5, position.Y - 5};
     QDomElement polygonSym = DOCUMENT.createElement("polygon");

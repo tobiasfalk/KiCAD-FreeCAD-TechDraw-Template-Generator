@@ -18,7 +18,7 @@ protected:
 
     virtual void drawLine(Coordinate start, Coordinate end, double lineWidth);
     virtual void drawRect(Coordinate start, Coordinate end, double lineWidth);
-    virtual void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth);
+    virtual void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill = true);
     virtual void drawCircle(Coordinate center, double radius, double lineWidth);
     virtual qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont");
 

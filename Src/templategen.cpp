@@ -1361,6 +1361,18 @@ void TemplateGen::drawISO5457_ISO7200()
 void TemplateGen::drawProjectionMethod(Coordinate at, ProjectionMethodType what)
 {
     const double unit = double(10)/24;
+    QList<Coordinate> listA{
+        Coordinate{-30 * unit, 2 * unit},
+        Coordinate{-30 * unit, 22 * unit},
+        Coordinate{-50 * unit, 16 * unit},
+        Coordinate{-50 * unit, 8 * unit},
+    };
+    QList<Coordinate> listB{
+        Coordinate{-7 * unit, 2 * unit},
+        Coordinate{-7 * unit, 22 * unit},
+        Coordinate{-27 * unit, 16 * unit},
+        Coordinate{-27 * unit, 8 * unit},
+    };
     switch (what) {
     case ProjectionMethodType::None:
         break;
@@ -1368,19 +1380,13 @@ void TemplateGen::drawProjectionMethod(Coordinate at, ProjectionMethodType what)
         drawCircle(Coordinate{17 * -unit + at.X, 12 * unit + at.Y}, 5 * unit, .35);
         drawCircle(Coordinate{17 * -unit + at.X, 12 * unit + at.Y}, 10 * unit, .35);
 
-        drawLine(Coordinate{30 * -unit + at.X, 2 * unit + at.Y}, Coordinate{-30 * unit + at.X, 22 * unit + at.Y}, .35);
-        drawLine(Coordinate{30 * -unit + at.X, 22 * unit + at.Y}, Coordinate{-50 * unit + at.X, 16 * unit + at.Y}, .35);
-        drawLine(Coordinate{50 * -unit + at.X, 16 * unit + at.Y}, Coordinate{-50 * unit + at.X, 8 * unit + at.Y}, .35);
-        drawLine(Coordinate{50 * -unit + at.X, 8 * unit + at.Y}, Coordinate{-30 * unit + at.X, 2 * unit + at.Y}, .35);
+        drawPoly(at, listA, .35, false);
 
         drawSlimDotLine(Coordinate{-52 * unit + at.X, 12 * unit + at.Y}, Coordinate{5 * -unit + at.X, 12 * unit + at.Y}, .18);
         drawSlimDotLine(Coordinate{-17 * unit + at.X, 0 * unit + at.Y}, Coordinate{17 * -unit + at.X, 24 * unit + at.Y}, .18);
         break;
     case ProjectionMethodType::ThirdAngle:
-        drawLine(Coordinate{7 * -unit + at.X, 2 * unit + at.Y}, Coordinate{-7 * unit + at.X, 22 * unit + at.Y}, .35);
-        drawLine(Coordinate{7 * -unit + at.X, 22 * unit + at.Y}, Coordinate{-27 * unit + at.X, 16 * unit + at.Y}, .35);
-        drawLine(Coordinate{27 * -unit + at.X, 16 * unit + at.Y}, Coordinate{-27 * unit + at.X, 8 * unit + at.Y}, .35);
-        drawLine(Coordinate{27 * -unit + at.X, 8 * unit + at.Y}, Coordinate{-7 * unit + at.X, 2 * unit + at.Y}, .35);
+        drawPoly(at, listB, .35, false);
 
         drawCircle(Coordinate{40 * -unit + at.X, 12 * unit + at.Y}, 5 * unit, .35);
         drawCircle(Coordinate{40 * -unit + at.X, 12 * unit + at.Y}, 10 * unit, .35);

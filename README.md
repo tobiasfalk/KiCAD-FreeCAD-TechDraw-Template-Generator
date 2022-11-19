@@ -36,6 +36,10 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ![Full Sheet list image](Images/FullPartsList_Demo.svg)
 
+* Full Sheet Parts list from CSV
+
+![Full Sheet list image CSV ](Images/CSV_Partslist_Demo.svg)
+
 
 * Small Parts list directly over the Titelblock
 
@@ -127,7 +131,6 @@ Once the logo gets reaches a height of 30mm the width is reduced (the ratio will
 
 ## To do
 
-* Implementation of insertion a CSV for the Partlist with other format than KiCAD BOM
 * Complete Doxygen Documentation
 * PDF Logo and Text problems
 * Polygon without fill for use in Projektion Methode symbol

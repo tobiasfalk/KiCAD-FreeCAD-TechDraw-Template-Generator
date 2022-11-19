@@ -48,8 +48,14 @@ void TemplateGenPDF::drawRect(Coordinate start, Coordinate end, double lineWidth
     PAINTER->drawRect(rectangle);
 }
 
-void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth)
+void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
 {
+    // Becaus ther is a ofset with the size of the line width
+    if(!fill)
+    {
+        position.X += lineWidth;
+        position.Y += lineWidth;
+    }
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
     pen.setWidthF(lineWidth);
@@ -69,10 +75,13 @@ void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, dou
     brush.setColor(Qt::black);
     brush.setStyle(Qt::SolidPattern);
 
-    // Fill polygon
-    QPainterPath path;
-    path.addPolygon(polygon);
-    PAINTER->fillPath(path, brush);
+    if(fill)
+    {
+        // Fill polygon
+        QPainterPath path;
+        path.addPolygon(polygon);
+        PAINTER->fillPath(path, brush);
+    }
 }
 
 void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth)
