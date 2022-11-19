@@ -103,6 +103,14 @@ enum class BOMStyles
     KiCAD,
 };
 
+struct BOMColumn
+{
+    double Width;
+    QString Title;
+    QList<QString> Values;
+};
+
+
 QStringList NumToABC(qint64 num);
 int ggT(int zahl1, int zahl2);
 int kgV(int zahl1, int zahl2);

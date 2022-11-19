@@ -248,18 +248,38 @@ QList<QString> TemplateGen::readBOMKiCAD(QString fileDIR)
     return ret;
 }
 
-QList<QString> TemplateGen::readBOMStd(QString fileDIR)
+QList<BOMColumn> TemplateGen::readBOMStd(QString fileDIR)
 {
-    QList<QString> ret;
+    QList<BOMColumn> ret;
     QFile inputFile(fileDIR);
     if (inputFile.open(QIODevice::ReadOnly))
     {
        QTextStream in(&inputFile);
        bool parts = false;
+       QString line;
+       int i = 0;
        while (!in.atEnd())
        {
-           QString line = in.readLine();
-
+           line = in.readLine();
+           QList<QString> fields = line.split(';');
+           int j = 0;
+           foreach (QString f, fields)
+           {
+               if(f.length() > 0 && i == 0)
+               {
+                   BOMColumn c;
+                   c.Width = f.toDouble() * (PAGESIZE.width - 30);
+                   ret.append(c);
+               }else if(f.length() > 0 && i == 1)
+               {
+                   ret[j].Title = f;
+               }else if(f.length() > 0 && i > 1)
+               {
+                   ret[j].Values.append(f);
+               }
+               j++;
+           }
+           i++;
        }
        inputFile.close();
     }
@@ -316,6 +336,106 @@ int TemplateGen::splitBOMlineKiCAD(QString line, QStringList &opt1Val, QStringLi
 }
 
 QStringList TemplateGen::splitBOMValKiCAD(QString val, double targetLenght)
+{
+    QStringList ret;
+    // get text length
+    QFont qFontA("osifont");
+    qFontA.setPointSizeF(100);
+    QFontMetrics fm(qFontA);
+    double length = (2.5 * (fm.size(Qt::TextDontPrint, val).width()/double(100)));
+    if(length > targetLenght && val.contains(' '))
+    {
+        QString wVal = val;
+        if(wVal[0] == ' ')
+        {
+            wVal = wVal.remove(0, 1);
+        }
+        if(wVal[wVal.length() - 1] == ' ')
+        {
+            wVal = wVal.chopped(1);
+        }
+        if(wVal[wVal.length() - 1] == ',')
+        {
+            wVal = wVal.chopped(1);
+        }
+        if(wVal[wVal.length() - 1] == ' ' && wVal[wVal.length() - 2] == ',')
+        {
+            wVal = wVal.chopped(2);
+        }
+
+        int lastSpIndex = -1;
+        int i = 0;
+        while ((2.5 * (fm.size(Qt::TextDontPrint, wVal).width()/double(100))) > targetLenght - 5 && i < wVal.length())
+        {
+            if(wVal[0] == ' ' || wVal[0] == ',')
+            {
+                wVal = wVal.remove(0, 1);
+            }
+            if(wVal[wVal.length() - 1] == ' ')
+            {
+                wVal = wVal.chopped(1);
+            }
+            if(wVal[wVal.length() - 1] == ',')
+            {
+                wVal = wVal.chopped(1);
+            }
+
+            if(wVal[i] == ' ')
+            {
+                lastSpIndex = i;
+            }
+            if((2.5 * (fm.size(Qt::TextDontPrint, wVal.chopped(wVal.length() - i - 1)).width()/double(100))) >= targetLenght - 5)
+            {
+                if(lastSpIndex > 0)
+                {
+                    ret.append(wVal.chopped(wVal.length() - lastSpIndex - 1));
+                    wVal = wVal.remove(0, lastSpIndex + 1);
+                    lastSpIndex = -1;
+                    i = 0;
+                }else
+                {
+                    ret.append(wVal.chopped(wVal.length() - i - 1));
+                    wVal = wVal.remove(0, i + 1);
+                    lastSpIndex = -1;
+                    i = 0;
+                }
+            }
+            i++;
+        };
+        if(wVal.length() > 0)
+        {
+            ret.append(wVal);
+        }
+
+        return ret;
+    } else
+    if(length > targetLenght)
+    {
+        QString wVal = val;
+        do
+        {
+            int i = 0;
+            bool continu = true;
+            while(continu && i <= wVal.length())
+            {
+                i++;
+                if((2.5 * (fm.size(Qt::TextDontPrint, wVal.chopped(wVal.length() - i - 1)).width()/double(100))) >= targetLenght - 5)
+                {
+                    ret.append(wVal.chopped(wVal.length() - i - 1));
+                    wVal = wVal.remove(0, i + 1);
+                    continu = false;
+                }
+            }
+        }while((2.5 * (fm.size(Qt::TextDontPrint, wVal).width()/double(100))) > targetLenght);
+        ret.append(wVal);
+        return ret;
+    } else
+    {
+        return QStringList{val};
+    }
+}
+
+QStringList TemplateGen::splitBOMValStd(QString val, double targetLenght)
 {
     QStringList ret;
     // get text length
@@ -1007,7 +1127,7 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
 {
     if(PARTINDEX == 0)
     {
-        BOM = readBOMKiCAD(FULLSHEETPARTSLISTCSVFILE);
+        BOMKicad = readBOMKiCAD(FULLSHEETPARTSLISTCSVFILE);
     }
     double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
     double left = TOPLEFTDRAWINGCORNER.X;
@@ -1048,14 +1168,14 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     QStringList opt4Val;
     QStringList opt5Val;
     QStringList opt6Val;
-    QString line = BOM.first();
+    QString line = BOMKicad.first();
     int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
     fieldHeight = (2.5 * 1.5) * lines + 3;
-    while(indexTop + fieldHeight <= bottom && BOM.size() > 0)
+    while(indexTop + fieldHeight <= bottom && BOMKicad.size() > 0)
     {
         i++;
-        line = BOM.first();
-        BOM.pop_front();
+        line = BOMKicad.first();
+        BOMKicad.pop_front();
         lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
         fieldHeight = (2.5 * 1.5) * lines + 3;
 
@@ -1072,7 +1192,7 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     PARTINDEX = i;
 
 
-    if(BOM.size() > 0)
+    if(BOMKicad.size() > 0)
     {
         newPage();
         SHEETINDEX++;
@@ -1084,72 +1204,76 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
 {
     if(PARTINDEX == 0)
     {
-        BOM = readBOMStd(FULLSHEETPARTSLISTCSVFILE);
+        BOMStd = readBOMStd(FULLSHEETPARTSLISTCSVFILE);
     }
     double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
     double left = TOPLEFTDRAWINGCORNER.X;
+    double widthOffset = 0;
     double right = TOPRIGHTDRAWINGCORNER.X;
     double top = TOPRIGHTDRAWINGCORNER.Y;
     double bottom = TOPLEFTITELBLOCKCORNER.Y;
     double fieldHeight = (2.5 * 1.5) * 1 + 3;
     // Vertival
-    drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (7/double(36)), top}, Coordinate{left + width * (7/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (21/double(36)), top}, Coordinate{left + width * (21/double(36)), bottom}, 0.35);
-    drawLine(Coordinate{left + width * (29/double(36)), top}, Coordinate{left + width * (29/double(36)), bottom}, 0.35);
+    foreach (BOMColumn c, BOMStd)
+    {
+        widthOffset += c.Width;
+        drawLine(Coordinate{left + widthOffset, top}, Coordinate{left + widthOffset, bottom}, 0.35);
+    }
+    widthOffset = 0;
 
     // Head
-    drawText(Coordinate{left + (width * (2/double(36))) / 2, top + 2}, "1", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, top + 2}, "2", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, top + 2}, "3", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, top + 2}, "4", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 2}, "5", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 2}, "6", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawLine(Coordinate{left, top + 4}, Coordinate{right, top + 4}, 0.35);
-    drawText(Coordinate{left + (width * (2/double(36))) / 2, top + 6}, "Pos.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, top + 6}, "Ref.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, top + 6}, "Qty.", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, top + 6}, "Name", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 6}, "Value", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 6}, "Description", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawLine(Coordinate{left, top + 8}, Coordinate{right, top + 8}, 0.7);
+    int j = 1;
+    foreach (BOMColumn c, BOMStd)
+    {
+        drawText(Coordinate{left + widthOffset + c.Width/2, top + 2}, QString::number(j), "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+        widthOffset += c.Width;
+    }
+    widthOffset = 0;
+    top += 4;
+    drawLine(Coordinate{left, top}, Coordinate{right, top}, 0.35);
+    foreach (BOMColumn c, BOMStd)
+    {
+        drawText(Coordinate{left + widthOffset + c.Width/2, top + 2}, c.Title, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+        widthOffset += c.Width;
+    }
+    widthOffset = 0;
+    drawLine(Coordinate{left, top + 4}, Coordinate{right, top + 4}, 0.7);
     drawLine(Coordinate{left, bottom}, Coordinate{right, bottom}, 0.7);
-    top += 8;
+    top += 4;
     // Part list
     double indexTop = top;
     int i = PARTINDEX;
-    QStringList opt1Val;
-    QStringList opt2Val;
-    QStringList opt3Val;
-    QStringList opt4Val;
-    QStringList opt5Val;
-    QStringList opt6Val;
-    QString line = BOM.first();
-    int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
-    fieldHeight = (2.5 * 1.5) * lines + 3;
-    while(indexTop + fieldHeight <= bottom && BOM.size() > 0)
+
+    while(indexTop + fieldHeight <= bottom && BOMStd.first().Values.size() > 0)
     {
         i++;
-        line = BOM.first();
-        BOM.pop_front();
-        lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
+        // Get Field Height
+        int lines = 0;
+        foreach (BOMColumn c, BOMStd)
+        {
+            int l = splitBOMValStd(c.Values.first(), c.Width - 2).length();
+            if(l > lines)
+            {
+                lines = l;
+            }
+        }
         fieldHeight = (2.5 * 1.5) * lines + 3;
+        //Write Values
+        for(int c = 0; c < BOMStd.size() ; c++)
+        {
+            qDebug() << BOMStd[c].Values.first() << "/" << splitBOMValStd(BOMStd[c].Values.first(), BOMStd[c].Width - 2);
+            drawText(Coordinate{left + widthOffset + BOMStd[c].Width/2, indexTop + fieldHeight/2}, splitBOMValStd(BOMStd[c].Values.first(), BOMStd[c].Width - 2), FULLSHEETPARTSLISTFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
+            widthOffset += BOMStd[c].Width;
+            BOMStd[c].Values.pop_front();
 
-        drawText(Coordinate{left + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, QString::number(i), FULLSHEETPARTSLISTFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true);
-        drawText(Coordinate{left + width * (2/double(36)) + (width * (3/double(36))) / 2, indexTop + fieldHeight/2}, opt2Val, FULLSHEETPARTSLISTFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{left + width * (5/double(36)) + (width * (2/double(36))) / 2, indexTop + fieldHeight/2}, opt3Val, FULLSHEETPARTSLISTFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{left + width * (7/double(36)) + (width * (14/double(36))) / 2, indexTop + fieldHeight/2}, opt4Val, FULLSHEETPARTSLISTFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, indexTop + fieldHeight/2}, opt5Val, FULLSHEETPARTSLISTFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2 - 2, indexTop + fieldHeight/2}, opt6Val, FULLSHEETPARTSLISTFIELDS["opt6"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
-        drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
+        }
+        widthOffset = 0;
         indexTop +=fieldHeight;
+        drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
     }
-    drawLine(Coordinate{left, indexTop}, Coordinate{right, indexTop}, 0.35);
     PARTINDEX = i;
 
-
-    if(BOM.size() > 0)
+    if(BOMStd.first().Values.size() > 0)
     {
         newPage();
         SHEETINDEX++;
@@ -1388,7 +1512,11 @@ void TemplateGen::draw()
             drawLogoTitelblockISO7200();
         }
 
-        if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSV && FULLSHEETPARTLISTCSVSTYLE == BOMStyles::KiCAD)// needs to be last
+
+        if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSV && FULLSHEETPARTLISTCSVSTYLE == BOMStyles::Standard)// needs to be last
+        {
+            drawFullSheetPartsListCSVStd();
+        }else if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSV && FULLSHEETPARTLISTCSVSTYLE == BOMStyles::KiCAD)// needs to be last
         {
             drawFullSheetPartsListCSVKiCAD();
         }

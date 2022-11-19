@@ -57,7 +57,8 @@ protected:
     Coordinate TOPLEFTDRAWINGCORNER;
     Coordinate TOPLEFTITELBLOCKCORNER;
 
-    QList<QString> BOM;
+    QList<QString> BOMKicad;
+    QList<BOMColumn> BOMStd;
 
     bool init();
 
@@ -127,7 +128,7 @@ protected:
     /// \return the reulting lsit
     ///
     QList<QString> readBOMKiCAD(QString fileDIR);
-    QList<QString> readBOMStd(QString fileDIR);
+    QList<BOMColumn> readBOMStd(QString fileDIR);
     ///
     /// \brief splitBOMlineKiCAD splits the KiCAD BOM line int to it diferant options/values
     /// \param line the line to be splited
@@ -147,6 +148,7 @@ protected:
     /// \return
     ///
     QStringList splitBOMValKiCAD(QString val, double targetLenght);
+    QStringList splitBOMValStd(QString val, double targetLenght);
 public:
     explicit TemplateGen(QObject *parent = nullptr);
 
