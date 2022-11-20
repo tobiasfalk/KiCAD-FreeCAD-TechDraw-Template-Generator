@@ -10,6 +10,13 @@
 #include "smallpartslistoptions.h"
 #include "fullsheetspartlistoptions.h"
 
+#include "templategenkicad_5.h"
+#include "templategenkicad_6.h"
+#include "templategenkicad_7.h"
+#include "templategenfreecad.h"
+#include "templategenpdf.h"
+#include "templategeneagle.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

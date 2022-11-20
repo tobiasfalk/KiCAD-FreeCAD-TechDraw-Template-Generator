@@ -75,19 +75,40 @@ public:
     void setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_PDF);
 
 private slots:
+    ///
+    /// \brief on_opt1PushButton_clicked the field optiens for the fullsheetpartlist opt1 is caled
+    ///
     void on_opt1PushButton_clicked();
 
+    ///
+    /// \brief on_opt2PushButton_clicked the field optiens for the fullsheetpartlist opt2 is caled
+    ///
     void on_opt2PushButton_clicked();
 
+    ///
+    /// \brief on_opt3PushButton_clicked the field optiens for the fullsheetpartlist opt3 is caled
+    ///
     void on_opt3PushButton_clicked();
 
+    ///
+    /// \brief on_opt4PushButton_clicked the field optiens for the fullsheetpartlist opt4 is caled
+    ///
     void on_opt4PushButton_clicked();
 
+    ///
+    /// \brief on_opt5PushButton_clicked the field optiens for the fullsheetpartlist opt5 is caled
+    ///
     void on_opt5PushButton_clicked();
 
+    ///
+    /// \brief on_opt6PushButton_clicked the field optiens for the fullsheetpartlist opt6 is caled
+    ///
     void on_opt6PushButton_clicked();
 
 private:
+    ///
+    /// \brief ui is the pointer fo the qt UI
+    ///
     Ui::FullSheetsPartListOptions *ui;
 
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_FREECAD;

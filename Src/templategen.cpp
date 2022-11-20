@@ -1357,6 +1357,18 @@ void TemplateGen::drawISO5457_ISO7200()
     drawTitelblockISO7200();
 }
 
+void TemplateGen::drawBlank()
+{
+    TRIMMINGMARKS = false;
+    REVHISTORY = false;
+    FOLDLINES = false;
+    SMALLPARTSLIST = false;
+    FULLSHEETPARTSLIST = false;
+    FULLSHEETPARTSLISTCSV = false;
+    LOGO = false;
+    DESCRIPTION = false;
+}
+
 void TemplateGen::drawProjectionMethod(Coordinate at, ProjectionMethodType what)
 {
     const double unit = double(10)/24;
@@ -1486,6 +1498,9 @@ void TemplateGen::draw()
             drawISO5457_ISO7200();
             foldlinesDepth = 5;
             break;
+        case PageStyle::BLANK:
+            drawBlank();
+            foldlinesDepth = 0;
         }
         if(REVHISTORY)
         {
@@ -1775,4 +1790,3 @@ void TemplateGen::setFULLSHEETPARTSLISTFIELDS(const QMap<QString, TitelblockFiel
     FULLSHEETPARTSLISTFIELDS = newFULLSHEETPARTSLISTFIELDS;
     finisheD.fullsheetpartlistfieldS = true;
 }
-

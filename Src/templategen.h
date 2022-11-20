@@ -96,6 +96,7 @@ protected:
 
 
     void drawISO5457_ISO7200();
+    void drawBlank();
 
     void drawProjectionMethod(Coordinate at, ProjectionMethodType what);
     void drawDot(Coordinate at, double lineWidth);

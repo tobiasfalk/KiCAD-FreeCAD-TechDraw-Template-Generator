@@ -76,6 +76,7 @@ struct TitelblockField
 enum class PageStyle
 {
     ISO5457_ISO7200,
+    BLANK,
 };
 
 enum class RevHistoryStyle
