@@ -193,3 +193,35 @@ double lineLenght(Coordinate start, Coordinate end)
     double deltaY = std::abs(start.Y - end.Y);
     return sqrt(deltaX * deltaX + deltaY * deltaY);
 }
+
+const Coordinate Coordinate::operator +(const Coordinate &obj)
+{
+    Coordinate temp;
+    temp.X = X + obj.X;
+    temp.Y = Y + obj.Y;
+    return temp;
+}
+
+const Coordinate Coordinate::operator -(const Coordinate &obj)
+{
+    Coordinate temp;
+    temp.X = X - obj.X;
+    temp.Y = Y - obj.Y;
+    return temp;
+}
+
+const Coordinate Coordinate::operator *(const Coordinate &obj)
+{
+    Coordinate temp;
+    temp.X = X * obj.X;
+    temp.Y = Y * obj.Y;
+    return temp;
+}
+
+const Coordinate Coordinate::operator /(const Coordinate &obj)
+{
+    Coordinate temp;
+    temp.X = X / obj.X;
+    temp.Y = Y / obj.Y;
+    return temp;
+}

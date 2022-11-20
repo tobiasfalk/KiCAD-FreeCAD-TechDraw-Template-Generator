@@ -44,10 +44,22 @@ struct PageSize
     double height;
 };
 
-struct Coordinate
+//struct Coordinate
+//{
+//    double X; // width
+//    double Y; // height
+//};
+
+class Coordinate
 {
+public:
     double X; // width
     double Y; // height
+
+    const Coordinate operator + (const Coordinate& obj);
+    const Coordinate operator - (const Coordinate& obj);
+    const Coordinate operator * (const Coordinate& obj); // A * B => A.X * B.X and A.Y * B.Y
+    const Coordinate operator / (const Coordinate& obj); // A / B => A.X / B.X and A.Y / B.Y
 };
 
 struct CenteringMarks

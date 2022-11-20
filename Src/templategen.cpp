@@ -138,6 +138,9 @@ QString TemplateGen::createFileName()
     case PageStyle::ISO5457_ISO7200:
         ret += "_ISO5457_ISO7200";
         break;
+    case PageStyle::BLANK:
+        ret += "_BLANK";
+        break;
     }
 
     // optional lines
@@ -289,11 +292,6 @@ QList<BOMColumn> TemplateGen::readBOMStd(QString fileDIR)
 int TemplateGen::splitBOMlineKiCAD(QString line, QStringList &opt1Val, QStringList &opt2Val, QStringList &opt3Val, QStringList &opt4Val, QStringList &opt5Val, QStringList &opt6Val)
 {
     double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
-    double left = TOPLEFTDRAWINGCORNER.X;
-    double right = TOPRIGHTDRAWINGCORNER.X;
-    double top = TOPRIGHTDRAWINGCORNER.Y;
-    double bottom = TOPLEFTITELBLOCKCORNER.Y;
-    double fieldHeight = (2.5 * 1.5) * NUMLINESFULLSHEETPARTSLIST + 3;
 
     QStringList splitedLine = line.split("\",\"");
     splitedLine = splitedLine.replaceInStrings("\",\"", "");
@@ -646,7 +644,7 @@ void TemplateGen::drawDrawingBorderISO5457()
         double spaceLeft = 20 + 3.5;
         double lineX = halfPageWidth - 50;
         QList<double> indexListLeft;
-        double lastLine;
+        double lastLine = lineX;
         while(lineX > spaceLeft)
         {
             // Top
@@ -728,7 +726,7 @@ void TemplateGen::drawDrawingBorderISO5457()
         double spaceTop = 10 + 3.5;
         double lineY = halfPageHeight - 50;
         QList<double> indexListTop;
-        double lastLine;
+        double lastLine = lineY;
         while(lineY > spaceTop)
         {
             drawLine(Coordinate{15, lineY}, Coordinate{20, lineY}, 0.35);
@@ -767,7 +765,6 @@ void TemplateGen::drawDrawingBorderISO5457()
 
         // Bottom
         double spaceBottom = 10 + (3.5 * indexNumDigets);
-        double lastBottomLine = halfPageHeight;
         lineY = halfPageHeight + 50;
         while(lineY < PAGESIZE.height - spaceBottom)
         {
@@ -787,7 +784,6 @@ void TemplateGen::drawDrawingBorderISO5457()
             if(lineY < PAGESIZE.height - spaceBottom)
             {
                 drawLine(Coordinate{PAGESIZE.width - 5, lineY}, Coordinate{PAGESIZE.width - 10, lineY}, 0.35);
-                lastBottomLine = lineY;
             }
             if(PAGESIZE.width >= 297  && lineY <= PAGESIZE.height - 60 && PAGESIZE.height >= 297)
             {
@@ -1011,6 +1007,9 @@ void TemplateGen::drawFoldLines(double depth)
 
         }
         break;
+
+    case PageStyle::BLANK:
+        break;
     }
 }
 
@@ -1206,7 +1205,6 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
     {
         BOMStd = readBOMStd(FULLSHEETPARTSLISTCSVFILE);
     }
-    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
     double left = TOPLEFTDRAWINGCORNER.X;
     double widthOffset = 0;
     double right = TOPRIGHTDRAWINGCORNER.X;
@@ -1289,9 +1287,6 @@ int TemplateGen::fullSheetPartsListNumPagesKiCAD()
 
     do
     {
-        double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
-        double left = TOPLEFTDRAWINGCORNER.X;
-        double right = TOPRIGHTDRAWINGCORNER.X;
         double top = TOPRIGHTDRAWINGCORNER.Y;
         double bottom = TOPLEFTITELBLOCKCORNER.Y;
         double fieldHeight = (2.5 * 1.5) * 1 + 3;

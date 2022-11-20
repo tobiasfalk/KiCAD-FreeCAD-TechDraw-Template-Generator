@@ -64,9 +64,9 @@ void TemplateGenKiCAD_5::drawPoly(Coordinate position, QList<Coordinate> points,
         int i = 1;
         for(i = 1; i < points.size(); i++)
         {
-            drawLine(Coordinate{points[i - 1].X + position.X, points[i - 1].Y + position.Y}, Coordinate{points[i].X + position.X, points[i].Y + position.Y}, lineWidth);
+            drawLine(points[i - 1] + position, points[i] + position, lineWidth);
         }
-        drawLine(Coordinate{points[i - 1].X + position.X, points[i - 1].Y + position.Y}, Coordinate{points[0].X + position.X, points[0].Y + position.Y}, lineWidth);
+        drawLine(points[i - 1] + position, points[0] + position, lineWidth);
     }
 }
 
