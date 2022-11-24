@@ -30,7 +30,7 @@ protected:
     ///
     /// \brief newPage creates a new emty Page
     ///
-    void newPage();
+    bool newPage();
 public:
     explicit TemplateGenFreeCAD(QObject *parent = nullptr);
     ~TemplateGenFreeCAD();

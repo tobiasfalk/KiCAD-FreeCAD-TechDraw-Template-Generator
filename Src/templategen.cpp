@@ -69,6 +69,10 @@ void TemplateGen::setFULLSHEETPARTLISTCSVSTYLE(BOMStyles newFULLSHEETPARTCSVLIST
 
 bool TemplateGen::init()
 {
+    CENTERINGMARKS.Right = true;
+    CENTERINGMARKS.Bottom = true;
+    CENTERINGMARKS.Left = true;
+    CENTERINGMARKS.Top = true;
     if(NOINIT > 0)
     {
         return true;
@@ -1191,9 +1195,8 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     PARTINDEX = i;
 
 
-    if(BOMKicad.size() > 0)
+    if(BOMKicad.size() > 0 && newPage())
     {
-        newPage();
         SHEETINDEX++;
         draw();
     }
@@ -1270,9 +1273,8 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
     }
     PARTINDEX = i;
 
-    if(BOMStd.first().Values.size() > 0)
+    if(BOMStd.first().Values.size() > 0 && newPage())
     {
-        newPage();
         SHEETINDEX++;
         draw();
     }

@@ -184,8 +184,9 @@ void TemplateGenKiCAD_5::drawLogoTitelblockISO7200()
     FILE->write(data.toLatin1());
 }
 
-void TemplateGenKiCAD_5::newPage()
+bool TemplateGenKiCAD_5::newPage()
 {
+    return false;
 }
 
 TemplateGenKiCAD_5::TemplateGenKiCAD_5(QObject *parent) : TemplateGen(parent)

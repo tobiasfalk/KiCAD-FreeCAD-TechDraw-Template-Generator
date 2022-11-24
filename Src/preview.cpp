@@ -1,31 +1,59 @@
-#include "templategenpdf.h"
+#include "preview.h"
 #include <QPainterPath>
 #include <math.h>
+#include <QSvgRenderer>
 
-QString TemplateGenPDF::getFILEENDING()
+
+Preview::Preview()
 {
-    return ".pdf";
+
 }
 
-bool TemplateGenPDF::writeBase()
+void Preview::paintEvent(QPaintEvent *e)
 {
-    PDFWRITER = new QPdfWriter(createFileName());
-    PDFWRITER->setPageMargins(QMarginsF(0, 0, 0, 0));
-    PDFWRITER->setPageSize(QPageSize(QSizeF(PAGESIZE.width, PAGESIZE.height), QPageSize::Millimeter));
-    PDFWRITER->setResolution(480000);
-    PAINTER = new QPainter(PDFWRITER);
-    PAINTER->setTransform(QTransform().scale(18897.6378, 18897.6378));// 18,897.6378 p/mm = 480,000 dpi
+    QPainter paint(this);
+
+    PAINTER = &paint;
+    draw();
+
+    paint.end();
+    QFrame::paintEvent(e);
+}
+
+QString Preview::getFILEENDING()
+{
+    return "";
+}
+
+bool Preview::writeBase()
+{
+    double scale = this->minimumWidth() / PAGESIZE.width;
+    if(PAGESIZE.height * scale > this->height())
+    {
+        scale = this->height() / PAGESIZE.height;
+    }
+    SCALE = scale;
+    PAINTER->setTransform(QTransform().scale(scale, scale));// 18,897.6378 p/mm = 480,000 dpi
+
+    NOINIT = false;
+    PARTINDEX = 0;
+    SHEETINDEX = 0;
+
     return true;
 }
 
-bool TemplateGenPDF::newPage()
+bool Preview::newPage()
 {
-    PDFWRITER->newPage();
-    NOINIT = true;
-    return true;
+    static int i = 0;
+    qDebug() << i++;
+    NOINIT = false;
+    PARTINDEX = 0;
+    SHEETINDEX = 0;
+    BOMStd = readBOMStd(FULLSHEETPARTSLISTCSVFILE);
+    return false;
 }
 
-void TemplateGenPDF::drawLine(Coordinate start, Coordinate end, double lineWidth)
+void Preview::drawLine(Coordinate start, Coordinate end, double lineWidth)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -37,7 +65,7 @@ void TemplateGenPDF::drawLine(Coordinate start, Coordinate end, double lineWidth
     PAINTER->drawLine(line);
 }
 
-void TemplateGenPDF::drawRect(Coordinate start, Coordinate end, double lineWidth)
+void Preview::drawRect(Coordinate start, Coordinate end, double lineWidth)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -49,7 +77,7 @@ void TemplateGenPDF::drawRect(Coordinate start, Coordinate end, double lineWidth
     PAINTER->drawRect(rectangle);
 }
 
-void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
+void Preview::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
 {
     // Becaus ther is a ofset with the size of the line width
     if(!fill)
@@ -85,7 +113,7 @@ void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, dou
     }
 }
 
-void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth)
+void Preview::drawCircle(Coordinate center, double radius, double lineWidth)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -98,11 +126,11 @@ void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWid
     PAINTER->drawEllipse(rectangle);
 }
 
-qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
+qint64 Preview::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
 {
     QFont qFont(font);
     QFont qFontA(font);
-    qFont.setPointSizeF(((textSize * std::sqrt(2))/18897.6378) * 2.8346456692913 );//18897.6378
+    qFont.setPointSizeF(textSize);//18897.6378
     qFontA.setPointSizeF(100);
     double posX = position.X;
     double posY = position.Y;
@@ -143,50 +171,37 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
     return text.length();
 }
 
-void TemplateGenPDF::drawLogoTitelblockISO7200()
+void Preview::drawLogoTitelblockISO7200()
 {
     // Load SVG
-    /*RENDERER = new QSvgRenderer(LOGODIR);
-    QSize size = RENDERER->defaultSize();
+//    QSvgRenderer RENDERER(LOGODIR);
+//    QSize size = RENDERER.defaultSize();
 
-    double widthMM = 24;
-    double heightMM =  24 * (double(RENDERER->defaultSize().height())/RENDERER->defaultSize().width());
-    if(heightMM > 24)
-    {
-        heightMM = 30;
-        widthMM = 30 * (double(RENDERER->defaultSize().width())/RENDERER->defaultSize().height());
-    }
-    QPen pen(Qt::black);
-    pen.setStyle(Qt::SolidLine);
-    pen.setWidthF(0.1);
-    PAINTER->setPen(pen);
-    PAINTER->setBrush(Qt::NoBrush);
+//    double widthMM = 24;
+//    double heightMM =  24 * (double(RENDERER.defaultSize().height())/RENDERER.defaultSize().width());
+//    if(heightMM > 24)
+//    {
+//        heightMM = 30;
+//        widthMM = 30 * (double(RENDERER.defaultSize().width())/RENDERER.defaultSize().height());
+//    }
+//    QPen pen(Qt::black);
+//    pen.setStyle(Qt::SolidLine);
+//    pen.setWidthF(0.1);
+//    PAINTER->setPen(pen);
+//    PAINTER->setBrush(Qt::NoBrush);
 
-    QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
-    PAINTER->drawRect(rectangle);
-    RENDERER->render(PAINTER, rectangle);*/
+//    QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
+//    PAINTER->drawRect(rectangle);
+//    RENDERER.render(PAINTER, rectangle);
 
 
 
-    //QImage image(widthPx, heightPx, QImage::Format_ARGB32);
-    //image.fill(0x00FFFFFF);  // partly transparent background
+//    QImage image(widthMM, heightMM, QImage::Format_ARGB32);
+//    image.fill(0x00FFFFFF);  // partly transparent background
 
-    // Get QPainter that paints to the image
-    //QPainter painter(&image);
-    //renderer.render(&painter);
+//    // Get QPainter that paints to the image
+//    QPainter painter(&image);
+//    RENDERER.render(&painter);
 
-    //PAINTER->drawImage(30,30, image);
-}
-
-TemplateGenPDF::TemplateGenPDF(QObject *parent)
-    : TemplateGen{parent}
-{
-
-}
-
-TemplateGenPDF::~TemplateGenPDF()
-{
-    PAINTER->end();
-    free(PAINTER);
-    free(PDFWRITER);
+//    PAINTER->drawImage(30,30, image);
 }

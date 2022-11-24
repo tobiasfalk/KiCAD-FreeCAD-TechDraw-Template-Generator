@@ -126,6 +126,12 @@ BOMStyles MainWindow::getBOMStyle()
     return BOMStyles::Standard;
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 600);
+    QWidget::resizeEvent(event);
+}
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -134,6 +140,70 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initRevHistoryStyles();
     initFoldLinesTarget();
     initBOMStyles();
+
+    PREVIEW = new Preview();
+    PREVIEW->setMinimumWidth(900);
+    PREVIEW->setStyleSheet("background-color: rgb(255,255,255)");
+
+    // Preview
+    PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+    QString sheetName = ui->NameLineEdit->text();
+    PageStyle sheetStyle = getPageStyle();
+    QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
+    qint64 numOptLines = ui->OptLinesSpinBox->value();
+    qint64 numRevHistory = ui->numRevSpinBox->value();
+    QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+    bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+    bool revHistory = ui->RevHistoryCheckBox->isChecked();
+    bool foldLines = ui->foldLinesCheckBox->isChecked();
+    PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+    bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+    quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+    quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+    QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
+    bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+    quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+    bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
+    QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
+    bool logo = ui->logoCheckBox->isChecked();
+    QString logoDir = LOGODIR;
+    bool description = ui->DescriptionCheckBox->isChecked();
+    quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
+
+    QDir dir;
+    dir.mkdir(QDir::currentPath() + "/tmp");
+    //TemplateGenKiCAD_5 KiCAD5(this);
+    PREVIEW->setDIR(QDir::currentPath() + "/tmp");
+    PREVIEW->setPAGESIZE(PageSize{"A3",                      420,   297});//sheetSize);
+    PREVIEW->setSHEETNAME(sheetName);
+    PREVIEW->setPAGESTYLE(sheetStyle);
+    PREVIEW->setNUMOPTLINES(numOptLines);
+    PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
+    PREVIEW->setTRIMMINGMARKS(trimmingMarks);
+    PREVIEW->setREVHISTORY(revHistory);
+    PREVIEW->setREVHISTORYSTYLE(getRevHistoryStyle());
+    PREVIEW->setNUMREVHISTORY(numRevHistory);
+    PREVIEW->setREVHISTORYFIELDS(revHistoryFields);
+    PREVIEW->setFOLDLINES(foldLines);
+    PREVIEW->setFOLDLINETARGET(foldLinesTaget);
+    PREVIEW->setSMALLPARTSLIST(smallPartsList);
+    PREVIEW->setNUMLINESMALLPARTSLIST(numLinesSmallPartsList);
+    PREVIEW->setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
+    PREVIEW->setSMALLPARTSLISTFIELDS(smallPartsListFileds);
+    PREVIEW->setFULLSHEETPARTSLIST(fullSheetPartsList);
+    PREVIEW->setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+    PREVIEW->setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
+    PREVIEW->setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
+    PREVIEW->setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
+    PREVIEW->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
+    PREVIEW->setLOGO(logo);
+    PREVIEW->setLOGODIR(logoDir);
+    PREVIEW->setDESCRIPTION(description);
+    PREVIEW->setDESCRIPTIONNUMLINES(descriptionNumLines);
+
+    ui->gridLayout_2->addWidget(PREVIEW);
+
+    WINDOWRUNNING = true;
 }
 
 MainWindow::~MainWindow()
@@ -407,6 +477,10 @@ void MainWindow::on_SheetSizeComboBox_currentTextChanged(const QString &arg1)
     {
         ui->foldLinesCheckBox->setChecked(false);
     }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 void MainWindow::on_sheetTitelblockFieldsPushButton_clicked()
@@ -420,6 +494,10 @@ void MainWindow::on_sheetTitelblockFieldsPushButton_clicked()
     {
         qWarning() << "None";
     }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 void MainWindow::on_revHistoryStylePushButton_clicked()
@@ -432,6 +510,10 @@ void MainWindow::on_revHistoryStylePushButton_clicked()
     else
     {
         qWarning() << "None";
+    }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
     }
 }
 
@@ -455,6 +537,10 @@ void MainWindow::on_FullPartsListCheckBox_stateChanged(int arg1)
         ui->csvBOMComboBox->setEnabled(false);
         ui->SmallPartsListCheckBox->setEnabled(true);
     }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 void MainWindow::on_SmallPartsListCheckBox_stateChanged(int arg1)
@@ -475,18 +561,30 @@ void MainWindow::on_SmallPartsListCheckBox_stateChanged(int arg1)
         ui->SmallPartsListNumPartsSpinBox->setEnabled(false);
         ui->FullPartsListCheckBox->setEnabled(true);
     }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
 {
     SMALLPARTSLISTSOPTIONS->setModal(true);
     SMALLPARTSLISTSOPTIONS->exec();
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 void MainWindow::on_editFullPartsListPushButton_clicked()
 {
     FULLSHEETPARTLISTOPIONS->setModal(true);
     FULLSHEETPARTLISTOPIONS->exec();
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 void MainWindow::on_loadFielsPushButton_clicked()
@@ -618,6 +716,10 @@ void MainWindow::on_logoPushButton_clicked()
     {
         LOGODIR = dir;
     }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
 }
 
 
@@ -639,6 +741,230 @@ void MainWindow::on_selectCSVBOMpushButton_clicked()
     if(dir.size() > 0)
     {
         BOMDIR = dir;
+    }
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_previewPushButton_clicked()
+{
+    PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+    QString sheetName = ui->NameLineEdit->text();
+    PageStyle sheetStyle = getPageStyle();
+    QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
+    qint64 numOptLines = ui->OptLinesSpinBox->value();
+    qint64 numRevHistory = ui->numRevSpinBox->value();
+    QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+    bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+    bool revHistory = ui->RevHistoryCheckBox->isChecked();
+    bool foldLines = ui->foldLinesCheckBox->isChecked();
+    PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+    bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+    quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+    quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
+    QMap<QString, TitelblockField> smallPartsListFileds = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
+    bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+    quint64 numLinesFullSheetPartsList = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+    bool fullSheetPartsListCSV = ui->insertBomCheckBox->isChecked();
+    QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
+    bool logo = ui->logoCheckBox->isChecked();
+    QString logoDir = LOGODIR;
+    bool description = ui->DescriptionCheckBox->isChecked();
+    quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
+
+    PREVIEW->setDIR(QDir::currentPath() + "/tmp");
+    PREVIEW->setPAGESIZE(sheetSize);
+    PREVIEW->setSHEETNAME(sheetName);
+    PREVIEW->setPAGESTYLE(sheetStyle);
+    PREVIEW->setNUMOPTLINES(numOptLines);
+    PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
+    PREVIEW->setTRIMMINGMARKS(trimmingMarks);
+    PREVIEW->setREVHISTORY(revHistory);
+    PREVIEW->setREVHISTORYSTYLE(getRevHistoryStyle());
+    PREVIEW->setNUMREVHISTORY(numRevHistory);
+    PREVIEW->setREVHISTORYFIELDS(revHistoryFields);
+    PREVIEW->setFOLDLINES(foldLines);
+    PREVIEW->setFOLDLINETARGET(foldLinesTaget);
+    PREVIEW->setSMALLPARTSLIST(smallPartsList);
+    PREVIEW->setNUMLINESMALLPARTSLIST(numLinesSmallPartsList);
+    PREVIEW->setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
+    PREVIEW->setSMALLPARTSLISTFIELDS(smallPartsListFileds);
+    PREVIEW->setFULLSHEETPARTSLIST(fullSheetPartsList);
+    PREVIEW->setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
+    PREVIEW->setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
+    PREVIEW->setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
+    PREVIEW->setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
+    PREVIEW->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
+    PREVIEW->setLOGO(logo);
+    PREVIEW->setLOGODIR(logoDir);
+    PREVIEW->setDESCRIPTION(description);
+    PREVIEW->setDESCRIPTIONNUMLINES(descriptionNumLines);
+    PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 600);
+    PREVIEW->update();
+}
+
+
+void MainWindow::on_sheetWidthDoubleSpinBox_valueChanged(double arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_sheetHeightDoubleSpinBox_valueChanged(double arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_NameLineEdit_textEdited(const QString &arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_SheetStyleComboBox_currentIndexChanged(int index)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_trimmingMarksCheckBox_stateChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_OptLinesSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_DescriptionCheckBox_stateChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_DescriptionSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_RevHistoryCheckBox_stateChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_numRevSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_revHistoryStyleComboBox_currentIndexChanged(int index)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_foldLinesCheckBox_stateChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_foldingLinesComboBox_currentIndexChanged(int index)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_FullPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_insertBomCheckBox_stateChanged(int arg1)
+{
+//    if(WINDOWRUNNING)
+//    {
+//        on_previewPushButton_clicked();
+//    }
+}
+
+
+void MainWindow::on_csvBOMComboBox_currentIndexChanged(int index)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_SmallPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_SmallPartsListNumPartsSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
     }
 }
 

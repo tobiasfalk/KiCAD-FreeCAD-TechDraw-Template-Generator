@@ -86,7 +86,7 @@ protected:
     ///
     /// \brief newPage creates a new emty Page
     ///
-    virtual void newPage() = 0;
+    virtual bool newPage() = 0;
     ///
     /// \brief fullSheetPartsListNumPages calculaes how many paes are needed to display the BOM
     /// \return tne number of pages

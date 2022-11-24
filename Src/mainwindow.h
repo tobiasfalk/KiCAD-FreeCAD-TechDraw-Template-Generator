@@ -17,6 +17,8 @@
 #include "templategenpdf.h"
 #include "templategeneagle.h"
 
+#include "preview.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -58,6 +60,44 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_selectCSVBOMpushButton_clicked();
+
+    void on_previewPushButton_clicked();
+
+    void on_sheetWidthDoubleSpinBox_valueChanged(double arg1);
+
+    void on_sheetHeightDoubleSpinBox_valueChanged(double arg1);
+
+    void on_NameLineEdit_textEdited(const QString &arg1);
+
+    void on_SheetStyleComboBox_currentIndexChanged(int index);
+
+    void on_trimmingMarksCheckBox_stateChanged(int arg1);
+
+    void on_OptLinesSpinBox_valueChanged(int arg1);
+
+    void on_DescriptionCheckBox_stateChanged(int arg1);
+
+    void on_DescriptionSpinBox_valueChanged(int arg1);
+
+    void on_RevHistoryCheckBox_stateChanged(int arg1);
+
+    void on_numRevSpinBox_valueChanged(int arg1);
+
+    void on_revHistoryStyleComboBox_currentIndexChanged(int index);
+
+    void on_foldLinesCheckBox_stateChanged(int arg1);
+
+    void on_foldingLinesComboBox_currentIndexChanged(int index);
+
+    void on_FullPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1);
+
+    void on_insertBomCheckBox_stateChanged(int arg1);
+
+    void on_csvBOMComboBox_currentIndexChanged(int index);
+
+    void on_SmallPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1);
+
+    void on_SmallPartsListNumPartsSpinBox_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -128,6 +168,10 @@ private:
     BOMStyles getBOMStyle();
 
     QString LASTDIR = "/home/tobias/tmp/";
+
+    Preview *PREVIEW;
+    bool WINDOWRUNNING = false;
+    void resizeEvent(QResizeEvent *event);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

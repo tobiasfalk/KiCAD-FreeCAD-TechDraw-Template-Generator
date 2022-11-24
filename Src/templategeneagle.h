@@ -37,7 +37,7 @@ protected:
     ///
     /// \brief newPage creates a new emty Page
     ///
-    void newPage();
+    bool newPage();
 
     void drawLine(Coordinate start, Coordinate end, double lineWidth);
     void drawRect(Coordinate start, Coordinate end, double lineWidth);

@@ -27,7 +27,7 @@ protected:
     ///
     /// \brief newPage creates a new emty Page
     ///
-    void newPage();
+    bool newPage();
 
 public:
     explicit TemplateGenKiCAD_5(QObject *parent = nullptr);

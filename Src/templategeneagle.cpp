@@ -164,8 +164,9 @@ bool TemplateGenEagle::writeBase()
     }
 }
 
-void TemplateGenEagle::newPage()
+bool TemplateGenEagle::newPage()
 {
+    return false;
 }
 
 void TemplateGenEagle::drawLine(Coordinate start, Coordinate end, double lineWidth)

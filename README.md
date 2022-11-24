@@ -46,7 +46,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 ![Small Parts list image](Images/SmallPartsList_Demo.svg)
 
 
-* Logo inclusion in to the Legal owner field
+* Logo inclusion in to the Legal owner field(not in PDF and the Preview)
 
 ![Logo image](Images/Logo_Demo.svg)
 
@@ -133,4 +133,3 @@ Once the logo gets reaches a height of 30mm the width is reduced (the ratio will
 
 * Complete Doxygen Documentation
 * PDF Logo and Text problems
-* Polygon without fill for use in Projektion Methode symbol

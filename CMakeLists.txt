@@ -78,6 +78,8 @@ set(PROJECT_SOURCES
         Src/templategeneagle.h
         Src/loadesavesettings.cpp
         Src/loadesavesettings.h
+        Src/preview.h
+        Src/preview.cpp
         Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler.cpp
         Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler.h
         Src/KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.cpp
