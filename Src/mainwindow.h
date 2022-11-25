@@ -105,7 +105,7 @@ private:
     /// \brief PAGESIZES is a list of all the pagesize(sheetsizes)
     ///
     // Sizes in mm                                            Designation               width  height
-    QList<PageSize> PAGESIZES = QList<PageSize>   { PageSize{"User defined",            0,     0},
+    QList<PageSize> PAGESIZES = QList<PageSize>   { PageSize{"User defined",            400,   250},
                                                     PageSize{"4A0",                     2378,  1682},
                                                     PageSize{"2A0",                     1682,  1189},
                                                     PageSize{"A0",                      1189,  841},

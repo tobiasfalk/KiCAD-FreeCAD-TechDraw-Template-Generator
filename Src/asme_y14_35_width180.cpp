@@ -71,7 +71,7 @@ void ASME_Y14_35_Width180::loadStdOptions()
     REVHISTORYFIELDS_KICAD6.insert("opt4",  TitelblockField{"Date",                            QStringList{"${d&{N}A}", "${d&{N}B}", "${d&{N}C}"},             "D&{N}"});
     REVHISTORYFIELDS_KICAD6.insert("opt5",  TitelblockField{"Created by",                      QStringList{"${cBy&{N}A}", "${cBy&{N}B}", "${cBy&{N}C}"},       "C by &{N}"});
 
-    //FreeCAD
+    //PDF
     //                              key                      label                                  Value            Name
     REVHISTORYFIELDS_PDF.insert("head",  TitelblockField{"Revision History",        QStringList{""}, "Revision History"});
     REVHISTORYFIELDS_PDF.insert("opt1",  TitelblockField{"Zone",                    QStringList{""}, "Z&{N}"});

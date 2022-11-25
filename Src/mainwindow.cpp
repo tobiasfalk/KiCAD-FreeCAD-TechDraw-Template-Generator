@@ -11,6 +11,8 @@ void MainWindow::initPageSizes()
     {
         ui->SheetSizeComboBox->addItem(sheet.sizeString);
     }
+    ui->sheetWidthDoubleSpinBox->setValue(PAGESIZES[0].width);
+    ui->sheetHeightDoubleSpinBox->setValue(PAGESIZES[0].height);
 }
 
 void MainWindow::initPageStyles()
@@ -174,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     dir.mkdir(QDir::currentPath() + "/tmp");
     //TemplateGenKiCAD_5 KiCAD5(this);
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
-    PREVIEW->setPAGESIZE(PageSize{"A3",                      420,   297});//sheetSize);
+    PREVIEW->setPAGESIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
     PREVIEW->setPAGESTYLE(sheetStyle);
     PREVIEW->setNUMOPTLINES(numOptLines);
