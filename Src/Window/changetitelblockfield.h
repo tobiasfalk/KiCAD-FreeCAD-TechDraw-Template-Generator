@@ -18,6 +18,9 @@ class ChangeTitelblockField : public QDialog
     Q_OBJECT
 
 private:
+    ///
+    /// \brief ui is the pointer fo the qt UI
+    ///
     Ui::ChangeTitelblockField *ui;
 
     ///

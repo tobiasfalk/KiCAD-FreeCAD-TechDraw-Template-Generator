@@ -61,6 +61,9 @@ public:
     ///
     void setFULLSHEETPARTSLISTFIELDS_KICAD6(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_KICAD6);
 
+    ///
+    /// \brief resetToOrigin resets all the maps to its original values
+    ///
     void resetToOrigin();
 
     ///
@@ -111,20 +114,50 @@ private:
     ///
     Ui::FullSheetsPartListOptions *ui;
 
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_FREECAD is the map with all the FreeCAD fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_FREECAD;
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_FREECAD_ORG is the map with all the origpnal FreeCAD fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_FREECAD_ORG;
 
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_KICAD5 is the map with all the KiCAD 5 fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD5;
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_KICAD5_ORG is the map with all the origonal KiCAD 5 fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD5_ORG;
 
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_KICAD6 is the map with all the KiCAD 6 fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6;
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_KICAD6_ORG is the map with all the origonal KiCAD 6 fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_KICAD6_ORG;
 
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_PDF is the map with all the PDF fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_PDF;
+    ///
+    /// \brief FULLSHEETPARTSLISTFIELDS_PDF_ORG is the map with all the origonal PDF fields
+    ///
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS_PDF_ORG;
 
 
+    ///
+    /// \brief loadStdOptions loads the standorad option in to the field maps
+    ///
     void loadStdOptions();
+    ///
+    /// \brief loadButtonText loads all the Text that appiers on the Buttons
+    ///
     void loadButtonText();
 };
 
