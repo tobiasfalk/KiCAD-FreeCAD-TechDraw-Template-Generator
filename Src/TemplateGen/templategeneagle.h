@@ -1,5 +1,7 @@
 #ifndef TEMPLATEGENEAGLE_H
 #define TEMPLATEGENEAGLE_H
+#include <memory>
+#include <utility>
 
 #include <QObject>
 #include <QFile>
@@ -14,8 +16,8 @@ class TemplateGenEagle : public TemplateGen
 protected:
     QString getFILEENDING();
     bool writeBase();
-    QFile *FILE;
-    QTextStream *XMLTEXTSTREM;
+    std::shared_ptr<QFile> FILE;
+    std::shared_ptr<QTextStream> XMLTEXTSTREM;
     QDomDocument DOCUMENT;
     QDomElement ROOT;
     QDomElement DRAWING;

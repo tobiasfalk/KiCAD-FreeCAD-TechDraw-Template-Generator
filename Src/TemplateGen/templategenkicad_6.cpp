@@ -14,7 +14,7 @@ bool TemplateGenKiCAD_6::writeBase()
 {
     if(!FULLSHEETPARTSLISTCSV)
     {
-        FILE = new QFile(createFileName());
+        FILE = std::shared_ptr<QFile>(new QFile(createFileName()));
         if(FILE->open(QIODeviceBase::WriteOnly))
         {
             FILE->write("(kicad_wks (version 20210606) (generator pl_editor)\n  (setup (textsize 0 0)(linewidth 0)(textlinewidth 0)\n  (left_margin 0)(right_margin 0)(top_margin 0)(bottom_margin 0))\n");

@@ -1,5 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include <memory>
+#include <utility>
 
 #include <QMainWindow>
 #include <QFileDialog>
@@ -146,10 +148,10 @@ private:
     QList<PageSize> FOLDLINESTARGET = QList<PageSize>   { PageSize{"A4P with border",         210,   297},
                                                           PageSize{"200mmX290mm with border",             200,     290},};
 
-    ISO7200Options *ISO7200OPTIONS = new ISO7200Options(this);
-    ASME_Y14_35_Width180 *ASME_Y14_35_WIDTH180 = new ASME_Y14_35_Width180(this);
-    FullSheetsPartListOptions *FULLSHEETPARTLISTOPIONS = new FullSheetsPartListOptions(this);
-    SmallPartsListOptions *SMALLPARTSLISTSOPTIONS = new SmallPartsListOptions(this);
+    std::unique_ptr<ISO7200Options> ISO7200OPTIONS =  std::unique_ptr<ISO7200Options>(new ISO7200Options(this));
+    std::unique_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::unique_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));
+    std::unique_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS = std::unique_ptr<FullSheetsPartListOptions>(new FullSheetsPartListOptions(this));
+    std::unique_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS = std::unique_ptr<SmallPartsListOptions>(new SmallPartsListOptions(this));
 
     QString LOGODIR = "&";
     QString BOMDIR = "&";
@@ -169,7 +171,7 @@ private:
 
     QString LASTDIR = "/home/tobias/tmp/";
 
-    Preview *PREVIEW;
+    std::shared_ptr<Preview> PREVIEW;
     bool WINDOWRUNNING = false;
     void resizeEvent(QResizeEvent *event);
 public:

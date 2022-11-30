@@ -1,5 +1,7 @@
 #ifndef PREVIEW_H
 #define PREVIEW_H
+#include <memory>
+#include <utility>
 
 #include <QFrame>
 #include <QObject>
@@ -31,6 +33,7 @@ private:
     double SCALE = 1;
 public:
     Preview();
+    ~Preview();
 };
 
 #endif // PREVIEW_H

@@ -1,5 +1,7 @@
 #ifndef TEMPLATEGENKICAD_5_H
 #define TEMPLATEGENKICAD_5_H
+#include <memory>
+#include <utility>
 
 #include <QDebug>
 #include <QObject>
@@ -14,7 +16,7 @@ class TemplateGenKiCAD_5 : public TemplateGen
 protected:
     virtual QString getFILEENDING();
     virtual bool writeBase();
-    QFile *FILE;
+    std::shared_ptr<QFile> FILE;
 
     virtual void drawLine(Coordinate start, Coordinate end, double lineWidth);
     virtual void drawRect(Coordinate start, Coordinate end, double lineWidth);

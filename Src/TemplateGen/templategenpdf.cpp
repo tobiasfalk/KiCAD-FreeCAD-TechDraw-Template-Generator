@@ -9,11 +9,11 @@ QString TemplateGenPDF::getFILEENDING()
 
 bool TemplateGenPDF::writeBase()
 {
-    PDFWRITER = new QPdfWriter(createFileName());
+    PDFWRITER = std::shared_ptr<QPdfWriter>(new QPdfWriter(createFileName()));
     PDFWRITER->setPageMargins(QMarginsF(0, 0, 0, 0));
     PDFWRITER->setPageSize(QPageSize(QSizeF(PAGESIZE.width, PAGESIZE.height), QPageSize::Millimeter));
     PDFWRITER->setResolution(480000);
-    PAINTER = new QPainter(PDFWRITER);
+    PAINTER = std::shared_ptr<QPainter>(new QPainter(PDFWRITER.get()));
     PAINTER->setTransform(QTransform().scale(18897.6378, 18897.6378));// 18,897.6378 p/mm = 480,000 dpi
     return true;
 }
@@ -187,6 +187,4 @@ TemplateGenPDF::TemplateGenPDF(QObject *parent)
 TemplateGenPDF::~TemplateGenPDF()
 {
     PAINTER->end();
-    free(PAINTER);
-    free(PDFWRITER);
 }

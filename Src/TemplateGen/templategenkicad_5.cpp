@@ -14,7 +14,7 @@ bool TemplateGenKiCAD_5::writeBase()
 {
     if(!FULLSHEETPARTSLISTCSV)
     {
-        FILE = new QFile(createFileName());
+        FILE = std::shared_ptr<QFile>(new QFile(createFileName()));
         if(FILE->open(QIODeviceBase::WriteOnly))
         {
             FILE->write("(page_layout\n  (setup (textsize 0 0)(linewidth 0)(textlinewidth 0)\n  (left_margin 0)(right_margin 0)(top_margin 0)(bottom_margin 0))\n");
@@ -199,6 +199,5 @@ TemplateGenKiCAD_5::~TemplateGenKiCAD_5()
     {
         FILE->write(")\n");
         FILE->flush();
-        free(FILE);
     }
 }

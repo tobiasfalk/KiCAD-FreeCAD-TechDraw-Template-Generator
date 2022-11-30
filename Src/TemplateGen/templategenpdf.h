@@ -1,11 +1,14 @@
 #ifndef TEMPLATEGENPDF_H
 #define TEMPLATEGENPDF_H
+#include <memory>
+#include <utility>
 
-#include "templategen.h"
 #include <QObject>
 #include <QPainter>
 #include <QPdfWriter>
 #include <QSvgRenderer>
+
+#include "templategen.h"
 
 
 class TemplateGenPDF : public TemplateGen
@@ -14,9 +17,9 @@ class TemplateGenPDF : public TemplateGen
 protected:
     QString getFILEENDING();
     bool writeBase();
-    QPdfWriter *PDFWRITER;
-    QPainter *PAINTER;
-    QSvgRenderer *RENDERER;
+    std::shared_ptr<QPdfWriter> PDFWRITER;
+    std::shared_ptr<QPainter> PAINTER;
+    std::shared_ptr<QSvgRenderer> RENDERER;
 
     ///
     /// \brief newPage creates a new emty Page

@@ -16,11 +16,11 @@ QString TemplateGenFreeCAD::getFILEENDING()
 
 bool TemplateGenFreeCAD::writeBase()
 {
-    FILE = new QFile(createFileName());
+    FILE = std::shared_ptr<QFile>(new QFile(createFileName()));
     if(FILE->open(QIODeviceBase::WriteOnly))
     {
         FILE->write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n");
-        XMLTEXTSTREM = new QTextStream(FILE);
+        XMLTEXTSTREM = std::shared_ptr<QTextStream>(new QTextStream(FILE.get()));
         ROOT = DOCUMENT.createElement("svg");
         ROOT.setAttribute("xmlns:freecad", "http://www.freecadweb.org/wiki/index.php?title=Svg_Namespace");
         ROOT.setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
@@ -194,8 +194,6 @@ bool TemplateGenFreeCAD::newPage()
     //FILE->write(")\n");
     XMLTEXTSTREM->flush();
     FILE->flush();
-    free(XMLTEXTSTREM);
-    free(FILE);
     DOCUMENT = QDomDocument();
     ROOT = QDomElement();
     return true;
@@ -211,6 +209,4 @@ TemplateGenFreeCAD::~TemplateGenFreeCAD()
     //FILE->write(")\n");
     XMLTEXTSTREM->flush();
     FILE->flush();
-    free(XMLTEXTSTREM);
-    free(FILE);
 }

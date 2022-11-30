@@ -56,12 +56,12 @@ bool TemplateGenEagle::writeBase()
                 componentA = componentA.nextSibling().toElement();
             }
         }
-        FILE = new QFile(DIR + "/sheet_template_eagle_6-5.lbr");
+        FILE = std::shared_ptr<QFile>(new QFile(DIR + "/sheet_template_eagle_6-5.lbr"));
         if(FILE->open(QIODeviceBase::WriteOnly))
         {
             FILE->write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
             FILE->write("<!DOCTYPE eagle SYSTEM \"eagle.dtd\">\n");
-            XMLTEXTSTREM = new QTextStream(FILE);
+            XMLTEXTSTREM = std::shared_ptr<QTextStream>(new QTextStream(FILE.get()));
             ROOT = DOCUMENT.createElement("eagle");
             ROOT.setAttribute("version", "6.5.0");
 
@@ -413,7 +413,5 @@ TemplateGenEagle::~TemplateGenEagle()
         XMLTEXTSTREM->flush();
         FILE->flush();
         FILE->close();
-        free(XMLTEXTSTREM);
-        free(FILE);
     }
 }

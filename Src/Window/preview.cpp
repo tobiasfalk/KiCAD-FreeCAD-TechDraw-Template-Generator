@@ -9,6 +9,11 @@ Preview::Preview()
 
 }
 
+Preview::~Preview()
+{
+    free(PAINTER);
+}
+
 void Preview::paintEvent(QPaintEvent *e)
 {
     QPainter paint(this);
