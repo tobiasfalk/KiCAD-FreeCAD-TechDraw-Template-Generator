@@ -3,7 +3,7 @@
 
 #include "loadesavesettings.h"
 
-#include "KiCAD_Symbol_Scaler/kicad_symbol_scaler_ui.h"
+#include "kicad_symbol_scaler_ui.h"
 
 void MainWindow::initPageSizes()
 {
