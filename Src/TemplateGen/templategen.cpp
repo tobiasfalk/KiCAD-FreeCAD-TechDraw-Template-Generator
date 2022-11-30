@@ -73,7 +73,7 @@ bool TemplateGen::init()
     CENTERINGMARKS.Bottom = true;
     CENTERINGMARKS.Left = true;
     CENTERINGMARKS.Top = true;
-    if(NOINIT > 0)
+    if(NOINIT)
     {
         return true;
     }
@@ -262,7 +262,6 @@ QList<BOMColumn> TemplateGen::readBOMStd(QString fileDIR)
     if (inputFile.open(QIODevice::ReadOnly))
     {
        QTextStream in(&inputFile);
-       bool parts = false;
        QString line;
        int i = 0;
        while (!in.atEnd())

@@ -63,7 +63,7 @@ void KiCAD_Symbol_Scaler::scale()
             }while(Lines[i].at(Lines[i].find("(size ") + 5 + cIndex) != ' ');
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(size ") + 6, xStr.length(), std::to_string(x));
-            int xOff = 5 + std::to_string(x).length();
+            size_t xOff = 5 + std::to_string(x).length();
             cIndex = 0;
             do
             {
@@ -86,7 +86,7 @@ void KiCAD_Symbol_Scaler::scale()
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(at ") + 4, xStr.length(), std::to_string(x) + " ");
 
-            int xOff = 4 + std::to_string(x).length();
+            size_t xOff = 4 + std::to_string(x).length();
             cIndex = 0;
             do
             {
@@ -120,7 +120,7 @@ void KiCAD_Symbol_Scaler::scale()
             }while(Lines[i].at(Lines[i].find("(start ") + 6 + cIndex) != ' ');
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(start ") + 7, xStr.length(), std::to_string(x));
-            int xOff = 6 + std::to_string(x).length();
+            size_t xOff = 6 + std::to_string(x).length();
             cIndex = 0;
             do
             {
@@ -142,7 +142,7 @@ void KiCAD_Symbol_Scaler::scale()
             }while(Lines[i].at(Lines[i].find("(end ") + 4 + cIndex) != ' ');
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(end ") + 5, xStr.length(), std::to_string(x));
-            int xOff = 4 + std::to_string(x).length();
+            size_t xOff = 4 + std::to_string(x).length();
             cIndex = 0;
             do
             {
@@ -165,7 +165,7 @@ void KiCAD_Symbol_Scaler::scale()
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(xy ") + 4, xStr.length(), std::to_string(x) + " ");
 
-            int xOff = 4 + std::to_string(x).length();
+            size_t xOff = 4 + std::to_string(x).length();
             cIndex = 0;
             do
             {
@@ -187,7 +187,7 @@ void KiCAD_Symbol_Scaler::scale()
             }while(Lines[i].at(Lines[i].find("(mid ") + 4 + cIndex) != ' ');
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(mid ") + 5, xStr.length(), std::to_string(x));
-            int xOff = 4 + std::to_string(x).length();
+            size_t xOff = 4 + std::to_string(x).length();
             cIndex = 0;
             do
             {
