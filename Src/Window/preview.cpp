@@ -11,7 +11,10 @@ Preview::Preview()
 
 Preview::~Preview()
 {
-    free(PAINTER);
+    if(!PAINTER)
+    {
+        free(PAINTER);
+    }
 }
 
 void Preview::paintEvent(QPaintEvent *e)

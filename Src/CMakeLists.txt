@@ -3,6 +3,7 @@ add_subdirectory(KiCAD_Symbol_Scaler/)
 add_subdirectory(Templateoptions/)
 add_subdirectory(TemplateGen/)
 add_subdirectory(Window/)
+add_subdirectory(Icon/)
 
 # Executable
 set(PROJECT_SOURCES

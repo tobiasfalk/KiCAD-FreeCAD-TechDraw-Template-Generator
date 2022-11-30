@@ -129,6 +129,10 @@ It is possible to include a Logo in the Legal owner Field (name can be modified)
 **Notes**  
 Once the logo gets reaches a height of 30mm the width is reduced (the ratio will be kept). If text is included in the SVG it may create problems, so convert that to path.
 
+## Icon Source
+The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenloses-icon/layout_7973492
+
+
 ## To do
 
 * Complete Doxygen Documentation
