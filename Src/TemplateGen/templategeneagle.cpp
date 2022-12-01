@@ -296,7 +296,7 @@ void TemplateGenEagle::drawPoly(Coordinate position, QList<Coordinate> points, d
     CPACKAGE.appendChild(polygonPack);
 }
 
-void TemplateGenEagle::drawCircle(Coordinate center, double radius, double lineWidth)
+void TemplateGenEagle::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
 {
 }
 

@@ -85,7 +85,7 @@ void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, dou
     }
 }
 
-void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth)
+void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);

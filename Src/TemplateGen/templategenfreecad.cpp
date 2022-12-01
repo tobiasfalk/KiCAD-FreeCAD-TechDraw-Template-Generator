@@ -84,7 +84,7 @@ void TemplateGenFreeCAD::drawPoly(Coordinate position, QList<Coordinate> points,
     ROOT.appendChild(obj);
 }
 
-void TemplateGenFreeCAD::drawCircle(Coordinate center, double radius, double lineWidth)
+void TemplateGenFreeCAD::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
 {
     QDomElement obj = DOCUMENT.createElement("circle");
     obj.setAttribute("cx", QString::number(center.X));

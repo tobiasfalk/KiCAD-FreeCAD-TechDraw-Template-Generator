@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QImage>
 #include <QBuffer>
+#include <math.h>
 
 QString TemplateGenKiCAD_5::getFILEENDING()
 {
@@ -70,8 +71,23 @@ void TemplateGenKiCAD_5::drawPoly(Coordinate position, QList<Coordinate> points,
     }
 }
 
-void TemplateGenKiCAD_5::drawCircle(Coordinate center, double radius, double lineWidth)
+void TemplateGenKiCAD_5::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
 {
+    double arc = 0;
+    double arcPre = 0;
+    while(arc <= 360)
+    {
+        if(arc)
+        {
+            double x1 = center.X + radius * std::cos(arcPre * M_PI / 180);
+            double y1 = center.Y + radius * std::sin(arcPre * M_PI / 180);
+            double x2 = center.X + radius * std::cos(arc * M_PI / 180);
+            double y2 = center.Y + radius * std::sin(arc * M_PI / 180);
+            drawLine(Coordinate{x1, y1}, Coordinate{x2, y2}, lineWidth);
+        }
+        arcPre = arc;
+        arc += circleArc;
+    }
 }
 
 qint64 TemplateGenKiCAD_5::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)

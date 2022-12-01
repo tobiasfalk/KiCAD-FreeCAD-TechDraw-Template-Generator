@@ -121,7 +121,7 @@ void Preview::drawPoly(Coordinate position, QList<Coordinate> points, double lin
     }
 }
 
-void Preview::drawCircle(Coordinate center, double radius, double lineWidth)
+void Preview::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
