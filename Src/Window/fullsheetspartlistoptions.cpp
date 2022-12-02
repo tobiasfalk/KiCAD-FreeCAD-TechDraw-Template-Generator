@@ -60,39 +60,39 @@ void FullSheetsPartListOptions::loadStdOptions()
 {
     // KiCAD 5
     //                           key                    label                                  Value                        Name
-    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},                        "Pos."});
-    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},                        "Qty."});
-    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},                        "Unit"});
-    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},               "Titel"});
-    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},               "Doc. number"});
-    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt6", TitelblockField{"Comment",             QStringList{"comment"},                  "Comment"});
+    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},                        "Pos.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},                        "Qty.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},                        "Unit", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},               "Titel", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},               "Doc. number", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD5.insert("opt6", TitelblockField{"Comment",             QStringList{"comment"},                  "Comment", ProjectionMethodType::None});
 
     // KiCAD 6
     //                           key                    label                                  Value                        Name
-    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt1", TitelblockField{"Pos.",                QStringList{"${p&{N}&{L}}"},             "Pos."});
-    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt2", TitelblockField{"Qty.",                QStringList{"${q&{N}&{L}}"},             "Qty."});
-    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt3", TitelblockField{"Unit",                QStringList{"${u&{N}&{L}}"},             "Unit"});
-    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt4", TitelblockField{"Titel",               QStringList{"${titel/name&{N}&{L}}"},    "Titel"});
-    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt5", TitelblockField{"Doc. number",         QStringList{"${docNumber&{N}&{L}}"},     "Doc. number"});
-    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt6", TitelblockField{"Comment",             QStringList{"${comment&{N}&{L}}"},       "Comment"});
+    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt1", TitelblockField{"Pos.",                QStringList{"${p&{N}&{L}}"},             "Pos.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt2", TitelblockField{"Qty.",                QStringList{"${q&{N}&{L}}"},             "Qty.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt3", TitelblockField{"Unit",                QStringList{"${u&{N}&{L}}"},             "Unit", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt4", TitelblockField{"Titel",               QStringList{"${titel/name&{N}&{L}}"},    "Titel", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt5", TitelblockField{"Doc. number",         QStringList{"${docNumber&{N}&{L}}"},     "Doc. number", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_KICAD6.insert("opt6", TitelblockField{"Comment",             QStringList{"${comment&{N}&{L}}"},       "Comment", ProjectionMethodType::None});
 
     // FreeCAD
     //                           key                    label                                  Value                        Name
-    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt1", TitelblockField{"Pos.",                QStringList{":"},                        "Pos."});
-    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt2", TitelblockField{"Qty.",                QStringList{":"},                        "Qty."});
-    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt3", TitelblockField{"Unit",                QStringList{":"},                        "Unit"});
-    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt4", TitelblockField{"Titel",               QStringList{":"},                        "Titel"});
-    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt5", TitelblockField{"Doc. number",         QStringList{":"},                        "Doc. number"});
-    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt6", TitelblockField{"Comment",             QStringList{":"},                        "Comment"});
+    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt1", TitelblockField{"Pos.",                QStringList{":"},                        "Pos.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt2", TitelblockField{"Qty.",                QStringList{":"},                        "Qty.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt3", TitelblockField{"Unit",                QStringList{":"},                        "Unit", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt4", TitelblockField{"Titel",               QStringList{":"},                        "Titel", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt5", TitelblockField{"Doc. number",         QStringList{":"},                        "Doc. number", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_FREECAD.insert("opt6", TitelblockField{"Comment",             QStringList{":"},                        "Comment", ProjectionMethodType::None});
 
     // PDF
     //                           key                    label                                  Value                        Name
-    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt1", TitelblockField{"Pos.",                QStringList{""},                        "Pos."});
-    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt2", TitelblockField{"Qty.",                QStringList{""},                        "Qty."});
-    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt3", TitelblockField{"Unit",                QStringList{""},                        "Unit"});
-    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt4", TitelblockField{"Titel",               QStringList{""},                        "Titel"});
-    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt5", TitelblockField{"Doc. number",         QStringList{""},                        "Doc. number"});
-    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt6", TitelblockField{"Comment",             QStringList{""},                        "Comment"});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt1", TitelblockField{"Pos.",                QStringList{""},                        "Pos.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt2", TitelblockField{"Qty.",                QStringList{""},                        "Qty.", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt3", TitelblockField{"Unit",                QStringList{""},                        "Unit", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt4", TitelblockField{"Titel",               QStringList{""},                        "Titel", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt5", TitelblockField{"Doc. number",         QStringList{""},                        "Doc. number", ProjectionMethodType::None});
+    FULLSHEETPARTSLISTFIELDS_PDF.insert("opt6", TitelblockField{"Comment",             QStringList{""},                        "Comment", ProjectionMethodType::None});
 }
 
 void FullSheetsPartListOptions::loadButtonText()

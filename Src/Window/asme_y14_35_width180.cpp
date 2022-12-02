@@ -44,41 +44,41 @@ void ASME_Y14_35_Width180::loadStdOptions()
 {
     //FreeCAD
     //                              key                      label                                  Value            Name
-    REVHISTORYFIELDS_FREECAD.insert("head",  TitelblockField{"Revision History",        QStringList{".", ".", "."}, "Revision History"});
-    REVHISTORYFIELDS_FREECAD.insert("opt1",  TitelblockField{"Zone",                    QStringList{".", ".", "."}, "Z&{N}"});
-    REVHISTORYFIELDS_FREECAD.insert("opt2",  TitelblockField{"Rev.",                    QStringList{".", ".", "."}, "R&{N}"});
-    REVHISTORYFIELDS_FREECAD.insert("opt3",  TitelblockField{"Description",             QStringList{".", ".", "."}, "Description &{N}"});
-    REVHISTORYFIELDS_FREECAD.insert("opt4",  TitelblockField{"Date",                    QStringList{".", ".", "."}, "D&{N}"});
-    REVHISTORYFIELDS_FREECAD.insert("opt5",  TitelblockField{"Created by",              QStringList{".", ".", "."}, "C by &{N}"});
+    REVHISTORYFIELDS_FREECAD.insert("head",  TitelblockField{"Revision History",        QStringList{".", ".", "."}, "Revision History", ProjectionMethodType::None});
+    REVHISTORYFIELDS_FREECAD.insert("opt1",  TitelblockField{"Zone",                    QStringList{".", ".", "."}, "Z&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_FREECAD.insert("opt2",  TitelblockField{"Rev.",                    QStringList{".", ".", "."}, "R&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_FREECAD.insert("opt3",  TitelblockField{"Description",             QStringList{".", ".", "."}, "Description &{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_FREECAD.insert("opt4",  TitelblockField{"Date",                    QStringList{".", ".", "."}, "D&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_FREECAD.insert("opt5",  TitelblockField{"Created by",              QStringList{".", ".", "."}, "C by &{N}", ProjectionMethodType::None});
 
 
     //KiCAD 5
     //                              key                      label                                  Value                                                               Name
-    REVHISTORYFIELDS_KICAD5.insert("head",  TitelblockField{"Revision History",         QStringList{"-"},                                                               "Revision History"});
-    REVHISTORYFIELDS_KICAD5.insert("opt1",  TitelblockField{"Zone",                     QStringList{"Z&{N} A", "Z&{N} B", "Z&{N} C"},                                   "Z&{N}"});
-    REVHISTORYFIELDS_KICAD5.insert("opt2",  TitelblockField{"Rev.",                     QStringList{"R&{N} A", "R&{N} B", "R&{N} C"},                                   "R&{N}"});
-    REVHISTORYFIELDS_KICAD5.insert("opt3",  TitelblockField{"Description",              QStringList{"Description &{N} A", "Description &{N} B", "Description &{N} C"},  "Description &{N}"});
-    REVHISTORYFIELDS_KICAD5.insert("opt4",  TitelblockField{"Date",                     QStringList{"D&{N} A", "D&{N} B", "D&{N} C"},                                   "D&{N}"});
-    REVHISTORYFIELDS_KICAD5.insert("opt5",  TitelblockField{"Created by",               QStringList{"C by &{N} A", "C by &{N} B", "C by &{ C"},                         "C by &{N}"});
+    REVHISTORYFIELDS_KICAD5.insert("head",  TitelblockField{"Revision History",         QStringList{"-"},                                                               "Revision History", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD5.insert("opt1",  TitelblockField{"Zone",                     QStringList{"Z&{N} A", "Z&{N} B", "Z&{N} C"},                                   "Z&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD5.insert("opt2",  TitelblockField{"Rev.",                     QStringList{"R&{N} A", "R&{N} B", "R&{N} C"},                                   "R&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD5.insert("opt3",  TitelblockField{"Description",              QStringList{"Description &{N} A", "Description &{N} B", "Description &{N} C"},  "Description &{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD5.insert("opt4",  TitelblockField{"Date",                     QStringList{"D&{N} A", "D&{N} B", "D&{N} C"},                                   "D&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD5.insert("opt5",  TitelblockField{"Created by",               QStringList{"C by &{N} A", "C by &{N} B", "C by &{ C"},                         "C by &{N}", ProjectionMethodType::None});
 
 
     //KiCAD 6
     //                              key                      label                                  Value                                                               Name
-    REVHISTORYFIELDS_KICAD6.insert("head",  TitelblockField{"Revision History",                QStringList{"-"},                                               "Revision History"});
-    REVHISTORYFIELDS_KICAD6.insert("opt1",  TitelblockField{"Zone",                            QStringList{"${zone&{N}A}", "${zone&{N}B}", "${zone&{N}C}"},    "Z&{N}"});
-    REVHISTORYFIELDS_KICAD6.insert("opt2",  TitelblockField{"Rev.",                            QStringList{"${rev&{N}A}", "${rev&{N}B}", "${rev&{N}C}"},       "R&{N}"});
-    REVHISTORYFIELDS_KICAD6.insert("opt3",  TitelblockField{"Description",                     QStringList{"${desc&{N}A}", "${desc&{N}B}", "${desc&{N}C}"},    "Description &{N}"});
-    REVHISTORYFIELDS_KICAD6.insert("opt4",  TitelblockField{"Date",                            QStringList{"${d&{N}A}", "${d&{N}B}", "${d&{N}C}"},             "D&{N}"});
-    REVHISTORYFIELDS_KICAD6.insert("opt5",  TitelblockField{"Created by",                      QStringList{"${cBy&{N}A}", "${cBy&{N}B}", "${cBy&{N}C}"},       "C by &{N}"});
+    REVHISTORYFIELDS_KICAD6.insert("head",  TitelblockField{"Revision History",                QStringList{"-"},                                               "Revision History", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD6.insert("opt1",  TitelblockField{"Zone",                            QStringList{"${zone&{N}A}", "${zone&{N}B}", "${zone&{N}C}"},    "Z&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD6.insert("opt2",  TitelblockField{"Rev.",                            QStringList{"${rev&{N}A}", "${rev&{N}B}", "${rev&{N}C}"},       "R&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD6.insert("opt3",  TitelblockField{"Description",                     QStringList{"${desc&{N}A}", "${desc&{N}B}", "${desc&{N}C}"},    "Description &{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD6.insert("opt4",  TitelblockField{"Date",                            QStringList{"${d&{N}A}", "${d&{N}B}", "${d&{N}C}"},             "D&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_KICAD6.insert("opt5",  TitelblockField{"Created by",                      QStringList{"${cBy&{N}A}", "${cBy&{N}B}", "${cBy&{N}C}"},       "C by &{N}", ProjectionMethodType::None});
 
     //PDF
     //                              key                      label                                  Value            Name
-    REVHISTORYFIELDS_PDF.insert("head",  TitelblockField{"Revision History",        QStringList{""}, "Revision History"});
-    REVHISTORYFIELDS_PDF.insert("opt1",  TitelblockField{"Zone",                    QStringList{""}, "Z&{N}"});
-    REVHISTORYFIELDS_PDF.insert("opt2",  TitelblockField{"Rev.",                    QStringList{""}, "R&{N}"});
-    REVHISTORYFIELDS_PDF.insert("opt3",  TitelblockField{"Description",             QStringList{""}, "Description &{N}"});
-    REVHISTORYFIELDS_PDF.insert("opt4",  TitelblockField{"Date",                    QStringList{""}, "D&{N}"});
-    REVHISTORYFIELDS_PDF.insert("opt5",  TitelblockField{"Created by",              QStringList{""}, "C by &{N}"});
+    REVHISTORYFIELDS_PDF.insert("head",  TitelblockField{"Revision History",        QStringList{""}, "Revision History", ProjectionMethodType::None});
+    REVHISTORYFIELDS_PDF.insert("opt1",  TitelblockField{"Zone",                    QStringList{""}, "Z&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_PDF.insert("opt2",  TitelblockField{"Rev.",                    QStringList{""}, "R&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_PDF.insert("opt3",  TitelblockField{"Description",             QStringList{""}, "Description &{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_PDF.insert("opt4",  TitelblockField{"Date",                    QStringList{""}, "D&{N}", ProjectionMethodType::None});
+    REVHISTORYFIELDS_PDF.insert("opt5",  TitelblockField{"Created by",              QStringList{""}, "C by &{N}", ProjectionMethodType::None});
 }
 
 void ASME_Y14_35_Width180::loadButtonText()

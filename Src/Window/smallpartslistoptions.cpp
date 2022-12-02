@@ -52,35 +52,35 @@ void SmallPartsListOptions::loadStdOptions()
 {
     // KICAD 5
     //                           key                    label                                     Value             name
-    SMALLPARTSLISTFIELDS_KICAD5.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},             "Pos."});
-    SMALLPARTSLISTFIELDS_KICAD5.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},             "Qty."});
-    SMALLPARTSLISTFIELDS_KICAD5.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},             "Unit"});
-    SMALLPARTSLISTFIELDS_KICAD5.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},    "Titel"});
-    SMALLPARTSLISTFIELDS_KICAD5.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},    "Doc. number"});
+    SMALLPARTSLISTFIELDS_KICAD5.insert("opt1", TitelblockField{"Pos.",                QStringList{"p"},             "Pos.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD5.insert("opt2", TitelblockField{"Qty.",                QStringList{"q"},             "Qty.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD5.insert("opt3", TitelblockField{"Unit",                QStringList{"u"},             "Unit", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD5.insert("opt4", TitelblockField{"Titel",               QStringList{"titel/name"},    "Titel", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD5.insert("opt5", TitelblockField{"Doc. number",         QStringList{"doc number"},    "Doc. number", ProjectionMethodType::None});
 
     // KICAD 6
     //                           key                    label                                     Value                               name
-    SMALLPARTSLISTFIELDS_KICAD6.insert("opt1", TitelblockField{"Pos.",                       QStringList{"${p&{N}&{L}}"},                    "Pos."});
-    SMALLPARTSLISTFIELDS_KICAD6.insert("opt2", TitelblockField{"Qty.",                       QStringList{"${q&{N}&{L}}"},                    "Qty."});
-    SMALLPARTSLISTFIELDS_KICAD6.insert("opt3", TitelblockField{"Unit",                       QStringList{"${u&{N}&{L}}"},                    "Unit"});
-    SMALLPARTSLISTFIELDS_KICAD6.insert("opt4", TitelblockField{"Titel",                      QStringList{"${titel/name&{N}&{L}}"},           "Titel"});
-    SMALLPARTSLISTFIELDS_KICAD6.insert("opt5", TitelblockField{"Doc. number",                QStringList{"${docNumber&{N}&{L}}"},            "Doc. number"});
+    SMALLPARTSLISTFIELDS_KICAD6.insert("opt1", TitelblockField{"Pos.",                       QStringList{"${p&{N}&{L}}"},                    "Pos.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD6.insert("opt2", TitelblockField{"Qty.",                       QStringList{"${q&{N}&{L}}"},                    "Qty.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD6.insert("opt3", TitelblockField{"Unit",                       QStringList{"${u&{N}&{L}}"},                    "Unit", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD6.insert("opt4", TitelblockField{"Titel",                      QStringList{"${titel/name&{N}&{L}}"},           "Titel", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_KICAD6.insert("opt5", TitelblockField{"Doc. number",                QStringList{"${docNumber&{N}&{L}}"},            "Doc. number", ProjectionMethodType::None});
 
     // FREECAD
     //                           key                    label                              Value             name
-    SMALLPARTSLISTFIELDS_FREECAD.insert("opt1", TitelblockField{"Pos.",                QStringList{"."},            "Pos."});
-    SMALLPARTSLISTFIELDS_FREECAD.insert("opt2", TitelblockField{"Qty.",                QStringList{"."},            "Qty."});
-    SMALLPARTSLISTFIELDS_FREECAD.insert("opt3", TitelblockField{"Unit",                QStringList{"."},            "Unit"});
-    SMALLPARTSLISTFIELDS_FREECAD.insert("opt4", TitelblockField{"Titel",               QStringList{"."},            "Titel"});
-    SMALLPARTSLISTFIELDS_FREECAD.insert("opt5", TitelblockField{"Doc. number",         QStringList{"."},            "Doc. number"});
+    SMALLPARTSLISTFIELDS_FREECAD.insert("opt1", TitelblockField{"Pos.",                QStringList{"."},            "Pos.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_FREECAD.insert("opt2", TitelblockField{"Qty.",                QStringList{"."},            "Qty.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_FREECAD.insert("opt3", TitelblockField{"Unit",                QStringList{"."},            "Unit", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_FREECAD.insert("opt4", TitelblockField{"Titel",               QStringList{"."},            "Titel", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_FREECAD.insert("opt5", TitelblockField{"Doc. number",         QStringList{"."},            "Doc. number", ProjectionMethodType::None});
 
     // PDF
     //                           key                    label                              Value             name
-    SMALLPARTSLISTFIELDS_PDF.insert("opt1", TitelblockField{"Pos.",                QStringList{""},            "Pos."});
-    SMALLPARTSLISTFIELDS_PDF.insert("opt2", TitelblockField{"Qty.",                QStringList{""},            "Qty."});
-    SMALLPARTSLISTFIELDS_PDF.insert("opt3", TitelblockField{"Unit",                QStringList{""},            "Unit"});
-    SMALLPARTSLISTFIELDS_PDF.insert("opt4", TitelblockField{"Titel",               QStringList{""},            "Titel"});
-    SMALLPARTSLISTFIELDS_PDF.insert("opt5", TitelblockField{"Doc. number",         QStringList{""},            "Doc. number"});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt1", TitelblockField{"Pos.",                QStringList{""},            "Pos.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt2", TitelblockField{"Qty.",                QStringList{""},            "Qty.", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt3", TitelblockField{"Unit",                QStringList{""},            "Unit", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt4", TitelblockField{"Titel",               QStringList{""},            "Titel", ProjectionMethodType::None});
+    SMALLPARTSLISTFIELDS_PDF.insert("opt5", TitelblockField{"Doc. number",         QStringList{""},            "Doc. number", ProjectionMethodType::None});
 }
 
 void SmallPartsListOptions::loadButtonText()
