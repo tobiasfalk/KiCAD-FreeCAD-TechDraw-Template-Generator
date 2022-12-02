@@ -22,8 +22,8 @@ elseif(MSVC)
     message(STATUS ">>> MSVC RELEASE: /O2")
 endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Xml Svg REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Xml Svg REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
 
 add_subdirectory(Src/)
 add_subdirectory(Doc/)

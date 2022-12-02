@@ -6,6 +6,7 @@
 #include <QFrame>
 #include <QObject>
 #include <QPainter>
+#include <QSvgRenderer>
 
 #include "templategen.h"
 
@@ -15,6 +16,7 @@ protected:
     QString getFILEENDING() override;
     bool writeBase() override;
     QPainter *PAINTER;
+    std::shared_ptr<QSvgRenderer> RENDERER;
 
     ///
     /// \brief newPage creates a new emty Page

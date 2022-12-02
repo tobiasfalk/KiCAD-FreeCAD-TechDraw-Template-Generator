@@ -1,6 +1,8 @@
 #include "templategenpdf.h"
 #include <QPainterPath>
 #include <math.h>
+#include <QGraphicsSvgItem>
+
 
 QString TemplateGenPDF::getFILEENDING()
 {
@@ -146,8 +148,8 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
 void TemplateGenPDF::drawLogoTitelblockISO7200()
 {
     // Load SVG
-    /*RENDERER = new QSvgRenderer(LOGODIR);
-    QSize size = RENDERER->defaultSize();
+    RENDERER = std::shared_ptr<QSvgRenderer>(new QSvgRenderer(LOGODIR));
+    //QSize size = RENDERER->defaultSize();
 
     double widthMM = 24;
     double heightMM =  24 * (double(RENDERER->defaultSize().height())/RENDERER->defaultSize().width());
@@ -164,7 +166,37 @@ void TemplateGenPDF::drawLogoTitelblockISO7200()
 
     QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
     PAINTER->drawRect(rectangle);
-    RENDERER->render(PAINTER, rectangle);*/
+
+    QImage image(widthMM, heightMM, QImage::Format_ARGB32);
+    image.fill(0x00FFFFFF);  // partly transparent background
+
+    // Get QPainter that paints to the image
+    QPainter painter(&image);
+    RENDERER->render(&painter);
+
+    PAINTER->drawImage(30,30, image);
+
+
+    // Load SVG
+//    RENDERER = std::shared_ptr<QSvgRenderer>(new QSvgRenderer(LOGODIR));
+//    QSize size = RENDERER->defaultSize();
+
+//    double widthMM = 24;
+//    double heightMM =  24 * (double(RENDERER->defaultSize().height())/RENDERER->defaultSize().width());
+//    if(heightMM > 24)
+//    {
+//        heightMM = 30;
+//        widthMM = 30 * (double(RENDERER->defaultSize().width())/RENDERER->defaultSize().height());
+//    }
+//    QPen pen(Qt::black);
+//    pen.setStyle(Qt::SolidLine);
+//    pen.setWidthF(0.1);
+//    PAINTER->setPen(pen);
+//    PAINTER->setBrush(Qt::NoBrush);
+
+//    QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
+//    PAINTER->drawRect(rectangle);
+    //RENDERER->render(PAINTER, rectangle);
 
 
 

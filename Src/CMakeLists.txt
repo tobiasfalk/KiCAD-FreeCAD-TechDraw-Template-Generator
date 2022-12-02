@@ -37,6 +37,7 @@ target_link_libraries(KiCAD-FreeCAD-TechDraw-Template-Generator PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Xml
     Qt${QT_VERSION_MAJOR}::Svg
+    Qt${QT_VERSION_MAJOR}::SvgWidgets
     TemplateGen
     Templateoptions
     KiCAD_Symbol_scaler

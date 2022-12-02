@@ -23,6 +23,7 @@ target_link_libraries(TemplateGen PRIVATE
    Qt${QT_VERSION_MAJOR}::Widgets
    Qt${QT_VERSION_MAJOR}::Xml
    Qt${QT_VERSION_MAJOR}::Svg
+   Qt${QT_VERSION_MAJOR}::SvgWidgets
    Templateoptions
 )
 
