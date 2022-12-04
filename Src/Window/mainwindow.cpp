@@ -461,6 +461,7 @@ void MainWindow::on_SheetSizeComboBox_currentTextChanged(const QString &arg1)
     PageSize sheetSize = getPageSize(arg1);
     ui->sheetHeightDoubleSpinBox->setValue(sheetSize.height);
     ui->sheetWidthDoubleSpinBox->setValue(sheetSize.width);
+    ui->NameLineEdit->setText(sheetSize.sizeString);
 
     if(arg1 == "User defined")
     {

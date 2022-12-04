@@ -46,7 +46,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 ![Small Parts list image](Images/SmallPartsList_Demo.svg)
 
 
-* Logo inclusion in to the Legal owner field(not in PDF and the Preview)
+* Logo inclusion in to the Legal owner field
 
 ![Logo image](Images/Logo_Demo.svg)
 
@@ -71,10 +71,16 @@ all the lines below that are the Parts that are to be drawn
 1. Here you can select to draw a description field with a number of specified lines
 1. Revision History, hre you can select the Rev. History and select how many revisions you have, you can also change the field text with the button on the right
 1. Here you can select to draw folding lines in along the border
-1. Full Sheet Part list, this Aktivatem the Full sheet part list and changes the field text, in 14a you can set the number of lines on field should have
+1. Full Sheet Part list, this Aktivatem the Full sheet part list and changes the field text,
+
+    in 14a you can set the number of lines on field should have
+    
+    in 14b you can select a CSV file, select its style and put the text of it in the BOM, the "Standard" style can be found in the examples(Examples/Std_BOM_Example_1.csv), for the KiCAD Style you need to export your BOM with the "bom_csv_grouped_by_value_with_fp" script
 1. Small Parts list, same as Full Sheet Parts list with the extra option of 15b that sets the number of parts
 1. Generate Button, this opens a file dialog where you select the saving destination of the multiple templates
 1. KiCAD scaler, this is a small function which helps to scale a KiCAD Symbol Library
+1. Is for manually updating the preview and is in normal use not needed, you could also say it is a relict of the development of the preview
+1. Is the Preview, it updates every time you change a property of the sheet
 
 ## Styles
 - ISO5457 ISO700
@@ -131,7 +137,6 @@ Once the logo gets reaches a height of 30mm the width is reduced (the ratio will
 
 ## Icon Source
 The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenloses-icon/layout_7973492
-
 
 ## To do
 
