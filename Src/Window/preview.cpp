@@ -183,64 +183,30 @@ void Preview::drawLogoTitelblockISO7200()
 {
     // Load SVG
     RENDERER = std::shared_ptr<QSvgRenderer>(new QSvgRenderer(LOGODIR));
-    //QSize size = RENDERER->defaultSize();
+    QSize size = RENDERER->defaultSize();
 
-    double widthMM = 24;
-    double heightMM =  24 * (double(RENDERER->defaultSize().height())/RENDERER->defaultSize().width());
-    if(heightMM > 24)
+    // Prepare a QImage with desired characteritisc
+    int widthPx = 2268; // 24mm bei 2400dpi(KiCAD scale 0.125)
+    double widthMM = widthPx / 94.4882;// 2400dpi to p/mm
+    int heightPx = int(widthPx * (double(size.height())/size.width()));
+    double heightMM = heightPx / 94.4882;// 2400dpi to p/mm
+    if(heightPx > 2268)
     {
-        heightMM = 30;
-        widthMM = 30 * (double(RENDERER->defaultSize().width())/RENDERER->defaultSize().height());
+        heightPx = 2835;// 30mm bei 2400dpi(KiCAD scale 0.25)
+        heightMM = heightPx / 94.4882;// 2400dpi to p/mm
+        widthPx = int(heightPx * (double(size.width())/size.height()));
+        widthMM = widthPx / 94.4882;// 2400dpi to p/mm
     }
-//    QPen pen(Qt::black);
-//    pen.setStyle(Qt::SolidLine);
-//    pen.setWidthF(0.1);
-//    PAINTER->setPen(pen);
-//    PAINTER->setBrush(Qt::NoBrush);
 
-//    QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
-//    PAINTER->drawRect(rectangle);
-
-    QImage image(widthMM, heightMM, QImage::Format_ARGB32);
-    image.setDotsPerMeterX(SCALE/1000);
-    image.setDotsPerMeterY(SCALE/1000);
+    QImage image(widthPx, heightPx, QImage::Format_ARGB32);
     image.fill(0x00FFFFFF);  // partly transparent background
 
     // Get QPainter that paints to the image
     QPainter painter(&image);
     RENDERER->render(&painter);
 
-    PAINTER->drawImage(30,30, image);
-
-
-//    QSvgRenderer RENDERER(LOGODIR);
-//    QSize size = RENDERER.defaultSize();
-
-//    double widthMM = 24;
-//    double heightMM =  24 * (double(RENDERER.defaultSize().height())/RENDERER.defaultSize().width());
-//    if(heightMM > 24)
-//    {
-//        heightMM = 30;
-//        widthMM = 30 * (double(RENDERER.defaultSize().width())/RENDERER.defaultSize().height());
-//    }
-//    QPen pen(Qt::black);
-//    pen.setStyle(Qt::SolidLine);
-//    pen.setWidthF(0.1);
-//    PAINTER->setPen(pen);
-//    PAINTER->setBrush(Qt::NoBrush);
-
-//    QRectF rectangle(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11), QPointF(PAGESIZE.width - 111, PAGESIZE.height - 11 - heightMM));
-//    PAINTER->drawRect(rectangle);
-//    RENDERER.render(PAINTER, rectangle);
-
-
-
-//    QImage image(widthMM, heightMM, QImage::Format_ARGB32);
-//    image.fill(0x00FFFFFF);  // partly transparent background
-
-//    // Get QPainter that paints to the image
-//    QPainter painter(&image);
-//    RENDERER.render(&painter);
-
-//    PAINTER->drawImage(30,30, image);
+    QRectF target(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11 - heightMM), QSizeF(widthMM, heightMM));
+    QRectF  source(QPoint(0, 0), QPoint(widthPx, heightPx));
+    // Draw the Logo
+    PAINTER->drawImage(target, image);
 }

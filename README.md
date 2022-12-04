@@ -136,4 +136,4 @@ The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenlose
 ## To do
 
 * Complete Doxygen Documentation
-* PDF Logo and Text problems
+* PDF Text problems
