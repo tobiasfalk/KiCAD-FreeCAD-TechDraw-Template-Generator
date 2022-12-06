@@ -36,31 +36,65 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>./Icon/icon.png</normaloff>./Icon/icon.png</iconset>
+    <normaloff>Icon/icon.png</normaloff>Icon/icon.png</iconset>
   </property>
   <property name="locale">
    <locale language="German" country="Germany"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="14" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QPushButton" name="GeneratePushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>450</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>822</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Noto Sans [GOOG]</family>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="16" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_13">
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="text">
-         <string>KiCAD scale symbols</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="previewPushButton">
-        <property name="text">
-         <string>Update Preview</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_13">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1" rowspan="17">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer_15">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -74,41 +108,131 @@
       </item>
      </layout>
     </item>
-    <item row="2" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <item row="7" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <widget class="QLabel" name="label_7">
+       <widget class="QCheckBox" name="foldLinesCheckBox">
         <property name="text">
-         <string>Style:</string>
+         <string>Folding lines:</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="SheetStyleComboBox"/>
+       <widget class="QComboBox" name="foldingLinesComboBox"/>
       </item>
       <item>
-       <widget class="QPushButton" name="sheetTitelblockFieldsPushButton">
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0">
+     <widget class="QComboBox" name="SheetSizeComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>822</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="RevHistoryCheckBox">
         <property name="text">
-         <string>Edit Titelblock Fields</string>
+         <string>Revision History(in the upper right corner)</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="logoPushButton">
-        <property name="text">
-         <string>Select Logo(SVG)</string>
+       <widget class="QSpinBox" name="numRevSpinBox">
+        <property name="minimum">
+         <number>1</number>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="logoCheckBox">
+       <widget class="QComboBox" name="revHistoryStyleComboBox"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="revHistoryStylePushButton">
         <property name="text">
-         <string>Include Logo</string>
+         <string>Edit Rev History Fields</string>
         </property>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_8">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="10" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="selectCSVBOMpushButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Select BOM(CSV)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="insertBomCheckBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Insert BOM</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="csvBOMComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -231,59 +355,41 @@
       </item>
      </layout>
     </item>
-    <item row="15" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_11">
       <item>
-       <widget class="QPushButton" name="GeneratePushButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>450</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>822</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Noto Sans [GOOG]</family>
-          <pointsize>28</pointsize>
-         </font>
-        </property>
+       <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Generate</string>
+         <string>Style:</string>
         </property>
        </widget>
       </item>
-     </layout>
-    </item>
-    <item row="6" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_16">
       <item>
-       <widget class="QCheckBox" name="DescriptionCheckBox">
+       <widget class="QComboBox" name="SheetStyleComboBox"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sheetTitelblockFieldsPushButton">
         <property name="text">
-         <string>Description field in header with num. of lines:</string>
+         <string>Edit Titelblock Fields</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="DescriptionSpinBox">
-        <property name="minimum">
-         <number>1</number>
+       <widget class="QPushButton" name="logoPushButton">
+        <property name="text">
+         <string>Select Logo(SVG)</string>
         </property>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_14">
+       <widget class="QCheckBox" name="logoCheckBox">
+        <property name="text">
+         <string>Include Logo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_8">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -297,126 +403,7 @@
       </item>
      </layout>
     </item>
-    <item row="14" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_15">
-      <item>
-       <widget class="QLabel" name="SmallPartsListNumPartsLabel">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>     Num. of parts:  </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="SmallPartsListNumPartsSpinBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="minimum">
-         <number>1</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_11">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="12" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <widget class="QCheckBox" name="SmallPartsListCheckBox">
-        <property name="text">
-         <string>Small parts list (directly over the header)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Edit Small Parts List Fields</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="11" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_10">
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="selectCSVBOMpushButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Select BOM(CSV)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="insertBomCheckBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Insert BOM</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="csvBOMComboBox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="9" column="0">
+    <item row="8" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
        <widget class="QCheckBox" name="FullPartsListCheckBox">
@@ -450,7 +437,7 @@
       </item>
      </layout>
     </item>
-    <item row="13" column="0">
+    <item row="12" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_14">
       <item>
        <widget class="QLabel" name="SmallPartsListNumLinesPerFieldLabel">
@@ -487,49 +474,24 @@
       </item>
      </layout>
     </item>
-    <item row="17" column="0">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="3" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
+    <item row="11" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QLabel" name="lable">
+       <widget class="QCheckBox" name="SmallPartsListCheckBox">
         <property name="text">
-         <string>Color: </string>
+         <string>Small parts list (directly over the header)</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="ColorLineEdit">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>27</height>
-         </size>
-        </property>
+       <widget class="QPushButton" name="pushButton">
         <property name="text">
-         <string>#000000</string>
+         <string>Edit Small Parts List Fields</string>
         </property>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_7">
+       <spacer name="horizontalSpacer_6">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -543,7 +505,117 @@
       </item>
      </layout>
     </item>
-    <item row="10" column="0">
+    <item row="15" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_13">
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="text">
+         <string>KiCAD scale symbols</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="previewPushButton">
+        <property name="text">
+         <string>Update Preview</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_13">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QSpinBox" name="OptLinesSpinBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="maximum">
+         <number>3</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>number of optional lines in the header</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <item>
+       <widget class="QCheckBox" name="trimmingMarksCheckBox">
+        <property name="text">
+         <string>Trimming marks (small black corners)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="5" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_16">
+      <item>
+       <widget class="QCheckBox" name="DescriptionCheckBox">
+        <property name="text">
+         <string>Description field in header with num. of lines:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="DescriptionSpinBox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_14">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="9" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_9">
       <item>
        <widget class="QLabel" name="FullPartsListNumLinesPerFieldLabel">
@@ -580,145 +652,30 @@
       </item>
      </layout>
     </item>
-    <item row="4" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_12">
+    <item row="13" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_15">
       <item>
-       <widget class="QCheckBox" name="trimmingMarksCheckBox">
+       <widget class="QLabel" name="SmallPartsListNumPartsLabel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Trimming marks (small black corners)</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="8" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
-      <item>
-       <widget class="QCheckBox" name="foldLinesCheckBox">
-        <property name="text">
-         <string>Folding lines:</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+         <string>     Num. of parts:  </string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="foldingLinesComboBox"/>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+       <widget class="QSpinBox" name="SmallPartsListNumPartsSpinBox">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="7" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QCheckBox" name="RevHistoryCheckBox">
-        <property name="text">
-         <string>Revision History(in the upper right corner)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="numRevSpinBox">
         <property name="minimum">
          <number>1</number>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="revHistoryStyleComboBox"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="revHistoryStylePushButton">
-        <property name="text">
-         <string>Edit Rev History Fields</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="0">
-     <widget class="QComboBox" name="SheetSizeComboBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>822</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QSpinBox" name="OptLinesSpinBox">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="maximum">
-         <number>3</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>number of optional lines in the header</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="1" rowspan="18">
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <spacer name="horizontalSpacer_15">
+       <spacer name="horizontalSpacer_11">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -740,7 +697,7 @@
      <x>0</x>
      <y>0</y>
      <width>1500</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
