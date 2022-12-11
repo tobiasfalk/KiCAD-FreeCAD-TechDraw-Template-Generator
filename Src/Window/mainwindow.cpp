@@ -137,6 +137,8 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon("./lib/icon.png"));
+
     initPageSizes();
     initPageStyles();
     initRevHistoryStyles();

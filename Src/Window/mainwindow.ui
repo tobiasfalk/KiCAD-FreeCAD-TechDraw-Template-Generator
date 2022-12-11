@@ -36,7 +36,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>Icon/icon.png</normaloff>Icon/icon.png</iconset>
+    <normaloff>lib/icon.png</normaloff>lib/icon.png</iconset>
   </property>
   <property name="locale">
    <locale language="German" country="Germany"/>
@@ -697,7 +697,7 @@
      <x>0</x>
      <y>0</y>
      <width>1500</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
