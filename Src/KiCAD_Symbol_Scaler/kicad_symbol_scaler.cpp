@@ -44,6 +44,7 @@ void KiCAD_Symbol_Scaler::setLibName(const std::string &newLibName)
 
 KiCAD_Symbol_Scaler::KiCAD_Symbol_Scaler()
 {
+    Scale = 1;
 }
 
 void KiCAD_Symbol_Scaler::scale()

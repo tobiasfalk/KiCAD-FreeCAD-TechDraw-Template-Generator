@@ -104,49 +104,49 @@ private slots:
 private:
     Ui::MainWindow *ui;
     ///
-    /// \brief PAGESIZES is a list of all the pagesize(sheetsizes)
+    /// \brief SHEETSIZES is a list of all the sheetsize(sheetsizes)
     ///
     // Sizes in mm                                            Designation               width  height
-    QList<PageSize> PAGESIZES = QList<PageSize>   { PageSize{"User defined",            400,   250},
-                                                    PageSize{"4A0",                     2378,  1682},
-                                                    PageSize{"2A0",                     1682,  1189},
-                                                    PageSize{"A0",                      1189,  841},
-                                                    PageSize{"A1",                      841,   594},
-                                                    PageSize{"A2",                      594,   420},
-                                                    PageSize{"A3",                      420,   297},
-                                                    PageSize{"A4L",                     297,   210},
-                                                    PageSize{"A4P",                     210,   297},
-                                                    PageSize{"B0",                      1414,  1000},
-                                                    PageSize{"B1",                      1000,  707},
-                                                    PageSize{"B2",                      707,   500},
-                                                    PageSize{"B3",                      500,   353},
-                                                    PageSize{"B4",                      353,   250},
-                                                    PageSize{"B5",                      250,   176},
-                                                    PageSize{"ANSI Y14.1 AL (Letter)",  279,   216},
-                                                    PageSize{"ANSI Y14.1 AP (Letter)",  216,   279},
-                                                    PageSize{"ANSI Y14.1 B",            432,   279},
-                                                    PageSize{"ANSI Y14.1 C",            559,   432},
-                                                    PageSize{"ANSI Y14.1 D",            864,   559},
-                                                    PageSize{"ANSI Y14.1 E",            1118,  864},
-                                                    PageSize{"ANSI Y14.1 F",            1016,  711},
-                                                    PageSize{"Legal",                   356,   216},
-                                                    PageSize{"Tabloid (Ledger)",        432,   279},
-                                                    PageSize{"Arch AL",                 305,   229},
-                                                    PageSize{"Arch AP",                 229,   305},
-                                                    PageSize{"Arch B",                  457,   305},
-                                                    PageSize{"Arch C",                  610,   457},
-                                                    PageSize{"Arch D",                  914,   610},
-                                                    PageSize{"Arch E",                  1219,  914},
-                                                    PageSize{"Arch E1",                 1067,  726},
-                                                    PageSize{"Arch E2",                 965,   660},
-                                                    PageSize{"Arch E3",                 991,   686}};
+    QList<SheetSize> SHEETSIZES = QList<SheetSize>   { SheetSize{"User defined",            400,   250},
+                                                    SheetSize{"4A0",                     2378,  1682},
+                                                    SheetSize{"2A0",                     1682,  1189},
+                                                    SheetSize{"A0",                      1189,  841},
+                                                    SheetSize{"A1",                      841,   594},
+                                                    SheetSize{"A2",                      594,   420},
+                                                    SheetSize{"A3",                      420,   297},
+                                                    SheetSize{"A4L",                     297,   210},
+                                                    SheetSize{"A4P",                     210,   297},
+                                                    SheetSize{"B0",                      1414,  1000},
+                                                    SheetSize{"B1",                      1000,  707},
+                                                    SheetSize{"B2",                      707,   500},
+                                                    SheetSize{"B3",                      500,   353},
+                                                    SheetSize{"B4",                      353,   250},
+                                                    SheetSize{"B5",                      250,   176},
+                                                    SheetSize{"ANSI Y14.1 AL (Letter)",  279,   216},
+                                                    SheetSize{"ANSI Y14.1 AP (Letter)",  216,   279},
+                                                    SheetSize{"ANSI Y14.1 B",            432,   279},
+                                                    SheetSize{"ANSI Y14.1 C",            559,   432},
+                                                    SheetSize{"ANSI Y14.1 D",            864,   559},
+                                                    SheetSize{"ANSI Y14.1 E",            1118,  864},
+                                                    SheetSize{"ANSI Y14.1 F",            1016,  711},
+                                                    SheetSize{"Legal",                   356,   216},
+                                                    SheetSize{"Tabloid (Ledger)",        432,   279},
+                                                    SheetSize{"Arch AL",                 305,   229},
+                                                    SheetSize{"Arch AP",                 229,   305},
+                                                    SheetSize{"Arch B",                  457,   305},
+                                                    SheetSize{"Arch C",                  610,   457},
+                                                    SheetSize{"Arch D",                  914,   610},
+                                                    SheetSize{"Arch E",                  1219,  914},
+                                                    SheetSize{"Arch E1",                 1067,  726},
+                                                    SheetSize{"Arch E2",                 965,   660},
+                                                    SheetSize{"Arch E3",                 991,   686}};
 
     ///
-    /// \brief FOLDLINESTARGET is a list of pagesizes(sheetsizes) to withch the foldlines will be created
+    /// \brief FOLDLINESTARGET is a list of sheetsizes(sheetsizes) to withch the foldlines will be created
     ///
     // Sizes in mm                                                  Designation               width  height
-    QList<PageSize> FOLDLINESTARGET = QList<PageSize>   { PageSize{"A4P with border",         210,   297},
-                                                          PageSize{"200mmX290mm with border",             200,     290},};
+    QList<SheetSize> FOLDLINESTARGET = QList<SheetSize>   { SheetSize{"A4P with border",         210,   297},
+                                                          SheetSize{"200mmX290mm with border",             200,     290},};
 
     std::unique_ptr<ISO7200Options> ISO7200OPTIONS =  std::unique_ptr<ISO7200Options>(new ISO7200Options(this));
     std::unique_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::unique_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));
@@ -156,15 +156,15 @@ private:
     QString LOGODIR = "&";
     QString BOMDIR = "&";
 
-    void initPageSizes();
-    void initPageStyles();
+    void initSheetSizes();
+    void initSheetStyles();
     void initRevHistoryStyles();
     void initFoldLinesTarget();
     void initBOMStyles();
 
-    PageStyle getPageStyle();
-    PageSize getPageSize(QString sizeString, double width = 0, double height = 0);
-    PageSize getFoldLinesTarget(QString sizeString);
+    SheetStyle getSheetStyle();
+    SheetSize getSheetSize(QString sizeString, double width = 0, double height = 0);
+    SheetSize getFoldLinesTarget(QString sizeString);
     RevHistoryStyle getRevHistoryStyle();
     QString getRevHistoryStyleString(RevHistoryStyle style);
     BOMStyles getBOMStyle();

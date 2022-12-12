@@ -14,8 +14,8 @@ class TemplateGenEagle : public TemplateGen
 {
     Q_OBJECT
 protected:
-    QString getFILEENDING();
-    bool writeBase();
+    QString getFILEENDING() override;
+    bool writeBase() override;
     std::shared_ptr<QFile> FILE;
     std::shared_ptr<QTextStream> XMLTEXTSTREM;
     QDomDocument DOCUMENT;
@@ -37,17 +37,17 @@ protected:
     QList<QString> ONAMELIST;
 
     ///
-    /// \brief newPage creates a new emty Page
+    /// \brief newSheet creates a new emty Sheet
     ///
-    bool newPage();
+    bool newSheet() override;
 
-    void drawLine(Coordinate start, Coordinate end, double lineWidth);
-    void drawRect(Coordinate start, Coordinate end, double lineWidth);
-    void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill = true); // Always filled
-    void drawCircle(Coordinate center, double radius, double lineWidth, double circleArc = 5);
-    qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont");
+    void drawLine(Coordinate start, Coordinate end, double lineWidth) override;
+    void drawRect(Coordinate start, Coordinate end, double lineWidth) override;
+    void drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill = true) override; // Always filled
+    void drawCircle(Coordinate center, double radius, double lineWidth, double circleArc = 5) override;
+    qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont") override;
 
-    void drawLogoTitelblockISO7200();
+    void drawLogoTitelblockISO7200() override;
 public:
     explicit TemplateGenEagle(QObject *parent = nullptr);
     ~TemplateGenEagle();

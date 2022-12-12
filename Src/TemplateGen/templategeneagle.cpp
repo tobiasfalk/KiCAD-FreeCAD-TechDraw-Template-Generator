@@ -164,7 +164,7 @@ bool TemplateGenEagle::writeBase()
     }
 }
 
-bool TemplateGenEagle::newPage()
+bool TemplateGenEagle::newSheet()
 {
     return false;
 }
@@ -175,18 +175,18 @@ void TemplateGenEagle::drawLine(Coordinate start, Coordinate end, double lineWid
     end = Coordinate{end.X - 5, end.Y + 5};
     QDomElement wireSym = DOCUMENT.createElement("wire");
     wireSym.setAttribute("x1", start.X);
-    wireSym.setAttribute("y1", PAGESIZE.height - start.Y);
+    wireSym.setAttribute("y1", SHEETSIZE.height - start.Y);
     wireSym.setAttribute("x2", end.X);
-    wireSym.setAttribute("y2", PAGESIZE.height - end.Y);
+    wireSym.setAttribute("y2", SHEETSIZE.height - end.Y);
     wireSym.setAttribute("width", lineWidth);
     wireSym.setAttribute("layer", "94");
     CSYMBOL.appendChild(wireSym);
 
     QDomElement wirePack = DOCUMENT.createElement("wire");
     wirePack.setAttribute("x1", start.X);
-    wirePack.setAttribute("y1", PAGESIZE.height - start.Y);
+    wirePack.setAttribute("y1", SHEETSIZE.height - start.Y);
     wirePack.setAttribute("x2", end.X);
-    wirePack.setAttribute("y2", PAGESIZE.height - end.Y);
+    wirePack.setAttribute("y2", SHEETSIZE.height - end.Y);
     wirePack.setAttribute("width", lineWidth);
     wirePack.setAttribute("layer", "48");
     CPACKAGE.appendChild(wirePack);
@@ -198,72 +198,72 @@ void TemplateGenEagle::drawRect(Coordinate start, Coordinate end, double lineWid
     end = Coordinate{end.X - 5, end.Y + 5};
     QDomElement wireSymA = DOCUMENT.createElement("wire");
     wireSymA.setAttribute("x1", start.X);
-    wireSymA.setAttribute("y1", PAGESIZE.height - start.Y);
+    wireSymA.setAttribute("y1", SHEETSIZE.height - start.Y);
     wireSymA.setAttribute("x2", start.X);
-    wireSymA.setAttribute("y2", PAGESIZE.height - end.Y);
+    wireSymA.setAttribute("y2", SHEETSIZE.height - end.Y);
     wireSymA.setAttribute("width", lineWidth);
     wireSymA.setAttribute("layer", "94");
     CSYMBOL.appendChild(wireSymA);
 
     QDomElement wireSymB = DOCUMENT.createElement("wire");
     wireSymB.setAttribute("x1", start.X);
-    wireSymB.setAttribute("y1", PAGESIZE.height - end.Y);
+    wireSymB.setAttribute("y1", SHEETSIZE.height - end.Y);
     wireSymB.setAttribute("x2", end.X);
-    wireSymB.setAttribute("y2", PAGESIZE.height - end.Y);
+    wireSymB.setAttribute("y2", SHEETSIZE.height - end.Y);
     wireSymB.setAttribute("width", lineWidth);
     wireSymB.setAttribute("layer", "94");
     CSYMBOL.appendChild(wireSymB);
 
     QDomElement wireSymC = DOCUMENT.createElement("wire");
     wireSymC.setAttribute("x1", end.X);
-    wireSymC.setAttribute("y1", PAGESIZE.height - end.Y);
+    wireSymC.setAttribute("y1", SHEETSIZE.height - end.Y);
     wireSymC.setAttribute("x2", end.X);
-    wireSymC.setAttribute("y2", PAGESIZE.height - start.Y);
+    wireSymC.setAttribute("y2", SHEETSIZE.height - start.Y);
     wireSymC.setAttribute("width", lineWidth);
     wireSymC.setAttribute("layer", "94");
     CSYMBOL.appendChild(wireSymC);
 
     QDomElement wireSymD = DOCUMENT.createElement("wire");
     wireSymD.setAttribute("x1", end.X);
-    wireSymD.setAttribute("y1", PAGESIZE.height - start.Y);
+    wireSymD.setAttribute("y1", SHEETSIZE.height - start.Y);
     wireSymD.setAttribute("x2", start.X);
-    wireSymD.setAttribute("y2", PAGESIZE.height - start.Y);
+    wireSymD.setAttribute("y2", SHEETSIZE.height - start.Y);
     wireSymD.setAttribute("width", lineWidth);
     wireSymD.setAttribute("layer", "94");
     CSYMBOL.appendChild(wireSymD);
 
     QDomElement wirePackA = DOCUMENT.createElement("wire");
     wirePackA.setAttribute("x1", start.X);
-    wirePackA.setAttribute("y1", PAGESIZE.height - start.Y);
+    wirePackA.setAttribute("y1", SHEETSIZE.height - start.Y);
     wirePackA.setAttribute("x2", start.X);
-    wirePackA.setAttribute("y2", PAGESIZE.height - end.Y);
+    wirePackA.setAttribute("y2", SHEETSIZE.height - end.Y);
     wirePackA.setAttribute("width", lineWidth);
     wirePackA.setAttribute("layer", "48");
     CPACKAGE.appendChild(wirePackA);
 
     QDomElement wirePackB = DOCUMENT.createElement("wire");
     wirePackB.setAttribute("x1", start.X);
-    wirePackB.setAttribute("y1", PAGESIZE.height - end.Y);
+    wirePackB.setAttribute("y1", SHEETSIZE.height - end.Y);
     wirePackB.setAttribute("x2", end.X);
-    wirePackB.setAttribute("y2", PAGESIZE.height - end.Y);
+    wirePackB.setAttribute("y2", SHEETSIZE.height - end.Y);
     wirePackB.setAttribute("width", lineWidth);
     wirePackB.setAttribute("layer", "48");
     CPACKAGE.appendChild(wirePackB);
 
     QDomElement wirePackC = DOCUMENT.createElement("wire");
     wirePackC.setAttribute("x1", end.X);
-    wirePackC.setAttribute("y1", PAGESIZE.height - end.Y);
+    wirePackC.setAttribute("y1", SHEETSIZE.height - end.Y);
     wirePackC.setAttribute("x2", end.X);
-    wirePackC.setAttribute("y2", PAGESIZE.height - start.Y);
+    wirePackC.setAttribute("y2", SHEETSIZE.height - start.Y);
     wirePackC.setAttribute("width", lineWidth);
     wirePackC.setAttribute("layer", "48");
     CPACKAGE.appendChild(wirePackC);
 
     QDomElement wirePackD = DOCUMENT.createElement("wire");
     wirePackD.setAttribute("x1", end.X);
-    wirePackD.setAttribute("y1", PAGESIZE.height - start.Y);
+    wirePackD.setAttribute("y1", SHEETSIZE.height - start.Y);
     wirePackD.setAttribute("x2", start.X);
-    wirePackD.setAttribute("y2", PAGESIZE.height - start.Y);
+    wirePackD.setAttribute("y2", SHEETSIZE.height - start.Y);
     wirePackD.setAttribute("width", lineWidth);
     wirePackD.setAttribute("layer", "48");
     CPACKAGE.appendChild(wirePackD);
@@ -305,7 +305,7 @@ qint64 TemplateGenEagle::drawText(Coordinate position, QString text, QString nam
     position = Coordinate{position.X - 5, position.Y + 5};
     QDomElement textSym = DOCUMENT.createElement("text");
     textSym.setAttribute("x", position.X);
-    textSym.setAttribute("y", PAGESIZE.height - position.Y);
+    textSym.setAttribute("y", SHEETSIZE.height - position.Y);
     textSym.setAttribute("size", textSize);
     textSym.setAttribute("layer", "94");
     textSym.appendChild(DOCUMENT.createTextNode(text));
@@ -338,7 +338,7 @@ qint64 TemplateGenEagle::drawText(Coordinate position, QString text, QString nam
 
     QDomElement textPack = DOCUMENT.createElement("text");
     textPack.setAttribute("x", position.X);
-    textPack.setAttribute("y", PAGESIZE.height - position.Y);
+    textPack.setAttribute("y", SHEETSIZE.height - position.Y);
     textPack.setAttribute("size", textSize);
     textPack.setAttribute("layer", "48");
     textPack.appendChild(DOCUMENT.createTextNode(text));

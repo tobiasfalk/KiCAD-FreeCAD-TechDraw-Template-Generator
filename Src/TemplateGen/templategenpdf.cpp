@@ -13,14 +13,14 @@ bool TemplateGenPDF::writeBase()
 {
     PDFWRITER = std::shared_ptr<QPdfWriter>(new QPdfWriter(createFileName()));
     PDFWRITER->setPageMargins(QMarginsF(0, 0, 0, 0));
-    PDFWRITER->setPageSize(QPageSize(QSizeF(PAGESIZE.width, PAGESIZE.height), QPageSize::Millimeter));
+    PDFWRITER->setPageSize(QPageSize(QSizeF(SHEETSIZE.width, SHEETSIZE.height), QPageSize::Millimeter));
     PDFWRITER->setResolution(480000);
     PAINTER = std::shared_ptr<QPainter>(new QPainter(PDFWRITER.get()));
     PAINTER->setTransform(QTransform().scale(18897.6378, 18897.6378));// 18,897.6378 p/mm = 480,000 dpi
     return true;
 }
 
-bool TemplateGenPDF::newPage()
+bool TemplateGenPDF::newSheet()
 {
     PDFWRITER->newPage();
     NOINIT = true;
@@ -171,7 +171,7 @@ void TemplateGenPDF::drawLogoTitelblockISO7200()
     QPainter painter(&image);
     RENDERER->render(&painter);
 
-    QRectF target(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11 - heightMM), QSizeF(widthMM, heightMM));
+    QRectF target(QPointF(SHEETSIZE.width - 111 - widthMM, SHEETSIZE.height - 11 - heightMM), QSizeF(widthMM, heightMM));
     QRectF  source(QPoint(0, 0), QPoint(widthPx, heightPx));
     // Draw the Logo
     PAINTER->drawImage(target, image);

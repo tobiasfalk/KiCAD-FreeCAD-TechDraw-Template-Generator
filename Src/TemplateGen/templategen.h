@@ -7,30 +7,78 @@
 
 #include "templateoptions.h"
 
+///
+/// \brief The TemplateGen class is the base class for all the TemplateGenXXXX classes
+///
 class TemplateGen : public QObject
 {
     Q_OBJECT
 protected:
+    ///
+    /// \brief finisheD is a struct that is there to check if all the Variables are set.
+    ///
     FinisheD finisheD;
 
+    ///
+    /// \brief DIR is the path where the Template is saved to
+    ///
     QString DIR;
-    virtual QString getFILEENDING() = 0;
 
-    virtual bool writeBase() = 0;
-
-    PageSize PAGESIZE;
+    ///
+    /// \brief SHEETSIZE contains the size of the sheet and the string/name of this size
+    ///
+    SheetSize SHEETSIZE;
+    ///
+    /// \brief SHEETNAME contains the name of the SHEET
+    ///
     QString SHEETNAME;
-    PageStyle PAGESTYLE;
+    ///
+    /// \brief SHEETSTYLE contains the Syle of the Sheet
+    ///
+    SheetStyle SHEETSTYLE;
+    ///
+    /// \brief TRIMMINGMARKS says if the trimmingmarks, the black corners, should be drawn or not
+    ///
     bool TRIMMINGMARKS;
+    ///
+    /// \brief NUMOPTLINES contains the number of optional lines that the titleblock should have, the maximum is 3 and the minimum is 0
+    ///
     qint64 NUMOPTLINES;
+    ///
+    /// \brief TITELBLOCKFIELDS is a map that contains all the
+    ///
     QMap<QString, TitelblockField> TITELBLOCKFIELDS;
+    ///
+    /// \brief REVHISTORY says if the revision history, in the upper right corner, should be drawn or not
+    ///
     bool REVHISTORY;
+    ///
+    /// \brief REVHISTORYSTYLE defines the style of the Revison Histrory
+    ///
     RevHistoryStyle REVHISTORYSTYLE;
+    ///
+    /// \brief NUMREVHISTORY defines how many lines the revison history should have(must be biger den -1)
+    ///
     qint64 NUMREVHISTORY;
+    ///
+    /// \brief REVHISTORYFIELDS are the revhistory fields and the options
+    ///
     QMap<QString, TitelblockField> REVHISTORYFIELDS;
+    ///
+    /// \brief FOLDLINES says if the Foldlines should be drawn or not
+    ///
     bool FOLDLINES;
-    PageSize FOLDLINETARGET;
+    ///
+    /// \brief FOLDLINETARGET is the sheetsize to where it should be folded down to
+    ///
+    SheetSize FOLDLINETARGET;
+    ///
+    /// \brief SMALLPARTSLIST says if a small parts list shoud be drawn
+    ///
     bool SMALLPARTSLIST;
+    ///
+    /// \brief NUMPARTSSMALLPARTSLIST
+    ///
     quint64 NUMPARTSSMALLPARTSLIST;
     quint64 NUMLINESMALLPARTSLIST;
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS;
@@ -62,7 +110,11 @@ protected:
 
     bool init();
 
+    virtual QString getFILEENDING() = 0;
+
     QString createFileName();
+
+    virtual bool writeBase() = 0;
 
     void drawVerFoldLine(double x, double depth);
     void drawHorFoldLine(double y, double depth);
@@ -84,14 +136,14 @@ protected:
     void drawFullSheetPartsListCSVStd();
 
     ///
-    /// \brief newPage creates a new emty Page
+    /// \brief newSheet creates a new emty Sheet
     ///
-    virtual bool newPage() = 0;
+    virtual bool newSheet() = 0;
     ///
-    /// \brief fullSheetPartsListNumPages calculaes how many paes are needed to display the BOM
-    /// \return tne number of pages
+    /// \brief fullSheetPartsListNumSheets calculaes how many paes are needed to display the BOM
+    /// \return tne number of sheets
     ///
-    int fullSheetPartsListNumPagesKiCAD();
+    int fullSheetPartsListNumSheetsKiCAD();
     QString getSheetFieldKey();
 
 
@@ -158,11 +210,11 @@ public:
     const QString &getDIR() const;
     void setDIR(const QString &newDIR);
 
-    const PageSize &getPAGESIZE() const;
-    void setPAGESIZE(const PageSize &newPAGESIZE);
+    const SheetSize &getSHEETSIZE() const;
+    void setSHEETSIZE(const SheetSize &newSHEETSIZE);
 
-    PageStyle getPAGESTYLE() const;
-    void setPAGESTYLE(PageStyle newPAGESTYLE);
+    SheetStyle getSHEETSTYLE() const;
+    void setSHEETSTYLE(SheetStyle newSHEETSTYLE);
 
     qint64 getNUMOPTLINES() const;
     void setNUMOPTLINES(qint64 newNUMOPTLINES);
@@ -188,8 +240,8 @@ public:
     bool getFOLDLINES() const;
     void setFOLDLINES(bool newFOLDLINES);
 
-    const PageSize &getFOLDLINETARGET() const;
-    void setFOLDLINETARGET(const PageSize &newFOLDLINETARGET);
+    const SheetSize &getFOLDLINETARGET() const;
+    void setFOLDLINETARGET(const SheetSize &newFOLDLINETARGET);
 
     quint64 getNUMPARTSSMALLPARTSLIST() const;
     void setNUMPARTSSMALLPARTSLIST(quint64 newNUMPARTSSMALLPARTSLIST);

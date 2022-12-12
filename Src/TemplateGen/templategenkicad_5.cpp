@@ -18,7 +18,7 @@ bool TemplateGenKiCAD_5::writeBase()
         FILE = std::shared_ptr<QFile>(new QFile(createFileName()));
         if(FILE->open(QIODeviceBase::WriteOnly))
         {
-            FILE->write("(page_layout\n  (setup (textsize 0 0)(linewidth 0)(textlinewidth 0)\n  (left_margin 0)(right_margin 0)(top_margin 0)(bottom_margin 0))\n");
+            FILE->write("(sheet_layout\n  (setup (textsize 0 0)(linewidth 0)(textlinewidth 0)\n  (left_margin 0)(right_margin 0)(top_margin 0)(bottom_margin 0))\n");
             return true;
         }
         else
@@ -175,7 +175,7 @@ void TemplateGenKiCAD_5::drawLogoTitelblockISO7200()
     if(ba.length()%32) rows++;
 
     // create hex dump(https://forum.qt.io/topic/106891/displaying-data-in-hex-format)
-    QString data = "  (bitmap (name \"\") (pos " + QString::number(PAGESIZE.width - 111 - widthMM/2) + " " + QString::number(PAGESIZE.height - 11 - heightMM/2) + "  ltcorner) (scale 0.125)\n";
+    QString data = "  (bitmap (name \"\") (pos " + QString::number(SHEETSIZE.width - 111 - widthMM/2) + " " + QString::number(SHEETSIZE.height - 11 - heightMM/2) + "  ltcorner) (scale 0.125)\n";
     data += "  (pngdata\n";
     for(int i=0; i<rows; i++)
     {
@@ -200,7 +200,7 @@ void TemplateGenKiCAD_5::drawLogoTitelblockISO7200()
     FILE->write(data.toLatin1());
 }
 
-bool TemplateGenKiCAD_5::newPage()
+bool TemplateGenKiCAD_5::newSheet()
 {
     return false;
 }

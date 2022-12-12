@@ -9,9 +9,9 @@
 struct FinisheD
 {
     bool diR = false;
-    bool pagesizeE = false;
+    bool sheetsizeE = false;
     bool sheetnamE = true;
-    bool pagestylE = false;
+    bool sheetstylE = false;
     bool numoptlineS = false;
     bool titelblockfieldS = false;
     bool trimmingmarkS = false;
@@ -37,18 +37,13 @@ struct FinisheD
     bool descriptionnumlineS = false;
 };
 
-struct PageSize
+class SheetSize
 {
+public:
     QString sizeString;
     double width;
     double height;
 };
-
-//struct Coordinate
-//{
-//    double X; // width
-//    double Y; // height
-//};
 
 class Coordinate
 {
@@ -62,8 +57,9 @@ public:
     const Coordinate operator / (const Coordinate& obj); // A / B => A.X / B.X and A.Y / B.Y
 };
 
-struct CenteringMarks
+class CenteringMarks
 {
+public:
     bool Top;
     bool Bottom;
     bool Left;
@@ -77,15 +73,16 @@ enum class ProjectionMethodType
     ThirdAngle,
 };
 
-struct TitelblockField
+class TitelblockField
 {
+public:
     QString Label;
     QStringList Value;
     QString Name;
     ProjectionMethodType ProjectionMethod;
 };
 
-enum class PageStyle
+enum class SheetStyle
 {
     ISO5457_ISO7200,
     BLANK,
@@ -116,8 +113,9 @@ enum class BOMStyles
     KiCAD,
 };
 
-struct BOMColumn
+class BOMColumn
 {
+public:
     double Width;
     QString Title;
     QList<QString> Values;

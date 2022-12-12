@@ -11,20 +11,15 @@ Preview::Preview()
 
 Preview::~Preview()
 {
-    if(!PAINTER)
-    {
-        free(PAINTER);
-    }
 }
 
 void Preview::paintEvent(QPaintEvent *e)
 {
-    QPainter paint(this);
+    PAINTER = std::shared_ptr<QPainter>(new QPainter(this));
 
-    PAINTER = &paint;
     draw();
 
-    paint.end();
+    PAINTER->end();
     QFrame::paintEvent(e);
 }
 
@@ -35,10 +30,10 @@ QString Preview::getFILEENDING()
 
 bool Preview::writeBase()
 {
-    double scale = this->minimumWidth() / PAGESIZE.width;
-    if(PAGESIZE.height * scale > this->height())
+    double scale = this->minimumWidth() / SHEETSIZE.width;
+    if(SHEETSIZE.height * scale > this->height())
     {
-        scale = this->height() / PAGESIZE.height;
+        scale = this->height() / SHEETSIZE.height;
     }
     SCALE = scale;
     PAINTER->setTransform(QTransform().scale(scale, scale));// 18,897.6378 p/mm = 480,000 dpi
@@ -50,7 +45,7 @@ bool Preview::writeBase()
     return true;
 }
 
-bool Preview::newPage()
+bool Preview::newSheet()
 {
     static int i = 0;
     qDebug() << i++;
@@ -205,7 +200,7 @@ void Preview::drawLogoTitelblockISO7200()
     QPainter painter(&image);
     RENDERER->render(&painter);
 
-    QRectF target(QPointF(PAGESIZE.width - 111 - widthMM, PAGESIZE.height - 11 - heightMM), QSizeF(widthMM, heightMM));
+    QRectF target(QPointF(SHEETSIZE.width - 111 - widthMM, SHEETSIZE.height - 11 - heightMM), QSizeF(widthMM, heightMM));
     QRectF  source(QPoint(0, 0), QPoint(widthPx, heightPx));
     // Draw the Logo
     PAINTER->drawImage(target, image);

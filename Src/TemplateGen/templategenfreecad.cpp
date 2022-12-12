@@ -30,9 +30,9 @@ bool TemplateGenFreeCAD::writeBase()
         ROOT.setAttribute("xmlns", "http://www.w3.org/2000/svg");
         ROOT.setAttribute("version", "1.1");
         ROOT.setAttribute("id", "svg2");
-        ROOT.setAttribute("width", QString::number(PAGESIZE.width) + "mm");
-        ROOT.setAttribute("height", QString::number(PAGESIZE.height) + "mm");
-        ROOT.setAttribute("viewBox", "0 0 " + QString::number(PAGESIZE.width) + " " + QString::number(PAGESIZE.height));
+        ROOT.setAttribute("width", QString::number(SHEETSIZE.width) + "mm");
+        ROOT.setAttribute("height", QString::number(SHEETSIZE.height) + "mm");
+        ROOT.setAttribute("viewBox", "0 0 " + QString::number(SHEETSIZE.width) + " " + QString::number(SHEETSIZE.height));
 
         DOCUMENT.appendChild(ROOT);
         return true;
@@ -184,11 +184,11 @@ void TemplateGenFreeCAD::drawLogoTitelblockISO7200()
     QDomElement root=xmlBOM.documentElement();
 
     root.setTagName("g");
-    root.setAttribute("transform", "translate(" + QString::number(PAGESIZE.width - 111 - widthMM) + " " + QString::number(PAGESIZE.height - 11 - heightMM) + ") scale(" + QString::number(widthMM/root.attribute("width").remove("mm").toDouble()) + ")");
+    root.setAttribute("transform", "translate(" + QString::number(SHEETSIZE.width - 111 - widthMM) + " " + QString::number(SHEETSIZE.height - 11 - heightMM) + ") scale(" + QString::number(widthMM/root.attribute("width").remove("mm").toDouble()) + ")");
     ROOT. appendChild(root);
 }
 
-bool TemplateGenFreeCAD::newPage()
+bool TemplateGenFreeCAD::newSheet()
 {
     *XMLTEXTSTREM << DOCUMENT.toString();
     //FILE->write(")\n");

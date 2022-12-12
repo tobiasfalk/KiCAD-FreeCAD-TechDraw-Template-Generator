@@ -3,26 +3,26 @@
 #include <QtXml>
 #include <QTextStream>
 
-const PageSize &LoadeSaveSettings::getSHEETSIZE() const
+const SheetSize &LoadeSaveSettings::getSHEETSIZE() const
 {
     return SHEETSIZE;
 }
 
-void LoadeSaveSettings::setSHEETSIZE(const PageSize &newSHEETSIZE)
+void LoadeSaveSettings::setSHEETSIZE(const SheetSize &newSHEETSIZE)
 {
     SHEETSIZE = newSHEETSIZE;
-    finisheD.pagesizeE = true;
+    finisheD.sheetsizeE = true;
 }
 
-PageStyle LoadeSaveSettings::getSHEETSTYLE() const
+SheetStyle LoadeSaveSettings::getSHEETSTYLE() const
 {
     return SHEETSTYLE;
 }
 
-void LoadeSaveSettings::setSHEETSTYLE(PageStyle newSHEETSTYLE)
+void LoadeSaveSettings::setSHEETSTYLE(SheetStyle newSHEETSTYLE)
 {
     SHEETSTYLE = newSHEETSTYLE;
-    finisheD.pagestylE = true;
+    finisheD.sheetstylE = true;
 }
 
 const QMap<QString, TitelblockField> &LoadeSaveSettings::getTITELBLOCKFIELDS_FREECAD() const
@@ -113,12 +113,12 @@ void LoadeSaveSettings::setFOLDLINES(bool newFOLDLINES)
     finisheD.foldlineS = true;
 }
 
-const PageSize &LoadeSaveSettings::getFOLDLINESTARGET() const
+const SheetSize &LoadeSaveSettings::getFOLDLINESTARGET() const
 {
     return FOLDLINESTARGET;
 }
 
-void LoadeSaveSettings::setFOLDLINESTARGET(const PageSize &newFOLDLINESTARGET)
+void LoadeSaveSettings::setFOLDLINESTARGET(const SheetSize &newFOLDLINESTARGET)
 {
     FOLDLINESTARGET = newFOLDLINESTARGET;
     finisheD.foldlinestargeT = true;
@@ -367,20 +367,22 @@ QString LoadeSaveSettings::getSheetStyleString()
     QString ret = "";
     switch (SHEETSTYLE)
     {
-    case PageStyle::ISO5457_ISO7200:
+    case SheetStyle::ISO5457_ISO7200:
         ret = "ISO5457_ISO7200";
+        break;
+    case SheetStyle::BLANK:
         break;
     }
     return ret;
 }
 
-PageStyle LoadeSaveSettings::toSheetStyle(QString style)
+SheetStyle LoadeSaveSettings::toSheetStyle(QString style)
 {
     if(style == "ISO5457_ISO7200")
     {
-        return PageStyle::ISO5457_ISO7200;
+        return SheetStyle::ISO5457_ISO7200;
     }
-    return PageStyle::ISO5457_ISO7200;
+    return SheetStyle::ISO5457_ISO7200;
 }
 
 QString LoadeSaveSettings::getRevHistoryStyleString()

@@ -5,20 +5,20 @@
 
 #include "kicad_symbol_scaler_ui.h"
 
-void MainWindow::initPageSizes()
+void MainWindow::initSheetSizes()
 {
-    foreach(PageSize sheet, PAGESIZES)
+    foreach(SheetSize sheet, SHEETSIZES)
     {
         ui->SheetSizeComboBox->addItem(sheet.sizeString);
     }
-    ui->sheetWidthDoubleSpinBox->setValue(PAGESIZES[0].width);
-    ui->sheetHeightDoubleSpinBox->setValue(PAGESIZES[0].height);
+    ui->sheetWidthDoubleSpinBox->setValue(SHEETSIZES[0].width);
+    ui->sheetHeightDoubleSpinBox->setValue(SHEETSIZES[0].height);
 }
 
-void MainWindow::initPageStyles()
+void MainWindow::initSheetStyles()
 {
-    ui->SheetStyleComboBox->addItem("ISO5457 ISO7200"); // PageStyle::ISO5457_ISO7200
-    ui->SheetStyleComboBox->addItem("Blank"); // PageStyle::BLANK
+    ui->SheetStyleComboBox->addItem("ISO5457 ISO7200"); // SheetStyle::ISO5457_ISO7200
+    ui->SheetStyleComboBox->addItem("Blank"); // SheetStyle::BLANK
 }
 
 void MainWindow::initRevHistoryStyles()
@@ -28,7 +28,7 @@ void MainWindow::initRevHistoryStyles()
 
 void MainWindow::initFoldLinesTarget()
 {
-    foreach(PageSize sheet, FOLDLINESTARGET)
+    foreach(SheetSize sheet, FOLDLINESTARGET)
     {
         ui->foldingLinesComboBox->addItem(sheet.sizeString);
     }
@@ -41,24 +41,24 @@ void MainWindow::initBOMStyles()
     ui->csvBOMComboBox->setCurrentText("Standart as in CSV");
 }
 
-PageStyle MainWindow::getPageStyle()
+SheetStyle MainWindow::getSheetStyle()
 {
     if(ui->SheetStyleComboBox->currentText() == "ISO5457 ISO7200")
     {
-        return PageStyle::ISO5457_ISO7200;
+        return SheetStyle::ISO5457_ISO7200;
     }else if(ui->SheetStyleComboBox->currentText() == "Blank")
     {
-        return PageStyle::BLANK;
+        return SheetStyle::BLANK;
     }
 
-    return PageStyle::ISO5457_ISO7200;
+    return SheetStyle::ISO5457_ISO7200;
 }
 
-PageSize MainWindow::getPageSize(QString sizeString, double width, double height)
+SheetSize MainWindow::getSheetSize(QString sizeString, double width, double height)
 {
     if(sizeString == "User defined")
     {
-        PageSize tmp;
+        SheetSize tmp;
         tmp.sizeString = ui->NameLineEdit->text();
         tmp.height = ui->sheetHeightDoubleSpinBox->value();
         tmp.width = ui->sheetWidthDoubleSpinBox->value();
@@ -66,15 +66,15 @@ PageSize MainWindow::getPageSize(QString sizeString, double width, double height
     }
     else
     {
-        foreach(PageSize page, PAGESIZES)
+        foreach(SheetSize sheet, SHEETSIZES)
         {
-            if(page.sizeString == sizeString)
+            if(sheet.sizeString == sizeString)
             {
-                page.sizeString = page.sizeString;
-                return page;
+                sheet.sizeString = sheet.sizeString;
+                return sheet;
             }
         }
-        PageSize tmp;
+        SheetSize tmp;
         tmp.sizeString = "User defined";
         tmp.height = height;
         tmp.width = width;
@@ -82,13 +82,13 @@ PageSize MainWindow::getPageSize(QString sizeString, double width, double height
     }
 }
 
-PageSize MainWindow::getFoldLinesTarget(QString sizeString)
+SheetSize MainWindow::getFoldLinesTarget(QString sizeString)
 {
-    foreach(PageSize page, FOLDLINESTARGET)
+    foreach(SheetSize sheet, FOLDLINESTARGET)
     {
-        if(page.sizeString == sizeString)
+        if(sheet.sizeString == sizeString)
         {
-            return page;
+            return sheet;
         }
     }
     return FOLDLINESTARGET[0];
@@ -137,10 +137,15 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+<<<<<<< Updated upstream
     setWindowIcon(QIcon("./lib/icon.png"));
 
     initPageSizes();
     initPageStyles();
+=======
+    initSheetSizes();
+    initSheetStyles();
+>>>>>>> Stashed changes
     initRevHistoryStyles();
     initFoldLinesTarget();
     initBOMStyles();
@@ -150,9 +155,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     PREVIEW->setStyleSheet("background-color: rgb(255,255,255)");
 
     // Preview
-    PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+    SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
     QString sheetName = ui->NameLineEdit->text();
-    PageStyle sheetStyle = getPageStyle();
+    SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     qint64 numOptLines = ui->OptLinesSpinBox->value();
     qint64 numRevHistory = ui->numRevSpinBox->value();
@@ -160,7 +165,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
     bool foldLines = ui->foldLinesCheckBox->isChecked();
-    PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+    SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
     bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
     quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
     quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
@@ -178,9 +183,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     dir.mkdir(QDir::currentPath() + "/tmp");
     //TemplateGenKiCAD_5 KiCAD5(this);
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
-    PREVIEW->setPAGESIZE(sheetSize);
+    PREVIEW->setSHEETSIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
-    PREVIEW->setPAGESTYLE(sheetStyle);
+    PREVIEW->setSHEETSTYLE(sheetStyle);
     PREVIEW->setNUMOPTLINES(numOptLines);
     PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
     PREVIEW->setTRIMMINGMARKS(trimmingMarks);
@@ -225,9 +230,9 @@ void MainWindow::on_GeneratePushButton_clicked()
     {
 
         // KiCAD 5
-        PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+        SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
         QString sheetName = ui->NameLineEdit->text();
-        PageStyle sheetStyle = getPageStyle();
+        SheetStyle sheetStyle = getSheetStyle();
         QMap<QString, TitelblockField> titelblockFieldsKiCAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
         qint64 numOptLines = ui->OptLinesSpinBox->value();
         qint64 numRevHistory = ui->numRevSpinBox->value();
@@ -235,7 +240,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
-        PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+        SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
         bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
         quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
         quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
@@ -251,9 +256,9 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         std::unique_ptr<TemplateGenKiCAD_5> KiCAD5(new TemplateGenKiCAD_5 (this));
         KiCAD5->setDIR(dir);
-        KiCAD5->setPAGESIZE(sheetSize);
+        KiCAD5->setSHEETSIZE(sheetSize);
         KiCAD5->setSHEETNAME(sheetName);
-        KiCAD5->setPAGESTYLE(sheetStyle);
+        KiCAD5->setSHEETSTYLE(sheetStyle);
         KiCAD5->setNUMOPTLINES(numOptLines);
         KiCAD5->setTITELBLOCKFIELDS(titelblockFieldsKiCAD5);
         KiCAD5->setTRIMMINGMARKS(trimmingMarks);
@@ -288,9 +293,9 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         std::unique_ptr<TemplateGenKiCAD_6> KiCAD6(new TemplateGenKiCAD_6(this));
         KiCAD6->setDIR(dir);
-        KiCAD6->setPAGESIZE(sheetSize);
+        KiCAD6->setSHEETSIZE(sheetSize);
         KiCAD6->setSHEETNAME(sheetName);
-        KiCAD6->setPAGESTYLE(sheetStyle);
+        KiCAD6->setSHEETSTYLE(sheetStyle);
         KiCAD6->setNUMOPTLINES(numOptLines);
         KiCAD6->setTITELBLOCKFIELDS(titelblockFieldsKiCAD6);
         KiCAD6->setTRIMMINGMARKS(trimmingMarks);
@@ -324,9 +329,9 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         std::unique_ptr<TemplateGenKiCAD_7> KiCAD7(new TemplateGenKiCAD_7(this));
         KiCAD7->setDIR(dir);
-        KiCAD7->setPAGESIZE(sheetSize);
+        KiCAD7->setSHEETSIZE(sheetSize);
         KiCAD7->setSHEETNAME(sheetName);
-        KiCAD7->setPAGESTYLE(sheetStyle);
+        KiCAD7->setSHEETSTYLE(sheetStyle);
         KiCAD7->setNUMOPTLINES(numOptLines);
         KiCAD7->setTITELBLOCKFIELDS(titelblockFieldsKiCAD7);
         KiCAD7->setTRIMMINGMARKS(trimmingMarks);
@@ -360,9 +365,9 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         std::unique_ptr<TemplateGenFreeCAD> FreeCAD(new TemplateGenFreeCAD(this));
         FreeCAD->setDIR(dir);
-        FreeCAD->setPAGESIZE(sheetSize);
+        FreeCAD->setSHEETSIZE(sheetSize);
         FreeCAD->setSHEETNAME(sheetName);
-        FreeCAD->setPAGESTYLE(sheetStyle);
+        FreeCAD->setSHEETSTYLE(sheetStyle);
         FreeCAD->setNUMOPTLINES(numOptLines);
         FreeCAD->setTITELBLOCKFIELDS(titelblockFieldsFreeCAD);
         FreeCAD->setTRIMMINGMARKS(trimmingMarks);
@@ -396,9 +401,9 @@ void MainWindow::on_GeneratePushButton_clicked()
 
         std::unique_ptr<TemplateGenPDF> PDF(new TemplateGenPDF(this));
         PDF->setDIR(dir);
-        PDF->setPAGESIZE(sheetSize);
+        PDF->setSHEETSIZE(sheetSize);
         PDF->setSHEETNAME(sheetName);
-        PDF->setPAGESTYLE(sheetStyle);
+        PDF->setSHEETSTYLE(sheetStyle);
         PDF->setNUMOPTLINES(numOptLines);
         PDF->setTITELBLOCKFIELDS(titelblockFieldsPDF);
         PDF->setTRIMMINGMARKS(trimmingMarks);
@@ -428,9 +433,9 @@ void MainWindow::on_GeneratePushButton_clicked()
         // Uses the PDF Setings
         std::unique_ptr<TemplateGenEagle> Eagle(new TemplateGenEagle(this));
         Eagle->setDIR(dir);
-        Eagle->setPAGESIZE(sheetSize);
+        Eagle->setSHEETSIZE(sheetSize);
         Eagle->setSHEETNAME(sheetName);
-        Eagle->setPAGESTYLE(sheetStyle);
+        Eagle->setSHEETSTYLE(sheetStyle);
         Eagle->setNUMOPTLINES(numOptLines);
         Eagle->setTITELBLOCKFIELDS(titelblockFieldsPDF);
         Eagle->setTRIMMINGMARKS(trimmingMarks);
@@ -460,7 +465,7 @@ void MainWindow::on_GeneratePushButton_clicked()
 
 void MainWindow::on_SheetSizeComboBox_currentTextChanged(const QString &arg1)
 {
-    PageSize sheetSize = getPageSize(arg1);
+    SheetSize sheetSize = getSheetSize(arg1);
     ui->sheetHeightDoubleSpinBox->setValue(sheetSize.height);
     ui->sheetWidthDoubleSpinBox->setValue(sheetSize.width);
     ui->NameLineEdit->setText(sheetSize.sizeString);
@@ -640,9 +645,9 @@ void MainWindow::on_saveFieldsPushButton_clicked()
                                 "Xml (*.xml)");
     if(fileName.size() > 0)
     {
-        PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+        SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
         QString sheetName = ui->NameLineEdit->text();
-        PageStyle sheetStyle = getPageStyle();
+        SheetStyle sheetStyle = getSheetStyle();
         QMap<QString, TitelblockField> titelblockFields_KICAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
         QMap<QString, TitelblockField> titelblockFields_KICAD6 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
         QMap<QString, TitelblockField> titelblockFields_FREECAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
@@ -656,7 +661,7 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
-        PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+        SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
         bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
         quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
         quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
@@ -756,9 +761,9 @@ void MainWindow::on_selectCSVBOMpushButton_clicked()
 
 void MainWindow::on_previewPushButton_clicked()
 {
-    PageSize sheetSize = getPageSize(ui->SheetSizeComboBox->currentText());
+    SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
     QString sheetName = ui->NameLineEdit->text();
-    PageStyle sheetStyle = getPageStyle();
+    SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     qint64 numOptLines = ui->OptLinesSpinBox->value();
     qint64 numRevHistory = ui->numRevSpinBox->value();
@@ -766,7 +771,7 @@ void MainWindow::on_previewPushButton_clicked()
     bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
     bool foldLines = ui->foldLinesCheckBox->isChecked();
-    PageSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+    SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
     bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
     quint64 numLinesSmallPartsList = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
     quint64 numPartsSmallPartsList = ui->SmallPartsListNumPartsSpinBox->value();
@@ -781,9 +786,9 @@ void MainWindow::on_previewPushButton_clicked()
     quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
 
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
-    PREVIEW->setPAGESIZE(sheetSize);
+    PREVIEW->setSHEETSIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
-    PREVIEW->setPAGESTYLE(sheetStyle);
+    PREVIEW->setSHEETSTYLE(sheetStyle);
     PREVIEW->setNUMOPTLINES(numOptLines);
     PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
     PREVIEW->setTRIMMINGMARKS(trimmingMarks);

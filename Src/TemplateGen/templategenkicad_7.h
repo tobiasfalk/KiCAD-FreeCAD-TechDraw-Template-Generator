@@ -12,10 +12,10 @@ class TemplateGenKiCAD_7 : public TemplateGenKiCAD_6
 {
     Q_OBJECT
 protected:
-    virtual QString getFILEENDING();
-    virtual bool writeBase();
+    virtual QString getFILEENDING() override;
+    virtual bool writeBase() override;
 
-    virtual qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont");
+    virtual qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont") override;
 
 public:
     explicit TemplateGenKiCAD_7(QObject *parent = nullptr);

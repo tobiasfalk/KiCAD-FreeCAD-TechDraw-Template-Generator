@@ -15,13 +15,13 @@ class Preview : public QFrame, public TemplateGen
 protected:
     QString getFILEENDING() override;
     bool writeBase() override;
-    QPainter *PAINTER;
+    std::shared_ptr<QPainter> PAINTER;
     std::shared_ptr<QSvgRenderer> RENDERER;
 
     ///
-    /// \brief newPage creates a new emty Page
+    /// \brief newSheet creates a new emty Sheet
     ///
-    bool newPage() override;
+    bool newSheet() override;
 
     void drawLine(Coordinate start, Coordinate end, double lineWidth) override;
     void drawRect(Coordinate start, Coordinate end, double lineWidth) override;

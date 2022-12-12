@@ -16,7 +16,7 @@ QStringList NumToABC(qint64 num)
                 abcNum[n] = 0;
                 abcNum.append(0);
             }
-            else if(abcNum[n] == 24 && n != abcNum.length())
+            else if(abcNum[n] == 24)
             {
                 abcNum[n] = 0;
                 abcNum[n+1]++;
@@ -52,7 +52,7 @@ bool allFinisheD(FinisheD finisheD)
     {
         return false;
     }
-    else if(!finisheD.pagesizeE)
+    else if(!finisheD.sheetsizeE)
     {
         return false;
     }
@@ -60,7 +60,7 @@ bool allFinisheD(FinisheD finisheD)
     {
         return false;
     }
-    else if(!finisheD.pagestylE)
+    else if(!finisheD.sheetstylE)
     {
         return false;
     }
@@ -162,11 +162,11 @@ bool allFinisheD(FinisheD finisheD)
 void printFinisheD(FinisheD finisheD)
 {
     qDebug() << "diR: " << finisheD.diR;
-    qDebug() << "pagesizeE: " << finisheD.pagesizeE;
+    qDebug() << "sheetsizeE: " << finisheD.sheetsizeE;
     qDebug() << "sheetnamE: " << finisheD.sheetnamE;
     qDebug() << "numoptlineS: " << finisheD.numoptlineS;
     qDebug() << "numrevhistorY: " << finisheD.numrevhistorY;
-    qDebug() << "pagestylE: " << finisheD.pagestylE;
+    qDebug() << "sheetstylE: " << finisheD.sheetstylE;
     qDebug() << "revhistorY: " << finisheD.revhistorY;
     qDebug() << "revhistoryfieldS: " << finisheD.revhistoryfieldS;
     qDebug() << "revhistorystylE: " << finisheD.revhistorystylE;

@@ -11,9 +11,9 @@ class LoadeSaveSettings : public QObject
 private:
     FinisheD finisheD;
 
-    PageSize SHEETSIZE;
+    SheetSize SHEETSIZE;
     QString SHEETNAME;
-    PageStyle SHEETSTYLE;
+    SheetStyle SHEETSTYLE;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_FREECAD;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD5;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6;
@@ -28,7 +28,7 @@ private:
     QMap<QString, TitelblockField> REVHISTORYFIELDS_KICAD6;
     QMap<QString, TitelblockField> REVHISTORYFIELDS_PDF;
     bool FOLDLINES;
-    PageSize FOLDLINESTARGET;
+    SheetSize FOLDLINESTARGET;
     bool SMALLPARTSLIST;
     quint64 NUMLINESSMALLPARTSLIST;
     quint64 NUMPARTSSMALLPARTSLIST;
@@ -47,7 +47,7 @@ private:
     QString LOGODIR;
 
     QString getSheetStyleString();
-    PageStyle toSheetStyle(QString style);
+    SheetStyle toSheetStyle(QString style);
 
     QString getRevHistoryStyleString();
     RevHistoryStyle toRevHistoryStyle(QString style);
@@ -62,11 +62,11 @@ public:
     void saveSettings(QString dir);
     void loadSettings(QString dir);
 
-    const PageSize &getSHEETSIZE() const;
-    void setSHEETSIZE(const PageSize &newSHEETSIZE);
+    const SheetSize &getSHEETSIZE() const;
+    void setSHEETSIZE(const SheetSize &newSHEETSIZE);
 
-    PageStyle getSHEETSTYLE() const;
-    void setSHEETSTYLE(PageStyle newSHEETSTYLE);
+    SheetStyle getSHEETSTYLE() const;
+    void setSHEETSTYLE(SheetStyle newSHEETSTYLE);
 
     const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_FREECAD() const;
     void setTITELBLOCKFIELDS_FREECAD(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_FREECAD);
@@ -101,8 +101,8 @@ public:
     bool getFOLDLINES() const;
     void setFOLDLINES(bool newFOLDLINES);
 
-    const PageSize &getFOLDLINESTARGET() const;
-    void setFOLDLINESTARGET(const PageSize &newFOLDLINESTARGET);
+    const SheetSize &getFOLDLINESTARGET() const;
+    void setFOLDLINESTARGET(const SheetSize &newFOLDLINESTARGET);
 
     bool getSMALLPARTSLIST() const;
     void setSMALLPARTSLIST(bool newSMALLPARTSLIST);

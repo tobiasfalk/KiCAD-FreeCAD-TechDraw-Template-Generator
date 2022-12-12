@@ -77,18 +77,18 @@ bool TemplateGen::init()
     {
         return true;
     }
-    if(DESCRIPTION && PAGESIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + (2.5 * 1.5) * (DESCRIPTIONNUMLINES + 1) + 3.7))
+    if(DESCRIPTION && SHEETSIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + (2.5 * 1.5) * (DESCRIPTIONNUMLINES + 1) + 3.7))
     {
         CENTERINGMARKS.Right = false;
-        if(PAGESIZE.width / 2 < 190)
+        if(SHEETSIZE.width / 2 < 190)
         {
             CENTERINGMARKS.Left = false;
         }
     }
-    if((PAGESIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + 8 + ((2.5 * 1.5) * NUMLINESMALLPARTSLIST + 3) * NUMPARTSSMALLPARTSLIST)) && SMALLPARTSLIST)
+    if((SHEETSIZE.height / 2 < 10 + (11 * (5 + NUMOPTLINES) + 8 + ((2.5 * 1.5) * NUMLINESMALLPARTSLIST + 3) * NUMPARTSSMALLPARTSLIST)) && SMALLPARTSLIST)
     {
         CENTERINGMARKS.Right = false;
-        if(PAGESIZE.width / 2 < 190)
+        if(SHEETSIZE.width / 2 < 190)
         {
             CENTERINGMARKS.Left = false;
         }
@@ -99,19 +99,19 @@ bool TemplateGen::init()
         CENTERINGMARKS.Left = false;
         CENTERINGMARKS.Top = false;
     }
-    if(PAGESIZE.width / 2 < 190)
+    if(SHEETSIZE.width / 2 < 190)
     {
         CENTERINGMARKS.Bottom = false;
     }
-    if(PAGESIZE.width / 2 < 190 && REVHISTORY)
+    if(SHEETSIZE.width / 2 < 190 && REVHISTORY)
     {
         CENTERINGMARKS.Top = false;
     }
-    if(PAGESIZE.height / 2 > (PAGESIZE.height - 11 * (5 + NUMOPTLINES) + 0) || (PAGESIZE.height / 2 < (10 + 8 + NUMREVHISTORY * 13.5) && REVHISTORY))
+    if(SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + NUMOPTLINES) + 0) || (SHEETSIZE.height / 2 < (10 + 8 + NUMREVHISTORY * 13.5) && REVHISTORY))
     {
         CENTERINGMARKS.Right = false;
     }
-    if((PAGESIZE.height / 2 > (PAGESIZE.height - 11 * (5 + NUMOPTLINES) + 0)) && (PAGESIZE.width / 2 < 190))
+    if((SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + NUMOPTLINES) + 0)) && (SHEETSIZE.width / 2 < 190))
     {
         CENTERINGMARKS.Left = false;
     }
@@ -133,16 +133,16 @@ QString TemplateGen::createFileName()
 {
     if(FULLSHEETPARTSLISTCSV)
     {
-        return DIR + "/" + PAGESIZE.sizeString.replace(" ", "_") + "Partlist_" + QString::number(SHEETINDEX + 1) + getFILEENDING();
+        return DIR + "/" + SHEETSIZE.sizeString.replace(" ", "_") + "Partlist_" + QString::number(SHEETINDEX + 1) + getFILEENDING();
     }
-    QString ret =  DIR + "/" + PAGESIZE.sizeString.replace(" ", "_");
+    QString ret =  DIR + "/" + SHEETSIZE.sizeString.replace(" ", "_");
 
-    switch (PAGESTYLE)
+    switch (SHEETSTYLE)
     {
-    case PageStyle::ISO5457_ISO7200:
+    case SheetStyle::ISO5457_ISO7200:
         ret += "_ISO5457_ISO7200";
         break;
-    case PageStyle::BLANK:
+    case SheetStyle::BLANK:
         ret += "_BLANK";
         break;
     }
@@ -274,7 +274,7 @@ QList<BOMColumn> TemplateGen::readBOMStd(QString fileDIR)
                if(f.length() > 0 && i == 0)
                {
                    BOMColumn c;
-                   c.Width = f.toDouble() * (PAGESIZE.width - 30);
+                   c.Width = f.toDouble() * (SHEETSIZE.width - 30);
                    ret.append(c);
                }else if(f.length() > 0 && i == 1)
                {
@@ -539,13 +539,13 @@ QStringList TemplateGen::splitBOMValStd(QString val, double targetLenght)
 void TemplateGen::drawVerFoldLine(double x, double depth)
 {
     drawLine(Coordinate{x, 0}, Coordinate{x, depth}, 0.35);
-    drawLine(Coordinate{x, PAGESIZE.height}, Coordinate{x, PAGESIZE.height - depth}, 0.35);
+    drawLine(Coordinate{x, SHEETSIZE.height}, Coordinate{x, SHEETSIZE.height - depth}, 0.35);
 }
 
 void TemplateGen::drawHorFoldLine(double y, double depth)
 {
     drawLine(Coordinate{0, y}, Coordinate{depth, y}, 0.35);
-    drawLine(Coordinate{PAGESIZE.width, y}, Coordinate{PAGESIZE.width - depth, y}, 0.35);
+    drawLine(Coordinate{SHEETSIZE.width, y}, Coordinate{SHEETSIZE.width - depth, y}, 0.35);
 }
 
 void TemplateGen::drawTrimmingMarksISO5457()
@@ -587,65 +587,65 @@ void TemplateGen::drawTrimmingMarksISO5457()
         Coordinate{0, -10}
     };
     drawPoly(Coordinate{0, 0}, trimmingMarkLT, 0);
-    drawPoly(Coordinate{PAGESIZE.width, 0}, trimmingMarkRT, 0);
-    drawPoly(Coordinate{PAGESIZE.width, PAGESIZE.height}, trimmingMarkRB, 0);
-    drawPoly(Coordinate{0, PAGESIZE.height}, trimmingMarkLB, 0);
+    drawPoly(Coordinate{SHEETSIZE.width, 0}, trimmingMarkRT, 0);
+    drawPoly(Coordinate{SHEETSIZE.width, SHEETSIZE.height}, trimmingMarkRB, 0);
+    drawPoly(Coordinate{0, SHEETSIZE.height}, trimmingMarkLB, 0);
 }
 
 void TemplateGen::drawDrawingBorderISO5457()
 {
     // Inseid and Outseid Rectangal
     {
-        drawRect(Coordinate{15, 5}, Coordinate{PAGESIZE.width - 5, PAGESIZE.height - 5}, 0.35);
-        drawRect(Coordinate{20, 10}, Coordinate{PAGESIZE.width - 10, PAGESIZE.height - 10}, 0.7);
+        drawRect(Coordinate{15, 5}, Coordinate{SHEETSIZE.width - 5, SHEETSIZE.height - 5}, 0.35);
+        drawRect(Coordinate{20, 10}, Coordinate{SHEETSIZE.width - 10, SHEETSIZE.height - 10}, 0.7);
     }
 
     // Centermarks
     {
         if(CENTERINGMARKS.Top)
         {
-            drawLine(Coordinate{PAGESIZE.width/2, 5}, Coordinate{PAGESIZE.width/2, 20}, 0.7);
+            drawLine(Coordinate{SHEETSIZE.width/2, 5}, Coordinate{SHEETSIZE.width/2, 20}, 0.7);
         }
         else
         {
-            drawLine(Coordinate{PAGESIZE.width/2, 5}, Coordinate{PAGESIZE.width/2, 10}, 0.7);
+            drawLine(Coordinate{SHEETSIZE.width/2, 5}, Coordinate{SHEETSIZE.width/2, 10}, 0.7);
         }
         if(CENTERINGMARKS.Bottom)
         {
-            drawLine(Coordinate{PAGESIZE.width/2, PAGESIZE.height - 5}, Coordinate{PAGESIZE.width/2, PAGESIZE.height - 20}, 0.7);
+            drawLine(Coordinate{SHEETSIZE.width/2, SHEETSIZE.height - 5}, Coordinate{SHEETSIZE.width/2, SHEETSIZE.height - 20}, 0.7);
         }
         else
         {
-            drawLine(Coordinate{PAGESIZE.width/2, PAGESIZE.height - 5}, Coordinate{PAGESIZE.width/2, PAGESIZE.height - 10}, 0.7);
+            drawLine(Coordinate{SHEETSIZE.width/2, SHEETSIZE.height - 5}, Coordinate{SHEETSIZE.width/2, SHEETSIZE.height - 10}, 0.7);
         }
 
         if(CENTERINGMARKS.Left)
         {
-            drawLine(Coordinate{15, PAGESIZE.height/2}, Coordinate{30, PAGESIZE.height/2}, 0.7);
+            drawLine(Coordinate{15, SHEETSIZE.height/2}, Coordinate{30, SHEETSIZE.height/2}, 0.7);
         }
         else
         {
-            drawLine(Coordinate{15, PAGESIZE.height/2}, Coordinate{20, PAGESIZE.height/2}, 0.7);
+            drawLine(Coordinate{15, SHEETSIZE.height/2}, Coordinate{20, SHEETSIZE.height/2}, 0.7);
         }
         if(CENTERINGMARKS.Right)
         {
-            drawLine(Coordinate{PAGESIZE.width - 5, PAGESIZE.height/2}, Coordinate{PAGESIZE.width - 20, PAGESIZE.height/2}, 0.7);
+            drawLine(Coordinate{SHEETSIZE.width - 5, SHEETSIZE.height/2}, Coordinate{SHEETSIZE.width - 20, SHEETSIZE.height/2}, 0.7);
         }
         else
         {
-            drawLine(Coordinate{PAGESIZE.width - 5, PAGESIZE.height/2}, Coordinate{PAGESIZE.width - 10, PAGESIZE.height/2}, 0.7);
+            drawLine(Coordinate{SHEETSIZE.width - 5, SHEETSIZE.height/2}, Coordinate{SHEETSIZE.width - 10, SHEETSIZE.height/2}, 0.7);
         }
     }
 
     // Top and Bottom Framegrid
     {
-        double halfPageWidth = PAGESIZE.width/2;
+        double halfSheetWidth = SHEETSIZE.width/2;
         // Lines
         qint64 index = 1;
-        qint64 indexNumDigets = QString::number((PAGESIZE.width - 30) / 50).length();
+        qint64 indexNumDigets = QString::number((SHEETSIZE.width - 30) / 50).length();
         // Left
         double spaceLeft = 20 + 3.5;
-        double lineX = halfPageWidth - 50;
+        double lineX = halfSheetWidth - 50;
         QList<double> indexListLeft;
         double lastLine = lineX;
         while(lineX > spaceLeft)
@@ -653,7 +653,7 @@ void TemplateGen::drawDrawingBorderISO5457()
             // Top
             drawLine(Coordinate{lineX, 5}, Coordinate{lineX, 10}, 0.35);
             // Bottom
-            drawLine(Coordinate{lineX, PAGESIZE.height - 5}, Coordinate{lineX, PAGESIZE.height - 10}, 0.35);
+            drawLine(Coordinate{lineX, SHEETSIZE.height - 5}, Coordinate{lineX, SHEETSIZE.height - 10}, 0.35);
             lastLine = lineX;
             lineX -= 50;
             indexListLeft.prepend(lineX +25);
@@ -666,53 +666,53 @@ void TemplateGen::drawDrawingBorderISO5457()
                 pos = 10 + (lastLine - 10) / 2;
             }
             drawText(Coordinate{pos, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-            if(PAGESIZE.height >= 297 && PAGESIZE.width >= 297)
+            if(SHEETSIZE.height >= 297 && SHEETSIZE.width >= 297)
             {
-                drawText(Coordinate{pos, PAGESIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                drawText(Coordinate{pos, SHEETSIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             index++;
         }
 
         //Middle Text
         // Left
-        drawText(Coordinate{halfPageWidth - 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-        if(PAGESIZE.height >= 297 && PAGESIZE.width >= 297)
+        drawText(Coordinate{halfSheetWidth - 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+        if(SHEETSIZE.height >= 297 && SHEETSIZE.width >= 297)
         {
-            drawText(Coordinate{halfPageWidth - 25, PAGESIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            drawText(Coordinate{halfSheetWidth - 25, SHEETSIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
         }
         index++;
         // Right
-        drawText(Coordinate{halfPageWidth + 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-        if(PAGESIZE.height >= 297 && PAGESIZE.width >= 297)
+        drawText(Coordinate{halfSheetWidth + 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+        if(SHEETSIZE.height >= 297 && SHEETSIZE.width >= 297)
         {
-            drawText(Coordinate{halfPageWidth + 25, PAGESIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            drawText(Coordinate{halfSheetWidth + 25, SHEETSIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
         }
         index++;
 
         // Right
         double spaceRight = 10 + (3.5 * indexNumDigets);
-        double spaceRightBottom = 10 + (3.5 * PAGESIZE.sizeString.length());
-        double lastBottomLine = halfPageWidth;
-        lineX = halfPageWidth + 50;
-        while(lineX < PAGESIZE.width - spaceRight)
+        double spaceRightBottom = 10 + (3.5 * SHEETSIZE.sizeString.length());
+        double lastBottomLine = halfSheetWidth;
+        lineX = halfSheetWidth + 50;
+        while(lineX < SHEETSIZE.width - spaceRight)
         {
             // Top
             drawLine(Coordinate{lineX, 5}, Coordinate{lineX, 10}, 0.35);
             drawText(Coordinate{lineX + 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             //Bottom
-            if(lineX < PAGESIZE.width - spaceRightBottom)
+            if(lineX < SHEETSIZE.width - spaceRightBottom)
             {
-                drawLine(Coordinate{lineX, PAGESIZE.height - 5}, Coordinate{lineX, PAGESIZE.height - 10}, 0.35);
+                drawLine(Coordinate{lineX, SHEETSIZE.height - 5}, Coordinate{lineX, SHEETSIZE.height - 10}, 0.35);
                 lastBottomLine = lineX;
             }
 
-            if(lineX >= PAGESIZE.width - 80)
+            if(lineX >= SHEETSIZE.width - 80)
             {
-                drawText(Coordinate{lastBottomLine + (PAGESIZE.width - lastBottomLine) / 2, PAGESIZE.height - 7.5}, PAGESIZE.sizeString, "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                drawText(Coordinate{lastBottomLine + (SHEETSIZE.width - lastBottomLine) / 2, SHEETSIZE.height - 7.5}, SHEETSIZE.sizeString, "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
-            else if(PAGESIZE.height >= 297  && lineX < PAGESIZE.width - spaceRightBottom - 50)
+            else if(SHEETSIZE.height >= 297  && lineX < SHEETSIZE.width - spaceRightBottom - 50)
             {
-                drawText(Coordinate{lineX + 25, PAGESIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                drawText(Coordinate{lineX + 25, SHEETSIZE.height - 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             lineX += 50;
             index++;
@@ -721,19 +721,19 @@ void TemplateGen::drawDrawingBorderISO5457()
 
     // Left and Right Framgrid
     {
-        double halfPageHeight = PAGESIZE.height/2;
+        double halfSheetHeight = SHEETSIZE.height/2;
         // Lines
         qint64 index = 1;
-        qint64 indexNumDigets = NumToABC((PAGESIZE.height - 30) / 50).length();
+        qint64 indexNumDigets = NumToABC((SHEETSIZE.height - 30) / 50).length();
         // Top
         double spaceTop = 10 + 3.5;
-        double lineY = halfPageHeight - 50;
+        double lineY = halfSheetHeight - 50;
         QList<double> indexListTop;
         double lastLine = lineY;
         while(lineY > spaceTop)
         {
             drawLine(Coordinate{15, lineY}, Coordinate{20, lineY}, 0.35);
-            drawLine(Coordinate{PAGESIZE.width - 5, lineY}, Coordinate{PAGESIZE.width -  10, lineY}, 0.35);
+            drawLine(Coordinate{SHEETSIZE.width - 5, lineY}, Coordinate{SHEETSIZE.width -  10, lineY}, 0.35);
             lastLine = lineY;
             lineY -= 50;
             indexListTop.prepend(lineY + 25);
@@ -746,37 +746,37 @@ void TemplateGen::drawDrawingBorderISO5457()
                 pos = (10 + (lastLine - 10) / 2);
             }
             drawText(Coordinate{17.5, pos}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-            if(PAGESIZE.width >= 297 && PAGESIZE.height >= 297)
+            if(SHEETSIZE.width >= 297 && SHEETSIZE.height >= 297)
             {
-                drawText(Coordinate{PAGESIZE.width - 7.5, pos}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                drawText(Coordinate{SHEETSIZE.width - 7.5, pos}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             index++;
         }
         // Middle
-        drawText(Coordinate{17.5, halfPageHeight - 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-        if(PAGESIZE.width >= 297 && PAGESIZE.height >= 297)
+        drawText(Coordinate{17.5, halfSheetHeight - 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+        if(SHEETSIZE.width >= 297 && SHEETSIZE.height >= 297)
         {
-            drawText(Coordinate{PAGESIZE.width - 7.5, halfPageHeight - 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            drawText(Coordinate{SHEETSIZE.width - 7.5, halfSheetHeight - 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
         }
         index++;
-        drawText(Coordinate{17.5, halfPageHeight + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
-        if(PAGESIZE.width >= 297 && PAGESIZE.height >= 297)
+        drawText(Coordinate{17.5, halfSheetHeight + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+        if(SHEETSIZE.width >= 297 && SHEETSIZE.height >= 297)
         {
-            drawText(Coordinate{PAGESIZE.width - 7.5, halfPageHeight + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            drawText(Coordinate{SHEETSIZE.width - 7.5, halfSheetHeight + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
         }
         index++;
 
         // Bottom
         double spaceBottom = 10 + (3.5 * indexNumDigets);
-        lineY = halfPageHeight + 50;
-        while(lineY < PAGESIZE.height - spaceBottom)
+        lineY = halfSheetHeight + 50;
+        while(lineY < SHEETSIZE.height - spaceBottom)
         {
             // Left
             double textY = 0;
             drawLine(Coordinate{15, lineY}, Coordinate{20, lineY}, 0.35);
-            if(lineY > PAGESIZE.height - 60)
+            if(lineY > SHEETSIZE.height - 60)
             {
-                textY = lineY + ((PAGESIZE.height - 10) - lineY) / 2;
+                textY = lineY + ((SHEETSIZE.height - 10) - lineY) / 2;
                 drawText(Coordinate{17.5, textY}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             else
@@ -784,23 +784,23 @@ void TemplateGen::drawDrawingBorderISO5457()
                 drawText(Coordinate{17.5, lineY + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             // Right
-            if(lineY < PAGESIZE.height - spaceBottom)
+            if(lineY < SHEETSIZE.height - spaceBottom)
             {
-                drawLine(Coordinate{PAGESIZE.width - 5, lineY}, Coordinate{PAGESIZE.width - 10, lineY}, 0.35);
+                drawLine(Coordinate{SHEETSIZE.width - 5, lineY}, Coordinate{SHEETSIZE.width - 10, lineY}, 0.35);
             }
-            if(PAGESIZE.width >= 297  && lineY <= PAGESIZE.height - 60 && PAGESIZE.height >= 297)
+            if(SHEETSIZE.width >= 297  && lineY <= SHEETSIZE.height - 60 && SHEETSIZE.height >= 297)
             {
-                drawText(Coordinate{PAGESIZE.width - 7.5, lineY + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                drawText(Coordinate{SHEETSIZE.width - 7.5, lineY + 25}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
-            else if(PAGESIZE.width >= 297  && lineY > PAGESIZE.height - 60 && PAGESIZE.height >= 297)
+            else if(SHEETSIZE.width >= 297  && lineY > SHEETSIZE.height - 60 && SHEETSIZE.height >= 297)
             {
-                drawText(Coordinate{PAGESIZE.width - 7.5, textY}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                drawText(Coordinate{SHEETSIZE.width - 7.5, textY}, NumToABC(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             lineY += 50;
             index++;
         }
     }
-    TOPRIGHTDRAWINGCORNER.X = PAGESIZE.width - 10;
+    TOPRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 10;
     TOPRIGHTDRAWINGCORNER.Y = 10;
     TOPLEFTDRAWINGCORNER.X = 20;
     TOPLEFTDRAWINGCORNER.Y = 10;
@@ -809,26 +809,26 @@ void TemplateGen::drawDrawingBorderISO5457()
 void TemplateGen::drawTitelblockISO7200()
 {
     // Frame
-    Coordinate topLeft = Coordinate{PAGESIZE.width - 190, PAGESIZE.height - 10 - 11 * (5 + NUMOPTLINES)};
+    Coordinate topLeft = Coordinate{SHEETSIZE.width - 190, SHEETSIZE.height - 10 - 11 * (5 + NUMOPTLINES)};
     TOPLEFTITELBLOCKCORNER = topLeft;
     if(FULLSHEETPARTSLIST && FULLSHEETPARTSLISTCSV && FULLSHEETPARTLISTCSVSTYLE == BOMStyles::KiCAD)// needs to be last
     {
         QString key = getSheetFieldKey();
-        TITELBLOCKFIELDS[key].Value = QList{QString::number(SHEETINDEX + 1) + "/" + QString::number(fullSheetPartsListNumPagesKiCAD())};
+        TITELBLOCKFIELDS[key].Value = QList{QString::number(SHEETINDEX + 1) + "/" + QString::number(fullSheetPartsListNumSheetsKiCAD())};
     }
     double descHeight = 0;
     if(DESCRIPTION)
     {
         descHeight = (2.5 * 1.5) * (DESCRIPTIONNUMLINES + 1) + 3.7;
-        drawRect(Coordinate{topLeft.X, topLeft.Y - descHeight}, Coordinate{PAGESIZE.width - 10, topLeft.Y}, 0.7);
+        drawRect(Coordinate{topLeft.X, topLeft.Y - descHeight}, Coordinate{SHEETSIZE.width - 10, topLeft.Y}, 0.7);
         drawText(Coordinate{topLeft.X + 1.5, topLeft.Y - descHeight + 1.5}, TITELBLOCKFIELDS["opt23"].Label, TITELBLOCKFIELDS["opt23"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
         drawText(Coordinate{topLeft.X + 1.5, topLeft.Y - descHeight + 1.5 + 4.75}, TITELBLOCKFIELDS["opt23"].Value, TITELBLOCKFIELDS["opt23"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     }
-    drawRect(topLeft, Coordinate{PAGESIZE.width - 10, PAGESIZE.height - 10}, 0.7);
+    drawRect(topLeft, Coordinate{SHEETSIZE.width - 10, SHEETSIZE.height - 10}, 0.7);
     // Vertical
-    drawLine(Coordinate{topLeft.X + 80, topLeft.Y}, Coordinate{topLeft.X + 80, PAGESIZE.height-10}, 0.35);
-    drawLine(Coordinate{topLeft.X + 140, topLeft.Y}, Coordinate{topLeft.X + 140, PAGESIZE.height-10}, 0.35);
-    drawLine(Coordinate{topLeft.X + 152, PAGESIZE.height - 10 - 22}, Coordinate{topLeft.X + 152, PAGESIZE.height-10}, 0.35);
+    drawLine(Coordinate{topLeft.X + 80, topLeft.Y}, Coordinate{topLeft.X + 80, SHEETSIZE.height-10}, 0.35);
+    drawLine(Coordinate{topLeft.X + 140, topLeft.Y}, Coordinate{topLeft.X + 140, SHEETSIZE.height-10}, 0.35);
+    drawLine(Coordinate{topLeft.X + 152, SHEETSIZE.height - 10 - 22}, Coordinate{topLeft.X + 152, SHEETSIZE.height-10}, 0.35);
     // Horizontal
     Coordinate lastLineLeft = topLeft;
     for(qint64 i = 0; i < NUMOPTLINES; i++)
@@ -871,7 +871,7 @@ void TemplateGen::drawTitelblockISO7200()
         }
 
         lastLineLeft = Coordinate{lastLineLeft.X, lastLineLeft.Y + 11};
-        drawLine(lastLineLeft, Coordinate{PAGESIZE.width - 10, lastLineLeft.Y}, 0.35);
+        drawLine(lastLineLeft, Coordinate{SHEETSIZE.width - 10, lastLineLeft.Y}, 0.35);
     }
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt10"].Label, TITELBLOCKFIELDS["opt10"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt11"].Label, TITELBLOCKFIELDS["opt11"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
@@ -883,7 +883,7 @@ void TemplateGen::drawTitelblockISO7200()
     drawProjectionMethod(Coordinate{lastLineLeft.X + 140, lastLineLeft.Y + .5}, TITELBLOCKFIELDS["opt11"].ProjectionMethod);
     drawProjectionMethod(Coordinate{lastLineLeft.X + 180, lastLineLeft.Y + .5}, TITELBLOCKFIELDS["opt12"].ProjectionMethod);
     lastLineLeft = Coordinate{lastLineLeft.X, lastLineLeft.Y + 11};
-    drawLine(lastLineLeft, Coordinate{PAGESIZE.width - 10, lastLineLeft.Y}, 0.35);
+    drawLine(lastLineLeft, Coordinate{SHEETSIZE.width - 10, lastLineLeft.Y}, 0.35);
 
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt13"].Label, TITELBLOCKFIELDS["opt13"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt14"].Label, TITELBLOCKFIELDS["opt14"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
@@ -895,7 +895,7 @@ void TemplateGen::drawTitelblockISO7200()
     drawProjectionMethod(Coordinate{lastLineLeft.X + 140, lastLineLeft.Y + .5}, TITELBLOCKFIELDS["opt14"].ProjectionMethod);
     drawProjectionMethod(Coordinate{lastLineLeft.X + 180, lastLineLeft.Y + .5}, TITELBLOCKFIELDS["opt15"].ProjectionMethod);
     lastLineLeft = Coordinate{lastLineLeft.X, lastLineLeft.Y + 11};
-    drawLine(lastLineLeft, Coordinate{PAGESIZE.width - 10, lastLineLeft.Y}, 0.35);
+    drawLine(lastLineLeft, Coordinate{SHEETSIZE.width - 10, lastLineLeft.Y}, 0.35);
 
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt16"].Label, TITELBLOCKFIELDS["opt16"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 80, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt17"].Label, TITELBLOCKFIELDS["opt17"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
@@ -907,20 +907,20 @@ void TemplateGen::drawTitelblockISO7200()
     drawProjectionMethod(Coordinate{lastLineLeft.X + 140, lastLineLeft.Y + .5}, TITELBLOCKFIELDS["opt17"].ProjectionMethod);
     drawProjectionMethod(Coordinate{lastLineLeft.X + 180, lastLineLeft.Y + .5}, TITELBLOCKFIELDS["opt18"].ProjectionMethod);
     lastLineLeft = Coordinate{lastLineLeft.X + 140, lastLineLeft.Y + 11};
-    drawLine(lastLineLeft, Coordinate{PAGESIZE.width - 10, lastLineLeft.Y}, 0.35);
+    drawLine(lastLineLeft, Coordinate{SHEETSIZE.width - 10, lastLineLeft.Y}, 0.35);
 
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt19"].Label, TITELBLOCKFIELDS["opt19"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt20"].Label, TITELBLOCKFIELDS["opt20"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt19"].Value, TITELBLOCKFIELDS["opt19"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt20"].Value, TITELBLOCKFIELDS["opt20"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     lastLineLeft = Coordinate{lastLineLeft.X, lastLineLeft.Y + 11};
-    drawLine(lastLineLeft, Coordinate{PAGESIZE.width - 10, lastLineLeft.Y}, 0.35);
+    drawLine(lastLineLeft, Coordinate{SHEETSIZE.width - 10, lastLineLeft.Y}, 0.35);
 
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt21"].Label, TITELBLOCKFIELDS["opt21"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt22"].Label, TITELBLOCKFIELDS["opt22"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt21"].Value, TITELBLOCKFIELDS["opt21"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt22"].Value, TITELBLOCKFIELDS["opt22"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
-    topLeft = Coordinate{PAGESIZE.width - 190, PAGESIZE.height - 10 - 11 * (5 + NUMOPTLINES) - descHeight};
+    topLeft = Coordinate{SHEETSIZE.width - 190, SHEETSIZE.height - 10 - 11 * (5 + NUMOPTLINES) - descHeight};
     TOPLEFTITELBLOCKCORNER = topLeft;
 }
 
@@ -957,17 +957,17 @@ void TemplateGen::drawRevHistoryASME_Y14_35_Width180()
 
 void TemplateGen::drawFoldLines(double depth)
 {
-    switch (PAGESTYLE)
+    switch (SHEETSTYLE)
     {
-    case PageStyle::ISO5457_ISO7200:
-        if(FOLDLINETARGET.sizeString == "A4P with border" && PAGESIZE.height >= 297 && PAGESIZE.width >= 210)
+    case SheetStyle::ISO5457_ISO7200:
+        if(FOLDLINETARGET.sizeString == "A4P with border" && SHEETSIZE.height >= 297 && SHEETSIZE.width >= 210)
         {
             double len = 0; // length of the blocck
             int num = 0; // number of blocks
             do
             {
                 num++;
-                len = (PAGESIZE.width - 210) / num;
+                len = (SHEETSIZE.width - 210) / num;
             }while(len > 190 || num % 2 != 0);
 
             for(int i = 1; i <= num; i++)
@@ -976,24 +976,24 @@ void TemplateGen::drawFoldLines(double depth)
             }
 
             // Horizontal
-            double indexHeight = PAGESIZE.height - 297;
+            double indexHeight = SHEETSIZE.height - 297;
             while(indexHeight > 0)
             {
                 drawHorFoldLine(indexHeight, depth);
                 indexHeight -= 297;
             }
 
-        }else if(FOLDLINETARGET.sizeString == "200mmX290mm with border" && PAGESIZE.height >= 290 && PAGESIZE.width >= 200)
+        }else if(FOLDLINETARGET.sizeString == "200mmX290mm with border" && SHEETSIZE.height >= 290 && SHEETSIZE.width >= 200)
         {
             double len = 0; // length of the blocck
             int num = 0; // number of blocks
             do
             {
                 num++;
-                len = (PAGESIZE.width - 210) / num;
+                len = (SHEETSIZE.width - 210) / num;
             }while(len > 180 || num % 2 != 0);
 
-            drawVerFoldLine(PAGESIZE.width - 10, depth);
+            drawVerFoldLine(SHEETSIZE.width - 10, depth);
 
             for(int i = 1; i <= num; i++)
             {
@@ -1001,7 +1001,7 @@ void TemplateGen::drawFoldLines(double depth)
             }
 
             // Horizontal
-            double indexHeight = PAGESIZE.height - 290;
+            double indexHeight = SHEETSIZE.height - 290;
             while(indexHeight > 0)
             {
                 drawHorFoldLine(indexHeight, depth);
@@ -1011,7 +1011,7 @@ void TemplateGen::drawFoldLines(double depth)
         }
         break;
 
-    case PageStyle::BLANK:
+    case SheetStyle::BLANK:
         break;
     }
 }
@@ -1136,7 +1136,6 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     double right = TOPRIGHTDRAWINGCORNER.X;
     double top = TOPRIGHTDRAWINGCORNER.Y;
     double bottom = TOPLEFTITELBLOCKCORNER.Y;
-    double fieldHeight = (2.5 * 1.5) * 1 + 3;
     // Vertival
     drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
     drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
@@ -1172,7 +1171,7 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     QStringList opt6Val;
     QString line = BOMKicad.first();
     int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
-    fieldHeight = (2.5 * 1.5) * lines + 3;
+    double fieldHeight = (2.5 * 1.5) * lines + 3;
     while(indexTop + fieldHeight <= bottom && BOMKicad.size() > 0)
     {
         i++;
@@ -1194,7 +1193,7 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     PARTINDEX = i;
 
 
-    if(BOMKicad.size() > 0 && newPage())
+    if(BOMKicad.size() > 0 && newSheet())
     {
         SHEETINDEX++;
         draw();
@@ -1272,14 +1271,14 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
     }
     PARTINDEX = i;
 
-    if(BOMStd.first().Values.size() > 0 && newPage())
+    if(BOMStd.first().Values.size() > 0 && newSheet())
     {
         SHEETINDEX++;
         draw();
     }
 }
 
-int TemplateGen::fullSheetPartsListNumPagesKiCAD()
+int TemplateGen::fullSheetPartsListNumSheetsKiCAD()
 {
     int partindex = 0;
     int sheetindex = 0;
@@ -1290,7 +1289,6 @@ int TemplateGen::fullSheetPartsListNumPagesKiCAD()
     {
         double top = TOPRIGHTDRAWINGCORNER.Y;
         double bottom = TOPLEFTITELBLOCKCORNER.Y;
-        double fieldHeight = (2.5 * 1.5) * 1 + 3;
         top += 8;
         double indexTop = top;
         int i = partindex;
@@ -1302,7 +1300,7 @@ int TemplateGen::fullSheetPartsListNumPagesKiCAD()
         QStringList opt6Val;
         QString line = bom.first();
         int lines = splitBOMlineKiCAD(line, opt1Val, opt2Val, opt3Val, opt4Val, opt5Val, opt6Val);
-        fieldHeight = (2.5 * 1.5) * lines + 3;
+        double fieldHeight = (2.5 * 1.5) * lines + 3;
         while(indexTop + fieldHeight <= bottom && bom.size() > 0)
         {
             i++;
@@ -1488,13 +1486,13 @@ void TemplateGen::draw()
             return;
         }
         qint64 foldlinesDepth = 0;
-        switch (PAGESTYLE)
+        switch (SHEETSTYLE)
         {
-        case PageStyle::ISO5457_ISO7200:
+        case SheetStyle::ISO5457_ISO7200:
             drawISO5457_ISO7200();
             foldlinesDepth = 5;
             break;
-        case PageStyle::BLANK:
+        case SheetStyle::BLANK:
             drawBlank();
             foldlinesDepth = 0;
         }
@@ -1589,26 +1587,26 @@ void TemplateGen::setDIR(const QString &newDIR)
     DIR = newDIR;
 }
 
-const PageSize &TemplateGen::getPAGESIZE() const
+const SheetSize &TemplateGen::getSHEETSIZE() const
 {
-    return PAGESIZE;
+    return SHEETSIZE;
 }
 
-void TemplateGen::setPAGESIZE(const PageSize &newPAGESIZE)
+void TemplateGen::setSHEETSIZE(const SheetSize &newSHEETSIZE)
 {
-    finisheD.pagesizeE = true;
-    PAGESIZE = newPAGESIZE;
+    finisheD.sheetsizeE = true;
+    SHEETSIZE = newSHEETSIZE;
 }
 
-PageStyle TemplateGen::getPAGESTYLE() const
+SheetStyle TemplateGen::getSHEETSTYLE() const
 {
-    return PAGESTYLE;
+    return SHEETSTYLE;
 }
 
-void TemplateGen::setPAGESTYLE(PageStyle newPAGESTYLE)
+void TemplateGen::setSHEETSTYLE(SheetStyle newSHEETSTYLE)
 {
-    finisheD.pagestylE = true;
-    PAGESTYLE = newPAGESTYLE;
+    finisheD.sheetstylE = true;
+    SHEETSTYLE = newSHEETSTYLE;
 }
 
 qint64 TemplateGen::getNUMOPTLINES() const
@@ -1699,12 +1697,12 @@ void TemplateGen::setFOLDLINES(bool newFOLDLINES)
     finisheD.foldlineS = true;
 }
 
-const PageSize &TemplateGen::getFOLDLINETARGET() const
+const SheetSize &TemplateGen::getFOLDLINETARGET() const
 {
     return FOLDLINETARGET;
 }
 
-void TemplateGen::setFOLDLINETARGET(const PageSize &newFOLDLINETARGET)
+void TemplateGen::setFOLDLINETARGET(const SheetSize &newFOLDLINETARGET)
 {
     FOLDLINETARGET = newFOLDLINETARGET;
     finisheD.foldlinestargeT = true;

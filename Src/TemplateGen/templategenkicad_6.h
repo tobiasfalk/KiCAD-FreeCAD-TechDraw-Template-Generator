@@ -12,8 +12,8 @@ class TemplateGenKiCAD_6 : public TemplateGenKiCAD_5
 {
     Q_OBJECT
 protected:
-    virtual QString getFILEENDING();
-    virtual bool writeBase();
+    virtual QString getFILEENDING() override;
+    virtual bool writeBase() override;
 
 public:
     explicit TemplateGenKiCAD_6(QObject *parent = nullptr);
