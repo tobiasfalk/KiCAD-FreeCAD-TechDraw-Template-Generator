@@ -137,15 +137,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-<<<<<<< Updated upstream
     setWindowIcon(QIcon("./lib/icon.png"));
-
-    initPageSizes();
-    initPageStyles();
-=======
     initSheetSizes();
     initSheetStyles();
->>>>>>> Stashed changes
     initRevHistoryStyles();
     initFoldLinesTarget();
     initBOMStyles();
