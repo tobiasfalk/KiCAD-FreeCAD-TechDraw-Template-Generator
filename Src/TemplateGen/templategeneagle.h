@@ -30,6 +30,11 @@ protected:
     QDomElement CPACKAGE;
     QDomElement CDEVICS;
 
+    QDomElement DEVICES;
+    QDomElement DEVICE;
+    QDomElement TECHNOLOGYS;
+    QDomElement TECHNOLOGY;
+
     QList<QDomElement> OPACKAGES;
     QList<QDomElement> OSYMBOLS;
     QList<QDomElement> ODEVICESETS;

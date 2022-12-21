@@ -424,31 +424,31 @@ void MainWindow::on_GeneratePushButton_clicked()
         PDF->draw();
 
         // Eagle
-        // Uses the PDF Setings
+        // Uses the FreeCAD Setings
         std::unique_ptr<TemplateGenEagle> Eagle(new TemplateGenEagle(this));
         Eagle->setDIR(dir);
         Eagle->setSHEETSIZE(sheetSize);
         Eagle->setSHEETNAME(sheetName);
         Eagle->setSHEETSTYLE(sheetStyle);
         Eagle->setNUMOPTLINES(numOptLines);
-        Eagle->setTITELBLOCKFIELDS(titelblockFieldsPDF);
+        Eagle->setTITELBLOCKFIELDS(titelblockFieldsFreeCAD);
         Eagle->setTRIMMINGMARKS(trimmingMarks);
         Eagle->setREVHISTORY(revHistory);
         Eagle->setREVHISTORYSTYLE(getRevHistoryStyle());
         Eagle->setNUMREVHISTORY(numRevHistory);
-        Eagle->setREVHISTORYFIELDS(revHistoryFieldsPDF);
+        Eagle->setREVHISTORYFIELDS(revHistoryFieldsFreeCAD);
         Eagle->setFOLDLINES(foldLines);
         Eagle->setFOLDLINETARGET(foldLinesTaget);
         Eagle->setSMALLPARTSLIST(smallPartsList);
         Eagle->setNUMLINESMALLPARTSLIST(numLinesSmallPartsList);
         Eagle->setNUMPARTSSMALLPARTSLIST(numPartsSmallPartsList);
-        Eagle->setSMALLPARTSLISTFIELDS(smallPartsListFiledsPDF);
+        Eagle->setSMALLPARTSLISTFIELDS(smallPartsListFiledsFreeCAD);
         Eagle->setFULLSHEETPARTSLIST(fullSheetPartsList);
         Eagle->setFULLSHEETPARTSLISTCSV(fullSheetPartsListCSV);
         Eagle->setFULLSHEETPARTLISTCSVSTYLE(getBOMStyle());
         Eagle->setFULLSHEETPARTSLISTCSVFILE(BOMDIR);
         Eagle->setNUMLINESFULLSHEETPARTSLIST(numLinesFullSheetPartsList);
-        Eagle->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsPDF);
+        Eagle->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsFreeCAD);
         Eagle->setLOGO(logo);
         Eagle->setLOGODIR(logoDir);
         Eagle->setDESCRIPTION(description);

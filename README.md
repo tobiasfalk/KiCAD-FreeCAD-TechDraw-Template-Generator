@@ -115,7 +115,7 @@ This is mostly meant for printing as a template for hand drawing.
 ### Eagle 6.5 
 
 * No logo inclusion.
-* The text in the "editable fields" is not editable and need to be set before generation(in the PDF FIled)
+* The text in the "editable fields" is not editable and need to be set before generation(in the FreeCAD Fileds)
 * No osifont
 
 ## Variable Docu

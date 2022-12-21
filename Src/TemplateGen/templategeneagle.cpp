@@ -139,16 +139,12 @@ bool TemplateGenEagle::writeBase()
             gates_s.appendChild(gate_s);
             CDEVICS.appendChild(gates_s);
 
-            QDomElement devices_s = DOCUMENT.createElement("devices");
-            QDomElement device_s = DOCUMENT.createElement("device");
-            device_s.setAttribute("name", "");
-            QDomElement technologies_s = DOCUMENT.createElement("technologies");
-            QDomElement technology_s = DOCUMENT.createElement("technology");
-            technology_s.setAttribute("name", "");
-            technologies_s.appendChild(technology_s);
-            device_s.appendChild(technologies_s);
-            devices_s.appendChild(device_s);
-            CDEVICS.appendChild(devices_s);
+            DEVICES = DOCUMENT.createElement("devices");
+            DEVICE = DOCUMENT.createElement("device");
+            DEVICE.setAttribute("name", "");
+            TECHNOLOGYS = DOCUMENT.createElement("technologies");
+            TECHNOLOGY = DOCUMENT.createElement("technology");
+            TECHNOLOGY.setAttribute("name", "");
 
             return true;
         }
@@ -302,6 +298,14 @@ void TemplateGenEagle::drawCircle(Coordinate center, double radius, double lineW
 
 qint64 TemplateGenEagle::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
 {
+    if(isEditable && text.contains(">") && text != ">SHEET"){
+        QDomElement attribute = DOCUMENT.createElement("attribute");
+        QString a = text;
+        attribute.setAttribute("name", a.remove('>'));
+        attribute.setAttribute("value", name);
+        attribute.setAttribute("constant", "no");
+        TECHNOLOGY.appendChild(attribute);
+    }
     position = Coordinate{position.X - 5, position.Y + 5};
     QDomElement textSym = DOCUMENT.createElement("text");
     textSym.setAttribute("x", position.X);
@@ -406,6 +410,10 @@ TemplateGenEagle::~TemplateGenEagle()
         LIBRARY.appendChild(SYMBOLS);
         LIBRARY.appendChild(DEVICESETS);
         DRAWING.appendChild(LIBRARY);
+        TECHNOLOGYS.appendChild(TECHNOLOGY);
+        DEVICE.appendChild(TECHNOLOGYS);
+        DEVICES.appendChild(DEVICE);
+        CDEVICS.appendChild(DEVICES);
         ROOT.appendChild(DRAWING);
         DOCUMENT.appendChild(ROOT);
         *XMLTEXTSTREM << DOCUMENT.toString();
