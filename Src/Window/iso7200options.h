@@ -4,7 +4,6 @@
 #include <QDialog>
 
 #include "templateoptions.h"
-#include "changetitelblockfield.h"
 
 namespace Ui {
 class ISO7200Options;
@@ -165,6 +164,26 @@ private:
     ///
     void loadButtonText();
 
+    ///
+    /// \brief trimmingMarks a boolean to save if trimming marks should be showm or not
+    ///
+    bool trimmingMarks;
+
+    ///
+    /// \brief numOptLins is a int that saves how many optional lines should be drawn
+    ///
+    unsigned int numOptLins;
+
+    ///
+    /// \brief descField a boolean to save if trimming marks should be showm or not
+    ///
+    bool descField;
+
+    ///
+    /// \brief numDescLines saves how many lines the description field should have
+    ///
+    unsigned int numDescLines;
+
 public:
     ///
     /// \brief ISO7200Options constructor
@@ -218,6 +237,42 @@ public:
     /// \param newTITELBLOCKFIELDS_PDF
     ///
     void setTITELBLOCKFIELDS_PDF(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_PDF);
+
+    ///
+    /// \brief getTrimmingMarks returns true if trimmin marks should be drawn
+    /// \return is a boolena
+    ///
+    bool getTrimmingMarks();
+    ///
+    /// \brief setTrimmingMarks sets if  trimmin marks should be drawn
+    /// \param newTrimmingMarks a boolean
+    ///
+    void setTrimmingMarks(bool newTrimmingMarks);
+
+    ///
+    /// \brief getNumOptLins returns the number of optional lines
+    /// \return a unsigned int
+    ///
+    unsigned int getNumOptLins();
+    ///
+    /// \brief setNumOptLins sets the number of optional lines, at max 3
+    /// \param newNumOptLins
+    ///
+    void setNumOptLins(unsigned int newNumOptLins);
+
+    ///
+    /// \brief getNumDescLines returns the number of lines the desc field should have
+    /// \return
+    ///
+    unsigned int getNumDescLines();
+    ///
+    /// \brief setNumDescLines sets the number of lines the desc field should have
+    /// \param newNumDescLines
+    ///
+    void setNumDescLines(unsigned int newNumDescLines);
+
+    bool getDescField();
+    void setDescField(bool newDescField);
 };
 
 #endif // ISO7200OPTIONS_H

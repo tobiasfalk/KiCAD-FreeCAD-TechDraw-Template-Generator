@@ -1,5 +1,6 @@
 #include "iso7200options.h"
 #include "ui_iso7200options.h"
+#include "changetitelblockfield.h"
 
 void ISO7200Options::on_opt1PushButton_clicked()
 {
@@ -557,6 +558,57 @@ void ISO7200Options::loadButtonText()
     ui->opt23PushButton->setText("Option 23: " + TITELBLOCKFIELDS_FREECAD["opt23"].Label);
 }
 
+bool ISO7200Options::getDescField()
+{
+    descField = ui->DescriptionCheckBox->isChecked();
+    return descField;
+}
+
+void ISO7200Options::setDescField(bool newDescField)
+{
+    descField = newDescField;
+    ui->DescriptionCheckBox->setChecked(descField);
+}
+
+unsigned int ISO7200Options::getNumDescLines()
+{
+    numDescLines = ui->DescriptionSpinBox->value();
+    return numDescLines;
+}
+
+void ISO7200Options::setNumDescLines(unsigned int newNumDescLines)
+{
+    numDescLines = newNumDescLines;
+    ui->DescriptionSpinBox->setValue(numDescLines);
+}
+
+unsigned int ISO7200Options::getNumOptLins()
+{
+    numOptLins = ui->OptLinesSpinBox->value();
+    return numOptLins;
+}
+
+void ISO7200Options::setNumOptLins(unsigned int newNumOptLins)
+{
+    if(newNumOptLins > 3){
+        newNumOptLins = 3;
+    }
+    numOptLins = newNumOptLins;
+    ui->OptLinesSpinBox->setValue(newNumOptLins);
+}
+
+bool ISO7200Options::getTrimmingMarks()
+{
+    trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+    return trimmingMarks;
+}
+
+void ISO7200Options::setTrimmingMarks(bool newTrimmingMarks)
+{
+    trimmingMarks = newTrimmingMarks;
+    ui->trimmingMarksCheckBox->setChecked(trimmingMarks);
+}
+
 ISO7200Options::ISO7200Options(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ISO7200Options)
@@ -564,6 +616,10 @@ ISO7200Options::ISO7200Options(QWidget *parent) :
     ui->setupUi(this);
     loadStdOptions();
     loadButtonText();
+
+    setNumDescLines(1);
+    setNumOptLins(0);
+    setTrimmingMarks(true);
 }
 
 ISO7200Options::~ISO7200Options()

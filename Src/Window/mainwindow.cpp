@@ -153,10 +153,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QString sheetName = ui->NameLineEdit->text();
     SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
-    qint64 numOptLines = ui->OptLinesSpinBox->value();
+    qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
     qint64 numRevHistory = ui->numRevSpinBox->value();
     QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
-    bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+    bool trimmingMarks = ISO7200OPTIONS->getTrimmingMarks();//ui->trimmingMarksCheckBox->isChecked();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
     bool foldLines = ui->foldLinesCheckBox->isChecked();
     SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -170,8 +170,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
     bool logo = ui->logoCheckBox->isChecked();
     QString logoDir = LOGODIR;
-    bool description = ui->DescriptionCheckBox->isChecked();
-    quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
+    bool description = ISO7200OPTIONS->getDescField();//ui->DescriptionCheckBox->isChecked();
+    quint64 descriptionNumLines = ISO7200OPTIONS->getNumDescLines();//ui->DescriptionSpinBox->value();
 
     QDir dir;
     dir.mkdir(QDir::currentPath() + "/tmp");
@@ -228,10 +228,10 @@ void MainWindow::on_GeneratePushButton_clicked()
         QString sheetName = ui->NameLineEdit->text();
         SheetStyle sheetStyle = getSheetStyle();
         QMap<QString, TitelblockField> titelblockFieldsKiCAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
-        qint64 numOptLines = ui->OptLinesSpinBox->value();
+        qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
         qint64 numRevHistory = ui->numRevSpinBox->value();
         QMap<QString, TitelblockField> revHistoryFieldsKiCAD5 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD5();
-        bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+        bool trimmingMarks = ISO7200OPTIONS->getTrimmingMarks();//ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
         SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -245,8 +245,8 @@ void MainWindow::on_GeneratePushButton_clicked()
         QMap<QString, TitelblockField> fullSheetPartsListFieldsKiCAD5 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD5();
         bool logo = ui->logoCheckBox->isChecked();
         QString logoDir = LOGODIR;
-        bool description = ui->DescriptionCheckBox->isChecked();
-        quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
+        bool description = ISO7200OPTIONS->getDescField();//ui->DescriptionCheckBox->isChecked();
+        quint64 descriptionNumLines = ISO7200OPTIONS->getNumDescLines();//ui->DescriptionSpinBox->value();
 
         std::unique_ptr<TemplateGenKiCAD_5> KiCAD5(new TemplateGenKiCAD_5 (this));
         KiCAD5->setDIR(dir);
@@ -646,13 +646,13 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         QMap<QString, TitelblockField> titelblockFields_KICAD6 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
         QMap<QString, TitelblockField> titelblockFields_FREECAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
         QMap<QString, TitelblockField> titelblockFields_PDF = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
-        qint64 numOptLines = ui->OptLinesSpinBox->value();
+        qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
         qint64 numRevHistory = ui->numRevSpinBox->value();
         QMap<QString, TitelblockField> revHistoryFields_KICAD5 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD5();
         QMap<QString, TitelblockField> revHistoryFields_KICAD6 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
         QMap<QString, TitelblockField> revHistoryFields_FREECAD = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_FREECAD();
         QMap<QString, TitelblockField> revHistoryFields_PDF = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
-        bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+        bool trimmingMarks = ISO7200OPTIONS->getTrimmingMarks();//ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
         SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -759,10 +759,10 @@ void MainWindow::on_previewPushButton_clicked()
     QString sheetName = ui->NameLineEdit->text();
     SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
-    qint64 numOptLines = ui->OptLinesSpinBox->value();
+    qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();
     qint64 numRevHistory = ui->numRevSpinBox->value();
     QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
-    bool trimmingMarks = ui->trimmingMarksCheckBox->isChecked();
+    bool trimmingMarks = ISO7200OPTIONS->getTrimmingMarks();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
     bool foldLines = ui->foldLinesCheckBox->isChecked();
     SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -776,8 +776,8 @@ void MainWindow::on_previewPushButton_clicked()
     QMap<QString, TitelblockField> fullSheetPartsListFields = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
     bool logo = ui->logoCheckBox->isChecked();
     QString logoDir = LOGODIR;
-    bool description = ui->DescriptionCheckBox->isChecked();
-    quint64 descriptionNumLines = ui->DescriptionSpinBox->value();
+    bool description = ISO7200OPTIONS->getDescField();
+    quint64 descriptionNumLines = ISO7200OPTIONS->getNumDescLines();
 
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
     PREVIEW->setSHEETSIZE(sheetSize);
