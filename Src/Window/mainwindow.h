@@ -61,7 +61,7 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_selectCSVBOMpushButton_clicked();
+//    void on_selectCSVBOMpushButton_clicked();
 
     void on_previewPushButton_clicked();
 
@@ -148,13 +148,12 @@ private:
     QList<SheetSize> FOLDLINESTARGET = QList<SheetSize>   { SheetSize{"A4P with border",         210,   297},
                                                           SheetSize{"200mmX290mm with border",             200,     290},};
 
-    std::unique_ptr<ISO7200Options> ISO7200OPTIONS =  std::unique_ptr<ISO7200Options>(new ISO7200Options(this));
-    std::unique_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::unique_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));
-    std::unique_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS = std::unique_ptr<FullSheetsPartListOptions>(new FullSheetsPartListOptions(this));
-    std::unique_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS = std::unique_ptr<SmallPartsListOptions>(new SmallPartsListOptions(this));
+    std::shared_ptr<ISO7200Options> ISO7200OPTIONS =  std::shared_ptr<ISO7200Options>(new ISO7200Options(this));
+    std::shared_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::shared_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));
+    std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS = std::shared_ptr<FullSheetsPartListOptions>(new FullSheetsPartListOptions(this));
+    std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS = std::shared_ptr<SmallPartsListOptions>(new SmallPartsListOptions(this));
 
     QString LOGODIR = "&";
-    QString BOMDIR = "&";
 
     void initSheetSizes();
     void initSheetStyles();

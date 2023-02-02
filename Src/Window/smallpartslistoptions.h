@@ -30,6 +30,12 @@ public:
     const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS_PDF() const;
     void setSMALLPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS_PDF);
 
+    unsigned int getNumLinesPerField();
+    void setNumLinesPerField(unsigned int newNumLinesPerField);
+
+    unsigned int getNumParts();
+    void setNumParts(unsigned int newNumParts);
+
 private slots:
     void on_buttonBox_rejected();
 
@@ -61,6 +67,9 @@ private:
 
     void loadStdOptions();
     void loadButtonText();
+
+    unsigned int numLinesPerField = 1;
+    unsigned int numParts = 1;
 };
 
 #endif // SMALLPARTSLISTOPTIONS_H

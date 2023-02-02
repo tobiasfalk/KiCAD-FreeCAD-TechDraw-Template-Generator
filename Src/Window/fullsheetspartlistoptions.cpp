@@ -1,5 +1,6 @@
 #include "fullsheetspartlistoptions.h"
 #include "ui_fullsheetspartlistoptions.h"
+#include <QFileDialog>
 
 FullSheetsPartListOptions::FullSheetsPartListOptions(QWidget *parent) :
     QDialog(parent),
@@ -8,6 +9,14 @@ FullSheetsPartListOptions::FullSheetsPartListOptions(QWidget *parent) :
     ui->setupUi(this);
     loadStdOptions();
     loadButtonText();
+    initBOMStyles();
+}
+
+void FullSheetsPartListOptions::initBOMStyles()
+{
+    ui->csvBOMComboBox->addItem("KiCAD bom_csv_grouped_by_value_with_fp");
+    ui->csvBOMComboBox->addItem("Standart as in CSV");
+    ui->csvBOMComboBox->setCurrentText("Standart as in CSV");
 }
 
 FullSheetsPartListOptions::~FullSheetsPartListOptions()
@@ -18,6 +27,18 @@ FullSheetsPartListOptions::~FullSheetsPartListOptions()
 const QMap<QString, TitelblockField> &FullSheetsPartListOptions::getFULLSHEETPARTSLISTFIELDS_FREECAD() const
 {
     return FULLSHEETPARTSLISTFIELDS_FREECAD;
+}
+
+BOMStyles FullSheetsPartListOptions::getBOMStyle()
+{
+    if(ui->csvBOMComboBox->currentText() == "KiCAD bom_csv_grouped_by_value_with_fp")
+    {
+        return BOMStyles::KiCAD;
+    }else if(ui->csvBOMComboBox->currentText() == "Standart as in CSV")
+    {
+        return BOMStyles::Standard;
+    }
+    return BOMStyles::Standard;
 }
 
 void FullSheetsPartListOptions::setFULLSHEETPARTSLISTFIELDS_FREECAD(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_FREECAD)
@@ -103,6 +124,40 @@ void FullSheetsPartListOptions::loadButtonText()
     ui->opt4PushButton->setText(FULLSHEETPARTSLISTFIELDS_FREECAD["opt4"].Label);
     ui->opt5PushButton->setText(FULLSHEETPARTSLISTFIELDS_FREECAD["opt5"].Label);
     ui->opt6PushButton->setText(FULLSHEETPARTSLISTFIELDS_FREECAD["opt6"].Label);
+}
+
+bool FullSheetsPartListOptions::getImporCSV()
+{
+    imporCSV = ui->insertBomCheckBox->isChecked();
+    return imporCSV;
+}
+
+void FullSheetsPartListOptions::setImporCSV(bool newImporCSV)
+{
+    imporCSV = newImporCSV;
+    ui->insertBomCheckBox->setChecked(imporCSV);
+}
+
+unsigned int FullSheetsPartListOptions::getNumLinesPerField()
+{
+    numLinesPerField = ui->FullPartsListNumLinesPerFieldSpinBox->value();
+    return numLinesPerField;
+}
+
+void FullSheetsPartListOptions::setNumLinesPerField(unsigned int newNumLinesPerField)
+{
+    numLinesPerField = newNumLinesPerField;
+    ui->FullPartsListNumLinesPerFieldSpinBox->setValue(numLinesPerField);
+}
+
+QString FullSheetsPartListOptions::getBOMDIR() const
+{
+    return BOMDIR;
+}
+
+void FullSheetsPartListOptions::setBOMDIR(const QString &newBOMDIR)
+{
+    BOMDIR = newBOMDIR;
 }
 
 void FullSheetsPartListOptions::on_opt1PushButton_clicked()
@@ -232,5 +287,18 @@ void FullSheetsPartListOptions::setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QStri
 {
     FULLSHEETPARTSLISTFIELDS_PDF = newFULLSHEETPARTSLISTFIELDS_PDF;
     FULLSHEETPARTSLISTFIELDS_PDF_ORG = newFULLSHEETPARTSLISTFIELDS_PDF;
+}
+
+
+void FullSheetsPartListOptions::on_selectCSVBOMpushButton_clicked()
+{
+    ui->insertBomCheckBox->setChecked(true);
+    QString dir = QFileDialog::getOpenFileName(this, "Open File",
+                                               "/home",
+                                               "BOMs (*.csv);;All files (*.*)");
+    if(dir.size() > 0)
+    {
+        BOMDIR = dir;
+    }
 }
 

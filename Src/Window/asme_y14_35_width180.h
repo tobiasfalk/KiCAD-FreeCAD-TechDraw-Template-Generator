@@ -76,6 +76,17 @@ public:
     ///
     void setREVHISTORYFIELDS_PDF(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS_PDF);
 
+    ///
+    /// \brief getNumRev returns the number of revisions
+    /// \return
+    ///
+    unsigned int getNumRev();
+    ///
+    /// \brief setNumRev sets the number of revisions
+    /// \param newNumRev
+    ///
+    void setNumRev(unsigned int newNumRev);
+
 private slots:
     ///
     /// \brief on_buttonBox_rejected is the event when the reject button is clicked
@@ -160,6 +171,11 @@ private:
     /// \brief loadButtonText loads the lable as text to display
     ///
     void loadButtonText();
+
+    ///
+    /// \brief numRev is the number of revisions
+    ///
+    unsigned int numRev = 1;
 };
 
 #endif // ASME_Y14_35_WIDTH180_H

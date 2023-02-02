@@ -222,6 +222,18 @@ void ASME_Y14_35_Width180::setREVHISTORYFIELDS_PDF(const QMap<QString, Titelbloc
     REVHISTORYFIELDS_ORG_PDF = newREVHISTORYFIELDS_PDF;
 }
 
+unsigned int ASME_Y14_35_Width180::getNumRev()
+{
+    numRev = ui->numRevSpinBox->value();
+    return numRev;
+}
+
+void ASME_Y14_35_Width180::setNumRev(unsigned int newNumRev)
+{
+    numRev = newNumRev;
+    ui->numRevSpinBox->setValue(numRev);
+}
+
 const QMap<QString, TitelblockField> &ASME_Y14_35_Width180::getREVHISTORYFIELDS_KICAD6() const
 {
     return REVHISTORYFIELDS_KICAD6;

@@ -92,6 +92,30 @@ void SmallPartsListOptions::loadButtonText()
     ui->opt5PushButton->setText(SMALLPARTSLISTFIELDS_FREECAD["opt5"].Label);
 }
 
+unsigned int SmallPartsListOptions::getNumParts()
+{
+    numParts = ui->SmallPartsListNumPartsSpinBox->value();
+    return numParts;
+}
+
+void SmallPartsListOptions::setNumParts(unsigned int newNumParts)
+{
+    numParts = newNumParts;
+    ui->SmallPartsListNumPartsSpinBox->setValue(numParts);
+}
+
+unsigned int SmallPartsListOptions::getNumLinesPerField()
+{
+    numLinesPerField = ui->SmallPartsListNumLinesPerFieldSpinBox->value();
+    return numLinesPerField;
+}
+
+void SmallPartsListOptions::setNumLinesPerField(unsigned int newNumLinesPerField)
+{
+    numLinesPerField = newNumLinesPerField;
+    ui->SmallPartsListNumLinesPerFieldSpinBox->setValue(numLinesPerField);
+}
+
 void SmallPartsListOptions::on_buttonBox_rejected()
 {
     SMALLPARTSLISTFIELDS_FREECAD = SMALLPARTSLISTFIELDS_FREECAD_ORG;

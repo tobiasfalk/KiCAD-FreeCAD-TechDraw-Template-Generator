@@ -48,6 +48,7 @@ int kgV(int zahl1, int zahl2)
 
 bool allFinisheD(FinisheD finisheD)
 {
+    return true;
     if(!finisheD.diR)
     {
         return false;

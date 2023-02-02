@@ -6,6 +6,10 @@
 #include <QFile>
 
 #include "templateoptions.h"
+#include "iso7200options.h"
+#include "asme_y14_35_width180.h"
+#include "smallpartslistoptions.h"
+#include "fullsheetspartlistoptions.h"
 
 ///
 /// \brief The TemplateGen class is the base class for all the TemplateGenXXXX classes
@@ -37,14 +41,6 @@ protected:
     ///
     SheetStyle SHEETSTYLE;
     ///
-    /// \brief TRIMMINGMARKS says if the trimmingmarks, the black corners, should be drawn or not
-    ///
-    bool TRIMMINGMARKS;
-    ///
-    /// \brief NUMOPTLINES contains the number of optional lines that the titleblock should have, the maximum is 3 and the minimum is 0
-    ///
-    qint64 NUMOPTLINES;
-    ///
     /// \brief TITELBLOCKFIELDS is a map that contains all the
     ///
     QMap<QString, TitelblockField> TITELBLOCKFIELDS;
@@ -56,10 +52,6 @@ protected:
     /// \brief REVHISTORYSTYLE defines the style of the Revison Histrory
     ///
     RevHistoryStyle REVHISTORYSTYLE;
-    ///
-    /// \brief NUMREVHISTORY defines how many lines the revison history should have(must be biger den -1)
-    ///
-    qint64 NUMREVHISTORY;
     ///
     /// \brief REVHISTORYFIELDS are the revhistory fields and the options
     ///
@@ -76,22 +68,12 @@ protected:
     /// \brief SMALLPARTSLIST says if a small parts list shoud be drawn
     ///
     bool SMALLPARTSLIST;
-    ///
-    /// \brief NUMPARTSSMALLPARTSLIST
-    ///
-    quint64 NUMPARTSSMALLPARTSLIST;
-    quint64 NUMLINESMALLPARTSLIST;
     QMap<QString, TitelblockField> SMALLPARTSLISTFIELDS;
     bool FULLSHEETPARTSLIST;
-    quint64 NUMLINESFULLSHEETPARTSLIST;
     QMap<QString, TitelblockField> FULLSHEETPARTSLISTFIELDS;
-    bool FULLSHEETPARTSLISTCSV;
-    QString FULLSHEETPARTSLISTCSVFILE;
-    BOMStyles FULLSHEETPARTLISTCSVSTYLE;
+    //bool FULLSHEETPARTSLISTCSV;
     bool LOGO;
     QString LOGODIR;
-    bool DESCRIPTION;
-    quint64 DESCRIPTIONNUMLINES;
     QString BOMCSVFILE;
 
     bool NOINIT = false;
@@ -202,6 +184,11 @@ protected:
     ///
     QStringList splitBOMValKiCAD(QString val, double targetLenght);
     QStringList splitBOMValStd(QString val, double targetLenght);
+
+    std::shared_ptr<ISO7200Options> ISO7200OPTIONS;
+    std::shared_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180;
+    std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS;
+    std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS;
 public:
     explicit TemplateGen(QObject *parent = nullptr);
 
@@ -222,17 +209,11 @@ public:
     const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS() const;
     void setTITELBLOCKFIELDS(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS);
 
-    bool getTRIMMINGMARKS() const;
-    void setTRIMMINGMARKS(bool newTRIMMINGMARKS);
-
     RevHistoryStyle getREVHISTORYSTYLE() const;
     void setREVHISTORYSTYLE(RevHistoryStyle newREVHISTORYSTYLE);
 
     const QMap<QString, TitelblockField> &getREVHISTORYFIELDS() const;
     void setREVHISTORYFIELDS(const QMap<QString, TitelblockField> &newREVHISTORYFIELDS);
-
-    qint64 getNUMREVHISTORY() const;
-    void setNUMREVHISTORY(qint64 newNUMREVHISTORY);
 
     bool getREVHISTORY() const;
     void setREVHISTORY(bool newREVHISTORY);
@@ -243,23 +224,14 @@ public:
     const SheetSize &getFOLDLINETARGET() const;
     void setFOLDLINETARGET(const SheetSize &newFOLDLINETARGET);
 
-    quint64 getNUMPARTSSMALLPARTSLIST() const;
-    void setNUMPARTSSMALLPARTSLIST(quint64 newNUMPARTSSMALLPARTSLIST);
-
     bool getSMALLPARTSLIST() const;
     void setSMALLPARTSLIST(bool newSMALLPARTSLIST);
-
-    quint64 getNUMLINESMALLPARTSLIST() const;
-    void setNUMLINESMALLPARTSLIST(quint64 newNUMLINESMALLPARTSLIST);
 
     const QMap<QString, TitelblockField> &getSMALLPARTSLISTFIELDS() const;
     void setSMALLPARTSLISTFIELDS(const QMap<QString, TitelblockField> &newSMALLPARTSLISTFIELDS);
 
     bool getFULLSHEETPARTSLIST() const;
     void setFULLSHEETPARTSLIST(bool newFULLSHEETPARTSLIST);
-
-    quint64 getNUMLINESFULLSHEETPARTSLIST() const;
-    void setNUMLINESFULLSHEETPARTSLIST(quint64 newNUMLINESFULLSHEETPARTSLIST);
 
     quint64 getNUMSHEETSFULLSHEETPARTSLIST() const;
     void setNUMSHEETSFULLSHEETPARTSLIST(quint64 newNUMSHEETSFULLSHEETPARTSLIST);
@@ -276,24 +248,20 @@ public:
     const QString &getSHEETNAME() const;
     void setSHEETNAME(const QString &newSHEETNAME);
 
-
-    bool getDESCRIPTION() const;
-    void setDESCRIPTION(bool newDESCRIPTION);
-
-    quint64 getDESCRIPTIONNUMLINES() const;
-    void setDESCRIPTIONNUMLINES(quint64 newDESCRIPTIONNUMLINES);
-
     const QString &getBOMCSVFILE() const;
     void setBOMCSVFILE(const QString &newBOMCSVFILE);
 
-    bool getFULLSHEETPARTSLISTCSV() const;
-    void setFULLSHEETPARTSLISTCSV(bool newFULLSHEETPARTSLISTCSV);
+    std::shared_ptr<ISO7200Options> getISO7200OPTIONS() const;
+    void setISO7200OPTIONS(const std::shared_ptr<ISO7200Options> &newISO7200OPTIONS);
 
-    const QString &getFULLSHEETPARTSLISTCSVFILE() const;
-    void setFULLSHEETPARTSLISTCSVFILE(const QString &newFULLSHEETPARTSLISTCSVFILE);
+    std::shared_ptr<ASME_Y14_35_Width180> getASME_Y14_35_WIDTH180() const;
+    void setASME_Y14_35_WIDTH180(const std::shared_ptr<ASME_Y14_35_Width180> &newASME_Y14_35_WIDTH180);
 
-    BOMStyles getFULLSHEETPARTLISTCSVSTYLE() const;
-    void setFULLSHEETPARTLISTCSVSTYLE(BOMStyles newFULLSHEETPARTLISTCSVSTYLE);
+    std::shared_ptr<FullSheetsPartListOptions> getFULLSHEETPARTLISTOPIONS() const;
+    void setFULLSHEETPARTLISTOPIONS(const std::shared_ptr<FullSheetsPartListOptions> &newFULLSHEETPARTLISTOPIONS);
+
+    std::shared_ptr<SmallPartsListOptions> getSMALLPARTSLISTSOPTIONS() const;
+    void setSMALLPARTSLISTSOPTIONS(const std::shared_ptr<SmallPartsListOptions> &newSMALLPARTSLISTSOPTIONS);
 
 signals:
 

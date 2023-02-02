@@ -12,7 +12,7 @@ QString TemplateGenKiCAD_6::getFILEENDING()
 
 bool TemplateGenKiCAD_6::writeBase()
 {
-    if(!FULLSHEETPARTSLISTCSV)
+    if(!FULLSHEETPARTLISTOPIONS->getImporCSV())
     {
         FILE = std::shared_ptr<QFile>(new QFile(createFileName()));
         if(FILE->open(QIODeviceBase::WriteOnly))

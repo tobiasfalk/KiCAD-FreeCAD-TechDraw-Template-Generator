@@ -77,6 +77,25 @@ public:
     ///
     void setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, TitelblockField> &newFULLSHEETPARTSLISTFIELDS_PDF);
 
+    ///
+    /// \brief getBOMDIR returnsd the dir of the BOM
+    /// \return
+    ///
+    QString getBOMDIR() const;
+    ///
+    /// \brief setBOMDIR sets the dir of the BOM
+    /// \param newBOMDIR
+    ///
+    void setBOMDIR(const QString &newBOMDIR);
+
+    unsigned int getNumLinesPerField();
+    void setNumLinesPerField(unsigned int newNumLinesPerField);
+
+    bool getImporCSV();
+    void setImporCSV(bool newImporCSV);
+
+    BOMStyles getBOMStyle();
+
 private slots:
     ///
     /// \brief on_opt1PushButton_clicked the field optiens for the fullsheetpartlist opt1 is caled
@@ -107,6 +126,8 @@ private slots:
     /// \brief on_opt6PushButton_clicked the field optiens for the fullsheetpartlist opt6 is caled
     ///
     void on_opt6PushButton_clicked();
+
+    void on_selectCSVBOMpushButton_clicked();
 
 private:
     ///
@@ -159,6 +180,17 @@ private:
     /// \brief loadButtonText loads all the Text that appiers on the Buttons
     ///
     void loadButtonText();
+
+    ///
+    /// \brief BOMDIR is the location/path of the bom
+    ///
+    QString BOMDIR = "&";
+
+    unsigned int numLinesPerField = 1;
+
+    bool imporCSV = false;
+
+    void initBOMStyles();
 };
 
 #endif // FULLSHEETSPARTLISTOPTIONS_H

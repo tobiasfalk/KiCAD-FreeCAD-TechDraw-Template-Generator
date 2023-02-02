@@ -8,7 +8,7 @@ QString TemplateGenEagle::getFILEENDING()
 
 bool TemplateGenEagle::writeBase()
 {
-    if(!FULLSHEETPARTSLISTCSV)
+    if(!FULLSHEETPARTLISTOPIONS->getImporCSV())
     {
         if(QFile::exists(DIR + "/sheet_template_eagle_6-5.lbr"))
         {

@@ -52,7 +52,7 @@ bool Preview::newSheet()
     NOINIT = false;
     PARTINDEX = 0;
     SHEETINDEX = 0;
-    BOMStd = readBOMStd(FULLSHEETPARTSLISTCSVFILE);
+    BOMStd = readBOMStd(FULLSHEETPARTLISTOPIONS->getBOMDIR());
     return false;
 }
 
