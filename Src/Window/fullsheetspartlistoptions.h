@@ -96,6 +96,9 @@ public:
 
     BOMStyles getBOMStyle();
 
+    const QString &getSpace();
+    void setSpace(const QString &newSpace);
+
 private slots:
     ///
     /// \brief on_opt1PushButton_clicked the field optiens for the fullsheetpartlist opt1 is caled
@@ -191,6 +194,8 @@ private:
     bool imporCSV = false;
 
     void initBOMStyles();
+
+    QString Space;
 };
 
 #endif // FULLSHEETSPARTLISTOPTIONS_H

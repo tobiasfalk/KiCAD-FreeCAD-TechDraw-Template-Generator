@@ -5,6 +5,8 @@
 #include <QList>
 
 #include <QDebug>
+#include <string.h>
+#include <iostream>
 
 struct FinisheD
 {
@@ -55,7 +57,13 @@ public:
     const Coordinate operator - (const Coordinate& obj);
     const Coordinate operator * (const Coordinate& obj); // A * B => A.X * B.X and A.Y * B.Y
     const Coordinate operator / (const Coordinate& obj); // A / B => A.X / B.X and A.Y / B.Y
+
+//    friend std::ostream &operator<<(std::ostream& os, const Coordinate &m);
 };
+
+//std::ostream &operator<<(std::ostream &os, const Coordinate &m) {
+//    return os << 'A';//"[X,Y]{" << std::to_string(m.X) << ", " << std::to_string(m.Y) << "}";
+//}
 
 class CenteringMarks
 {

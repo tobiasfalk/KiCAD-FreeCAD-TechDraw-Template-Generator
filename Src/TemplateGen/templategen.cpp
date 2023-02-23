@@ -2,6 +2,8 @@
 #include <QFont>
 #include <QFontMetrics>
 
+#include <iostream>
+
 const QString &TemplateGen::getBOMCSVFILE() const
 {
     return BOMCSVFILE;
@@ -14,64 +16,277 @@ void TemplateGen::setBOMCSVFILE(const QString &newBOMCSVFILE)
 
 bool TemplateGen::init()
 {
-    CENTERINGMARKS.Right = true;
-    CENTERINGMARKS.Bottom = true;
-    CENTERINGMARKS.Left = true;
-    CENTERINGMARKS.Top = true;
     if(NOINIT)
     {
         return true;
     }
-    if(ISO7200OPTIONS->getDescField() && SHEETSIZE.height / 2 < 10 + (11 * (5 + ISO7200OPTIONS->getNumOptLins()) + (2.5 * 1.5) * (ISO7200OPTIONS->getNumDescLines() + 1) + 3.7))
-    {
-        CENTERINGMARKS.Right = false;
-        if(SHEETSIZE.width / 2 < 190)
-        {
-            CENTERINGMARKS.Left = false;
-        }
-    }
-    if((SHEETSIZE.height / 2 < 10 + (11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 8 + ((2.5 * 1.5) * SMALLPARTSLISTSOPTIONS->getNumLinesPerField() + 3) * SMALLPARTSLISTSOPTIONS->getNumParts())) && SMALLPARTSLIST)
-    {
-        CENTERINGMARKS.Right = false;
-        if(SHEETSIZE.width / 2 < 190)
-        {
-            CENTERINGMARKS.Left = false;
-        }
-    }
-    if(FULLSHEETPARTSLIST)
-    {
-        CENTERINGMARKS.Right = false;
-        CENTERINGMARKS.Left = false;
-        CENTERINGMARKS.Top = false;
-    }
-    if(SHEETSIZE.width / 2 < 190)
-    {
-        CENTERINGMARKS.Bottom = false;
-    }
-    if(SHEETSIZE.width / 2 < 190 && REVHISTORY)
-    {
-        CENTERINGMARKS.Top = false;
-    }
-    if(SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 0) || (SHEETSIZE.height / 2 < (10 + 8 + ASME_Y14_35_WIDTH180->getNumRev() * 13.5) && REVHISTORY))
-    {
-        CENTERINGMARKS.Right = false;
-    }
-    if((SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 0)) && (SHEETSIZE.width / 2 < 190))
-    {
-        CENTERINGMARKS.Left = false;
-    }
 
-    if(allFinisheD(finisheD))
-    {
-        return writeBase();
-    }
-    else
+    if(!allFinisheD(finisheD))
     {
         printFinisheD(finisheD);
         qCritical() << "Not all options where filled(KiCAD 5)";
         return false;
     }
-    return false;
+
+    initBorder();
+
+    initTitleblock();
+
+    initRevHistory();
+
+    initFullSheetPartList();
+
+//    if(FULLSHEETPARTSLIST)
+//    {
+//        CENTERINGMARKS.Right = false;
+//        CENTERINGMARKS.Left = false;
+//        CENTERINGMARKS.Top = false;
+//    }
+//    if(SHEETSIZE.width / 2 < 190 && REVHISTORY)
+//    {
+//        CENTERINGMARKS.Top = false;
+//    }
+//    if(SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 0) || (SHEETSIZE.height / 2 < (10 + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2)) && REVHISTORY))
+//    {
+//        CENTERINGMARKS.Right = false;
+//    }
+//    if((SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 0)) && (SHEETSIZE.width / 2 < 190))
+//    {
+//        CENTERINGMARKS.Left = false;
+//    }
+
+    return writeBase();
+}
+
+bool TemplateGen::initBorder()
+{
+    // Switching between the diferen styles
+    switch (SHEETSTYLE)
+    {
+    case SheetStyle::ISO5457_ISO7200:
+        // Defining the corners of the drawing space
+        TOPLEFTDRAWINGCORNER.X = 20;
+        TOPLEFTDRAWINGCORNER.Y = 10;
+
+        TOPRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 10;
+        TOPRIGHTDRAWINGCORNER.Y = 10;
+
+        BOTTOMRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 10;
+        BOTTOMRIGHTDRAWINGCORNER.Y = SHEETSIZE.height - 10;
+
+        BOTTOMLEFTDRAWINGCORNER.X = 20;
+        BOTTOMLEFTDRAWINGCORNER.Y = SHEETSIZE.height - 10;
+
+        // Set the Centering marks all true and define there depth
+        CENTERINGMARKS.Right = true;
+        CENTERINGMARKS.Bottom = true;
+        CENTERINGMARKS.Left = true;
+        CENTERINGMARKS.Top = true;
+
+        LEFTCENTERMARKDEPTH = 30;
+        RIGHTCENTERMARKDEPTH = 20;
+        TOPCENTERMARKDEPTH = 20;
+        BOTTOMCENTERMARKDEPTH = 20;
+
+        break;
+
+    case SheetStyle::BLANK:
+        // Defining the corners of the drawing space, all 0 because this is a blank space
+        TOPLEFTDRAWINGCORNER.X = 0;
+        TOPLEFTDRAWINGCORNER.Y = 0;
+
+        TOPRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 0;
+        TOPRIGHTDRAWINGCORNER.Y = 0;
+
+        BOTTOMRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 0;
+        BOTTOMRIGHTDRAWINGCORNER.Y = SHEETSIZE.height - 0;
+
+        BOTTOMLEFTDRAWINGCORNER.X = 0;
+        BOTTOMLEFTDRAWINGCORNER.Y = SHEETSIZE.height - 0;
+
+        CENTERINGMARKS.Right = false;
+        CENTERINGMARKS.Bottom = false;
+        CENTERINGMARKS.Left = false;
+        CENTERINGMARKS.Top = false;
+
+        break;
+    }
+    return true;
+}
+
+bool TemplateGen::initTitleblock()
+{
+    double descHeight;
+    switch (SHEETSTYLE)
+    {
+    case SheetStyle::ISO5457_ISO7200:
+
+        descHeight = (11 * (5 + ISO7200OPTIONS->getNumOptLins()) + (((2.5 * 1.5) * (ISO7200OPTIONS->getNumDescLines() + 1) + 3.7)) * ISO7200OPTIONS->getDescField());
+        TOPLEFTTITELBLOCKCORNER.X = BOTTOMRIGHTDRAWINGCORNER.X - 180;
+        TOPLEFTTITELBLOCKCORNER.Y = BOTTOMRIGHTDRAWINGCORNER.Y - descHeight; // Exaxt size need to be calculated;
+
+        TOPRIGHTTITELBLOCKCORNER.X = BOTTOMRIGHTDRAWINGCORNER.X;
+        TOPRIGHTTITELBLOCKCORNER.Y = BOTTOMRIGHTDRAWINGCORNER.Y - descHeight; // Exaxt size need to be calculated
+
+        BOTTOMLEFTTITELBLOCKCORNER.X = BOTTOMRIGHTDRAWINGCORNER.X - 180;
+        BOTTOMLEFTTITELBLOCKCORNER.Y = BOTTOMRIGHTDRAWINGCORNER.Y;
+
+        BOTTOMRIGHTTITELBLOCKCORNER = BOTTOMRIGHTDRAWINGCORNER;
+
+        CENTERINGMARKS.Right = true;
+        CENTERINGMARKS.Bottom = true;
+        CENTERINGMARKS.Left = true;
+        CENTERINGMARKS.Top = true;
+
+        break;
+
+    case SheetStyle::BLANK:
+        TOPLEFTTITELBLOCKCORNER.X = 0;
+        TOPLEFTTITELBLOCKCORNER.Y = 0;
+
+        TOPRIGHTTITELBLOCKCORNER.X = 0;
+        TOPRIGHTTITELBLOCKCORNER.Y = 0;
+
+        BOTTOMLEFTTITELBLOCKCORNER.X = 0;
+        BOTTOMLEFTTITELBLOCKCORNER.Y = 0;
+
+        BOTTOMRIGHTTITELBLOCKCORNER.X = 0;
+        BOTTOMRIGHTTITELBLOCKCORNER.Y = 0;
+
+        CENTERINGMARKS.Right = false;
+        CENTERINGMARKS.Bottom = false;
+        CENTERINGMARKS.Left = false;
+        CENTERINGMARKS.Top = false;
+
+        break;
+    }
+
+    if(SMALLPARTSLIST){
+        double listHeight = 8 + ((2.5 * 1.5) * SMALLPARTSLISTSOPTIONS->getNumLinesPerField() + 3) * SMALLPARTSLISTSOPTIONS->getNumParts();
+
+        TOPLEFTTITELBLOCKCORNER.Y -= listHeight;
+        TOPRIGHTDRAWINGCORNER.Y -= listHeight;
+    }
+
+    if(TOPLEFTTITELBLOCKCORNER.Y < SHEETSIZE.height / 2){
+        CENTERINGMARKS.Right = false;
+        if(TOPLEFTTITELBLOCKCORNER.X < 30)// 30 is the depth that the line goes in
+        {
+            CENTERINGMARKS.Left = false;
+        }
+    }
+
+    if(TOPLEFTTITELBLOCKCORNER.X < SHEETSIZE.width / 2){
+        CENTERINGMARKS.Bottom = false;
+        if(TOPLEFTTITELBLOCKCORNER.Y < 20)// 30 is the depth that the line goes in
+        {
+            CENTERINGMARKS.Top = false;
+        }
+    }
+
+    return true;
+}
+
+bool TemplateGen::initRevHistory()
+{
+    if(REVHISTORY)
+    {
+        double revHistHight;
+        switch (REVHISTORYSTYLE)
+        {
+        case RevHistoryStyle::ASME_Y14_35_Width180:
+
+            revHistHight = 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2);
+
+            TOPLEFTREVHISTORY.X = TOPRIGHTDRAWINGCORNER.X - 180;
+            TOPLEFTREVHISTORY.Y = TOPRIGHTDRAWINGCORNER.Y;
+
+            TOPRIGHTREVHISTORY = TOPRIGHTDRAWINGCORNER;
+
+            BOTTOMLEFTREVHISTORY.X = TOPLEFTREVHISTORY.X;
+            BOTTOMLEFTREVHISTORY.Y = TOPLEFTREVHISTORY.Y + revHistHight;
+
+            BOTTOMRIGHTREVHISTORY.X = TOPRIGHTREVHISTORY.X;
+            BOTTOMRIGHTREVHISTORY.Y = TOPRIGHTREVHISTORY.Y + revHistHight;
+
+            break;
+
+        default:
+            TOPLEFTREVHISTORY = Coordinate{0,0};
+            TOPRIGHTREVHISTORY = Coordinate{0,0};
+            BOTTOMLEFTREVHISTORY = Coordinate{0,0};
+            BOTTOMRIGHTREVHISTORY = Coordinate{0,0};
+            break;
+        }
+
+        if(BOTTOMRIGHTREVHISTORY.Y > SHEETSIZE.height/2){
+            CENTERINGMARKS.Right = false;
+            if(BOTTOMLEFTREVHISTORY.X < LEFTCENTERMARKDEPTH){
+                CENTERINGMARKS.Left = false;
+            }
+        }
+        if(TOPLEFTREVHISTORY.X < SHEETSIZE.width/2){
+            CENTERINGMARKS.Top = false;
+            if(BOTTOMLEFTREVHISTORY.Y > SHEETSIZE.height - BOTTOMCENTERMARKDEPTH){
+                CENTERINGMARKS.Bottom = false;
+            }
+        }
+    }else {
+        TOPLEFTREVHISTORY = Coordinate{0,0};
+        TOPRIGHTREVHISTORY = Coordinate{0,0};
+        BOTTOMLEFTREVHISTORY = Coordinate{0,0};
+        BOTTOMRIGHTREVHISTORY = Coordinate{0,0};
+    }
+    return true;
+}
+
+bool TemplateGen::initFullSheetPartList()
+{
+    if(FULLSHEETPARTSLIST)
+    {
+        CENTERINGMARKS.Right = false;
+        CENTERINGMARKS.Left = false;
+        CENTERINGMARKS.Top = false;
+        CENTERINGMARKS.Bottom = false;
+
+        if(FULLSHEETPARTLISTOPIONS->getSpace() == "A"){
+            TOPLEFTFULLPARTLIST.X = TOPLEFTDRAWINGCORNER.X;
+            TOPRIGHTFULLPARTLIST.X = TOPRIGHTDRAWINGCORNER.X;
+
+            if(REVHISTORY){
+                TOPLEFTFULLPARTLIST.Y = BOTTOMRIGHTREVHISTORY.Y;
+                TOPRIGHTFULLPARTLIST.Y = BOTTOMRIGHTREVHISTORY.Y;
+            }else{
+                TOPLEFTFULLPARTLIST.Y = TOPLEFTDRAWINGCORNER.Y;
+                TOPRIGHTFULLPARTLIST.Y = TOPLEFTDRAWINGCORNER.Y;
+            }
+
+            BOTTOMLEFTFULLPARTLIST.X = BOTTOMLEFTDRAWINGCORNER.X;
+            BOTTOMLEFTFULLPARTLIST.Y = TOPLEFTTITELBLOCKCORNER.Y;
+
+            BOTTOMRIGHTFULLPARTLIST.X = BOTTOMRIGHTDRAWINGCORNER.X;
+            BOTTOMRIGHTFULLPARTLIST.Y = TOPRIGHTTITELBLOCKCORNER.Y;
+        }else if(FULLSHEETPARTLISTOPIONS->getSpace() == "B"){
+            TOPLEFTFULLPARTLIST = TOPLEFTDRAWINGCORNER;
+
+            if(REVHISTORY){
+                TOPRIGHTFULLPARTLIST = TOPLEFTREVHISTORY;
+            }else{
+                TOPRIGHTFULLPARTLIST.X = BOTTOMLEFTTITELBLOCKCORNER.X;
+                TOPRIGHTFULLPARTLIST.Y = TOPLEFTDRAWINGCORNER.Y;
+            }
+
+            BOTTOMLEFTFULLPARTLIST = BOTTOMLEFTDRAWINGCORNER;
+
+            BOTTOMRIGHTFULLPARTLIST = BOTTOMLEFTTITELBLOCKCORNER;
+        }
+    }else{
+        TOPLEFTFULLPARTLIST = Coordinate{0,0};
+        TOPRIGHTFULLPARTLIST = Coordinate{0,0};
+        BOTTOMLEFTFULLPARTLIST = Coordinate{0,0};
+        BOTTOMRIGHTFULLPARTLIST = Coordinate{0,0};
+    }
+    return true;
 }
 
 QString TemplateGen::createFileName()
@@ -203,6 +418,7 @@ QList<QString> TemplateGen::readBOMKiCAD(QString fileDIR)
 QList<BOMColumn> TemplateGen::readBOMStd(QString fileDIR)
 {
     QList<BOMColumn> ret;
+    double width = TOPRIGHTFULLPARTLIST.X - TOPLEFTFULLPARTLIST.X;
     QFile inputFile(fileDIR);
     if (inputFile.open(QIODevice::ReadOnly))
     {
@@ -219,7 +435,7 @@ QList<BOMColumn> TemplateGen::readBOMStd(QString fileDIR)
                if(f.length() > 0 && i == 0)
                {
                    BOMColumn c;
-                   c.Width = f.toDouble() * (SHEETSIZE.width - 30);
+                   c.Width = f.toDouble() * (width);
                    ret.append(c);
                }else if(f.length() > 0 && i == 1)
                {
@@ -785,30 +1001,39 @@ void TemplateGen::drawDrawingBorderISO5457()
             index++;
         }
     }
-    TOPRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 10;
-    TOPRIGHTDRAWINGCORNER.Y = 10;
-    TOPLEFTDRAWINGCORNER.X = 20;
-    TOPLEFTDRAWINGCORNER.Y = 10;
+//    TOPRIGHTDRAWINGCORNER.X = SHEETSIZE.width - 10;
+//    TOPRIGHTDRAWINGCORNER.Y = 10;
+//    TOPLEFTDRAWINGCORNER.X = 20;
+//    TOPLEFTDRAWINGCORNER.Y = 10;
 }
 
 void TemplateGen::drawTitelblockISO7200()
 {
     // Frame
-    Coordinate topLeft = Coordinate{SHEETSIZE.width - 190, SHEETSIZE.height - 10 - 11 * (5 + ISO7200OPTIONS->getNumOptLins())};
-    TOPLEFTITELBLOCKCORNER = topLeft;
+    //Coordinate topLeft = Coordinate{SHEETSIZE.width - 190, SHEETSIZE.height - 10 - 11 * (5 + ISO7200OPTIONS->getNumOptLins())};
     if(FULLSHEETPARTSLIST && FULLSHEETPARTLISTOPIONS->getImporCSV() && FULLSHEETPARTLISTOPIONS->getBOMStyle() == BOMStyles::KiCAD)// needs to be last
     {
         QString key = getSheetFieldKey();
         TITELBLOCKFIELDS[key].Value = QList{QString::number(SHEETINDEX + 1) + "/" + QString::number(fullSheetPartsListNumSheetsKiCAD())};
     }
+    Coordinate topLeft = TOPLEFTTITELBLOCKCORNER;
+
+    if(SMALLPARTSLIST){
+        double listHeight = 8 + ((2.5 * 1.5) * SMALLPARTSLISTSOPTIONS->getNumLinesPerField() + 3) * SMALLPARTSLISTSOPTIONS->getNumParts();
+
+        topLeft.Y += listHeight;
+    }
+
     double descHeight = 0;
     if(ISO7200OPTIONS->getDescField())
     {
         descHeight = (2.5 * 1.5) * (ISO7200OPTIONS->getNumDescLines() + 1) + 3.7;
+        drawText(Coordinate{topLeft.X + 1.5, topLeft.Y + 1.5}, TITELBLOCKFIELDS["opt23"].Label, TITELBLOCKFIELDS["opt23"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
+        drawText(Coordinate{topLeft.X + 1.5, topLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt23"].Value, TITELBLOCKFIELDS["opt23"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
+        topLeft = Coordinate{topLeft.X, topLeft.Y + descHeight};
         drawRect(Coordinate{topLeft.X, topLeft.Y - descHeight}, Coordinate{SHEETSIZE.width - 10, topLeft.Y}, 0.7);
-        drawText(Coordinate{topLeft.X + 1.5, topLeft.Y - descHeight + 1.5}, TITELBLOCKFIELDS["opt23"].Label, TITELBLOCKFIELDS["opt23"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
-        drawText(Coordinate{topLeft.X + 1.5, topLeft.Y - descHeight + 1.5 + 4.75}, TITELBLOCKFIELDS["opt23"].Value, TITELBLOCKFIELDS["opt23"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     }
+
     drawRect(topLeft, Coordinate{SHEETSIZE.width - 10, SHEETSIZE.height - 10}, 0.7);
     // Vertical
     drawLine(Coordinate{topLeft.X + 80, topLeft.Y}, Coordinate{topLeft.X + 80, SHEETSIZE.height-10}, 0.35);
@@ -905,13 +1130,11 @@ void TemplateGen::drawTitelblockISO7200()
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5}, TITELBLOCKFIELDS["opt22"].Label, TITELBLOCKFIELDS["opt22"].Name + "_l", 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.18, false);
     drawText(Coordinate{lastLineLeft.X + 1.5, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt21"].Value, TITELBLOCKFIELDS["opt21"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
     drawText(Coordinate{lastLineLeft.X + 1.5 + 12, lastLineLeft.Y + 1.5 + 4.75}, TITELBLOCKFIELDS["opt22"].Value, TITELBLOCKFIELDS["opt22"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, 0.25, true);
-    topLeft = Coordinate{SHEETSIZE.width - 190, SHEETSIZE.height - 10 - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) - descHeight};
-    TOPLEFTITELBLOCKCORNER = topLeft;
 }
 
 void TemplateGen::drawRevHistoryASME_Y14_35_Width180()
 {
-    drawRect(Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * 13.5}, 0.7);
+    drawRect(Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2)}, 0.7);
     // Head
     drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 90, TOPRIGHTDRAWINGCORNER.Y + 2}, REVHISTORYFIELDS["head"].Label, REVHISTORYFIELDS["head"].Name + "_l", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
     drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 4}, 0.35);
@@ -923,20 +1146,20 @@ void TemplateGen::drawRevHistoryASME_Y14_35_Width180()
     drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 8}, 0.7);
 
     // Vertical Lines
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * 13.5}, 0.35);
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * 13.5}, 0.35);
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * 13.5}, 0.35);
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * 13.5}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2)}, 0.35);
 
     // Lines
-    for(int i = 0; i < ASME_Y14_35_WIDTH180->getNumRev(); i++)
+    for(unsigned int i = 0; i < ASME_Y14_35_WIDTH180->getNumRev(); i++)
     {
-        drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + 13.5 * i}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 8 + 13.5 * i}, 0.35);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 172.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + 13.5 * i}, REVHISTORYFIELDS["opt1"].Value, TITELBLOCKFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 155, TOPRIGHTDRAWINGCORNER.Y + 9.5 + 13.5 * i}, REVHISTORYFIELDS["opt2"].Value, TITELBLOCKFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 97.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + 13.5 * i}, REVHISTORYFIELDS["opt3"].Value, TITELBLOCKFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 40, TOPRIGHTDRAWINGCORNER.Y + 9.5 + 13.5 * i}, REVHISTORYFIELDS["opt4"].Value, TITELBLOCKFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 15, TOPRIGHTDRAWINGCORNER.Y + 9.5 + 13.5 * i}, REVHISTORYFIELDS["opt5"].Value, TITELBLOCKFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 8 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, 0.35);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 172.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, REVHISTORYFIELDS["opt1"].Value, TITELBLOCKFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 155, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, REVHISTORYFIELDS["opt2"].Value, TITELBLOCKFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 97.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, REVHISTORYFIELDS["opt3"].Value, TITELBLOCKFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 40, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, REVHISTORYFIELDS["opt4"].Value, TITELBLOCKFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 15, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * 3.5 + 2) * i}, REVHISTORYFIELDS["opt5"].Value, TITELBLOCKFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
     }
 }
 
@@ -1003,23 +1226,24 @@ void TemplateGen::drawFoldLines(double depth)
 
 void TemplateGen::drawSmallPartsList()
 {
-    double listHeight = 8 + ((2.5 * 1.5) * SMALLPARTSLISTSOPTIONS->getNumLinesPerField() + 3) * SMALLPARTSLISTSOPTIONS->getNumParts();
     double fildHeight = (2.5 * 1.5) * SMALLPARTSLISTSOPTIONS->getNumLinesPerField() + 3;
-    Coordinate topLeft = Coordinate{TOPLEFTITELBLOCKCORNER.X, TOPLEFTITELBLOCKCORNER.Y - listHeight};
-    drawRect(topLeft, Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPLEFTITELBLOCKCORNER.Y}, 0.7);
-    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTITELBLOCKCORNER.X;
-    drawLine(Coordinate{topLeft.X + width * (double(1)/18), topLeft.Y}, Coordinate{topLeft.X + width * (double(1)/18), TOPLEFTITELBLOCKCORNER.Y}, 0.35);
-    drawLine(Coordinate{topLeft.X + width * (double(5)/36), topLeft.Y}, Coordinate{topLeft.X + width * (double(5)/36), TOPLEFTITELBLOCKCORNER.Y}, 0.35);
-    drawLine(Coordinate{topLeft.X + width * (double(7)/36), topLeft.Y}, Coordinate{topLeft.X + width * (double(7)/36), TOPLEFTITELBLOCKCORNER.Y}, 0.35);
-    drawLine(Coordinate{topLeft.X + width * (double(21)/36), topLeft.Y}, Coordinate{topLeft.X + width * (double(21)/36), TOPLEFTITELBLOCKCORNER.Y}, 0.35);
-    for(int i = 1; i <= SMALLPARTSLISTSOPTIONS->getNumParts(); i++)
+    double listHeight = 8 + (fildHeight) * SMALLPARTSLISTSOPTIONS->getNumParts();
+    double bottom = TOPLEFTTITELBLOCKCORNER.Y + listHeight;
+    Coordinate topLeft = TOPLEFTTITELBLOCKCORNER;
+    drawRect(topLeft, Coordinate{TOPRIGHTDRAWINGCORNER.X, bottom}, 0.7);
+    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTTITELBLOCKCORNER.X;
+    drawLine(Coordinate{topLeft.X + width * (double(1)/18), topLeft.Y}, Coordinate{topLeft.X + width * (double(1)/18), bottom}, 0.35);
+    drawLine(Coordinate{topLeft.X + width * (double(5)/36), topLeft.Y}, Coordinate{topLeft.X + width * (double(5)/36), bottom}, 0.35);
+    drawLine(Coordinate{topLeft.X + width * (double(7)/36), topLeft.Y}, Coordinate{topLeft.X + width * (double(7)/36), bottom}, 0.35);
+    drawLine(Coordinate{topLeft.X + width * (double(21)/36), topLeft.Y}, Coordinate{topLeft.X + width * (double(21)/36), bottom}, 0.35);
+    for(unsigned int i = 1; i <= SMALLPARTSLISTSOPTIONS->getNumParts(); i++)
     {
         QStringList opt1Val;
         QStringList opt2Val;
         QStringList opt3Val;
         QStringList opt4Val;
         QStringList opt5Val;
-        for(int j = 0; j < SMALLPARTSLISTSOPTIONS->getNumLinesPerField(); j++)
+        for(unsigned int j = 0; j < SMALLPARTSLISTSOPTIONS->getNumLinesPerField(); j++)
         {
             opt1Val.append(SMALLPARTSLISTFIELDS["opt1"].Value.at(0) + QString::number(i) + NumToABC(j).at(0));
             opt2Val.append(SMALLPARTSLISTFIELDS["opt2"].Value.at(0) + QString::number(i) + NumToABC(j).at(0));
@@ -1034,27 +1258,31 @@ void TemplateGen::drawSmallPartsList()
         drawText(Coordinate{topLeft.X + width * (double(21)/36) + (width * (double(15)/36)) / 2, topLeft.Y + (fildHeight * (i - 1)) + fildHeight / 2 + 0.5}, opt5Val, SMALLPARTSLISTFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.25, true, i);
         drawLine(Coordinate{topLeft.X, topLeft.Y + (fildHeight * i)}, Coordinate{TOPRIGHTDRAWINGCORNER.X, topLeft.Y + (fildHeight * i)}, 0.35);
     }
-    drawText(Coordinate{topLeft.X + (width * (double(1)/18)) / 2, TOPLEFTITELBLOCKCORNER.Y - 6}, SMALLPARTSLISTFIELDS["opt1"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(1)/18) + (width * (double(3)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 6}, SMALLPARTSLISTFIELDS["opt2"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(5)/36) + (width * (double(2)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 6}, SMALLPARTSLISTFIELDS["opt3"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(7)/36) + (width * (double(14)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 6}, SMALLPARTSLISTFIELDS["opt4"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(21)/36) + (width * (double(15)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 6}, SMALLPARTSLISTFIELDS["opt5"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + (width * (double(1)/18)) / 2, bottom - 6}, SMALLPARTSLISTFIELDS["opt1"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(1)/18) + (width * (double(3)/36)) / 2, bottom - 6}, SMALLPARTSLISTFIELDS["opt2"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(5)/36) + (width * (double(2)/36)) / 2, bottom - 6}, SMALLPARTSLISTFIELDS["opt3"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(7)/36) + (width * (double(14)/36)) / 2, bottom - 6}, SMALLPARTSLISTFIELDS["opt4"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(21)/36) + (width * (double(15)/36)) / 2, bottom - 6}, SMALLPARTSLISTFIELDS["opt5"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+
     drawLine(Coordinate{topLeft.X, topLeft.Y + (fildHeight * SMALLPARTSLISTSOPTIONS->getNumParts()) + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X, topLeft.Y + (fildHeight * SMALLPARTSLISTSOPTIONS->getNumParts()) + 4}, 0.35);
-    drawText(Coordinate{topLeft.X + (width * (double(1)/18)) / 2, TOPLEFTITELBLOCKCORNER.Y - 2}, "1", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(1)/18) + (width * (double(3)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 2}, "2", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(5)/36) + (width * (double(2)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 2}, "3", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(7)/36) + (width * (double(14)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 2}, "4", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
-    drawText(Coordinate{topLeft.X + width * (double(21)/36) + (width * (double(15)/36)) / 2, TOPLEFTITELBLOCKCORNER.Y - 2}, "5", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+
+    drawText(Coordinate{topLeft.X + (width * (double(1)/18)) / 2, bottom - 2}, "1", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(1)/18) + (width * (double(3)/36)) / 2, bottom - 2}, "2", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(5)/36) + (width * (double(2)/36)) / 2, bottom - 2}, "3", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(7)/36) + (width * (double(14)/36)) / 2, bottom - 2}, "4", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
+    drawText(Coordinate{topLeft.X + width * (double(21)/36) + (width * (double(15)/36)) / 2, bottom - 2}, "5", "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
 }
 
 void TemplateGen::drawFullSheetPartsList()
 {
-    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
-    double left = TOPLEFTDRAWINGCORNER.X;
-    double right = TOPRIGHTDRAWINGCORNER.X;
-    double top = TOPRIGHTDRAWINGCORNER.Y;
-    double bottom = TOPLEFTITELBLOCKCORNER.Y;
+    double width = TOPRIGHTFULLPARTLIST.X - TOPLEFTFULLPARTLIST.X;
+    double left = TOPLEFTFULLPARTLIST.X;
+    double right = TOPRIGHTFULLPARTLIST.X;
+    double top = TOPRIGHTFULLPARTLIST.Y;
+    double bottom = BOTTOMRIGHTFULLPARTLIST.Y;
     double fieldHeight = (2.5 * 1.5) * FULLSHEETPARTLISTOPIONS->getNumLinesPerField() + 3;
+    //Boarder
+    drawRect(TOPLEFTFULLPARTLIST, BOTTOMRIGHTFULLPARTLIST, 0.7);
     // Vertival
     drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
     drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
@@ -1077,7 +1305,7 @@ void TemplateGen::drawFullSheetPartsList()
     drawText(Coordinate{left + width * (21/double(36)) + (width * (8/double(36))) / 2, top + 6}, FULLSHEETPARTSLISTFIELDS["opt5"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
     drawText(Coordinate{left + width * (29/double(36)) + (width * (7/double(36))) / 2, top + 6}, FULLSHEETPARTSLISTFIELDS["opt6"].Label, "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
     drawLine(Coordinate{left, top + 8}, Coordinate{right, top + 8}, 0.7);
-    drawLine(Coordinate{left, bottom}, Coordinate{right, bottom}, 0.7);
+    //drawLine(Coordinate{left, bottom}, Coordinate{right, bottom}, 0.7);
     top += 8;
     double indexTop = top + fieldHeight;
     int i = 0;
@@ -1089,7 +1317,7 @@ void TemplateGen::drawFullSheetPartsList()
         QStringList opt4Val;
         QStringList opt5Val;
         QStringList opt6Val;
-        for(int j = 0; j < FULLSHEETPARTLISTOPIONS->getNumLinesPerField(); j++)
+        for(unsigned int j = 0; j < FULLSHEETPARTLISTOPIONS->getNumLinesPerField(); j++)
         {
             opt1Val.append(FULLSHEETPARTSLISTFIELDS["opt1"].Value.at(0) + QString::number(i) + NumToABC(j).at(0));
             opt2Val.append(FULLSHEETPARTSLISTFIELDS["opt2"].Value.at(0) + QString::number(i) + NumToABC(j).at(0));
@@ -1116,11 +1344,21 @@ void TemplateGen::drawFullSheetPartsListCSVKiCAD()
     {
         BOMKicad = readBOMKiCAD(FULLSHEETPARTLISTOPIONS->getBOMDIR());
     }
-    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
-    double left = TOPLEFTDRAWINGCORNER.X;
-    double right = TOPRIGHTDRAWINGCORNER.X;
-    double top = TOPRIGHTDRAWINGCORNER.Y;
-    double bottom = TOPLEFTITELBLOCKCORNER.Y;
+//    double width = TOPRIGHTDRAWINGCORNER.X - TOPLEFTDRAWINGCORNER.X;
+//    double left = TOPLEFTDRAWINGCORNER.X;
+//    double right = TOPRIGHTDRAWINGCORNER.X;
+//    double top = TOPRIGHTDRAWINGCORNER.Y;
+//    double bottom = TOPLEFTTITELBLOCKCORNER.Y;
+
+
+    double width = TOPRIGHTFULLPARTLIST.X - TOPLEFTFULLPARTLIST.X;
+    double left = TOPLEFTFULLPARTLIST.X;
+    double right = TOPRIGHTFULLPARTLIST.X;
+    double top = TOPRIGHTFULLPARTLIST.Y;
+    double bottom = BOTTOMRIGHTFULLPARTLIST.Y;
+    //Boarder
+    drawRect(TOPLEFTFULLPARTLIST, BOTTOMRIGHTFULLPARTLIST, 0.7);
+
     // Vertival
     drawLine(Coordinate{left + width * (2/double(36)), top}, Coordinate{left + width * (2/double(36)), bottom}, 0.35);
     drawLine(Coordinate{left + width * (5/double(36)), top}, Coordinate{left + width * (5/double(36)), bottom}, 0.35);
@@ -1191,12 +1429,22 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
     {
         BOMStd = readBOMStd(FULLSHEETPARTLISTOPIONS->getBOMDIR());
     }
-    double left = TOPLEFTDRAWINGCORNER.X;
+//    double left = TOPLEFTDRAWINGCORNER.X;
     double widthOffset = 0;
-    double right = TOPRIGHTDRAWINGCORNER.X;
-    double top = TOPRIGHTDRAWINGCORNER.Y;
-    double bottom = TOPLEFTITELBLOCKCORNER.Y;
+//    double right = TOPRIGHTDRAWINGCORNER.X;
+//    double top = TOPRIGHTDRAWINGCORNER.Y;
+//    double bottom = TOPLEFTTITELBLOCKCORNER.Y;
     double fieldHeight = (2.5 * 1.5) * 1 + 3;
+
+
+    double width = TOPRIGHTFULLPARTLIST.X - TOPLEFTFULLPARTLIST.X;
+    double left = TOPLEFTFULLPARTLIST.X;
+    double right = TOPRIGHTFULLPARTLIST.X;
+    double top = TOPRIGHTFULLPARTLIST.Y;
+    double bottom = BOTTOMRIGHTFULLPARTLIST.Y;
+    //Boarder
+    drawRect(TOPLEFTFULLPARTLIST, BOTTOMRIGHTFULLPARTLIST, 0.7);
+
     // Vertival
     foreach (BOMColumn c, BOMStd)
     {
@@ -1211,6 +1459,7 @@ void TemplateGen::drawFullSheetPartsListCSVStd()
     {
         drawText(Coordinate{left + widthOffset + c.Width/2, top + 2}, QString::number(j), "", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
         widthOffset += c.Width;
+        j++;
     }
     widthOffset = 0;
     top += 4;
@@ -1273,7 +1522,7 @@ int TemplateGen::fullSheetPartsListNumSheetsKiCAD()
     do
     {
         double top = TOPRIGHTDRAWINGCORNER.Y;
-        double bottom = TOPLEFTITELBLOCKCORNER.Y;
+        double bottom = TOPLEFTTITELBLOCKCORNER.Y;
         top += 8;
         double indexTop = top;
         int i = partindex;
@@ -1334,6 +1583,15 @@ void TemplateGen::drawISO5457_ISO7200()
     drawDrawingBorderISO5457();
 
     drawTitelblockISO7200();
+
+//    drawLine(TOPLEFTDRAWINGCORNER, BOTTOMRIGHTDRAWINGCORNER, .6);
+//    drawLine(TOPRIGHTDRAWINGCORNER, BOTTOMLEFTDRAWINGCORNER, .6);
+
+//    drawLine(TOPLEFTTITELBLOCKCORNER, TOPLEFTDRAWINGCORNER, 0.8);
+//    drawLine(BOTTOMLEFTREVHISTORY, TOPLEFTDRAWINGCORNER, 0.8);
+
+//    drawLine(TOPLEFTFULLPARTLIST, BOTTOMRIGHTFULLPARTLIST, .6);
+//    drawLine(TOPRIGHTFULLPARTLIST, BOTTOMLEFTFULLPARTLIST, .6);
 }
 
 void TemplateGen::drawBlank()

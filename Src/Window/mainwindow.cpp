@@ -191,7 +191,7 @@ void MainWindow::on_GeneratePushButton_clicked()
                                                  | QFileDialog::DontResolveSymlinks);
     if(dir.size() > 0)
     {
-
+        qDebug() << "KiCAD5";
         // KiCAD 5
         SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
         QString sheetName = ui->NameLineEdit->text();
@@ -227,13 +227,15 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD5->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsKiCAD5);
         KiCAD5->setLOGO(logo);
         KiCAD5->setLOGODIR(logoDir);
-        KiCAD5->draw();
 
         KiCAD5->setISO7200OPTIONS(ISO7200OPTIONS);
         KiCAD5->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         KiCAD5->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD5->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        qDebug() << "A";
+        KiCAD5->draw();
 
+        qDebug() << "KiCAD6";
         // KiCAD 6
         QMap<QString, TitelblockField> titelblockFieldsKiCAD6 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
         QMap<QString, TitelblockField> revHistoryFieldsKiCAD6 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
@@ -259,13 +261,14 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD6->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsKiCAD6);
         KiCAD6->setLOGO(logo);
         KiCAD6->setLOGODIR(logoDir);
-        KiCAD6->draw();
 
         KiCAD6->setISO7200OPTIONS(ISO7200OPTIONS);
         KiCAD6->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         KiCAD6->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD6->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        KiCAD6->draw();
 
+        qDebug() << "KiCAD7";
         // KiCAD 7
         QMap<QString, TitelblockField> titelblockFieldsKiCAD7 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
         QMap<QString, TitelblockField> revHistoryFieldsKiCAD7 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
@@ -290,13 +293,14 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD7->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsKiCAD7);
         KiCAD7->setLOGO(logo);
         KiCAD7->setLOGODIR(logoDir);
-        KiCAD7->draw();
 
         KiCAD7->setISO7200OPTIONS(ISO7200OPTIONS);
         KiCAD7->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         KiCAD7->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD7->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        KiCAD7->draw();
 
+        qDebug() << "FreeCAD";
         // FreeCAD
         QMap<QString, TitelblockField> titelblockFieldsFreeCAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
         QMap<QString, TitelblockField> revHistoryFieldsFreeCAD = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_FREECAD();
@@ -321,13 +325,14 @@ void MainWindow::on_GeneratePushButton_clicked()
         FreeCAD->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsFreeCAD);
         FreeCAD->setLOGO(logo);
         FreeCAD->setLOGODIR(logoDir);
-        FreeCAD->draw();
 
         FreeCAD->setISO7200OPTIONS(ISO7200OPTIONS);
         FreeCAD->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         FreeCAD->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         FreeCAD->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        FreeCAD->draw();
 
+        qDebug() << "PDF";
         // PDF
         QMap<QString, TitelblockField> titelblockFieldsPDF = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
         QMap<QString, TitelblockField> revHistoryFieldsPDF = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
@@ -352,13 +357,14 @@ void MainWindow::on_GeneratePushButton_clicked()
         PDF->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsPDF);
         PDF->setLOGO(logo);
         PDF->setLOGODIR(logoDir);
-        PDF->draw();
 
         PDF->setISO7200OPTIONS(ISO7200OPTIONS);
         PDF->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         PDF->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         PDF->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        PDF->draw();
 
+        qDebug() << "Eagle";
         // Eagle
         // Uses the FreeCAD Setings
         std::shared_ptr<TemplateGenEagle> Eagle(new TemplateGenEagle(this));
@@ -379,12 +385,12 @@ void MainWindow::on_GeneratePushButton_clicked()
         Eagle->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsFreeCAD);
         Eagle->setLOGO(logo);
         Eagle->setLOGODIR(logoDir);
-        Eagle->draw();
 
         Eagle->setISO7200OPTIONS(ISO7200OPTIONS);
         Eagle->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         Eagle->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         Eagle->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        Eagle->draw();
     }
 }
 
@@ -864,6 +870,24 @@ void MainWindow::on_SmallPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1)
 
 
 void MainWindow::on_SmallPartsListNumPartsSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_numLinesRevSpinBox_valueChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_spaceComboBox_currentIndexChanged(int index)
 {
     if(WINDOWRUNNING)
     {

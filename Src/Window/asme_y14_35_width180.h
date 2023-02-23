@@ -87,6 +87,9 @@ public:
     ///
     void setNumRev(unsigned int newNumRev);
 
+    unsigned int getNumLinesRev();
+    void setNumLinesRev(unsigned int newNumLinesRev);
+
 private slots:
     ///
     /// \brief on_buttonBox_rejected is the event when the reject button is clicked
@@ -176,6 +179,7 @@ private:
     /// \brief numRev is the number of revisions
     ///
     unsigned int numRev = 1;
+    unsigned int numLinesRev = 1;
 };
 
 #endif // ASME_Y14_35_WIDTH180_H

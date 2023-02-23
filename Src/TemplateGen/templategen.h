@@ -82,15 +82,53 @@ protected:
     qint64 SHEETINDEX = 0;
     qint64 NUMSHEETS = 1;
     qint64 NAMEINDEX = 0;
-    CenteringMarks CENTERINGMARKS{true, true, true, true};
-    Coordinate TOPRIGHTDRAWINGCORNER;
-    Coordinate TOPLEFTDRAWINGCORNER;
-    Coordinate TOPLEFTITELBLOCKCORNER;
 
     QList<QString> BOMKicad;
     QList<BOMColumn> BOMStd;
 
+
+    // Drawing Field
+    Coordinate TOPRIGHTDRAWINGCORNER;
+    Coordinate TOPLEFTDRAWINGCORNER;
+    Coordinate BOTTOMLEFTDRAWINGCORNER;
+    Coordinate BOTTOMRIGHTDRAWINGCORNER;
+    // Titleblock
+    Coordinate TOPLEFTTITELBLOCKCORNER;
+    Coordinate TOPRIGHTTITELBLOCKCORNER;
+    Coordinate BOTTOMLEFTTITELBLOCKCORNER;
+    Coordinate BOTTOMRIGHTTITELBLOCKCORNER;
+    // Rev. Histrory
+    Coordinate TOPLEFTREVHISTORY;
+    Coordinate TOPRIGHTREVHISTORY;
+    Coordinate BOTTOMLEFTREVHISTORY;
+    Coordinate BOTTOMRIGHTREVHISTORY;
+    // Full Sheet Part List Histrory
+    Coordinate TOPLEFTFULLPARTLIST;
+    Coordinate TOPRIGHTFULLPARTLIST;
+    Coordinate BOTTOMLEFTFULLPARTLIST;
+    Coordinate BOTTOMRIGHTFULLPARTLIST;
+
+
+    // Boarder Centering Marks
+    CenteringMarks CENTERINGMARKS{true, true, true, true};
+    double LEFTCENTERMARKDEPTH;
+    double RIGHTCENTERMARKDEPTH;
+    double TOPCENTERMARKDEPTH;
+    double BOTTOMCENTERMARKDEPTH;
+
+
+
+
+
     bool init();
+
+    bool initBorder();
+
+    bool initTitleblock();
+
+    bool initRevHistory();
+
+    bool initFullSheetPartList();
 
     virtual QString getFILEENDING() = 0;
 

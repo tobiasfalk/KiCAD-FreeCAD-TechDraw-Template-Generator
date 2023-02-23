@@ -91,6 +91,18 @@ void ASME_Y14_35_Width180::loadButtonText()
     ui->opt5PushButton->setText("Option 5: "  + REVHISTORYFIELDS_FREECAD["opt5"].Label);
 }
 
+unsigned int ASME_Y14_35_Width180::getNumLinesRev()
+{
+    numLinesRev = ui->numLinesRevSpinBox->value();
+    return numLinesRev;
+}
+
+void ASME_Y14_35_Width180::setNumLinesRev(unsigned int newNumLinesRev)
+{
+    numLinesRev = newNumLinesRev;
+    ui->numLinesRevSpinBox->setValue(numLinesRev);
+}
+
 
 void ASME_Y14_35_Width180::on_headPushButton_clicked()
 {

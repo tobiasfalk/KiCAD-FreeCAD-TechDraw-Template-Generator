@@ -572,8 +572,11 @@ void ISO7200Options::setDescField(bool newDescField)
 
 unsigned int ISO7200Options::getNumDescLines()
 {
-    numDescLines = ui->DescriptionSpinBox->value();
-    return numDescLines;
+    if(getDescField()){
+        numDescLines = ui->DescriptionSpinBox->value();
+        return numDescLines;
+    }
+    return 0;
 }
 
 void ISO7200Options::setNumDescLines(unsigned int newNumDescLines)

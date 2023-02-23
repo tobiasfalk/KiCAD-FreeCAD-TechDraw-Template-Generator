@@ -10,6 +10,10 @@ FullSheetsPartListOptions::FullSheetsPartListOptions(QWidget *parent) :
     loadStdOptions();
     loadButtonText();
     initBOMStyles();
+
+    ui->spaceComboBox->addItem("A");
+    ui->spaceComboBox->addItem("B");
+
 }
 
 void FullSheetsPartListOptions::initBOMStyles()
@@ -136,6 +140,18 @@ void FullSheetsPartListOptions::setImporCSV(bool newImporCSV)
 {
     imporCSV = newImporCSV;
     ui->insertBomCheckBox->setChecked(imporCSV);
+}
+
+const QString &FullSheetsPartListOptions::getSpace()
+{
+    Space = ui->spaceComboBox->currentText();
+    return Space;
+}
+
+void FullSheetsPartListOptions::setSpace(const QString &newSpace)
+{
+    Space = newSpace;
+    ui->spaceComboBox->setCurrentText(Space);
 }
 
 unsigned int FullSheetsPartListOptions::getNumLinesPerField()

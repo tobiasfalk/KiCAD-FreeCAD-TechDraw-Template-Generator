@@ -101,6 +101,10 @@ private slots:
 
     void on_SmallPartsListNumPartsSpinBox_valueChanged(int arg1);
 
+    void on_numLinesRevSpinBox_valueChanged(int arg1);
+
+    void on_spaceComboBox_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     ///
