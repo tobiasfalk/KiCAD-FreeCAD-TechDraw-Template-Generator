@@ -97,7 +97,7 @@ all the lines below that are the Parts that are to be drawn
 * Not able to change the font (with 7(6.99) possible)
 * No Circlys(Used for Projektion)
 
-### KiCAD 7(6.99)
+### KiCAD 7
 
 * No Circlys(Used for Projektion)
 
