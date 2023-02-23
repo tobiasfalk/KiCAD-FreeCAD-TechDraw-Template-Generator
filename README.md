@@ -53,35 +53,6 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 * CSV inclusion, KiCAD with bom_csv_grouped_by_value_with_fp or Standard where in the first line the size in percentage to the drawing with(0.1 for 10% or 0.5 for 50%). The second line defines the Titel of the column,
 all the lines below that are the Parts that are to be drawn
 
-
-## Usage
-
-![Gui image](Images/Gui.png)
-
-1. Combobox to select presented Sheet sizes
-1. The width of the sheet(if preset is selected value is fixed)
-1. The height of the sheet(if preset is selected value is fixed)
-1. The name of the sheet(if preset is selected value is fixed)
-1. Save and load buttons for selected options, like Sheet size field Textes and so on
-1. Titelblock style and the button to change the text in the fields
-1. Select a SVG for Logo inclusion in to the Legal Owner field, the checkbox is for selecting that it is included, will be toggled automatically when a Logo is selected
-1. Color, is not used
-1. Trimming marks check box, this activates and deactivates the trimming marks that are drawn in the corners
-1. Here you can select how many optional lines you want in the Titelblock
-1. Here you can select to draw a description field with a number of specified lines
-1. Revision History, hre you can select the Rev. History and select how many revisions you have, you can also change the field text with the button on the right
-1. Here you can select to draw folding lines in along the border
-1. Full Sheet Part list, this Aktivatem the Full sheet part list and changes the field text,
-
-    in 14a you can set the number of lines on field should have
-    
-    in 14b you can select a CSV file, select its style and put the text of it in the BOM, the "Standard" style can be found in the examples(Examples/Std_BOM_Example_1.csv), for the KiCAD Style you need to export your BOM with the "bom_csv_grouped_by_value_with_fp" script
-1. Small Parts list, same as Full Sheet Parts list with the extra option of 15b that sets the number of parts
-1. Generate Button, this opens a file dialog where you select the saving destination of the multiple templates
-1. KiCAD scaler, this is a small function which helps to scale a KiCAD Symbol Library
-1. Is for manually updating the preview and is in normal use not needed, you could also say it is a relict of the development of the preview
-1. Is the Preview, it updates every time you change a property of the sheet
-
 ## Styles
 - ISO5457 ISO700
 
