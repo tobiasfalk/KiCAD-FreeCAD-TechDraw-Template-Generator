@@ -113,3 +113,6 @@ The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenlose
 
 * Complete Doxygen Documentation
 * PDF Text problems
+
+## Notes
+In the FreeCAD variable values there are some varable that make the Templae easyer to use with this FreeCAD TD Macro(Objekt): https://forum.freecad.org/viewtopic.php?t=77705

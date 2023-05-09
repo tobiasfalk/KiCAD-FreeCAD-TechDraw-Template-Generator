@@ -432,20 +432,22 @@ void ISO7200Options::loadStdOptions()
     TITELBLOCKFIELDS_FREECAD.insert("opt6",  TitelblockField{"Standard",                        QStringList{"."},                           "Standard", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt7",  TitelblockField{"Raw dimensions",                  QStringList{"."},                           "Raw dimensions", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt8",  TitelblockField{"Projection",                      QStringList{"."},                           "Projection", ProjectionMethodType::ThirdAngle});
-    TITELBLOCKFIELDS_FREECAD.insert("opt9",  TitelblockField{"Scale",                           QStringList{"."},                           "Scale", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_FREECAD.insert("opt10", TitelblockField{"Created by",                      QStringList{"."},                           "Created by", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt9",  TitelblockField{"Scale",                           QStringList{"${SCALE}"},                    "Scale", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt10", TitelblockField{"Created by",                      QStringList{"${createdBy}"},                "Created by", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt11", TitelblockField{"Valid from to",                   QStringList{"."},                           "Valid from to", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt12", TitelblockField{"Document state",                  QStringList{"."},                           "Document state", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt13", TitelblockField{"Approved by",                     QStringList{"."},                           "Approved by", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_FREECAD.insert("opt14", TitelblockField{"Project",                         QStringList{""},                            "Project", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt14", TitelblockField{"Project",                         QStringList{"${project}"},                  "Project", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt15", TitelblockField{"Document type",                   QStringList{"."},                           "Document type", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_FREECAD.insert("opt16", TitelblockField{"Legal owner",                     QStringList{".",  ".", "."},                           "Legal owner", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_FREECAD.insert("opt17", TitelblockField{"Title, Supplementary title",      QStringList{".",  ".", "."},                           "Title, Supplementary title", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt16", TitelblockField{"Legal owner",                     QStringList{"${companyLeagalOwnerA}",
+                                                                                                            "${companyLeagalOwnerB}",
+                                                                                                            "${companyLeagalOwnerC}"},      "Legal owner", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt17", TitelblockField{"Title, Supplementary title",      QStringList{"${TITLE}",  ".", "."},         "Title, Supplementary title", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt18", TitelblockField{"Document number",                 QStringList{"."},                           "Document number", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt19", TitelblockField{"Rev.",                            QStringList{"."},                           "Rev.", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt20", TitelblockField{"Date of issue",                   QStringList{"."},                           "Date of issue", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt21", TitelblockField{"Lang.",                           QStringList{"EN"},                          "Lang.", ProjectionMethodType::None});
-    TITELBLOCKFIELDS_FREECAD.insert("opt22", TitelblockField{"Sheet",                           QStringList{"."},                           "Sheet", ProjectionMethodType::None});
+    TITELBLOCKFIELDS_FREECAD.insert("opt22", TitelblockField{"Sheet",                           QStringList{"${#}/${##}"},                           "Sheet", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD.insert("opt23", TitelblockField{"Description",                     QStringList{"."},                           "Description", ProjectionMethodType::None});
     TITELBLOCKFIELDS_FREECAD_ORG = TITELBLOCKFIELDS_FREECAD;
 
