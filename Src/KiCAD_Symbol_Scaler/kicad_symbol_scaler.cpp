@@ -3,8 +3,10 @@
 #include <clocale>
 
 void replaceAll(std::string& str, const std::string& from, const std::string& to) {
+    // Check if String is empty
     if(from.empty())
         return;
+    // find every position and replace it
     size_t start_pos = 0;
     while((start_pos = str.find(from, start_pos)) != std::string::npos) {
         str.replace(start_pos, from.length(), to);
@@ -49,9 +51,12 @@ KiCAD_Symbol_Scaler::KiCAD_Symbol_Scaler()
 
 void KiCAD_Symbol_Scaler::scale()
 {
+    // set local luangig to Englisch US
     std::setlocale(LC_ALL, "en_US.UTF-8");
+    // Go through every line and analyse it
     for(int i = 0; i < Lines.size(); i++)
     {
+        // when a size is found in the line, take the number and scale it
         if(Lines[i].find("(size ") != std::string::npos)
         {
             std::string xStr = "";
@@ -74,6 +79,7 @@ void KiCAD_Symbol_Scaler::scale()
             double y = std::stod(yStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(size ") + xOff, yStr.length(), " " + std::to_string(y));
         }
+        // when a at point is found in the line, take the number and scale it
         if(Lines[i].find("(at ") != std::string::npos)
         {
             std::string xStr = "";
@@ -97,6 +103,7 @@ void KiCAD_Symbol_Scaler::scale()
             double y = std::stod(yStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(at ") + xOff, yStr.length(), " " + std::to_string(y));
         }
+        // when a length is found in the line, take the number and scale it
         if(Lines[i].find("(length ") != std::string::npos)
         {
             std::string xStr = "";
@@ -109,6 +116,7 @@ void KiCAD_Symbol_Scaler::scale()
             double x = std::stod(xStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(length ") + 8, xStr.length(), std::to_string(x) + ")");
         }
+        // when a start point is found in the line, take the number and scale it
         if(Lines[i].find("(start ") != std::string::npos)
         {
             std::string xStr = "";
@@ -131,6 +139,7 @@ void KiCAD_Symbol_Scaler::scale()
             double y = std::stod(yStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(start ") + xOff, yStr.length(), " " + std::to_string(y));
         }
+        // when a end point is found in the line, take the number and scale it
         if(Lines[i].find("(end ") != std::string::npos)
         {
             std::string xStr = "";
@@ -153,6 +162,7 @@ void KiCAD_Symbol_Scaler::scale()
             double y = std::stod(yStr) * double(Scale/1.27);
             Lines[i].replace(Lines[i].find("(end ") + xOff, yStr.length(), " " + std::to_string(y));
         }
+        // when a xy point is found in the line, take the number and scale it
         if(Lines[i].find("(xy ") != std::string::npos)
         {
             std::string xStr = "";
