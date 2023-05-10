@@ -893,12 +893,10 @@ void TemplateGen::drawDrawingBorderISO5457()
 
         // Right
         double spaceRight = (double)10 + (3.5 * (double)indexNumDigets);
-        qDebug() << "Index Digets:" << indexNumDigets << ":" << QString::number((SHEETSIZE.width - 30) / 50) << ":";
         double spaceRightBottom = (double)10 + (3.5 * SHEETSIZE.sizeString.length());
         double lastBottomLine = halfSheetWidth;
         double lastTopLine = halfSheetWidth;
         lineX = halfSheetWidth + 50;
-        qDebug() << "Start";
         while(lineX < SHEETSIZE.width)
         {
             // Top

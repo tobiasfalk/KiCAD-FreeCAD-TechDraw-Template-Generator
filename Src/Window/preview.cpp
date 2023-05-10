@@ -96,7 +96,7 @@ void Preview::drawPoly(Coordinate position, QList<Coordinate> points, double lin
     QList<QPointF> qPoints;
     for(int i = 0; i < points.length(); i++)
     {
-        qPoints.append(QPoint(points[i].X + position.X, points[i].Y + position.Y));
+        qPoints.append(QPointF(points[i].X + position.X, points[i].Y + position.Y));
     }
 
     QPolygonF polygon(qPoints);
