@@ -49,30 +49,33 @@ SheetStyle MainWindow::getSheetStyle()
 
 SheetSize MainWindow::getSheetSize(QString sizeString, double width, double height)
 {
+    SheetSize tmp;
     if(sizeString == "User defined")
     {
-        SheetSize tmp;
         tmp.sizeString = ui->NameLineEdit->text();
         tmp.height = ui->sheetHeightDoubleSpinBox->value();
         tmp.width = ui->sheetWidthDoubleSpinBox->value();
-        return tmp;
     }
     else
     {
+        tmp.sizeString = "User defined";
+        tmp.height = height;
+        tmp.width = width;
         foreach(SheetSize sheet, SHEETSIZES)
         {
             if(sheet.sizeString == sizeString)
             {
                 sheet.sizeString = sheet.sizeString;
-                return sheet;
+                tmp = sheet;
             }
         }
-        SheetSize tmp;
-        tmp.sizeString = "User defined";
-        tmp.height = height;
-        tmp.width = width;
-        return tmp;
     }
+    if(ui->portraitCheckBox->isChecked()){
+        SheetSize tmpA = tmp;
+        tmp.width = tmpA.height;
+        tmp.height = tmpA.width;
+    }
+    return tmp;
 }
 
 SheetSize MainWindow::getFoldLinesTarget(QString sizeString)
@@ -915,6 +918,15 @@ void MainWindow::on_numLinesRevSpinBox_valueChanged(int arg1)
 
 
 void MainWindow::on_spaceComboBox_currentIndexChanged(int index)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_portraitCheckBox_stateChanged(int arg1)
 {
     if(WINDOWRUNNING)
     {
