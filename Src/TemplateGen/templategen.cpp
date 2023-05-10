@@ -843,7 +843,7 @@ void TemplateGen::drawDrawingBorderISO5457()
         double halfSheetWidth = SHEETSIZE.width/2;
         // Lines
         qint64 index = 1;
-        qint64 indexNumDigets = QString::number((SHEETSIZE.width - 30) / 50).length();
+        qint64 indexNumDigets = QString::number((int)(SHEETSIZE.width - 30) / 50).length();
         // Left
         double spaceLeft = 20 + 3.5;
         double lineX = halfSheetWidth - 50;
@@ -860,6 +860,7 @@ void TemplateGen::drawDrawingBorderISO5457()
             indexListLeft.prepend(lineX +25);
         }
 
+        // Left Text
         foreach(double pos, indexListLeft)
         {
             if(pos <= spaceLeft)
@@ -891,15 +892,27 @@ void TemplateGen::drawDrawingBorderISO5457()
         index++;
 
         // Right
-        double spaceRight = 10 + (3.5 * indexNumDigets);
-        double spaceRightBottom = 10 + (3.5 * SHEETSIZE.sizeString.length());
+        double spaceRight = (double)10 + (3.5 * (double)indexNumDigets);
+        qDebug() << "Index Digets:" << indexNumDigets << ":" << QString::number((SHEETSIZE.width - 30) / 50) << ":";
+        double spaceRightBottom = (double)10 + (3.5 * SHEETSIZE.sizeString.length());
         double lastBottomLine = halfSheetWidth;
+        double lastTopLine = halfSheetWidth;
         lineX = halfSheetWidth + 50;
-        while(lineX < SHEETSIZE.width - spaceRight)
+        qDebug() << "Start";
+        while(lineX < SHEETSIZE.width)
         {
             // Top
-            drawLine(Coordinate{lineX, 5}, Coordinate{lineX, 10}, 0.35);
-            drawText(Coordinate{lineX + 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            if(lineX <= (double)SHEETSIZE.width - (double)spaceRight)
+            {
+                drawLine(Coordinate{lineX, 5}, Coordinate{lineX, 10}, 0.35);
+                lastTopLine = lineX;
+            }
+
+            if(lineX >= (double)SHEETSIZE.width - (double)spaceRight - 50 && lineX <= (double)SHEETSIZE.width - (double)spaceRight){
+                drawText(Coordinate{lastTopLine + ((SHEETSIZE.width - 5) - lastTopLine) / 2, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            }else if(lineX + 25 <= SHEETSIZE.width){
+                drawText(Coordinate{lineX + 25, 7.5}, QString::number(index), "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+            }
             //Bottom
             if(lineX < SHEETSIZE.width - spaceRightBottom)
             {
@@ -907,7 +920,7 @@ void TemplateGen::drawDrawingBorderISO5457()
                 lastBottomLine = lineX;
             }
 
-            if(lineX >= SHEETSIZE.width - 80)
+            if(lineX >= SHEETSIZE.width - 55)
             {
                 drawText(Coordinate{lastBottomLine + (SHEETSIZE.width - lastBottomLine) / 2, SHEETSIZE.height - 7.5}, SHEETSIZE.sizeString, "", 3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
