@@ -1755,6 +1755,7 @@ void TemplateGen::draw()
             drawFoldLines(foldlinesDepth);
         }
 
+
         if(FULLSHEETPARTSLIST && !FULLSHEETPARTLISTOPIONS->getImporCSV())
         {
             drawFullSheetPartsList();
@@ -1764,6 +1765,7 @@ void TemplateGen::draw()
         {
             drawSmallPartsList();
         }
+
 
         if(LOGO)
         {

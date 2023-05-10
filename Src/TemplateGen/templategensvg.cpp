@@ -1,33 +1,30 @@
-#include "templategenpdf.h"
+#include "templategensvg.h"
 #include <QPainterPath>
 #include <math.h>
 #include <QGraphicsSvgItem>
 
-
-QString TemplateGenPDF::getFILEENDING()
+QString TemplateGenSVG::getFILEENDING()
 {
-    return ".pdf";
+    return ".svg";
 }
 
-bool TemplateGenPDF::writeBase()
+bool TemplateGenSVG::writeBase()
 {
-    PDFWRITER = std::shared_ptr<QPdfWriter>(new QPdfWriter(createFileName()));
-    PDFWRITER->setPageMargins(QMarginsF(0, 0, 0, 0));
-    PDFWRITER->setPageSize(QPageSize(QSizeF(SHEETSIZE.width, SHEETSIZE.height), QPageSize::Millimeter));
-    PDFWRITER->setResolution(480000);
-    PAINTER = std::shared_ptr<QPainter>(new QPainter(PDFWRITER.get()));
-    PAINTER->setTransform(QTransform().scale(18897.6378, 18897.6378));// 18,897.6378 p/mm = 480,000 dpi
+    SVGWRITER = std::shared_ptr<QSvgGenerator>(new QSvgGenerator());
+    SVGWRITER->setFileName(createFileName());
+    SVGWRITER->setSize(QSize(SHEETSIZE.width * 2.8346456692913, SHEETSIZE.height * 2.8346456692913));
+    SVGWRITER->setViewBox(QRect(0, 0, SHEETSIZE.width, SHEETSIZE.height));
+
+    PAINTER = std::shared_ptr<QPainter>(new QPainter(SVGWRITER.get()));
     return true;
 }
 
-bool TemplateGenPDF::newSheet()
+bool TemplateGenSVG::newSheet()
 {
-    PDFWRITER->newPage();
-    NOINIT = true;
-    return true;
+    return false;
 }
 
-void TemplateGenPDF::drawLine(Coordinate start, Coordinate end, double lineWidth)
+void TemplateGenSVG::drawLine(Coordinate start, Coordinate end, double lineWidth)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -39,7 +36,7 @@ void TemplateGenPDF::drawLine(Coordinate start, Coordinate end, double lineWidth
     PAINTER->drawLine(line);
 }
 
-void TemplateGenPDF::drawRect(Coordinate start, Coordinate end, double lineWidth)
+void TemplateGenSVG::drawRect(Coordinate start, Coordinate end, double lineWidth)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -51,7 +48,7 @@ void TemplateGenPDF::drawRect(Coordinate start, Coordinate end, double lineWidth
     PAINTER->drawRect(rectangle);
 }
 
-void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
+void TemplateGenSVG::drawPoly(Coordinate position, QList<Coordinate> points, double lineWidth, bool fill)
 {
     // Becaus ther is a ofset with the size of the line width
     if(!fill)
@@ -87,7 +84,7 @@ void TemplateGenPDF::drawPoly(Coordinate position, QList<Coordinate> points, dou
     }
 }
 
-void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
+void TemplateGenSVG::drawCircle(Coordinate center, double radius, double lineWidth, double circleArc)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -100,11 +97,11 @@ void TemplateGenPDF::drawCircle(Coordinate center, double radius, double lineWid
     PAINTER->drawEllipse(rectangle);
 }
 
-qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
+qint64 TemplateGenSVG::drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable, QString font)
 {
     QFont qFont(font);
     QFont qFontA(font);
-    qFont.setPointSizeF(((textSize * std::sqrt(2))/18897.6378) * 2.8346456692913 );//18897.6378
+    qFont.setPointSizeF(textSize * std::sqrt(2));// * (1+ 1/3));// * std::sqrt(2))/18897.6378) * 2.8346456692913 );//18897.6378
     qFontA.setPointSizeF(100);
     double posX = position.X;
     double posY = position.Y;
@@ -145,7 +142,7 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
     return text.length();
 }
 
-void TemplateGenPDF::drawLogoTitelblockISO7200()
+void TemplateGenSVG::drawLogoTitelblockISO7200()
 {
     // Load SVG
     LOGORENDERER = std::shared_ptr<QSvgRenderer>(new QSvgRenderer(LOGODIR));
@@ -177,13 +174,13 @@ void TemplateGenPDF::drawLogoTitelblockISO7200()
     PAINTER->drawImage(target, image);
 }
 
-TemplateGenPDF::TemplateGenPDF(QObject *parent)
+TemplateGenSVG::TemplateGenSVG(QObject *parent)
     : TemplateGen{parent}
 {
 
 }
 
-TemplateGenPDF::~TemplateGenPDF()
+TemplateGenSVG::~TemplateGenSVG()
 {
     PAINTER->end();
 }

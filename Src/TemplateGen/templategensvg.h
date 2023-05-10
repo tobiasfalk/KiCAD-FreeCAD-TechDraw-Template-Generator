@@ -1,23 +1,20 @@
-#ifndef TEMPLATEGENPDF_H
-#define TEMPLATEGENPDF_H
-#include <memory>
-#include <utility>
+#ifndef TEMPLATEGENSVG_H
+#define TEMPLATEGENSVG_H
 
+#include "templategenpdf.h"
 #include <QObject>
+#include <QSvgGenerator>
 #include <QPainter>
 #include <QPdfWriter>
 #include <QSvgRenderer>
 
-#include "templategen.h"
 
-
-class TemplateGenPDF : public TemplateGen
+class TemplateGenSVG : public TemplateGen
 {
-    Q_OBJECT
 protected:
     QString getFILEENDING() override;
     bool writeBase() override;
-    std::shared_ptr<QPdfWriter> PDFWRITER;
+    std::shared_ptr<QSvgGenerator> SVGWRITER;
     std::shared_ptr<QPainter> PAINTER;
     std::shared_ptr<QSvgRenderer> LOGORENDERER;
 
@@ -33,9 +30,10 @@ protected:
     qint64 drawText(Coordinate position, QString text, QString name, double textSize, TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor, double lineWidth, bool isEditable = false, QString font = "osifont") override;
 
     void drawLogoTitelblockISO7200() override;
+
 public:
-    explicit TemplateGenPDF(QObject *parent = nullptr);
-    ~TemplateGenPDF();
+    explicit TemplateGenSVG(QObject *parent = nullptr);
+    ~TemplateGenSVG();
 };
 
-#endif // TEMPLATEGENPDF_H
+#endif // TEMPLATEGENSVG_H

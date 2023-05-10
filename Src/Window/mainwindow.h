@@ -17,6 +17,7 @@
 #include "templategenkicad_7.h"
 #include "templategenfreecad.h"
 #include "templategenpdf.h"
+#include "templategensvg.h"
 #include "templategeneagle.h"
 
 #include "preview.h"

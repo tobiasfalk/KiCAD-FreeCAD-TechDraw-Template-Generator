@@ -232,7 +232,6 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD5->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
         KiCAD5->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD5->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        qDebug() << "A";
         KiCAD5->draw();
 
         qDebug() << "KiCAD6";
@@ -363,6 +362,34 @@ void MainWindow::on_GeneratePushButton_clicked()
         PDF->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         PDF->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         PDF->draw();
+
+        qDebug() << "SVG";
+        // SVG(uses PDF Options)
+
+        std::shared_ptr<TemplateGenSVG> SVG(new TemplateGenSVG(this));
+        SVG->setDIR(dir);
+        SVG->setSHEETSIZE(sheetSize);
+        SVG->setSHEETNAME(sheetName);
+        SVG->setSHEETSTYLE(sheetStyle);
+        SVG->setNUMOPTLINES(numOptLines);
+        SVG->setTITELBLOCKFIELDS(titelblockFieldsPDF);
+        SVG->setREVHISTORY(revHistory);
+        SVG->setREVHISTORYSTYLE(getRevHistoryStyle());
+        SVG->setREVHISTORYFIELDS(revHistoryFieldsPDF);
+        SVG->setFOLDLINES(foldLines);
+        SVG->setFOLDLINETARGET(foldLinesTaget);
+        SVG->setSMALLPARTSLIST(smallPartsList);
+        SVG->setSMALLPARTSLISTFIELDS(smallPartsListFiledsPDF);
+        SVG->setFULLSHEETPARTSLIST(fullSheetPartsList);
+        SVG->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsPDF);
+        SVG->setLOGO(logo);
+        SVG->setLOGODIR(logoDir);
+
+        SVG->setISO7200OPTIONS(ISO7200OPTIONS);
+        SVG->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        SVG->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
+        SVG->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+        SVG->draw();
 
         qDebug() << "Eagle";
         // Eagle

@@ -13,6 +13,8 @@ set(TemplateGen_SOURCES
     templategenpdf.h
     templategeneagle.cpp
     templategeneagle.h
+    templategensvg.cpp
+    templategensvg.h
 )
 
 add_library(TemplateGen STATIC
