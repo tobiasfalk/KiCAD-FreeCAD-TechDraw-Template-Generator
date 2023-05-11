@@ -291,9 +291,13 @@ bool TemplateGen::initFullSheetPartList()
 
 QString TemplateGen::createFileName()
 {
+    QString landPortString = "";
+    if(SHEETSIZE.height > SHEETSIZE.width){
+        landPortString = "_portate";
+    }
     if(FULLSHEETPARTLISTOPIONS->getImporCSV())
     {
-        return DIR + "/" + SHEETSIZE.sizeString.replace(" ", "_") + "Partlist_" + QString::number(SHEETINDEX + 1) + getFILEENDING();
+        return DIR + "/" + SHEETSIZE.sizeString.replace(" ", "_") + "Partlist_" + QString::number(SHEETINDEX + 1) + landPortString + getFILEENDING();
     }
     QString ret =  DIR + "/" + SHEETSIZE.sizeString.replace(" ", "_");
 
@@ -346,7 +350,7 @@ QString TemplateGen::createFileName()
         ret += "_spl+" + QString::number(SMALLPARTSLISTSOPTIONS->getNumParts()) + "+" + QString::number(SMALLPARTSLISTSOPTIONS->getNumLinesPerField());
     }
 
-    ret +=  getFILEENDING();
+    ret += landPortString + getFILEENDING();
     return ret;
 }
 
@@ -979,7 +983,7 @@ void TemplateGen::drawDrawingBorderISO5457()
         index++;
 
         // Bottom
-        double spaceBottom = 10 + (3.5 * indexNumDigets);
+        double spaceBottom = 10 + (5.5 * indexNumDigets);
         lineY = halfSheetHeight + 50;
         while(lineY < SHEETSIZE.height - spaceBottom)
         {
