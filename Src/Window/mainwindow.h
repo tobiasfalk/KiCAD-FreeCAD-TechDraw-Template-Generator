@@ -239,6 +239,12 @@ private:
                                                     SheetSize{"SIS G9",                  65,    46},
                                                     SheetSize{"SIS G10",                 46,    33},
 
+                                                    SheetSize{"290mmX200mm",             290,     200},
+
+                                                    SheetSize{"566mmX400mm",             566,     400},
+                                                    SheetSize{"400mmX283mm",             400,     283},
+                                                    SheetSize{"283mmX200mm",             283,     200},
+
                                                     // No actual Formats just for fun and to put the US sizeze even more to the bottom
                                                     SheetSize{"2048A0(2kA0) Not real",   53824, 38048},
                                                     SheetSize{"1024A0(1kA0) Not real",   38048, 26912},
@@ -273,8 +279,10 @@ private:
     /// \brief FOLDLINESTARGET is a list of sheetsizes(sheetsizes) to withch the foldlines will be created
     ///
     // Sizes in mm                                                  Designation               width  height
-    QList<SheetSize> FOLDLINESTARGET = QList<SheetSize>   { SheetSize{"A4P with border",         210,   297},
-                                                          SheetSize{"200mmX290mm with border",             200,     290},};
+    QList<SheetSize> FOLDLINESTARGET = QList<SheetSize>   {
+                                                            SheetSize{"A4P with border",         210,   297},
+                                                            SheetSize{"200mmX290mm with border", 200,     290},
+                                                            SheetSize{"200mmX283mm",             283,     200},};
 
     std::shared_ptr<ISO7200Options> ISO7200OPTIONS =  std::shared_ptr<ISO7200Options>(new ISO7200Options(this));
     std::shared_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::shared_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));

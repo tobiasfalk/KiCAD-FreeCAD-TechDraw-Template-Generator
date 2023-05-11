@@ -1231,6 +1231,31 @@ void TemplateGen::drawFoldLines(double depth)
                 indexHeight -= 290;
             }
 
+        }else if(FOLDLINETARGET.sizeString == "200mmX283mm" && SHEETSIZE.height >= 283 && SHEETSIZE.width >= 200)
+        {
+            double len = 0; // length of the blocck
+            int num = 0; // number of blocks
+            do
+            {
+                num++;
+                len = (SHEETSIZE.width - 210) / num;
+            }while(len > 180 || num % 2 != 0);
+
+            drawVerFoldLine(SHEETSIZE.width - 10, depth);
+
+            for(int i = 1; i <= num; i++)
+            {
+                drawVerFoldLine(20 + len * i, depth);
+            }
+
+            // Horizontal
+            double indexHeight = SHEETSIZE.height - 283;
+            while(indexHeight > 0)
+            {
+                drawHorFoldLine(indexHeight, depth);
+                indexHeight -= 283;
+            }
+
         }
         break;
 
