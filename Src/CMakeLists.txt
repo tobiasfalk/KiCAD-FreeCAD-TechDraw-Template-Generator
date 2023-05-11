@@ -1,6 +1,6 @@
 # Subdirs
 add_subdirectory(KiCAD_Symbol_Scaler/)
-add_subdirectory(Templateoptions/)
+add_subdirectory(TemplateOptions/)
 add_subdirectory(TemplateGen/)
 add_subdirectory(Window/)
 add_subdirectory(Icon/)
