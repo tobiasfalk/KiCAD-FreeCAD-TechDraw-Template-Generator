@@ -33,9 +33,12 @@ protected:
 private:
     void paintEvent(QPaintEvent *e) override;
     double SCALE = 1;
+    bool sheetBorder = false;
 public:
     Preview();
     ~Preview();
+    bool getSheetBorder() const;
+    void setSheetBorder(bool newSheetBorder);
 };
 
 #endif // PREVIEW_H

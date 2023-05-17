@@ -132,6 +132,8 @@ private:
     ///
     Ui::ISO7200Dialog *ui;
 
+    void resizeEvent(QResizeEvent*);
+
     std::shared_ptr<ISO7200Options> ISO7200OPTIONS;
 
     std::shared_ptr<Preview> PREVIEW;

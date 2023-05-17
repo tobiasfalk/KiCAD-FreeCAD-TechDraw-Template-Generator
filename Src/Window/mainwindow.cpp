@@ -174,6 +174,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
 
+    PREVIEW->setSheetBorder(ui->preViewSheetBordercheckBox->isChecked());
+
 
     ui->gridLayout_2->addWidget(PREVIEW.get());
 
@@ -742,6 +744,9 @@ void MainWindow::on_previewPushButton_clicked()
     PREVIEW->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+
+    PREVIEW->setSheetBorder(ui->preViewSheetBordercheckBox->isChecked());
+
     PREVIEW->update();
 }
 
@@ -891,6 +896,15 @@ void MainWindow::on_spaceComboBox_currentIndexChanged(int index)
 
 
 void MainWindow::on_portraitCheckBox_stateChanged(int arg1)
+{
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_preViewSheetBordercheckBox_stateChanged(int arg1)
 {
     if(WINDOWRUNNING)
     {

@@ -100,6 +100,8 @@ private slots:
 
     void on_portraitCheckBox_stateChanged(int arg1);
 
+    void on_preViewSheetBordercheckBox_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     ///

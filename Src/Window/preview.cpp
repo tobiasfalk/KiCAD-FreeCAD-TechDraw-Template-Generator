@@ -23,6 +23,16 @@ void Preview::paintEvent(QPaintEvent *e)
     QFrame::paintEvent(e);
 }
 
+bool Preview::getSheetBorder() const
+{
+    return sheetBorder;
+}
+
+void Preview::setSheetBorder(bool newSheetBorder)
+{
+    sheetBorder = newSheetBorder;
+}
+
 QString Preview::getFILEENDING()
 {
     return "";
@@ -41,6 +51,10 @@ bool Preview::writeBase()
     NOINIT = false;
     PARTINDEX = 0;
     SHEETINDEX = 0;
+
+    if(sheetBorder){
+        drawRect(Coordinate{0,0}, Coordinate{SHEETSIZE.width, SHEETSIZE.height}, 1);
+    }
 
     return true;
 }

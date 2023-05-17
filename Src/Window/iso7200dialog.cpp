@@ -674,3 +674,8 @@ void ISO7200Dialog::on_DescriptionSpinBox_valueChanged(int arg1)
     updatePreview();
 }
 
+void ISO7200Dialog::resizeEvent(QResizeEvent *)
+{
+    updatePreview();
+}
+
