@@ -1,6 +1,8 @@
  set(Templateoptions_SOURCES
      templateoptions.cpp
      templateoptions.h
+     iso7200options.cpp
+     iso7200options.h
 )
 
 add_library(Templateoptions STATIC

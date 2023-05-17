@@ -5,9 +5,9 @@ set(Window_SOURCES
     changetitelblockfield.cpp
     changetitelblockfield.h
     changetitelblockfield.ui
-    iso7200options.cpp
-    iso7200options.h
-    iso7200options.ui
+    iso7200dialog.h
+    iso7200dialog.cpp
+    iso7200dialog.ui
     asme_y14_35_width180.cpp
     asme_y14_35_width180.h
     asme_y14_35_width180.ui

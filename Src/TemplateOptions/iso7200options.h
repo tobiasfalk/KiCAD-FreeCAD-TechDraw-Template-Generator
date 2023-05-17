@@ -1,7 +1,7 @@
 #ifndef ISO7200OPTIONS_H
 #define ISO7200OPTIONS_H
 
-#include <QDialog>
+#include <QObject>
 
 #include "templateoptions.h"
 
@@ -9,114 +9,12 @@ namespace Ui {
 class ISO7200Options;
 }
 
-class ISO7200Options : public QDialog
+class ISO7200Options : public QObject
 {
     Q_OBJECT
 private slots:
-    ///
-    /// \brief on_opt1PushButton_clicked is the event when the option 1 buttion is clicked
-    ///
-    void on_opt1PushButton_clicked();
-    ///
-    /// \brief on_opt2PushButton_clicked is the event when the option 2 buttion is clicked
-    ///
-    void on_opt2PushButton_clicked();
-    ///
-    /// \brief on_opt3PushButton_clicked is the event when the option 3 buttion is clicked
-    ///
-    void on_opt3PushButton_clicked();
-    ///
-    /// \brief on_opt4PushButton_clicked is the event when the option 4 buttion is clicked
-    ///
-    void on_opt4PushButton_clicked();
-    ///
-    /// \brief on_opt5PushButton_clicked is the event when the option 5 buttion is clicked
-    ///
-    void on_opt5PushButton_clicked();
-    ///
-    /// \brief on_opt6PushButton_clicked is the event when the option 6 buttion is clicked
-    ///
-    void on_opt6PushButton_clicked();
-    ///
-    /// \brief on_opt7PushButton_clicked is the event when the option 7 buttion is clicked
-    ///
-    void on_opt7PushButton_clicked();
-    ///
-    /// \brief on_opt8PushButton_clicked is the event when the option 8 buttion is clicked
-    ///
-    void on_opt8PushButton_clicked();
-    ///
-    /// \brief on_opt9PushButton_clicked is the event when the option 9 buttion is clicked
-    ///
-    void on_opt9PushButton_clicked();
-    ///
-    /// \brief on_opt10PushButton_clicked is the event when the option 10 buttion is clicked
-    ///
-    void on_opt10PushButton_clicked();
-    ///
-    /// \brief on_opt11PushButton_clicked is the event when the option 11 buttion is clicked
-    ///
-    void on_opt11PushButton_clicked();
-    ///
-    /// \brief on_opt12PushButton_clicked is the event when the option 12 buttion is clicked
-    ///
-    void on_opt12PushButton_clicked();
-    ///
-    /// \brief on_opt13PushButton_clicked is the event when the option 13 buttion is clicked
-    ///
-    void on_opt13PushButton_clicked();
-    ///
-    /// \brief on_opt14PushButton_clicked is the event when the option 14 buttion is clicked
-    ///
-    void on_opt14PushButton_clicked();
-    ///
-    /// \brief on_opt15PushButton_clicked is the event when the option 15 buttion is clicked
-    ///
-    void on_opt15PushButton_clicked();
-    ///
-    /// \brief on_opt16PushButton_clicked is the event when the option 16 buttion is clicked
-    ///
-    void on_opt16PushButton_clicked();
-    ///
-    /// \brief on_opt17PushButton_clicked is the event when the option 17 buttion is clicked
-    ///
-    void on_opt17PushButton_clicked();
-    ///
-    /// \brief on_opt18PushButton_clicked is the event when the option 18 buttion is clicked
-    ///
-    void on_opt18PushButton_clicked();
-    ///
-    /// \brief on_opt19PushButton_clicked is the event when the option 19 buttion is clicked
-    ///
-    void on_opt19PushButton_clicked();
-    ///
-    /// \brief on_opt20PushButton_clicked is the event when the option 20 buttion is clicked
-    ///
-    void on_opt20PushButton_clicked();
-    ///
-    /// \brief on_opt21PushButton_clicked is the event when the option 21 buttion is clicked
-    ///
-    void on_opt21PushButton_clicked();
-    ///
-    /// \brief on_opt22PushButton_clicked is the event when the option 22 buttion is clicked
-    ///
-    void on_opt22PushButton_clicked();
-
-    ///
-    /// \brief on_buttonBox_rejected is the event when the rejekt buttion is clicked, it resets all the field maps to its origin
-    ///
-    void on_buttonBox_rejected();
-
-    ///
-    /// \brief on_opt23PushButton_clicked is the event when the option 23 buttion is clicked
-    ///
-    void on_opt23PushButton_clicked();
 
 private:
-    ///
-    /// \brief ui is the pointer fo the qt UI
-    ///
-    Ui::ISO7200Options *ui;
 
     ///
     /// \brief TITELBLOCKFIELDS_FREECAD is the map with all the FreeCAD fields
@@ -159,10 +57,6 @@ private:
     /// \brief loadStdOptions loads the standorad option in to the field maps
     ///
     void loadStdOptions();
-    ///
-    /// \brief loadButtonText loads all the Text that appiers on the Buttons
-    ///
-    void loadButtonText();
 
     ///
     /// \brief trimmingMarks a boolean to save if trimming marks should be showm or not
@@ -189,11 +83,14 @@ public:
     /// \brief ISO7200Options constructor
     /// \param parent qt parent pointer
     ///
-    explicit ISO7200Options(QWidget *parent = nullptr);
+    explicit ISO7200Options(QObject *parent = nullptr);
+
     ///
     /// \brief ISO7200Options deconstructor
     ///
     ~ISO7200Options();
+
+    void resetToStd();
 
     ///
     /// \brief getTITELBLOCKFIELDS_FREECAD is the getter function
@@ -205,6 +102,7 @@ public:
     /// \param newTITELBLOCKFIELDS_FREECAD
     ///
     void setTITELBLOCKFIELDS_FREECAD(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_FREECAD);
+    void setTITELBLOCKFIELD_FREECAD(QString key, TitelblockField field);
 
     ///
     /// \brief getTITELBLOCKFIELDS_KICAD5 is the getter function
@@ -216,6 +114,7 @@ public:
     /// \param newTITELBLOCKFIELDS_KICAD5
     ///
     void setTITELBLOCKFIELDS_KICAD5(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD5);
+    void setTITELBLOCKFIELD_KICAD5(QString key, TitelblockField field);
 
     ///
     /// \brief getTITELBLOCKFIELDS_KICAD6 is the getter function
@@ -227,6 +126,7 @@ public:
     /// \param newTITELBLOCKFIELDS_KICAD6
     ///
     void setTITELBLOCKFIELDS_KICAD6(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_KICAD6);
+    void setTITELBLOCKFIELD_KICAD6(QString key, TitelblockField field);
     ///
     /// \brief getTITELBLOCKFIELDS_PDF is the getter function
     /// \return
@@ -237,6 +137,7 @@ public:
     /// \param newTITELBLOCKFIELDS_PDF
     ///
     void setTITELBLOCKFIELDS_PDF(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_PDF);
+    void setTITELBLOCKFIELD_PDF(QString key, TitelblockField field);
 
     ///
     /// \brief getTrimmingMarks returns true if trimmin marks should be drawn

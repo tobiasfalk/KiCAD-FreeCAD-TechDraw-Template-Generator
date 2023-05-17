@@ -12,6 +12,8 @@
 #include "smallpartslistoptions.h"
 #include "fullsheetspartlistoptions.h"
 
+#include "iso7200dialog.h"
+
 #include "templategenkicad_5.h"
 #include "templategenkicad_6.h"
 #include "templategenkicad_7.h"
@@ -62,8 +64,6 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-//    void on_selectCSVBOMpushButton_clicked();
-
     void on_previewPushButton_clicked();
 
     void on_sheetWidthDoubleSpinBox_valueChanged(double arg1);
@@ -73,14 +73,6 @@ private slots:
     void on_NameLineEdit_textEdited(const QString &arg1);
 
     void on_SheetStyleComboBox_currentIndexChanged(int index);
-
-    void on_trimmingMarksCheckBox_stateChanged(int arg1);
-
-    void on_OptLinesSpinBox_valueChanged(int arg1);
-
-    void on_DescriptionCheckBox_stateChanged(int arg1);
-
-    void on_DescriptionSpinBox_valueChanged(int arg1);
 
     void on_RevHistoryCheckBox_stateChanged(int arg1);
 
@@ -246,6 +238,16 @@ private:
                                                     SheetSize{"283mmX200mm",             283,     200},
 
                                                     // No actual Formats just for fun and to put the US sizeze even more to the bottom
+                                                    SheetSize{"2097152A0(2MA0) Not real", 1722368, 1217536},
+                                                    SheetSize{"1048576A0(1MA0) Not real", 1217536, 861184},
+                                                    SheetSize{"524288A0(512kA0) Not real", 861184, 608768},
+                                                    SheetSize{"262144A0(256kA0) Not real", 608768, 430592},
+                                                    SheetSize{"131072A0(128kA0) Not real", 430592, 304384},
+                                                    SheetSize{"65536A0(64kA0) Not real", 304384, 215296},
+                                                    SheetSize{"32768A0(32kA0) Not real", 215296, 152192},
+                                                    SheetSize{"16384A0(16kA0) Not real", 152192, 107648},
+                                                    SheetSize{"8192A0(8kA0) Not real",   107648, 76096},
+                                                    SheetSize{"4096A0(4kA0) Not real",   76096, 53824},
                                                     SheetSize{"2048A0(2kA0) Not real",   53824, 38048},
                                                     SheetSize{"1024A0(1kA0) Not real",   38048, 26912},
                                                     SheetSize{"512A0 Not real",          26912, 19024},

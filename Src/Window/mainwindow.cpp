@@ -2,7 +2,6 @@
 #include "./ui_mainwindow.h"
 
 #include "loadesavesettings.h"
-
 #include "kicad_symbol_scaler_ui.h"
 
 void MainWindow::initSheetSizes()
@@ -114,7 +113,7 @@ QString MainWindow::getRevHistoryStyleString(RevHistoryStyle style)
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 600);
+    PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 800);
     QWidget::resizeEvent(event);
 }
 
@@ -458,8 +457,9 @@ void MainWindow::on_sheetTitelblockFieldsPushButton_clicked()
 {
     if(ui->SheetStyleComboBox->currentText() == "ISO5457 ISO7200")
     {
-        ISO7200OPTIONS->setModal(true);
-        ISO7200OPTIONS->exec();
+        std::unique_ptr<ISO7200Dialog> ISO7200DIALOG(new ISO7200Dialog(ISO7200OPTIONS, this));
+        ISO7200DIALOG->setModal(true);
+        ISO7200DIALOG->exec();
     }
     else
     {
@@ -737,12 +737,12 @@ void MainWindow::on_previewPushButton_clicked()
     PREVIEW->setLOGO(logo);
     PREVIEW->setLOGODIR(logoDir);
     PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 600);
-    PREVIEW->update();
 
     PREVIEW->setISO7200OPTIONS(ISO7200OPTIONS);
     PREVIEW->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+    PREVIEW->update();
 }
 
 
@@ -774,42 +774,6 @@ void MainWindow::on_NameLineEdit_textEdited(const QString &arg1)
 
 
 void MainWindow::on_SheetStyleComboBox_currentIndexChanged(int index)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_trimmingMarksCheckBox_stateChanged(int arg1)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_OptLinesSpinBox_valueChanged(int arg1)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_DescriptionCheckBox_stateChanged(int arg1)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_DescriptionSpinBox_valueChanged(int arg1)
 {
     if(WINDOWRUNNING)
     {
