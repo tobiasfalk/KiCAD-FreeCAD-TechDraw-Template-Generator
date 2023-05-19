@@ -3,6 +3,8 @@
      templateoptions.h
      iso7200options.cpp
      iso7200options.h
+     asme_y14_35_width180options.cpp
+     asme_y14_35_width180options.h
 )
 
 add_library(Templateoptions STATIC

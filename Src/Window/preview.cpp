@@ -62,7 +62,7 @@ bool Preview::writeBase()
 bool Preview::newSheet()
 {
     static int i = 0;
-    qDebug() << i++;
+    qDebug() << "Sheet: " << i++;
     NOINIT = false;
     PARTINDEX = 0;
     SHEETINDEX = 0;

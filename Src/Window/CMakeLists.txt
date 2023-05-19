@@ -8,9 +8,9 @@ set(Window_SOURCES
     iso7200dialog.h
     iso7200dialog.cpp
     iso7200dialog.ui
-    asme_y14_35_width180.cpp
-    asme_y14_35_width180.h
-    asme_y14_35_width180.ui
+    asme_y14_35_width180dialog.cpp
+    asme_y14_35_width180dialog.h
+    asme_y14_35_width180dialog.ui
     fullsheetspartlistoptions.cpp
     fullsheetspartlistoptions.h
     fullsheetspartlistoptions.ui

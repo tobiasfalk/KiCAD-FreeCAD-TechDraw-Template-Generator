@@ -137,7 +137,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
-    QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+    QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
     bool foldLines = ui->foldLinesCheckBox->isChecked();
     SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -170,7 +170,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     PREVIEW->setLOGODIR(logoDir);
 
     PREVIEW->setISO7200OPTIONS(ISO7200OPTIONS);
-    PREVIEW->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+    PREVIEW->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
 
@@ -202,7 +202,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         SheetStyle sheetStyle = getSheetStyle();
         QMap<QString, TitelblockField> titelblockFieldsKiCAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
         qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
-        QMap<QString, TitelblockField> revHistoryFieldsKiCAD5 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD5();
+        QMap<QString, TitelblockField> revHistoryFieldsKiCAD5 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD5();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
         SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -233,7 +233,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD5->setLOGODIR(logoDir);
 
         KiCAD5->setISO7200OPTIONS(ISO7200OPTIONS);
-        KiCAD5->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        KiCAD5->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         KiCAD5->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD5->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         KiCAD5->draw();
@@ -241,7 +241,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         qDebug() << "KiCAD6";
         // KiCAD 6
         QMap<QString, TitelblockField> titelblockFieldsKiCAD6 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
-        QMap<QString, TitelblockField> revHistoryFieldsKiCAD6 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
+        QMap<QString, TitelblockField> revHistoryFieldsKiCAD6 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD6();
         QMap<QString, TitelblockField> smallPartsListFiledsKiCAD6 = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
         QMap<QString, TitelblockField> fullSheetPartsListFieldsKiCAD6 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
 
@@ -266,7 +266,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD6->setLOGODIR(logoDir);
 
         KiCAD6->setISO7200OPTIONS(ISO7200OPTIONS);
-        KiCAD6->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        KiCAD6->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         KiCAD6->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD6->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         KiCAD6->draw();
@@ -274,7 +274,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         qDebug() << "KiCAD7";
         // KiCAD 7
         QMap<QString, TitelblockField> titelblockFieldsKiCAD7 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
-        QMap<QString, TitelblockField> revHistoryFieldsKiCAD7 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
+        QMap<QString, TitelblockField> revHistoryFieldsKiCAD7 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD6();
         QMap<QString, TitelblockField> smallPartsListFiledsKiCAD7 = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_KICAD6();
         QMap<QString, TitelblockField> fullSheetPartsListFieldsKiCAD7 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
 
@@ -298,7 +298,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         KiCAD7->setLOGODIR(logoDir);
 
         KiCAD7->setISO7200OPTIONS(ISO7200OPTIONS);
-        KiCAD7->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        KiCAD7->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         KiCAD7->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         KiCAD7->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         KiCAD7->draw();
@@ -306,7 +306,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         qDebug() << "FreeCAD";
         // FreeCAD
         QMap<QString, TitelblockField> titelblockFieldsFreeCAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
-        QMap<QString, TitelblockField> revHistoryFieldsFreeCAD = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_FREECAD();
+        QMap<QString, TitelblockField> revHistoryFieldsFreeCAD = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_FREECAD();
         QMap<QString, TitelblockField> smallPartsListFiledsFreeCAD = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_FREECAD();
         QMap<QString, TitelblockField> fullSheetPartsListFieldsFreeCAD = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
 
@@ -330,7 +330,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         FreeCAD->setLOGODIR(logoDir);
 
         FreeCAD->setISO7200OPTIONS(ISO7200OPTIONS);
-        FreeCAD->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        FreeCAD->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         FreeCAD->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         FreeCAD->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         FreeCAD->draw();
@@ -338,7 +338,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         qDebug() << "PDF";
         // PDF
         QMap<QString, TitelblockField> titelblockFieldsPDF = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
-        QMap<QString, TitelblockField> revHistoryFieldsPDF = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+        QMap<QString, TitelblockField> revHistoryFieldsPDF = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
         QMap<QString, TitelblockField> smallPartsListFiledsPDF = SMALLPARTSLISTSOPTIONS->getSMALLPARTSLISTFIELDS_PDF();
         QMap<QString, TitelblockField> fullSheetPartsListFieldsPDF = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
 
@@ -362,7 +362,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         PDF->setLOGODIR(logoDir);
 
         PDF->setISO7200OPTIONS(ISO7200OPTIONS);
-        PDF->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        PDF->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         PDF->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         PDF->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         PDF->draw();
@@ -390,7 +390,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         SVG->setLOGODIR(logoDir);
 
         SVG->setISO7200OPTIONS(ISO7200OPTIONS);
-        SVG->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        SVG->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         SVG->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         SVG->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         SVG->draw();
@@ -418,7 +418,7 @@ void MainWindow::on_GeneratePushButton_clicked()
         Eagle->setLOGODIR(logoDir);
 
         Eagle->setISO7200OPTIONS(ISO7200OPTIONS);
-        Eagle->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+        Eagle->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
         Eagle->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
         Eagle->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
         Eagle->draw();
@@ -477,8 +477,9 @@ void MainWindow::on_revHistoryStylePushButton_clicked()
 {
     if(ui->revHistoryStyleComboBox->currentText() == "ASME Y14.35 Width: 180")
     {
-        ASME_Y14_35_WIDTH180->setModal(true);
-        ASME_Y14_35_WIDTH180->exec();
+        std::unique_ptr<ASME_Y14_35_Width180Dialog> ASME_Y14_35_WIDTH180DIALOG(new ASME_Y14_35_Width180Dialog(ASME_Y14_35_WIDTH180OPTIONS, this));
+        ASME_Y14_35_WIDTH180DIALOG->setModal(true);
+        ASME_Y14_35_WIDTH180DIALOG->exec();
     }
     else
     {
@@ -576,10 +577,10 @@ void MainWindow::on_loadFielsPushButton_clicked()
         ISO7200OPTIONS->setTITELBLOCKFIELDS_PDF(file.getTITELBLOCKFIELDS_PDF());
         ui->RevHistoryCheckBox->setChecked(file.getREVHISTORY());
         ui->revHistoryStyleComboBox->setCurrentText(getRevHistoryStyleString(file.getREVHISTORYSTYLE()));
-        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_KICAD5(file.getREVHISTORYFIELDS_KICAD5());
-        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_KICAD6(file.getREVHISTORYFIELDS_KICAD6());
-        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_FREECAD(file.getREVHISTORYFIELDS_FREECAD());
-        ASME_Y14_35_WIDTH180->setREVHISTORYFIELDS_PDF(file.getREVHISTORYFIELDS_PDF());
+        ASME_Y14_35_WIDTH180OPTIONS->setREVHISTORYFIELDS_KICAD5(file.getREVHISTORYFIELDS_KICAD5());
+        ASME_Y14_35_WIDTH180OPTIONS->setREVHISTORYFIELDS_KICAD6(file.getREVHISTORYFIELDS_KICAD6());
+        ASME_Y14_35_WIDTH180OPTIONS->setREVHISTORYFIELDS_FREECAD(file.getREVHISTORYFIELDS_FREECAD());
+        ASME_Y14_35_WIDTH180OPTIONS->setREVHISTORYFIELDS_PDF(file.getREVHISTORYFIELDS_PDF());
         ui->foldLinesCheckBox->setChecked(file.getFOLDLINES());
         ui->foldingLinesComboBox->setCurrentText(file.getFOLDLINESTARGET().sizeString);
         ui->SmallPartsListCheckBox->setChecked(file.getSMALLPARTSLIST());
@@ -616,11 +617,11 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         QMap<QString, TitelblockField> titelblockFields_FREECAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
         QMap<QString, TitelblockField> titelblockFields_PDF = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
         qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
-        qint64 numRevHistory = ASME_Y14_35_WIDTH180->getNumRev();
-        QMap<QString, TitelblockField> revHistoryFields_KICAD5 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD5();
-        QMap<QString, TitelblockField> revHistoryFields_KICAD6 = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_KICAD6();
-        QMap<QString, TitelblockField> revHistoryFields_FREECAD = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_FREECAD();
-        QMap<QString, TitelblockField> revHistoryFields_PDF = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+        qint64 numRevHistory = ASME_Y14_35_WIDTH180OPTIONS->getNumRev();
+        QMap<QString, TitelblockField> revHistoryFields_KICAD5 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD5();
+        QMap<QString, TitelblockField> revHistoryFields_KICAD6 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD6();
+        QMap<QString, TitelblockField> revHistoryFields_FREECAD = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_FREECAD();
+        QMap<QString, TitelblockField> revHistoryFields_PDF = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
         bool trimmingMarks = ISO7200OPTIONS->getTrimmingMarks();//ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
@@ -711,7 +712,7 @@ void MainWindow::on_previewPushButton_clicked()
     QString sheetName = ui->NameLineEdit->text();
     SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
-    QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
+    QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
     bool foldLines = ui->foldLinesCheckBox->isChecked();
     SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -741,7 +742,7 @@ void MainWindow::on_previewPushButton_clicked()
     PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 600);
 
     PREVIEW->setISO7200OPTIONS(ISO7200OPTIONS);
-    PREVIEW->setASME_Y14_35_WIDTH180(ASME_Y14_35_WIDTH180);
+    PREVIEW->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
 
@@ -788,15 +789,6 @@ void MainWindow::on_SheetStyleComboBox_currentIndexChanged(int index)
 
 
 void MainWindow::on_RevHistoryCheckBox_stateChanged(int arg1)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_numRevSpinBox_valueChanged(int arg1)
 {
     if(WINDOWRUNNING)
     {
@@ -869,15 +861,6 @@ void MainWindow::on_SmallPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1)
 
 
 void MainWindow::on_SmallPartsListNumPartsSpinBox_valueChanged(int arg1)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_numLinesRevSpinBox_valueChanged(int arg1)
 {
     if(WINDOWRUNNING)
     {

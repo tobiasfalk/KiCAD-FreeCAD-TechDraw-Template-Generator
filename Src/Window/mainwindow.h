@@ -8,11 +8,12 @@
 
 #include "templateoptions.h"
 #include "iso7200options.h"
-#include "asme_y14_35_width180.h"
+#include "asme_y14_35_width180options.h"
 #include "smallpartslistoptions.h"
 #include "fullsheetspartlistoptions.h"
 
 #include "iso7200dialog.h"
+#include "asme_y14_35_width180dialog.h"
 
 #include "templategenkicad_5.h"
 #include "templategenkicad_6.h"
@@ -76,8 +77,6 @@ private slots:
 
     void on_RevHistoryCheckBox_stateChanged(int arg1);
 
-    void on_numRevSpinBox_valueChanged(int arg1);
-
     void on_revHistoryStyleComboBox_currentIndexChanged(int index);
 
     void on_foldLinesCheckBox_stateChanged(int arg1);
@@ -93,8 +92,6 @@ private slots:
     void on_SmallPartsListNumLinesPerFieldSpinBox_valueChanged(int arg1);
 
     void on_SmallPartsListNumPartsSpinBox_valueChanged(int arg1);
-
-    void on_numLinesRevSpinBox_valueChanged(int arg1);
 
     void on_spaceComboBox_currentIndexChanged(int index);
 
@@ -289,7 +286,7 @@ private:
                                                             SheetSize{"200mmX283mm",             283,     200},};
 
     std::shared_ptr<ISO7200Options> ISO7200OPTIONS =  std::shared_ptr<ISO7200Options>(new ISO7200Options(this));
-    std::shared_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::shared_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));
+    std::shared_ptr<ASME_Y14_35_Width180Options> ASME_Y14_35_WIDTH180OPTIONS = std::shared_ptr<ASME_Y14_35_Width180Options>(new ASME_Y14_35_Width180Options(this));
     std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS = std::shared_ptr<FullSheetsPartListOptions>(new FullSheetsPartListOptions(this));
     std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS = std::shared_ptr<SmallPartsListOptions>(new SmallPartsListOptions(this));
 

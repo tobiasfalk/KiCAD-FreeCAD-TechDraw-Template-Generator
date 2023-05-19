@@ -137,7 +137,7 @@ private:
     std::shared_ptr<ISO7200Options> ISO7200OPTIONS;
 
     std::shared_ptr<Preview> PREVIEW;
-    std::shared_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180 = std::shared_ptr<ASME_Y14_35_Width180>(new ASME_Y14_35_Width180(this));
+    std::shared_ptr<ASME_Y14_35_Width180Options> ASME_Y14_35_WIDTH180 = std::shared_ptr<ASME_Y14_35_Width180Options>(new ASME_Y14_35_Width180Options(this));
     std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS = std::shared_ptr<FullSheetsPartListOptions>(new FullSheetsPartListOptions(this));
     std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS = std::shared_ptr<SmallPartsListOptions>(new SmallPartsListOptions(this));
 

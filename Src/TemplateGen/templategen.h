@@ -7,7 +7,7 @@
 
 #include "templateoptions.h"
 #include "iso7200options.h"
-#include "asme_y14_35_width180.h"
+#include "asme_y14_35_width180options.h"
 #include "smallpartslistoptions.h"
 #include "fullsheetspartlistoptions.h"
 
@@ -224,7 +224,7 @@ protected:
     QStringList splitBOMValStd(QString val, double targetLenght);
 
     std::shared_ptr<ISO7200Options> ISO7200OPTIONS;
-    std::shared_ptr<ASME_Y14_35_Width180> ASME_Y14_35_WIDTH180;
+    std::shared_ptr<ASME_Y14_35_Width180Options> ASME_Y14_35_WIDTH180OPTIONS;
     std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS;
     std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS;
 public:
@@ -292,8 +292,8 @@ public:
     std::shared_ptr<ISO7200Options> getISO7200OPTIONS() const;
     void setISO7200OPTIONS(const std::shared_ptr<ISO7200Options> &newISO7200OPTIONS);
 
-    std::shared_ptr<ASME_Y14_35_Width180> getASME_Y14_35_WIDTH180() const;
-    void setASME_Y14_35_WIDTH180(const std::shared_ptr<ASME_Y14_35_Width180> &newASME_Y14_35_WIDTH180);
+    std::shared_ptr<ASME_Y14_35_Width180Options> getASME_Y14_35_WIDTH180OPTIONS() const;
+    void setASME_Y14_35_WIDTH180OPTIONS(const std::shared_ptr<ASME_Y14_35_Width180Options> &newASME_Y14_35_WIDTH180OPTIONS);
 
     std::shared_ptr<FullSheetsPartListOptions> getFULLSHEETPARTLISTOPIONS() const;
     void setFULLSHEETPARTLISTOPIONS(const std::shared_ptr<FullSheetsPartListOptions> &newFULLSHEETPARTLISTOPIONS);

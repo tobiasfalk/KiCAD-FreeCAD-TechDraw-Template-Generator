@@ -46,7 +46,7 @@ bool TemplateGen::init()
 //    {
 //        CENTERINGMARKS.Top = false;
 //    }
-//    if(SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 0) || (SHEETSIZE.height / 2 < (10 + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2)) && REVHISTORY))
+//    if(SHEETSIZE.height / 2 > (SHEETSIZE.height - 11 * (5 + ISO7200OPTIONS->getNumOptLins()) + 0) || (SHEETSIZE.height / 2 < (10 + 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)) && REVHISTORY))
 //    {
 //        CENTERINGMARKS.Right = false;
 //    }
@@ -196,7 +196,7 @@ bool TemplateGen::initRevHistory()
         {
         case RevHistoryStyle::ASME_Y14_35_Width180:
 
-            revHistHight = 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2);
+            revHistHight = 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2);
 
             TOPLEFTREVHISTORY.X = TOPRIGHTDRAWINGCORNER.X - 180;
             TOPLEFTREVHISTORY.Y = TOPRIGHTDRAWINGCORNER.Y;
@@ -337,7 +337,7 @@ QString TemplateGen::createFileName()
 
     if(REVHISTORY)
     {
-        ret += "_rev+" + QString::number(ASME_Y14_35_WIDTH180->getNumRev());
+        ret += "_rev+" + QString::number(ASME_Y14_35_WIDTH180OPTIONS->getNumRev());
     }
 
     if(FULLSHEETPARTSLIST)
@@ -721,14 +721,14 @@ void TemplateGen::setFULLSHEETPARTLISTOPIONS(const std::shared_ptr<FullSheetsPar
     FULLSHEETPARTLISTOPIONS = newFULLSHEETPARTLISTOPIONS;
 }
 
-std::shared_ptr<ASME_Y14_35_Width180> TemplateGen::getASME_Y14_35_WIDTH180() const
+std::shared_ptr<ASME_Y14_35_Width180Options> TemplateGen::getASME_Y14_35_WIDTH180OPTIONS() const
 {
-    return ASME_Y14_35_WIDTH180;
+    return ASME_Y14_35_WIDTH180OPTIONS;
 }
 
-void TemplateGen::setASME_Y14_35_WIDTH180(const std::shared_ptr<ASME_Y14_35_Width180> &newASME_Y14_35_WIDTH180)
+void TemplateGen::setASME_Y14_35_WIDTH180OPTIONS(const std::shared_ptr<ASME_Y14_35_Width180Options> &newASME_Y14_35_WIDTH180OPTIONS)
 {
-    ASME_Y14_35_WIDTH180 = newASME_Y14_35_WIDTH180;
+    ASME_Y14_35_WIDTH180OPTIONS = newASME_Y14_35_WIDTH180OPTIONS;
 }
 
 std::shared_ptr<ISO7200Options> TemplateGen::getISO7200OPTIONS() const
@@ -1149,7 +1149,7 @@ void TemplateGen::drawTitelblockISO7200()
 
 void TemplateGen::drawRevHistoryASME_Y14_35_Width180()
 {
-    drawRect(Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.7);
+    drawRect(Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y}, Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.7);
     // Head
     drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 90, TOPRIGHTDRAWINGCORNER.Y + 2}, REVHISTORYFIELDS["head"].Label, REVHISTORYFIELDS["head"].Name + "_l", 1.8, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.18, false);
     drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 4}, 0.35);
@@ -1161,20 +1161,20 @@ void TemplateGen::drawRevHistoryASME_Y14_35_Width180()
     drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 8}, 0.7);
 
     // Vertical Lines
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
-    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180->getNumRev() * (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 165, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 145, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 50, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
+    drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y + 4}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 30, TOPRIGHTDRAWINGCORNER.Y + 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)}, 0.35);
 
     // Lines
-    for(unsigned int i = 0; i < ASME_Y14_35_WIDTH180->getNumRev(); i++)
+    for(unsigned int i = 0; i < ASME_Y14_35_WIDTH180OPTIONS->getNumRev(); i++)
     {
-        drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 8 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, 0.35);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 172.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt1"].Value, TITELBLOCKFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 155, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt2"].Value, TITELBLOCKFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 97.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt3"].Value, TITELBLOCKFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 40, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt4"].Value, TITELBLOCKFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
-        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 15, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt5"].Value, TITELBLOCKFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawLine(Coordinate{TOPRIGHTDRAWINGCORNER.X, TOPRIGHTDRAWINGCORNER.Y + 8 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, Coordinate{TOPRIGHTDRAWINGCORNER.X - 180, TOPRIGHTDRAWINGCORNER.Y + 8 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, 0.35);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 172.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt1"].Value, TITELBLOCKFIELDS["opt1"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 155, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt2"].Value, TITELBLOCKFIELDS["opt2"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 97.5, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt3"].Value, TITELBLOCKFIELDS["opt3"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 40, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt4"].Value, TITELBLOCKFIELDS["opt4"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
+        drawText(Coordinate{TOPRIGHTDRAWINGCORNER.X - 15, TOPRIGHTDRAWINGCORNER.Y + 9.5 + (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2) * i}, REVHISTORYFIELDS["opt5"].Value, TITELBLOCKFIELDS["opt5"].Name, 2.5, TextHeightAnchor::Top, TextWidthAnchor::Center, 0.25, true, i);
     }
 }
 

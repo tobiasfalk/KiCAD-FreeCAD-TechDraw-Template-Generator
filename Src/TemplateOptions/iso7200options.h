@@ -5,10 +5,6 @@
 
 #include "templateoptions.h"
 
-namespace Ui {
-class ISO7200Options;
-}
-
 class ISO7200Options : public QObject
 {
     Q_OBJECT
