@@ -78,7 +78,7 @@ qint64 TemplateGenKiCAD_7::drawText(Coordinate position, QString text, QString n
         anchorString = "(justify right bottom)";
     }
 
-    QString lineString = "  (tbtext \"" + text + "\" (name " + QString::number(NAMEINDEX) + ") (pos " + QString::number(position.X) + " " + QString::number(position.Y) + " ltcorner) (font (face \"" + font + "\")  (linewidth " + QString::number(lineWidth) + ") (size " + QString::number(textSize) + " " + QString::number(textSize) + ")) " + anchorString + ")\n";
+    QString lineString = "  (tbtext \"" + text + "\" (name " + QString::number(NAMEINDEX) + ") (pos " + QString::number(position.X) + " " + QString::number(position.Y + .3) + " ltcorner) (font (face \"" + font + "\")  (linewidth " + QString::number(lineWidth) + ") (size " + QString::number(textSize) + " " + QString::number(textSize) + ")) " + anchorString + ")\n";
     NAMEINDEX++;
     return  FILE->write(lineString.toLatin1());
 }
