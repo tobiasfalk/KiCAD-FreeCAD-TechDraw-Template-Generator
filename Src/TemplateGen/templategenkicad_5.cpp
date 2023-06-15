@@ -147,17 +147,23 @@ void TemplateGenKiCAD_5::drawLogoTitelblockISO7200()
     QSvgRenderer renderer(LOGODIR);
     QSize size = renderer.defaultSize();
 
+#define resulutionDPI 9600
+#define resulutionPMM (resulutionDPI * 0.0393700787)// 1300.0 p/mm = 33020 dpi
+
     // Prepare a QImage with desired characteritisc
-    int widthPx = 2268; // 24mm bei 2400dpi(KiCAD scale 0.125)
-    double widthMM = widthPx / 94.4882;// 2400dpi to p/mm
+    double widthMM = 24;// 2400dpi to p/mm
+    int widthPx = resulutionPMM * widthMM; // 24mm bei 2400dpi(KiCAD scale 0.125)
+
     int heightPx = int(widthPx * (double(size.height())/size.width()));
-    double heightMM = heightPx / 94.4882;// 2400dpi to p/mm
-    if(heightPx > 2268)
+    double heightMM = heightPx / resulutionPMM;// 2400dpi to p/mm
+
+    if(heightMM > 24)
     {
-        heightPx = 2835;// 30mm bei 2400dpi(KiCAD scale 0.25)
-        heightMM = heightPx / 94.4882;// 2400dpi to p/mm
+        heightMM = 30;// 2400dpi to p/mm
+        heightPx = resulutionPMM * heightMM;// 30mm bei 2400dpi(KiCAD scale 0.125)
+
         widthPx = int(heightPx * (double(size.width())/size.height()));
-        widthMM = widthPx / 94.4882;// 2400dpi to p/mm
+        widthMM = widthPx / resulutionPMM;// 2400dpi to p/mm
     }
     QImage image(widthPx, heightPx, QImage::Format_ARGB32);
     image.fill(0x00FFFFFF);  // partly transparent background
@@ -175,7 +181,7 @@ void TemplateGenKiCAD_5::drawLogoTitelblockISO7200()
     if(ba.length()%32) rows++;
 
     // create hex dump(https://forum.qt.io/topic/106891/displaying-data-in-hex-format)
-    QString data = "  (bitmap (name \"\") (pos " + QString::number(SHEETSIZE.width - 111 - widthMM/2) + " " + QString::number(SHEETSIZE.height - 11 - heightMM/2) + "  ltcorner) (scale 0.125)\n";
+    QString data = "  (bitmap (name \"\") (pos " + QString::number(SHEETSIZE.width - 111 - widthMM/2) + " " + QString::number(SHEETSIZE.height - 11 - heightMM/2) + "  ltcorner) (scale " + QString::number((double)300 / (double)resulutionDPI) + ")\n";
     data += "  (pngdata\n";
     for(int i=0; i<rows; i++)
     {

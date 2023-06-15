@@ -3,6 +3,9 @@
 #include <math.h>
 #include <QGraphicsSvgItem>
 
+#define pdfResulutionDPI 33020
+#define pdfResulutionPMM 1300.0// 1300.0 p/mm = 33020 dpi
+
 
 QString TemplateGenPDF::getFILEENDING()
 {
@@ -12,11 +15,12 @@ QString TemplateGenPDF::getFILEENDING()
 bool TemplateGenPDF::writeBase()
 {
     PDFWRITER = std::shared_ptr<QPdfWriter>(new QPdfWriter(createFileName()));
+    PDFWRITER->setPdfVersion(QPagedPaintDevice::PdfVersion_A1b);
     PDFWRITER->setPageMargins(QMarginsF(0, 0, 0, 0));
     PDFWRITER->setPageSize(QPageSize(QSizeF(SHEETSIZE.width, SHEETSIZE.height), QPageSize::Millimeter));
-    PDFWRITER->setResolution(480000);
+    PDFWRITER->setResolution(pdfResulutionDPI);
     PAINTER = std::shared_ptr<QPainter>(new QPainter(PDFWRITER.get()));
-    PAINTER->setTransform(QTransform().scale(18897.6378, 18897.6378));// 18,897.6378 p/mm = 480,000 dpi
+    PAINTER->setTransform(QTransform().scale(pdfResulutionPMM, pdfResulutionPMM));
     return true;
 }
 
@@ -104,7 +108,7 @@ qint64 TemplateGenPDF::drawText(Coordinate position, QString text, QString name,
 {
     QFont qFont(font);
     QFont qFontA(font);
-    qFont.setPointSizeF(((textSize * std::sqrt(2))/18897.6378) * 2.8346456692913 );//18897.6378
+    qFont.setPointSizeF(((textSize * std::sqrt(2))/pdfResulutionPMM) * 2.8346456692913 );//pdfResulutionPMM
     qFontA.setPointSizeF(100);
     double posX = position.X;
     double posY = position.Y;
@@ -152,16 +156,19 @@ void TemplateGenPDF::drawLogoTitelblockISO7200()
     QSize size = LOGORENDERER->defaultSize();
 
     // Prepare a QImage with desired characteritisc
-    int widthPx = 2268; // 24mm bei 2400dpi(KiCAD scale 0.125)
-    double widthMM = widthPx / 94.4882;// 2400dpi to p/mm
+    double widthMM = 24;// 2400dpi to p/mm
+    int widthPx = pdfResulutionPMM * widthMM; // 24mm bei 2400dpi(KiCAD scale 0.125)
+
     int heightPx = int(widthPx * (double(size.height())/size.width()));
-    double heightMM = heightPx / 94.4882;// 2400dpi to p/mm
-    if(heightPx > 2268)
+    double heightMM = heightPx / pdfResulutionPMM;// 2400dpi to p/mm
+
+    if(heightMM > 24)
     {
-        heightPx = 2835;// 30mm bei 2400dpi(KiCAD scale 0.25)
-        heightMM = heightPx / 94.4882;// 2400dpi to p/mm
+        heightMM = 30;// 2400dpi to p/mm
+        heightPx = pdfResulutionPMM * heightMM;// 30mm bei 2400dpi(KiCAD scale 0.25)
+
         widthPx = int(heightPx * (double(size.width())/size.height()));
-        widthMM = widthPx / 94.4882;// 2400dpi to p/mm
+        widthMM = widthPx / pdfResulutionPMM;// 2400dpi to p/mm
     }
 
     QImage image(widthPx, heightPx, QImage::Format_ARGB32);
