@@ -472,7 +472,6 @@ void ISO7200Dialog::loadButtonText()
 void ISO7200Dialog::loadOptions()
 {
     loadButtonText();
-    ui->trimmingMarksCheckBox->setChecked(ISO7200OPTIONS->getTrimmingMarks());
     ui->OptLinesSpinBox->setValue(ISO7200OPTIONS->getNumOptLins());
     ui->DescriptionCheckBox->setChecked(ISO7200OPTIONS->getDescField());
     ui->DescriptionSpinBox->setValue(ISO7200OPTIONS->getNumDescLines());
@@ -487,7 +486,6 @@ void ISO7200Dialog::loadPreview()
     // Preview
     SheetSize sheetSize = SheetSize{"ISO7200", 210, 150};
     QString sheetName = "ISO7200";
-    SheetStyle sheetStyle = SheetStyle::ISO5457_ISO7200;
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
     QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
@@ -507,7 +505,8 @@ void ISO7200Dialog::loadPreview()
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
     PREVIEW->setSHEETSIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
-    PREVIEW->setSHEETSTYLE(sheetStyle);
+    PREVIEW->setSHEETTITLEBLOCK(SheetTitleblock::ISO7200);
+    PREVIEW->setSHEETFRAME(SheetFrame::ISO5457);
     PREVIEW->setNUMOPTLINES(numOptLines);
     PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
     PREVIEW->setREVHISTORY(revHistory);
@@ -537,7 +536,6 @@ void ISO7200Dialog::updatePreview()
         // Preview
         SheetSize sheetSize = SheetSize{"ISO7200", 210, 150};
         QString sheetName = "ISO7200";
-        SheetStyle sheetStyle = SheetStyle::ISO5457_ISO7200;
         QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
         qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
         QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180->getREVHISTORYFIELDS_PDF();
@@ -557,7 +555,8 @@ void ISO7200Dialog::updatePreview()
         PREVIEW->setDIR(QDir::currentPath() + "/tmp");
         PREVIEW->setSHEETSIZE(sheetSize);
         PREVIEW->setSHEETNAME(sheetName);
-        PREVIEW->setSHEETSTYLE(sheetStyle);
+        PREVIEW->setSHEETTITLEBLOCK(SheetTitleblock::ISO7200);
+        PREVIEW->setSHEETFRAME(SheetFrame::ISO5457);
         PREVIEW->setNUMOPTLINES(numOptLines);
         PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
         PREVIEW->setREVHISTORY(revHistory);
@@ -646,12 +645,6 @@ void ISO7200Dialog::on_opt16PushButton_pressed()
 {
 }
 
-
-void ISO7200Dialog::on_trimmingMarksCheckBox_stateChanged(int arg1)
-{
-    ISO7200OPTIONS->setTrimmingMarks(arg1);
-    updatePreview();
-}
 
 
 void ISO7200Dialog::on_OptLinesSpinBox_valueChanged(int arg1)

@@ -13,7 +13,6 @@ private:
 
     SheetSize SHEETSIZE;
     QString SHEETNAME;
-    SheetStyle SHEETSTYLE;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_FREECAD;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD5;
     QMap<QString, TitelblockField> TITELBLOCKFIELDS_KICAD6;
@@ -47,7 +46,7 @@ private:
     QString LOGODIR;
 
     QString getSheetStyleString();
-    SheetStyle toSheetStyle(QString style);
+    //SheetStyle toSheetStyle(QString style);
 
     QString getRevHistoryStyleString();
     RevHistoryStyle toRevHistoryStyle(QString style);
@@ -65,8 +64,8 @@ public:
     const SheetSize &getSHEETSIZE() const;
     void setSHEETSIZE(const SheetSize &newSHEETSIZE);
 
-    SheetStyle getSHEETSTYLE() const;
-    void setSHEETSTYLE(SheetStyle newSHEETSTYLE);
+//    SheetStyle getSHEETSTYLE() const;
+//    void setSHEETSTYLE(SheetStyle newSHEETSTYLE);
 
     const QMap<QString, TitelblockField> &getTITELBLOCKFIELDS_FREECAD() const;
     void setTITELBLOCKFIELDS_FREECAD(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_FREECAD);

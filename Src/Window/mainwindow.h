@@ -11,9 +11,11 @@
 #include "asme_y14_35_width180options.h"
 #include "smallpartslistoptions.h"
 #include "fullsheetspartlistoptions.h"
+#include "iso5457options.h"
 
 #include "iso7200dialog.h"
 #include "asme_y14_35_width180dialog.h"
+#include "iso5457dialog.h"
 
 #include "templategenkicad_5.h"
 #include "templategenkicad_6.h"
@@ -73,8 +75,6 @@ private slots:
 
     void on_NameLineEdit_textEdited(const QString &arg1);
 
-    void on_SheetStyleComboBox_currentIndexChanged(int index);
-
     void on_RevHistoryCheckBox_stateChanged(int arg1);
 
     void on_revHistoryStyleComboBox_currentIndexChanged(int index);
@@ -98,6 +98,8 @@ private slots:
     void on_portraitCheckBox_stateChanged(int arg1);
 
     void on_preViewSheetBordercheckBox_stateChanged(int arg1);
+
+    void on_sheetFramePushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -289,16 +291,19 @@ private:
     std::shared_ptr<ASME_Y14_35_Width180Options> ASME_Y14_35_WIDTH180OPTIONS = std::shared_ptr<ASME_Y14_35_Width180Options>(new ASME_Y14_35_Width180Options(this));
     std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS = std::shared_ptr<FullSheetsPartListOptions>(new FullSheetsPartListOptions(this));
     std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS = std::shared_ptr<SmallPartsListOptions>(new SmallPartsListOptions(this));
+    std::shared_ptr<ISO5457Options> ISO5457OPTIONS =  std::shared_ptr<ISO5457Options>(new ISO5457Options(this));
 
     QString LOGODIR = "&";
 
     void initSheetSizes();
-    void initSheetStyles();
+    void initSheetTitleblocks();
+    void initSheetFrames();
     void initRevHistoryStyles();
     void initFoldLinesTarget();
     void initBOMStyles();
 
-    SheetStyle getSheetStyle();
+    SheetTitleblock getSheetTitleblock();
+    SheetFrame getSheetFrame();
     SheetSize getSheetSize(QString sizeString, double width = 0, double height = 0);
     SheetSize getFoldLinesTarget(QString sizeString);
     RevHistoryStyle getRevHistoryStyle();
@@ -310,6 +315,8 @@ private:
     std::shared_ptr<Preview> PREVIEW;
     bool WINDOWRUNNING = false;
     void resizeEvent(QResizeEvent *event);
+
+    bool drawTemplate(QString dir, std::shared_ptr<TemplateGen> templatPtr, QMap<QString, TitelblockField> titelblockFields, QMap<QString, TitelblockField> revHistoryFields, QMap<QString, TitelblockField> smallPartsListFileds, QMap<QString, TitelblockField> fullSheetPartsListFields);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

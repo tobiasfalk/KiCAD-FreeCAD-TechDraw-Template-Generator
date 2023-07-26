@@ -14,17 +14,6 @@ void LoadeSaveSettings::setSHEETSIZE(const SheetSize &newSHEETSIZE)
     finisheD.sheetsizeE = true;
 }
 
-SheetStyle LoadeSaveSettings::getSHEETSTYLE() const
-{
-    return SHEETSTYLE;
-}
-
-void LoadeSaveSettings::setSHEETSTYLE(SheetStyle newSHEETSTYLE)
-{
-    SHEETSTYLE = newSHEETSTYLE;
-    finisheD.sheetstylE = true;
-}
-
 const QMap<QString, TitelblockField> &LoadeSaveSettings::getTITELBLOCKFIELDS_FREECAD() const
 {
     return TITELBLOCKFIELDS_FREECAD;
@@ -364,26 +353,26 @@ void LoadeSaveSettings::setFULLSHEETPARTSLISTFIELDS_PDF(const QMap<QString, Tite
 
 QString LoadeSaveSettings::getSheetStyleString()
 {
-    QString ret = "";
-    switch (SHEETSTYLE)
-    {
-    case SheetStyle::ISO5457_ISO7200:
-        ret = "ISO5457_ISO7200";
-        break;
-    case SheetStyle::BLANK:
-        break;
-    }
-    return ret;
+//    QString ret = "";
+//    switch (SHEETSTYLE)
+//    {
+//    case SheetStyle::ISO5457_ISO7200:
+//        ret = "ISO5457_ISO7200";
+//        break;
+//    case SheetStyle::BLANK:
+//        break;
+//    }
+//    return ret;
 }
 
-SheetStyle LoadeSaveSettings::toSheetStyle(QString style)
-{
-    if(style == "ISO5457_ISO7200")
-    {
-        return SheetStyle::ISO5457_ISO7200;
-    }
-    return SheetStyle::ISO5457_ISO7200;
-}
+//SheetStyle LoadeSaveSettings::toSheetStyle(QString style)
+//{
+//    if(style == "ISO5457_ISO7200")
+//    {
+//        return SheetStyle::ISO5457_ISO7200;
+//    }
+//    return SheetStyle::ISO5457_ISO7200;
+//}
 
 QString LoadeSaveSettings::getRevHistoryStyleString()
 {
@@ -602,7 +591,7 @@ void LoadeSaveSettings::loadSettings(QString dir)
         }
         else if(component.tagName() == "SheetStyle")
         {
-            SHEETSTYLE = toSheetStyle(component.attribute("style"));
+            //SHEETSTYLE = toSheetStyle(component.attribute("style"));
             NUMOPTLINES = component.attribute("numOptLines").toInt();
             TRIMMINGMARKS = component.attribute("trimmingMarks").toInt();
             QDomElement option = component.firstChild().toElement();

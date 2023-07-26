@@ -7,6 +7,7 @@
 
 #include "templateoptions.h"
 #include "iso7200options.h"
+#include "iso5457options.h"
 #include "asme_y14_35_width180options.h"
 #include "smallpartslistoptions.h"
 #include "fullsheetspartlistoptions.h"
@@ -37,9 +38,13 @@ protected:
     ///
     QString SHEETNAME;
     ///
-    /// \brief SHEETSTYLE contains the Syle of the Sheet
+    /// \brief SHEETTITLEBLOCK contains the sytle of the titleblock
     ///
-    SheetStyle SHEETSTYLE;
+    SheetTitleblock SHEETTITLEBLOCK;
+    ///
+    /// \brief SHEETFRAME contains the syle of the frame
+    ///
+    SheetFrame SHEETFRAME;
     ///
     /// \brief TITELBLOCKFIELDS is a map that contains all the
     ///
@@ -224,6 +229,7 @@ protected:
     QStringList splitBOMValStd(QString val, double targetLenght);
 
     std::shared_ptr<ISO7200Options> ISO7200OPTIONS;
+    std::shared_ptr<ISO5457Options> ISO5457OPTIONS;
     std::shared_ptr<ASME_Y14_35_Width180Options> ASME_Y14_35_WIDTH180OPTIONS;
     std::shared_ptr<FullSheetsPartListOptions> FULLSHEETPARTLISTOPIONS;
     std::shared_ptr<SmallPartsListOptions> SMALLPARTSLISTSOPTIONS;
@@ -237,9 +243,6 @@ public:
 
     const SheetSize &getSHEETSIZE() const;
     void setSHEETSIZE(const SheetSize &newSHEETSIZE);
-
-    SheetStyle getSHEETSTYLE() const;
-    void setSHEETSTYLE(SheetStyle newSHEETSTYLE);
 
     qint64 getNUMOPTLINES() const;
     void setNUMOPTLINES(qint64 newNUMOPTLINES);
@@ -300,6 +303,15 @@ public:
 
     std::shared_ptr<SmallPartsListOptions> getSMALLPARTSLISTSOPTIONS() const;
     void setSMALLPARTSLISTSOPTIONS(const std::shared_ptr<SmallPartsListOptions> &newSMALLPARTSLISTSOPTIONS);
+
+    SheetTitleblock getSHEETTITLEBLOCK() const;
+    void setSHEETTITLEBLOCK(SheetTitleblock newSHEETTITLEBLOCK);
+
+    SheetFrame getSHEETFRAME() const;
+    void setSHEETFRAME(SheetFrame newSHEETFRAME);
+
+    std::shared_ptr<ISO5457Options> getISO5457OPTIONS() const;
+    void setISO5457OPTIONS(const std::shared_ptr<ISO5457Options> &newISO5457OPTIONS);
 
 signals:
 

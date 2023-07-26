@@ -55,11 +55,6 @@ private:
     void loadStdOptions();
 
     ///
-    /// \brief trimmingMarks a boolean to save if trimming marks should be showm or not
-    ///
-    bool trimmingMarks;
-
-    ///
     /// \brief numOptLins is a int that saves how many optional lines should be drawn
     ///
     unsigned int numOptLins;
@@ -134,17 +129,6 @@ public:
     ///
     void setTITELBLOCKFIELDS_PDF(const QMap<QString, TitelblockField> &newTITELBLOCKFIELDS_PDF);
     void setTITELBLOCKFIELD_PDF(QString key, TitelblockField field);
-
-    ///
-    /// \brief getTrimmingMarks returns true if trimmin marks should be drawn
-    /// \return is a boolena
-    ///
-    bool getTrimmingMarks();
-    ///
-    /// \brief setTrimmingMarks sets if  trimmin marks should be drawn
-    /// \param newTrimmingMarks a boolean
-    ///
-    void setTrimmingMarks(bool newTrimmingMarks);
 
     ///
     /// \brief getNumOptLins returns the number of optional lines

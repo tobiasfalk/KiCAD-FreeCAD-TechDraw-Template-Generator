@@ -46,7 +46,6 @@ void ASME_Y14_35_Width180Dialog::loadPreview()
     // Preview
     SheetSize sheetSize = SheetSize{"ASME_Y14_35_WIDTH180", 180, 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)};
     QString sheetName = "ASME_Y14_35_WIDTH180";
-    SheetStyle sheetStyle = SheetStyle::BLANK;
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
     QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
@@ -66,7 +65,8 @@ void ASME_Y14_35_Width180Dialog::loadPreview()
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
     PREVIEW->setSHEETSIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
-    PREVIEW->setSHEETSTYLE(sheetStyle);
+    PREVIEW->setSHEETTITLEBLOCK(SheetTitleblock::ISO7200);
+    PREVIEW->setSHEETFRAME(SheetFrame::ISO5457);
     PREVIEW->setNUMOPTLINES(numOptLines);
     PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
     PREVIEW->setREVHISTORY(revHistory);
@@ -96,7 +96,6 @@ void ASME_Y14_35_Width180Dialog::updatePreview()
         // Preview
         SheetSize sheetSize = SheetSize{"ISO7200", 180, 8 + ASME_Y14_35_WIDTH180OPTIONS->getNumRev() * (ASME_Y14_35_WIDTH180OPTIONS->getNumLinesRev() * (2.5 * 1.5) + 2)};
         QString sheetName = "ISO7200";
-        SheetStyle sheetStyle = SheetStyle::BLANK;
         QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
         qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
         QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
@@ -116,7 +115,8 @@ void ASME_Y14_35_Width180Dialog::updatePreview()
         PREVIEW->setDIR(QDir::currentPath() + "/tmp");
         PREVIEW->setSHEETSIZE(sheetSize);
         PREVIEW->setSHEETNAME(sheetName);
-        PREVIEW->setSHEETSTYLE(sheetStyle);
+        PREVIEW->setSHEETTITLEBLOCK(SheetTitleblock::BLANK);
+        PREVIEW->setSHEETFRAME(SheetFrame::BLANK);
         PREVIEW->setNUMOPTLINES(numOptLines);
         PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
         PREVIEW->setREVHISTORY(revHistory);

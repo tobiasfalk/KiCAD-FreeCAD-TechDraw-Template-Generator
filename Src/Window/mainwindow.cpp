@@ -14,10 +14,16 @@ void MainWindow::initSheetSizes()
     ui->sheetHeightDoubleSpinBox->setValue(SHEETSIZES[0].height);
 }
 
-void MainWindow::initSheetStyles()
+void MainWindow::initSheetTitleblocks()
 {
-    ui->SheetStyleComboBox->addItem("ISO5457 ISO7200"); // SheetStyle::ISO5457_ISO7200
-    ui->SheetStyleComboBox->addItem("Blank"); // SheetStyle::BLANK
+    ui->SheetTitleblockComboBox->addItem("ISO7200"); // SheetTitleblock::ISO7200
+    ui->SheetTitleblockComboBox->addItem("Blank"); // SheetTitleblock::BLANK
+}
+
+void MainWindow::initSheetFrames()
+{
+    ui->SheetFrameComboBox->addItem("ISO5457"); // SheetStyle::ISO5457_ISO7200
+    ui->SheetFrameComboBox->addItem("Blank"); // SheetStyle::BLANK
 }
 
 void MainWindow::initRevHistoryStyles()
@@ -33,17 +39,30 @@ void MainWindow::initFoldLinesTarget()
     }
 }
 
-SheetStyle MainWindow::getSheetStyle()
+SheetTitleblock MainWindow::getSheetTitleblock()
 {
-    if(ui->SheetStyleComboBox->currentText() == "ISO5457 ISO7200")
+    if(ui->SheetTitleblockComboBox->currentText() == "ISO7200")
     {
-        return SheetStyle::ISO5457_ISO7200;
-    }else if(ui->SheetStyleComboBox->currentText() == "Blank")
+        return SheetTitleblock::ISO7200;
+    }else if(ui->SheetTitleblockComboBox->currentText() == "Blank")
     {
-        return SheetStyle::BLANK;
+        return SheetTitleblock::BLANK;
     }
 
-    return SheetStyle::ISO5457_ISO7200;
+    return SheetTitleblock::ISO7200;
+}
+
+SheetFrame MainWindow::getSheetFrame()
+{
+    if(ui->SheetFrameComboBox->currentText() == "ISO5457")
+    {
+        return SheetFrame::ISO5457;
+    }else if(ui->SheetFrameComboBox->currentText() == "Blank")
+    {
+        return SheetFrame::BLANK;
+    }
+
+    return SheetFrame::ISO5457;
 }
 
 SheetSize MainWindow::getSheetSize(QString sizeString, double width, double height)
@@ -117,12 +136,55 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
+bool MainWindow::drawTemplate(QString dir, std::shared_ptr<TemplateGen> templatPtr, QMap<QString, TitelblockField> titelblockFields, QMap<QString, TitelblockField> revHistoryFields, QMap<QString, TitelblockField> smallPartsListFileds, QMap<QString, TitelblockField> fullSheetPartsListFields)
+{
+    SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
+    QString sheetName = ui->NameLineEdit->text();;
+    SheetTitleblock sheetTitleblock= getSheetTitleblock();
+    SheetFrame sheetFrame = getSheetFrame();
+    qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
+    bool revHistory = ui->RevHistoryCheckBox->isChecked();
+    bool foldLines = ui->foldLinesCheckBox->isChecked();
+    SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
+    bool smallPartsList = ui->SmallPartsListCheckBox->isChecked();
+    bool fullSheetPartsList = ui->FullPartsListCheckBox->isChecked();
+    bool logo = ui->logoCheckBox->isChecked();
+    QString logoDir = LOGODIR;
+
+    templatPtr->setDIR(dir);
+    templatPtr->setSHEETSIZE(sheetSize);
+    templatPtr->setSHEETNAME(sheetName);
+    templatPtr->setSHEETTITLEBLOCK(sheetTitleblock);
+    templatPtr->setSHEETFRAME(sheetFrame);
+    templatPtr->setNUMOPTLINES(numOptLines);
+    templatPtr->setTITELBLOCKFIELDS(titelblockFields);
+    templatPtr->setREVHISTORY(revHistory);
+    templatPtr->setREVHISTORYSTYLE(getRevHistoryStyle());
+    templatPtr->setREVHISTORYFIELDS(revHistoryFields);
+    templatPtr->setFOLDLINES(foldLines);
+    templatPtr->setFOLDLINETARGET(foldLinesTaget);
+    templatPtr->setSMALLPARTSLIST(smallPartsList);
+    templatPtr->setSMALLPARTSLISTFIELDS(smallPartsListFileds);
+    templatPtr->setFULLSHEETPARTSLIST(fullSheetPartsList);
+    templatPtr->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFields);
+    templatPtr->setLOGO(logo);
+    templatPtr->setLOGODIR(logoDir);
+
+    templatPtr->setISO7200OPTIONS(ISO7200OPTIONS);
+    templatPtr->setISO5457OPTIONS(ISO5457OPTIONS);
+    templatPtr->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
+    templatPtr->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
+    templatPtr->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
+    templatPtr->draw();
+}
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowIcon(QIcon("./lib/icon.png"));
     initSheetSizes();
-    initSheetStyles();
+    initSheetTitleblocks();
+    initSheetFrames();
     initRevHistoryStyles();
     initFoldLinesTarget();
 //    initBOMStyles();
@@ -131,10 +193,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     PREVIEW->setMinimumWidth(900);
     PREVIEW->setStyleSheet("background-color: rgb(255,255,255)");
 
+    QDir dir;
+    dir.mkdir(QDir::currentPath() + "/tmp");
+
     // Preview
     SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
     QString sheetName = ui->NameLineEdit->text();
-    SheetStyle sheetStyle = getSheetStyle();
+    SheetTitleblock sheetTitleblock = getSheetTitleblock();
+    SheetFrame sheetFrame = getSheetFrame();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
     QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
@@ -148,13 +214,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     bool logo = ui->logoCheckBox->isChecked();
     QString logoDir = LOGODIR;
 
-    QDir dir;
-    dir.mkdir(QDir::currentPath() + "/tmp");
     //TemplateGenKiCAD_5 KiCAD5(this);
     PREVIEW->setDIR(QDir::currentPath() + "/tmp");
     PREVIEW->setSHEETSIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
-    PREVIEW->setSHEETSTYLE(sheetStyle);
+    PREVIEW->setSHEETTITLEBLOCK(sheetTitleblock);
+    PREVIEW->setSHEETFRAME(sheetFrame);
     PREVIEW->setNUMOPTLINES(numOptLines);
     PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
     PREVIEW->setREVHISTORY(revHistory);
@@ -170,6 +235,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     PREVIEW->setLOGODIR(logoDir);
 
     PREVIEW->setISO7200OPTIONS(ISO7200OPTIONS);
+    PREVIEW->setISO5457OPTIONS(ISO5457OPTIONS);
     PREVIEW->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
@@ -198,8 +264,9 @@ void MainWindow::on_GeneratePushButton_clicked()
         qDebug() << "KiCAD5";
         // KiCAD 5
         SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
-        QString sheetName = ui->NameLineEdit->text();
-        SheetStyle sheetStyle = getSheetStyle();
+        QString sheetName = ui->NameLineEdit->text();;
+        SheetTitleblock sheetTitleblock= getSheetTitleblock();
+        SheetFrame sheetFrame = getSheetFrame();
         QMap<QString, TitelblockField> titelblockFieldsKiCAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
         qint64 numOptLines = ISO7200OPTIONS->getNumOptLins();// ui->OptLinesSpinBox->value();
         QMap<QString, TitelblockField> revHistoryFieldsKiCAD5 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD5();
@@ -214,29 +281,8 @@ void MainWindow::on_GeneratePushButton_clicked()
         QString logoDir = LOGODIR;
 
         std::shared_ptr<TemplateGenKiCAD_5> KiCAD5(new TemplateGenKiCAD_5 (this));
-        KiCAD5->setDIR(dir);
-        KiCAD5->setSHEETSIZE(sheetSize);
-        KiCAD5->setSHEETNAME(sheetName);
-        KiCAD5->setSHEETSTYLE(sheetStyle);
-        KiCAD5->setNUMOPTLINES(numOptLines);
-        KiCAD5->setTITELBLOCKFIELDS(titelblockFieldsKiCAD5);
-        KiCAD5->setREVHISTORY(revHistory);
-        KiCAD5->setREVHISTORYSTYLE(getRevHistoryStyle());
-        KiCAD5->setREVHISTORYFIELDS(revHistoryFieldsKiCAD5);
-        KiCAD5->setFOLDLINES(foldLines);
-        KiCAD5->setFOLDLINETARGET(foldLinesTaget);
-        KiCAD5->setSMALLPARTSLIST(smallPartsList);
-        KiCAD5->setSMALLPARTSLISTFIELDS(smallPartsListFiledsKiCAD5);
-        KiCAD5->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        KiCAD5->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsKiCAD5);
-        KiCAD5->setLOGO(logo);
-        KiCAD5->setLOGODIR(logoDir);
 
-        KiCAD5->setISO7200OPTIONS(ISO7200OPTIONS);
-        KiCAD5->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        KiCAD5->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        KiCAD5->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        KiCAD5->draw();
+        drawTemplate(dir, KiCAD5, titelblockFieldsKiCAD5, revHistoryFieldsKiCAD5, smallPartsListFiledsKiCAD5, fullSheetPartsListFieldsKiCAD5);
 
         qDebug() << "KiCAD6";
         // KiCAD 6
@@ -247,29 +293,8 @@ void MainWindow::on_GeneratePushButton_clicked()
 
 
         std::shared_ptr<TemplateGenKiCAD_6> KiCAD6(new TemplateGenKiCAD_6(this));
-        KiCAD6->setDIR(dir);
-        KiCAD6->setSHEETSIZE(sheetSize);
-        KiCAD6->setSHEETNAME(sheetName);
-        KiCAD6->setSHEETSTYLE(sheetStyle);
-        KiCAD6->setNUMOPTLINES(numOptLines);
-        KiCAD6->setTITELBLOCKFIELDS(titelblockFieldsKiCAD6);
-        KiCAD6->setREVHISTORY(revHistory);
-        KiCAD6->setREVHISTORYSTYLE(getRevHistoryStyle());
-        KiCAD6->setREVHISTORYFIELDS(revHistoryFieldsKiCAD6);
-        KiCAD6->setFOLDLINES(foldLines);
-        KiCAD6->setFOLDLINETARGET(foldLinesTaget);
-        KiCAD6->setSMALLPARTSLIST(smallPartsList);
-        KiCAD6->setSMALLPARTSLISTFIELDS(smallPartsListFiledsKiCAD6);
-        KiCAD6->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        KiCAD6->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsKiCAD6);
-        KiCAD6->setLOGO(logo);
-        KiCAD6->setLOGODIR(logoDir);
 
-        KiCAD6->setISO7200OPTIONS(ISO7200OPTIONS);
-        KiCAD6->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        KiCAD6->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        KiCAD6->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        KiCAD6->draw();
+        drawTemplate(dir, KiCAD6, titelblockFieldsKiCAD6, revHistoryFieldsKiCAD6, smallPartsListFiledsKiCAD6, fullSheetPartsListFieldsKiCAD6);
 
         qDebug() << "KiCAD7";
         // KiCAD 7
@@ -279,29 +304,8 @@ void MainWindow::on_GeneratePushButton_clicked()
         QMap<QString, TitelblockField> fullSheetPartsListFieldsKiCAD7 = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_KICAD6();
 
         std::shared_ptr<TemplateGenKiCAD_7> KiCAD7(new TemplateGenKiCAD_7(this));
-        KiCAD7->setDIR(dir);
-        KiCAD7->setSHEETSIZE(sheetSize);
-        KiCAD7->setSHEETNAME(sheetName);
-        KiCAD7->setSHEETSTYLE(sheetStyle);
-        KiCAD7->setNUMOPTLINES(numOptLines);
-        KiCAD7->setTITELBLOCKFIELDS(titelblockFieldsKiCAD7);
-        KiCAD7->setREVHISTORY(revHistory);
-        KiCAD7->setREVHISTORYSTYLE(getRevHistoryStyle());
-        KiCAD7->setREVHISTORYFIELDS(revHistoryFieldsKiCAD7);
-        KiCAD7->setFOLDLINES(foldLines);
-        KiCAD7->setFOLDLINETARGET(foldLinesTaget);
-        KiCAD7->setSMALLPARTSLIST(smallPartsList);
-        KiCAD7->setSMALLPARTSLISTFIELDS(smallPartsListFiledsKiCAD7);
-        KiCAD7->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        KiCAD7->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsKiCAD7);
-        KiCAD7->setLOGO(logo);
-        KiCAD7->setLOGODIR(logoDir);
 
-        KiCAD7->setISO7200OPTIONS(ISO7200OPTIONS);
-        KiCAD7->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        KiCAD7->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        KiCAD7->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        KiCAD7->draw();
+        drawTemplate(dir, KiCAD7, titelblockFieldsKiCAD7, revHistoryFieldsKiCAD7, smallPartsListFiledsKiCAD7, fullSheetPartsListFieldsKiCAD7);
 
         qDebug() << "FreeCAD";
         // FreeCAD
@@ -311,29 +315,8 @@ void MainWindow::on_GeneratePushButton_clicked()
         QMap<QString, TitelblockField> fullSheetPartsListFieldsFreeCAD = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_FREECAD();
 
         std::shared_ptr<TemplateGenFreeCAD> FreeCAD(new TemplateGenFreeCAD(this));
-        FreeCAD->setDIR(dir);
-        FreeCAD->setSHEETSIZE(sheetSize);
-        FreeCAD->setSHEETNAME(sheetName);
-        FreeCAD->setSHEETSTYLE(sheetStyle);
-        FreeCAD->setNUMOPTLINES(numOptLines);
-        FreeCAD->setTITELBLOCKFIELDS(titelblockFieldsFreeCAD);
-        FreeCAD->setREVHISTORY(revHistory);
-        FreeCAD->setREVHISTORYSTYLE(getRevHistoryStyle());
-        FreeCAD->setREVHISTORYFIELDS(revHistoryFieldsFreeCAD);
-        FreeCAD->setFOLDLINES(foldLines);
-        FreeCAD->setFOLDLINETARGET(foldLinesTaget);
-        FreeCAD->setSMALLPARTSLIST(smallPartsList);
-        FreeCAD->setSMALLPARTSLISTFIELDS(smallPartsListFiledsFreeCAD);
-        FreeCAD->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        FreeCAD->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsFreeCAD);
-        FreeCAD->setLOGO(logo);
-        FreeCAD->setLOGODIR(logoDir);
 
-        FreeCAD->setISO7200OPTIONS(ISO7200OPTIONS);
-        FreeCAD->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        FreeCAD->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        FreeCAD->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        FreeCAD->draw();
+        drawTemplate(dir, FreeCAD, titelblockFieldsFreeCAD, revHistoryFieldsFreeCAD, smallPartsListFiledsFreeCAD, fullSheetPartsListFieldsFreeCAD);
 
         qDebug() << "PDF";
         // PDF
@@ -343,85 +326,22 @@ void MainWindow::on_GeneratePushButton_clicked()
         QMap<QString, TitelblockField> fullSheetPartsListFieldsPDF = FULLSHEETPARTLISTOPIONS->getFULLSHEETPARTSLISTFIELDS_PDF();
 
         std::shared_ptr<TemplateGenPDF> PDF(new TemplateGenPDF(this));
-        PDF->setDIR(dir);
-        PDF->setSHEETSIZE(sheetSize);
-        PDF->setSHEETNAME(sheetName);
-        PDF->setSHEETSTYLE(sheetStyle);
-        PDF->setNUMOPTLINES(numOptLines);
-        PDF->setTITELBLOCKFIELDS(titelblockFieldsPDF);
-        PDF->setREVHISTORY(revHistory);
-        PDF->setREVHISTORYSTYLE(getRevHistoryStyle());
-        PDF->setREVHISTORYFIELDS(revHistoryFieldsPDF);
-        PDF->setFOLDLINES(foldLines);
-        PDF->setFOLDLINETARGET(foldLinesTaget);
-        PDF->setSMALLPARTSLIST(smallPartsList);
-        PDF->setSMALLPARTSLISTFIELDS(smallPartsListFiledsPDF);
-        PDF->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        PDF->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsPDF);
-        PDF->setLOGO(logo);
-        PDF->setLOGODIR(logoDir);
 
-        PDF->setISO7200OPTIONS(ISO7200OPTIONS);
-        PDF->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        PDF->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        PDF->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        PDF->draw();
+        drawTemplate(dir, PDF, titelblockFieldsPDF, revHistoryFieldsPDF, smallPartsListFiledsPDF, fullSheetPartsListFieldsPDF);
 
         qDebug() << "SVG";
         // SVG(uses PDF Options)
 
         std::shared_ptr<TemplateGenSVG> SVG(new TemplateGenSVG(this));
-        SVG->setDIR(dir);
-        SVG->setSHEETSIZE(sheetSize);
-        SVG->setSHEETNAME(sheetName);
-        SVG->setSHEETSTYLE(sheetStyle);
-        SVG->setNUMOPTLINES(numOptLines);
-        SVG->setTITELBLOCKFIELDS(titelblockFieldsPDF);
-        SVG->setREVHISTORY(revHistory);
-        SVG->setREVHISTORYSTYLE(getRevHistoryStyle());
-        SVG->setREVHISTORYFIELDS(revHistoryFieldsPDF);
-        SVG->setFOLDLINES(foldLines);
-        SVG->setFOLDLINETARGET(foldLinesTaget);
-        SVG->setSMALLPARTSLIST(smallPartsList);
-        SVG->setSMALLPARTSLISTFIELDS(smallPartsListFiledsPDF);
-        SVG->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        SVG->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsPDF);
-        SVG->setLOGO(logo);
-        SVG->setLOGODIR(logoDir);
 
-        SVG->setISO7200OPTIONS(ISO7200OPTIONS);
-        SVG->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        SVG->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        SVG->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        SVG->draw();
+        drawTemplate(dir, SVG, titelblockFieldsPDF, revHistoryFieldsPDF, smallPartsListFiledsPDF, fullSheetPartsListFieldsPDF);
 
         qDebug() << "Eagle";
         // Eagle
         // Uses the FreeCAD Setings
         std::shared_ptr<TemplateGenEagle> Eagle(new TemplateGenEagle(this));
-        Eagle->setDIR(dir);
-        Eagle->setSHEETSIZE(sheetSize);
-        Eagle->setSHEETNAME(sheetName);
-        Eagle->setSHEETSTYLE(sheetStyle);
-        Eagle->setNUMOPTLINES(numOptLines);
-        Eagle->setTITELBLOCKFIELDS(titelblockFieldsFreeCAD);
-        Eagle->setREVHISTORY(revHistory);
-        Eagle->setREVHISTORYSTYLE(getRevHistoryStyle());
-        Eagle->setREVHISTORYFIELDS(revHistoryFieldsFreeCAD);
-        Eagle->setFOLDLINES(foldLines);
-        Eagle->setFOLDLINETARGET(foldLinesTaget);
-        Eagle->setSMALLPARTSLIST(smallPartsList);
-        Eagle->setSMALLPARTSLISTFIELDS(smallPartsListFiledsFreeCAD);
-        Eagle->setFULLSHEETPARTSLIST(fullSheetPartsList);
-        Eagle->setFULLSHEETPARTSLISTFIELDS(fullSheetPartsListFieldsFreeCAD);
-        Eagle->setLOGO(logo);
-        Eagle->setLOGODIR(logoDir);
 
-        Eagle->setISO7200OPTIONS(ISO7200OPTIONS);
-        Eagle->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
-        Eagle->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
-        Eagle->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
-        Eagle->draw();
+        drawTemplate(dir, Eagle, titelblockFieldsFreeCAD, revHistoryFieldsFreeCAD, smallPartsListFiledsFreeCAD, fullSheetPartsListFieldsFreeCAD);
     }
 }
 
@@ -457,7 +377,7 @@ void MainWindow::on_SheetSizeComboBox_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_sheetTitelblockFieldsPushButton_clicked()
 {
-    if(ui->SheetStyleComboBox->currentText() == "ISO5457 ISO7200")
+    if(ui->SheetTitleblockComboBox->currentText() == "ISO7200")
     {
         std::unique_ptr<ISO7200Dialog> ISO7200DIALOG(new ISO7200Dialog(ISO7200OPTIONS, this));
         ISO7200DIALOG->setModal(true);
@@ -611,7 +531,7 @@ void MainWindow::on_saveFieldsPushButton_clicked()
     {
         SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
         QString sheetName = ui->NameLineEdit->text();
-        SheetStyle sheetStyle = getSheetStyle();
+        //SheetStyle sheetStyle = getSheetStyle();
         QMap<QString, TitelblockField> titelblockFields_KICAD5 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD5();
         QMap<QString, TitelblockField> titelblockFields_KICAD6 = ISO7200OPTIONS->getTITELBLOCKFIELDS_KICAD6();
         QMap<QString, TitelblockField> titelblockFields_FREECAD = ISO7200OPTIONS->getTITELBLOCKFIELDS_FREECAD();
@@ -622,7 +542,7 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         QMap<QString, TitelblockField> revHistoryFields_KICAD6 = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_KICAD6();
         QMap<QString, TitelblockField> revHistoryFields_FREECAD = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_FREECAD();
         QMap<QString, TitelblockField> revHistoryFields_PDF = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
-        bool trimmingMarks = ISO7200OPTIONS->getTrimmingMarks();//ui->trimmingMarksCheckBox->isChecked();
+        bool trimmingMarks = ISO5457OPTIONS->getTrimmingMarks();//ui->trimmingMarksCheckBox->isChecked();
         bool revHistory = ui->RevHistoryCheckBox->isChecked();
         bool foldLines = ui->foldLinesCheckBox->isChecked();
         SheetSize foldLinesTaget = getFoldLinesTarget(ui->foldingLinesComboBox->currentText());
@@ -645,7 +565,7 @@ void MainWindow::on_saveFieldsPushButton_clicked()
         LoadeSaveSettings file(this);
         file.setSHEETSIZE(sheetSize);
         file.setSHEETNAME(sheetName);
-        file.setSHEETSTYLE(sheetStyle);
+        //file.setSHEETSTYLE(sheetStyle);
         file.setNUMOPTLINES(numOptLines);
         file.setTITELBLOCKFIELDS_KICAD5(titelblockFields_KICAD5);
         file.setTITELBLOCKFIELDS_KICAD6(titelblockFields_KICAD6);
@@ -710,7 +630,6 @@ void MainWindow::on_previewPushButton_clicked()
 {
     SheetSize sheetSize = getSheetSize(ui->SheetSizeComboBox->currentText());
     QString sheetName = ui->NameLineEdit->text();
-    SheetStyle sheetStyle = getSheetStyle();
     QMap<QString, TitelblockField> titelblockFields = ISO7200OPTIONS->getTITELBLOCKFIELDS_PDF();
     QMap<QString, TitelblockField> revHistoryFields = ASME_Y14_35_WIDTH180OPTIONS->getREVHISTORYFIELDS_PDF();
     bool revHistory = ui->RevHistoryCheckBox->isChecked();
@@ -727,7 +646,8 @@ void MainWindow::on_previewPushButton_clicked()
 
     PREVIEW->setSHEETSIZE(sheetSize);
     PREVIEW->setSHEETNAME(sheetName);
-    PREVIEW->setSHEETSTYLE(sheetStyle);
+    PREVIEW->setSHEETTITLEBLOCK(getSheetTitleblock());
+    PREVIEW->setSHEETFRAME(getSheetFrame());
 
     PREVIEW->setTITELBLOCKFIELDS(titelblockFields);
     PREVIEW->setREVHISTORY(revHistory);
@@ -742,6 +662,7 @@ void MainWindow::on_previewPushButton_clicked()
     PREVIEW->setMinimumWidth(ui->centralwidget->size().width() - 600);
 
     PREVIEW->setISO7200OPTIONS(ISO7200OPTIONS);
+    PREVIEW->setISO5457OPTIONS(ISO5457OPTIONS);
     PREVIEW->setASME_Y14_35_WIDTH180OPTIONS(ASME_Y14_35_WIDTH180OPTIONS);
     PREVIEW->setFULLSHEETPARTLISTOPIONS(FULLSHEETPARTLISTOPIONS);
     PREVIEW->setSMALLPARTSLISTSOPTIONS(SMALLPARTSLISTSOPTIONS);
@@ -771,15 +692,6 @@ void MainWindow::on_sheetHeightDoubleSpinBox_valueChanged(double arg1)
 
 
 void MainWindow::on_NameLineEdit_textEdited(const QString &arg1)
-{
-    if(WINDOWRUNNING)
-    {
-        on_previewPushButton_clicked();
-    }
-}
-
-
-void MainWindow::on_SheetStyleComboBox_currentIndexChanged(int index)
 {
     if(WINDOWRUNNING)
     {
@@ -889,6 +801,25 @@ void MainWindow::on_portraitCheckBox_stateChanged(int arg1)
 
 void MainWindow::on_preViewSheetBordercheckBox_stateChanged(int arg1)
 {
+    if(WINDOWRUNNING)
+    {
+        on_previewPushButton_clicked();
+    }
+}
+
+
+void MainWindow::on_sheetFramePushButton_clicked()
+{
+    if(ui->SheetFrameComboBox->currentText() == "ISO5457")
+    {
+        std::unique_ptr<ISO5457Dialog> ISO5457DIALOG(new ISO5457Dialog(ISO5457OPTIONS, this));
+        ISO5457DIALOG->setModal(true);
+        ISO5457DIALOG->exec();
+    }
+    else
+    {
+        qWarning() << "None";
+    }
     if(WINDOWRUNNING)
     {
         on_previewPushButton_clicked();

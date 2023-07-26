@@ -118,8 +118,6 @@ private slots:
 
     void on_opt16PushButton_pressed();
 
-    void on_trimmingMarksCheckBox_stateChanged(int arg1);
-
     void on_OptLinesSpinBox_valueChanged(int arg1);
 
     void on_DescriptionCheckBox_stateChanged(int arg1);

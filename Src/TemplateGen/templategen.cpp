@@ -14,6 +14,26 @@ void TemplateGen::setBOMCSVFILE(const QString &newBOMCSVFILE)
     BOMCSVFILE = newBOMCSVFILE;
 }
 
+SheetTitleblock TemplateGen::getSHEETTITLEBLOCK() const
+{
+    return SHEETTITLEBLOCK;
+}
+
+void TemplateGen::setSHEETTITLEBLOCK(SheetTitleblock newSHEETTITLEBLOCK)
+{
+    SHEETTITLEBLOCK = newSHEETTITLEBLOCK;
+}
+
+SheetFrame TemplateGen::getSHEETFRAME() const
+{
+    return SHEETFRAME;
+}
+
+void TemplateGen::setSHEETFRAME(SheetFrame newSHEETFRAME)
+{
+    SHEETFRAME = newSHEETFRAME;
+}
+
 bool TemplateGen::init()
 {
     if(NOINIT)
@@ -21,12 +41,12 @@ bool TemplateGen::init()
         return true;
     }
 
-    if(!allFinisheD(finisheD))
-    {
-        printFinisheD(finisheD);
-        qCritical() << "Not all options where filled(KiCAD 5)";
-        return false;
-    }
+//    if(!allFinisheD(finisheD))
+//    {
+//        printFinisheD(finisheD);
+//        qCritical() << "Not all options where filled(KiCAD 5)";
+//        return false;
+//    }
 
     initBorder();
 
@@ -61,9 +81,9 @@ bool TemplateGen::init()
 bool TemplateGen::initBorder()
 {
     // Switching between the diferen styles
-    switch (SHEETSTYLE)
+    switch (SHEETFRAME)
     {
-    case SheetStyle::ISO5457_ISO7200:
+    case SheetFrame::ISO5457:
         // Defining the corners of the drawing space
         TOPLEFTDRAWINGCORNER.X = 20;
         TOPLEFTDRAWINGCORNER.Y = 10;
@@ -90,7 +110,7 @@ bool TemplateGen::initBorder()
 
         break;
 
-    case SheetStyle::BLANK:
+    case SheetFrame::BLANK:
         // Defining the corners of the drawing space, all 0 because this is a blank space
         TOPLEFTDRAWINGCORNER.X = 0;
         TOPLEFTDRAWINGCORNER.Y = 0;
@@ -117,9 +137,9 @@ bool TemplateGen::initBorder()
 bool TemplateGen::initTitleblock()
 {
     double descHeight;
-    switch (SHEETSTYLE)
+    switch (SHEETTITLEBLOCK)
     {
-    case SheetStyle::ISO5457_ISO7200:
+    case SheetTitleblock::ISO7200:
 
         descHeight = (11 * (5 + ISO7200OPTIONS->getNumOptLins()) + (((2.5 * 1.5) * (ISO7200OPTIONS->getNumDescLines() + 1) + 3.7)) * ISO7200OPTIONS->getDescField());
         TOPLEFTTITELBLOCKCORNER.X = BOTTOMRIGHTDRAWINGCORNER.X - 180;
@@ -140,7 +160,7 @@ bool TemplateGen::initTitleblock()
 
         break;
 
-    case SheetStyle::BLANK:
+    case SheetTitleblock::BLANK:
         TOPLEFTTITELBLOCKCORNER.X = 0;
         TOPLEFTTITELBLOCKCORNER.Y = 0;
 
@@ -301,12 +321,22 @@ QString TemplateGen::createFileName()
     }
     QString ret =  DIR + "/" + SHEETSIZE.sizeString.replace(" ", "_");
 
-    switch (SHEETSTYLE)
+    switch (SHEETFRAME)
     {
-    case SheetStyle::ISO5457_ISO7200:
-        ret += "_ISO5457_ISO7200";
+    case SheetFrame::ISO5457:
+        ret += "_ISO5457";
         break;
-    case SheetStyle::BLANK:
+    case SheetFrame::BLANK:
+        ret += "_BLANK";
+        break;
+    }
+
+    switch (SHEETTITLEBLOCK)
+    {
+    case SheetTitleblock::ISO7200:
+        ret += "_ISO7200";
+        break;
+    case SheetTitleblock::BLANK:
         ret += "_BLANK";
         break;
     }
@@ -699,6 +729,16 @@ QStringList TemplateGen::splitBOMValStd(QString val, double targetLenght)
     {
         return QStringList{val};
     }
+}
+
+std::shared_ptr<ISO5457Options> TemplateGen::getISO5457OPTIONS() const
+{
+    return ISO5457OPTIONS;
+}
+
+void TemplateGen::setISO5457OPTIONS(const std::shared_ptr<ISO5457Options> &newISO5457OPTIONS)
+{
+    ISO5457OPTIONS = newISO5457OPTIONS;
 }
 
 std::shared_ptr<SmallPartsListOptions> TemplateGen::getSMALLPARTSLISTSOPTIONS() const
@@ -1180,9 +1220,9 @@ void TemplateGen::drawRevHistoryASME_Y14_35_Width180()
 
 void TemplateGen::drawFoldLines(double depth)
 {
-    switch (SHEETSTYLE)
+    switch (SHEETFRAME)
     {
-    case SheetStyle::ISO5457_ISO7200:
+    case SheetFrame::ISO5457:
         if(FOLDLINETARGET.sizeString == "A4P with border" && SHEETSIZE.height >= 297 && SHEETSIZE.width >= 210)
         {
             double len = 0; // length of the blocck
@@ -1259,7 +1299,7 @@ void TemplateGen::drawFoldLines(double depth)
         }
         break;
 
-    case SheetStyle::BLANK:
+    case SheetFrame::BLANK:
         break;
     }
 }
@@ -1616,7 +1656,7 @@ QString TemplateGen::getSheetFieldKey()
 
 void TemplateGen::drawISO5457_ISO7200()
 {
-    if(ISO7200OPTIONS->getTrimmingMarks())
+    if(ISO5457OPTIONS->getTrimmingMarks())
     {
         drawTrimmingMarksISO5457();
     }
@@ -1770,15 +1810,27 @@ void TemplateGen::draw()
             return;
         }
         qint64 foldlinesDepth = 0;
-        switch (SHEETSTYLE)
+        switch (SHEETFRAME)
         {
-        case SheetStyle::ISO5457_ISO7200:
-            drawISO5457_ISO7200();
+        case SheetFrame::ISO5457:
+            if(ISO5457OPTIONS->getTrimmingMarks())
+            {
+                drawTrimmingMarksISO5457();
+            }
+            drawDrawingBorderISO5457();
             foldlinesDepth = 5;
             break;
-        case SheetStyle::BLANK:
+        case SheetFrame::BLANK:
             drawBlank();
             foldlinesDepth = 0;
+        }
+        switch (SHEETTITLEBLOCK)
+        {
+        case SheetTitleblock::ISO7200:
+            drawTitelblockISO7200();
+            break;
+        case SheetTitleblock::BLANK:
+            drawBlank();
         }
         if(REVHISTORY)
         {
@@ -1882,17 +1934,6 @@ void TemplateGen::setSHEETSIZE(const SheetSize &newSHEETSIZE)
 {
     finisheD.sheetsizeE = true;
     SHEETSIZE = newSHEETSIZE;
-}
-
-SheetStyle TemplateGen::getSHEETSTYLE() const
-{
-    return SHEETSTYLE;
-}
-
-void TemplateGen::setSHEETSTYLE(SheetStyle newSHEETSTYLE)
-{
-    finisheD.sheetstylE = true;
-    SHEETSTYLE = newSHEETSTYLE;
 }
 
 qint64 TemplateGen::getNUMOPTLINES() const

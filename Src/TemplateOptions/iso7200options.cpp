@@ -149,16 +149,6 @@ void ISO7200Options::setNumOptLins(unsigned int newNumOptLins)
     numOptLins = newNumOptLins;
 }
 
-bool ISO7200Options::getTrimmingMarks()
-{
-    return trimmingMarks;
-}
-
-void ISO7200Options::setTrimmingMarks(bool newTrimmingMarks)
-{
-    trimmingMarks = newTrimmingMarks;
-}
-
 ISO7200Options::ISO7200Options(QObject *parent) :
     QObject(parent)
 {
@@ -166,7 +156,6 @@ ISO7200Options::ISO7200Options(QObject *parent) :
 
     setNumDescLines(1);
     setNumOptLins(0);
-    setTrimmingMarks(true);
 }
 
 ISO7200Options::~ISO7200Options()

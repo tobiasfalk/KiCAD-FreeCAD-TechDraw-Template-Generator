@@ -90,9 +90,15 @@ public:
     ProjectionMethodType ProjectionMethod;
 };
 
-enum class SheetStyle
+enum class SheetTitleblock
 {
-    ISO5457_ISO7200,
+    ISO7200,
+    BLANK,
+};
+
+enum class SheetFrame
+{
+    ISO5457,
     BLANK,
 };
 

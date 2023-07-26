@@ -21,6 +21,9 @@ set(Window_SOURCES
     loadesavesettings.h
     preview.h
     preview.cpp
+    iso5457dialog.h
+    iso5457dialog.cpp
+    iso5457dialog.ui
 )
 
 add_library(Window STATIC
