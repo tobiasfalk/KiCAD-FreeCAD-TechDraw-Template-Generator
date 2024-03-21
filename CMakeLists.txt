@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(KiCAD-FreeCAD-TechDraw-Template-Generator VERSION 1.6 LANGUAGES CXX)
+project(KiCAD-FreeCAD-TechDraw-Template-Generator VERSION 2.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -26,8 +26,8 @@ elseif(MSVC)
     #message(STATUS ">>> MSVC RELEASE: /O2")
 endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
 
 if(Qt6_FOUND AND WIN32 AND TARGET Qt6::qmake AND NOT TARGET Qt6::windeployqt)
     get_target_property(_qt6_qmake_location Qt6::qmake IMPORTED_LOCATION)
@@ -52,3 +52,9 @@ endif()
 
 add_subdirectory(Src/)
 add_subdirectory(Doc/)
+
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()

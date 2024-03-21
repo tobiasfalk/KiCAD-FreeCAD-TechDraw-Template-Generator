@@ -1,9 +1,4 @@
 set(KiCAD_Symbol_scaler_SOURCES
-    kicad_symbol_scaler.cpp
-    kicad_symbol_scaler.h
-    kicad_symbol_scaler_ui.cpp
-    kicad_symbol_scaler_ui.h
-    kicad_symbol_scaler_ui.ui
 )
 
 add_library(KiCAD_Symbol_scaler STATIC

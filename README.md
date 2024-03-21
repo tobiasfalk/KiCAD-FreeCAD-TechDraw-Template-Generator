@@ -10,62 +10,23 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ## Prerequisites
 
-* Qt 5.12 or newer
+* Qt 6.5 or newer
 * [Osifont](https://github.com/hikikomori82/osifont)
 
 # Features
 
-* ISO 5457 style border and ISO 7200 style Titelblock
-
-![ISO 5457 & ISO 7200 image](Images/ISO5457_ISO7200_Demo.freecad.svg)
-
-
-* ASME Y14.35 style revision history
-
-![ASME Y14.35 image](Images/ASME_Y14-35_Demo.svg)
-
-
-* Description field
-
-![Description field image](Images/Description_Demo.svg)
-
-
-* Folding liens to A4 and 200mmx290mm
-
-* Full Sheet Parts list
-
-![Full Sheet list image](Images/FullPartsList_Demo.svg)
-
-* Full Sheet Parts list from CSV
-
-![Full Sheet list image CSV ](Images/CSV_Partslist_Demo.svg)
-
-
-* Small Parts list directly over the Titelblock
-
-![Small Parts list image](Images/SmallPartsList_Demo.svg)
-
-
-* Logo inclusion in to the Legal owner field
-
-![Logo image](Images/Logo_Demo.svg)
-
-* CSV inclusion, KiCAD with bom_csv_grouped_by_value_with_fp or Standard where in the first line the size in percentage to the drawing with(0.1 for 10% or 0.5 for 50%). The second line defines the Titel of the column,
-all the lines below that are the Parts that are to be drawn
-
 ## Styles
-- ISO5457 ISO700
 
 ## Limitations
 
 ### KiCAD 5
 
-* Not able to change the font (with 7(6.99) possible)
+* Not able to change the font (with 7 possible)
 * No Circlys(Used for Projektion)
 
 ### KiCAD 6
 
-* Not able to change the font (with 7(6.99) possible)
+* Not able to change the font (with 7 possible)
 * No Circlys(Used for Projektion)
 
 ### KiCAD 7
@@ -111,8 +72,7 @@ The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenlose
 
 ## To do
 
-* Complete Doxygen Documentation
-* PDF Text problems
+create universal draw
 
 ## Notes
 In the FreeCAD variable values there are some varable that make the Templae easyer to use with this FreeCAD TD Macro(Objekt): https://forum.freecad.org/viewtopic.php?t=77705

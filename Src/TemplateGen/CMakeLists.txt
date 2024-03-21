@@ -1,20 +1,4 @@
 set(TemplateGen_SOURCES
-    templategen.cpp
-    templategen.h
-    templategenkicad_5.cpp
-    templategenkicad_5.h
-    templategenkicad_6.cpp
-    templategenkicad_6.h
-    templategenkicad_7.cpp
-    templategenkicad_7.h
-    templategenfreecad.cpp
-    templategenfreecad.h
-    templategenpdf.cpp
-    templategenpdf.h
-    templategeneagle.cpp
-    templategeneagle.h
-    templategensvg.cpp
-    templategensvg.h
 )
 
 add_library(TemplateGen STATIC

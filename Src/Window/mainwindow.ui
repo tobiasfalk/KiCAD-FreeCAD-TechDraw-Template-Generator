@@ -72,7 +72,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="editFullPartsListPushButton">
+       <widget class="QPushButton" name="EditFullPartsListPushButton">
         <property name="text">
          <string>Edit Full Sheet Part List</string>
         </property>
@@ -131,21 +131,14 @@
     <item row="11" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_13">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="text">
-         <string>KiCAD scale symbols</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="previewPushButton">
+       <widget class="QPushButton" name="PreviewPushButton">
         <property name="text">
          <string>Update Preview</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="preViewSheetBordercheckBox">
+       <widget class="QCheckBox" name="PreViewSheetBordercheckBox">
         <property name="text">
          <string>Sheet Border</string>
         </property>
@@ -164,6 +157,20 @@
         </property>
        </spacer>
       </item>
+      <item>
+       <widget class="QPushButton" name="SaveFieldsPushButton">
+        <property name="text">
+         <string>Save settings file</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="LoadFielsPushButton">
+        <property name="text">
+         <string>Load settings file</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item row="6" column="0">
@@ -176,10 +183,10 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="revHistoryStyleComboBox"/>
+       <widget class="QComboBox" name="RevHistoryStyleComboBox"/>
       </item>
       <item>
-       <widget class="QPushButton" name="revHistoryStylePushButton">
+       <widget class="QPushButton" name="RevHistoryStylePushButton">
         <property name="text">
          <string>Edit Rev History Fields</string>
         </property>
@@ -210,7 +217,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="sheetWidthDoubleSpinBox">
+       <widget class="QDoubleSpinBox" name="SheetWidthDoubleSpinBox">
         <property name="suffix">
          <string notr="true" comment=" mm"/>
         </property>
@@ -233,7 +240,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="sheetHeightDoubleSpinBox">
+       <widget class="QDoubleSpinBox" name="SheetHeightDoubleSpinBox">
         <property name="suffix">
          <string notr="true" comment=" mm"/>
         </property>
@@ -281,23 +288,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="portraitCheckBox">
+       <widget class="QCheckBox" name="PortraitCheckBox">
         <property name="text">
          <string>Portrait</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="loadFielsPushButton">
-        <property name="text">
-         <string>Load settings file</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="saveFieldsPushButton">
-        <property name="text">
-         <string>Save settings file</string>
         </property>
        </widget>
       </item>
@@ -317,7 +310,7 @@
      </layout>
     </item>
     <item row="0" column="1" rowspan="13">
-     <layout class="QGridLayout" name="gridLayout_2">
+     <layout class="QGridLayout" name="PreViewGridLayout">
       <item row="0" column="0">
        <spacer name="horizontalSpacer_15">
         <property name="orientation">
@@ -343,7 +336,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="EdistSmallPartsListpushButton">
         <property name="text">
          <string>Edit Small Parts List Fields</string>
         </property>
@@ -401,7 +394,7 @@
        <widget class="QComboBox" name="SheetFrameComboBox"/>
       </item>
       <item>
-       <widget class="QPushButton" name="sheetFramePushButton">
+       <widget class="QPushButton" name="SheetFramePushButton">
         <property name="text">
          <string>PushButton</string>
         </property>
@@ -435,21 +428,21 @@
        <widget class="QComboBox" name="SheetTitleblockComboBox"/>
       </item>
       <item>
-       <widget class="QPushButton" name="sheetTitelblockFieldsPushButton">
+       <widget class="QPushButton" name="SheetTitelblockFieldsPushButton">
         <property name="text">
          <string>Edit Titelblock Fields</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="logoPushButton">
+       <widget class="QPushButton" name="LogoPushButton">
         <property name="text">
          <string>Select Logo(SVG)</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="logoCheckBox">
+       <widget class="QCheckBox" name="LogoCheckBox">
         <property name="text">
          <string>Include Logo</string>
         </property>
@@ -473,7 +466,7 @@
     <item row="7" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <widget class="QCheckBox" name="foldLinesCheckBox">
+       <widget class="QCheckBox" name="FoldLinesCheckBox">
         <property name="text">
          <string>Folding lines:</string>
         </property>
@@ -483,7 +476,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="foldingLinesComboBox"/>
+       <widget class="QComboBox" name="FoldingLinesComboBox"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_9">
