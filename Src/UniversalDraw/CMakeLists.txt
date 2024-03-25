@@ -1,10 +1,12 @@
- set(UniversalDraw_SOURCES
+set(UniversalDraw_SOURCES
      universaldraw.cpp
      universaldraw.h
 )
 
 add_library(UniversalDraw STATIC
     ${UniversalDraw_SOURCES}
+    PreView/preview.h
+    PreView/preview.cpp
 )
 
 target_link_libraries(UniversalDraw PRIVATE

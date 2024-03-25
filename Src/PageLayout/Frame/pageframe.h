@@ -1,5 +1,6 @@
 #ifndef PAGEFRAME_H
 #define PAGEFRAME_H
+#include <memory>
 
 #include <QRectF>
 
@@ -26,7 +27,7 @@ public:
     /// \param where the rectangle where the frame is drawen in to(typicaly the dimasions of the
     /// page)
     ///
-    void draw(UniversalDraw &into, QRectF where);
+    void draw(std::shared_ptr<UniversalDraw> into, QRectF where);
 
 protected:
     ///

@@ -11,6 +11,11 @@
 
 #include "pagestyle.h"
 
+#include "pageframe.h"
+
+#include "universaldraw.h"
+#include "PreView/preview.h"
+
 ///
 /// \brief myMessageOutput is the handelar for all the Qt debuging messages and formats it
 /// \param type
@@ -83,6 +88,16 @@ auto main(int argc, char *argv[]) -> int
     qDebug() << style.getPageSize();
     qDebug() << style.getLayout();
     qDebug() << style << "ABC";
+
+    std::shared_ptr<UniversalDraw> draw = std::make_shared<UniversalDraw>();
+
+    // PreView view;
+
+    // printTest(view);
+
+    test::printTest(draw);
+
+    //style.draw(draw);
 
     MainWindow window;
     window.show();

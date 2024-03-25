@@ -1,11 +1,20 @@
 #ifndef UNIVERSALDRAW_H
 #define UNIVERSALDRAW_H
+#include <memory>
+
 
 #include <QObject>
 #include <QPageLayout>
 #include <QPoint>
 #include <QSharedData>
 #include <QString>
+#include <QLine>
+#include <QLineF>
+#include <QRect>
+#include <QRectF>
+#include <QPolygon>
+#include <QPolygonF>
+#include <QPainterPath>
 
 ///
 /// \brief The TextHeightAnchor enum defines the posible positenings for text in the hight
@@ -44,14 +53,14 @@ public:
     /// \param end is the end point of the line
     /// \param lineWidth is the width of the line in mm
     ///
-    virtual void drawLine(QPointF start, QPointF end, double lineWidth) = 0;
+    virtual void drawLine(QPointF start, QPointF end, double lineWidth);
     ///
     /// \brief drawLine draws a line betwen the start point and the end point with a
     /// certin line width
     /// \param line is the line to be drawn
     /// \param lineWidth is the width of the line in mm
     ///
-    virtual void drawLine(QLineF line, double lineWidth) = 0;
+    virtual void drawLine(QLineF line, double lineWidth);
     ///
     /// \brief drawRect draws a rectangel betwen start and end point where the top line parralel
     /// to the upper page edge
@@ -60,7 +69,7 @@ public:
     /// \param lineWidth is the line width that the rectagen is drawn in mm
     /// \param fill defines if the polygone is filled(true) or not(false)
     ///
-    virtual void drawRect(QPointF start, QPointF end, double lineWidth, bool fill = false) = 0;
+    virtual void drawRect(QPointF start, QPointF end, double lineWidth, bool fill = false);
     ///
     /// \brief drawRect draws a rectangel betwen start and end point where the top line parralel
     /// to the upper page edge
@@ -68,7 +77,7 @@ public:
     /// \param lineWidth is the line width that the rectagen is drawn in mm
     /// \param fill defines if the polygone is filled(true) or not(false)
     ///
-    virtual void drawRect(QRectF rect, double lineWidth, bool fill = false) = 0;
+    virtual void drawRect(QRectF rect, double lineWidth, bool fill = false);
     ///
     /// \brief drawPoly draws a polygon
     /// \param position is the position of the first point in mm
@@ -77,15 +86,15 @@ public:
     /// \param lineWidth is the width of line that the polygone is drawn width in mm
     /// \param fill defines if the polygone is filled(true) or not(false)
     ///
-    virtual void drawPoly(QPointF position, QList<QPoint> points, double lineWidth,
-                          bool fill = false) = 0;
+    virtual void drawPoly(QPointF position, QList<QPointF> points, double lineWidth,
+                          bool fill = false);
     ///
     /// \brief drawPoly draws a polygon
     /// \param poly is the polygone to be drawn
     /// \param lineWidth is the width of line that the polygone is drawn width in mm
     /// \param fill defines if the polygone is filled(true) or not(false)
     ///
-    virtual void drawPoly(QPolygonF poly, double lineWidth, bool fill = false) = 0;
+    virtual void drawPoly(QPolygonF poly, double lineWidth, bool fill = false);
     ///
     /// \brief drawCircle draws a circle
     /// \param center is the position of the cener point in mm
@@ -93,7 +102,7 @@ public:
     /// \param lineWidth is the width of the line that the cirleis drwn with in mm
     /// \param fill defines if the polygone is filled(true) or not(false)
     ///
-    virtual void drawCircle(QPointF center, double radius, double lineWidth, bool fill = false) = 0;
+    virtual void drawCircle(QPointF center, double radius, double lineWidth, bool fill = false);
     ///
     /// \brief drawText draws Text on the given position
     /// \param position is the Position of the Text(Text Anchor) in mm
@@ -110,7 +119,7 @@ public:
     virtual void drawText(QPointF position, QString text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, QString font = QString::fromLatin1("osifont"),
-                          bool isEditable = false, QString name = QString::fromLatin1("")) = 0;
+                          bool isEditable = false, QString name = QString::fromLatin1(""));
     ///
     /// \brief drawPicture draws a Picture on the given position, the anchor is on the bottom right
     /// \param picturePath is the file path to the picture
@@ -118,7 +127,7 @@ public:
     /// \param width is the the width of the picture in mm
     /// \param hight is the the hight of the picture in mm
     ///
-    virtual void drawPicture(QString picturePath, QPointF position, double width, double hight) = 0;
+    virtual void drawPicture(QString picturePath, QPointF position, double width, double hight);
 
     ///
     /// \brief fileName returns the name of the file to draw in to
@@ -131,6 +140,28 @@ public:
     ///
     void setFileName(const QString &newFileName);
 
+    ///
+    /// \brief hight is the hight of the page/template
+    /// \return
+    ///
+    qreal hight() const;
+    ///
+    /// \brief setHight sets the hight of the page/template
+    /// \param newHight
+    ///
+    void setHight(qreal newHight);
+
+    ///
+    /// \brief width ist the width of the page/template
+    /// \return
+    ///
+    qreal width() const;
+    ///
+    /// \brief setWidth sets the width of the page/template
+    /// \param newWidth
+    ///
+    void setWidth(qreal newWidth);
+
 signals:
 
 protected:
@@ -141,6 +172,16 @@ private:
 };
 
 ///
+/// \brief operator << is used to print the state of the class to a debuging consol, with qDebug()
+/// \param debug
+/// \param universalDraw
+/// \return
+///
+auto operator<<(QDebug debug, const UniversalDraw &universalDraw) -> QDebug;
+
+namespace test {
+
+///
 /// \brief printTest is a test function to test the universal draw classes
 /// \param drawer is the drawer clast that is to be tested
 ///
@@ -148,7 +189,7 @@ private:
 /// right, one 3mm line from the top right to the bottom left,
 ///
 /// one circle with the center at the middle of the page(where the two lines cross) with a 1mm
-/// linewidth a 5mm radius and no fill,
+/// linewidth a 50mm radius and no fill,
 ///
 /// a rectangle with start(20,20) end(30,30) a .3mm line width and no fill,
 ///
@@ -204,6 +245,8 @@ private:
 /// }
 /// \enddot
 ///
-void printTest(QSharedPointer<UniversalDraw> drawer);
+void printTest(std::shared_ptr<UniversalDraw> drawer);
+
+}
 
 #endif // UNIVERSALDRAW_H

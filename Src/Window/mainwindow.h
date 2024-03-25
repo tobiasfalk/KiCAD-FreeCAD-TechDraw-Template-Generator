@@ -6,6 +6,9 @@
 #include <QFileDialog>
 #include <QMainWindow>
 
+#include "universaldraw.h"
+#include "PreView/preview.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -41,6 +44,10 @@ private:
     /// through this
     ///
     Ui::MainWindow *ui;
+
+    std::shared_ptr<PreView> preView;
+
+    void resizeEvent(QResizeEvent *event);
 };
 
 #endif // MAINWINDOW_H

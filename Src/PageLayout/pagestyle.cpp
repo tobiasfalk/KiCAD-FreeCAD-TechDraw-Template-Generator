@@ -11,9 +11,9 @@ PageStyle::PageStyle()
     m_pageStyleData = new PageStyleData;
 }
 
-void PageStyle::draw(UniversalDraw into)
+void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
 {
-    m_pageStyleData->frame.draw(into);
+    m_pageStyleData->frame.draw(into, m_pageStyleData->layout.fullRect());
 }
 
 auto PageStyle::getLayout() const -> QPageLayout

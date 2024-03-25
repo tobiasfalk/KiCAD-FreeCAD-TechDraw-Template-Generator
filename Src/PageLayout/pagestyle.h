@@ -1,5 +1,6 @@
 #ifndef PAGELAYOUT_H
 #define PAGELAYOUT_H
+#include <memory>
 
 #include <QDebug>
 
@@ -42,7 +43,7 @@ public:
     /// \brief draw draws the seten pagestyle
     /// \param into
     ///
-    void draw(UniversalDraw into);
+    void draw(std::shared_ptr<UniversalDraw> into);
 
     ///
     /// \brief getLayout returns the current pagelayout/size and nothing mor, no settings of

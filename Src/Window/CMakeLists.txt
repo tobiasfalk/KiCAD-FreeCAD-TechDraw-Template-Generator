@@ -12,8 +12,8 @@ target_link_libraries(Window PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Xml
     Qt${QT_VERSION_MAJOR}::Svg
-    TemplateGen
-    Templateoptions
+    UniversalDraw
+
     KiCAD_Symbol_scaler
 )
 
