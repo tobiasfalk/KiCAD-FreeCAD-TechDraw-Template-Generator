@@ -44,9 +44,9 @@ void UniversalDraw::drawText(QPointF position, QString text, double textSize, Te
     qInfo() << "UniversalDraw::drawText(QPointF position(" << position << "), QString text(" << text << "), double textSize(" << textSize << "), TextHeightAnchor textHeightAnchor(" << int(textHeightAnchor) << "), TextWidthAnchor textWidthAnchor(" << int(textWidthAnchor) << "), double lineWidth(" << lineWidth << "), QString font(" << font << "), bool isEditable(" << isEditable << "), QString name(" << name << "))";
 }
 
-void UniversalDraw::drawPicture(QString picturePath, QPointF position, double width, double hight)
+void UniversalDraw::drawPicture(QString picturePath, QPointF position, double width, double height, int dpiVector)
 {
-    qInfo() << "UniversalDraw::drawPicture(QString picturePath(" << picturePath << "), QPointF position(" << position << "), double width(" << width << "), double hight(" << hight << "))";
+    qInfo() << "UniversalDraw::drawPicture(QString picturePath(" << picturePath << "), QPointF position(" << position << "), double width(" << width << "), double height(" << height << "))";
 }
 
 QString UniversalDraw::fileName() const
@@ -59,14 +59,14 @@ void UniversalDraw::setFileName(const QString &newFileName)
     m_fileName = newFileName;
 }
 
-qreal UniversalDraw::hight() const
+qreal UniversalDraw::height() const
 {
-    return m_hight;
+    return m_height;
 }
 
 void UniversalDraw::setHight(qreal newHight)
 {
-    m_hight = newHight;
+    m_height = newHight;
 }
 
 qreal UniversalDraw::width() const
@@ -104,5 +104,7 @@ void test::printTest(std::shared_ptr<UniversalDraw> drawer)
     drawer->drawText(QPointF{60, 20}, "TextABCabc", 5, TextHeightAnchor::Bottom, TextWidthAnchor::Left, .5, "osifont");
     drawer->drawText(QPointF{60, 20}, "TextABCabc", 1, TextHeightAnchor::Bottom, TextWidthAnchor::Left, .1, "osifont");
 
+    drawer->drawPicture("./Test/wieserfalke_2.svg", QPointF{100, 100}, 30, 20, 3600);
+    drawer->drawPicture("./Test/wieserfalke_3B.png", QPointF{160, 100}, 30, 50);
 }
 // }

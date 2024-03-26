@@ -10,6 +10,9 @@
 
 #include "universaldraw.h"
 
+///
+/// \brief The PageFrame class is the base class for a sheet frame like the ISO 54
+///
 class PageFrame
 {
 public:

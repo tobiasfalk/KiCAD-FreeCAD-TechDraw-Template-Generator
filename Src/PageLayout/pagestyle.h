@@ -37,11 +37,14 @@ public:
 class PageStyle
 {
 public:
+    ///
+    /// \brief PageStyle the basic constructor
+    ///
     PageStyle();
 
     ///
     /// \brief draw draws the seten pagestyle
-    /// \param into
+    /// \param into is a pointor to the Universal Draw class that is to be used
     ///
     void draw(std::shared_ptr<UniversalDraw> into);
 

@@ -81,21 +81,21 @@ auto main(int argc, char *argv[]) -> int
     qInstallMessageHandler(myMessageOutput);
     QApplication application(argc, argv);
 
-    PageStyle style;
+    // PageStyle style;
 
-    style.setPageSize(297, 215, QPageLayout::Landscape);
-    qDebug() << style.getPageHight();
-    qDebug() << style.getPageSize();
-    qDebug() << style.getLayout();
-    qDebug() << style << "ABC";
+    // style.setPageSize(297, 215, QPageLayout::Landscape);
+    // qDebug() << style.getPageHight();
+    // qDebug() << style.getPageSize();
+    // qDebug() << style.getLayout();
+    // qDebug() << style << "ABC";
 
-    std::shared_ptr<UniversalDraw> draw = std::make_shared<UniversalDraw>();
+    // std::shared_ptr<UniversalDraw> draw = std::make_shared<UniversalDraw>();
 
-    // PreView view;
+    // // PreView view;
 
-    // printTest(view);
+    // // printTest(view);
 
-    test::printTest(draw);
+    // test::printTest(draw);
 
     //style.draw(draw);
 

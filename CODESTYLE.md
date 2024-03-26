@@ -1,7 +1,5 @@
 # Coding Style
 
-Paragraph.
-
 ## Variable naming
 
 - Variables always start with a lowercase.
@@ -10,4 +8,3 @@ Paragraph.
 ## Function/Methode naming
 
 - they alsways start with a lowercase
-- protected functions start with a "p_"

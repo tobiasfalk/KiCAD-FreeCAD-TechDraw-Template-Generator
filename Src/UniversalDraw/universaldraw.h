@@ -17,7 +17,7 @@
 #include <QPainterPath>
 
 ///
-/// \brief The TextHeightAnchor enum defines the posible positenings for text in the hight
+/// \brief The TextHeightAnchor enum defines the posible positenings for text in the height
 ///
 enum class TextHeightAnchor {
     Top,
@@ -107,8 +107,8 @@ public:
     /// \brief drawText draws Text on the given position
     /// \param position is the Position of the Text(Text Anchor) in mm
     /// \param text is the text that needs to be drawn
-    /// \param textSize is the hight/size of the text in mm
-    /// \param textHeightAnchor is the position of the text anchor in the hight
+    /// \param textSize is the height/size of the text in mm
+    /// \param textHeightAnchor is the position of the text anchor in the height
     /// \param textWidthAnchor is the position of the text anchor in the width
     /// \param lineWidth is the width of the text line in mm
     /// \param font is the name of the font
@@ -125,9 +125,10 @@ public:
     /// \param picturePath is the file path to the picture
     /// \param position is the position of the anchor in mm, witch is on the bottom right
     /// \param width is the the width of the picture in mm
-    /// \param hight is the the hight of the picture in mm
+    /// \param height is the the height of the picture in mm
+    /// \param dpiVector is the resolution a Vectorgrapic like SVG should be renderd, this may needs to be loward if the picture should be big
     ///
-    virtual void drawPicture(QString picturePath, QPointF position, double width, double hight);
+    virtual void drawPicture(QString picturePath, QPointF position, double width, double height, int dpiVector = 33020);
 
     ///
     /// \brief fileName returns the name of the file to draw in to
@@ -141,12 +142,12 @@ public:
     void setFileName(const QString &newFileName);
 
     ///
-    /// \brief hight is the hight of the page/template
+    /// \brief height is the height of the page/template
     /// \return
     ///
-    qreal hight() const;
+    qreal height() const;
     ///
-    /// \brief setHight sets the hight of the page/template
+    /// \brief setHight sets the height of the page/template
     /// \param newHight
     ///
     void setHight(qreal newHight);
@@ -167,7 +168,7 @@ signals:
 protected:
 private:
     QString m_fileName;
-    qreal m_hight;
+    qreal m_height;
     qreal m_width;
 };
 
