@@ -12,26 +12,6 @@
 #include "pageframe.h"
 
 ///
-/// \brief The PageStyleData class is the class that holds all the data for the pagelayout, it
-/// should not be used directly but over the PageStyle
-///
-class PageStyleData : public QSharedData
-{
-public:
-    PageStyleData();
-
-    ///
-    /// \brief layout holds the general layout of the page
-    ///
-    QPageLayout layout;
-
-    ///
-    /// \brief frame contains the frame data
-    ///
-    PageFrame frame;
-};
-
-///
 /// \brief The PageStyle class manages the layout and style for a page
 ///
 class PageStyle
@@ -114,9 +94,14 @@ public:
 
 private:
     ///
-    /// \brief m_pageLayoutData holds the actuall data for the pagelayout
+    /// \brief layout holds the general layout of the page
     ///
-    QSharedDataPointer<PageStyleData> m_pageStyleData;
+    QPageLayout m_layout;
+
+    ///
+    /// \brief frame contains the frame data
+    ///
+    PageFrame m_frame;
 };
 
 ///

@@ -9,15 +9,11 @@ void PreView::paintEvent(QPaintEvent *e)
 
     std::shared_ptr<QtPainterDrawer> m_pre_painter = std::make_shared<QtPainterDrawer>(m_painter);
 
-
     double scale = this->minimumWidth() / 297;
-    if(210 * scale > this->height())
-    {
+    if (210 * scale > this->height()) {
         scale = this->height() / 210;
     }
-    m_painter->setTransform(QTransform().scale(scale, scale));// 18,897.6378 p/mm = 480,000 dpi
-
-
+    m_painter->setTransform(QTransform().scale(scale, scale)); // 18,897.6378 p/mm = 480,000 dpi
 
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -37,22 +33,30 @@ void PreView::paintEvent(QPaintEvent *e)
     path.addPolygon(rectangle);
     m_painter->fillPath(path, brush);
 
-    test::printTest(m_pre_painter);
+    UniversalDraw::printTest(m_pre_painter);
 
     // if(sheetBorder){
     //     drawRect(Coordinate{0,0}, Coordinate{SHEETSIZE.width, SHEETSIZE.height}, 1);
     // }
-
 
     m_painter->end();
 
     QFrame::paintEvent(e);
 }
 
-PreView::PreView() {}
+PreView::PreView() { }
 
-PreView::~PreView() {}
+PreView::~PreView() { }
 
+std::shared_ptr<QPainter> PreView::painter() const
+{
+    return m_painter;
+}
+
+void PreView::setPainter(const std::shared_ptr<QPainter> &newPainter)
+{
+    m_painter = newPainter;
+}
 
 auto operator<<(QDebug debug, const PreView &preview) -> QDebug
 {

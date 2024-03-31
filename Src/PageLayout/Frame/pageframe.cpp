@@ -15,7 +15,6 @@ void PageFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where)
 {
     into->drawRect(where, 1, 0);
 
-
     qDebug() << "PageFram, into: " << into.get();
 
     // into.drawRect(QPointF{ 0, 0 }, QPointF{0, 0}, 1);
@@ -26,6 +25,7 @@ void PageFrame::setType(const QString &newType)
 {
     m_type = newType;
 }
+
 auto operator<<(QDebug debug, const PageFrame &frame) -> QDebug
 {
     QDebugStateSaver saver(debug);

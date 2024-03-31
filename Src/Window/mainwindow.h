@@ -6,8 +6,8 @@
 #include <QFileDialog>
 #include <QMainWindow>
 
-#include "universaldraw.h"
 #include "PreView/preview.h"
+#include "universaldraw.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,7 +26,8 @@ class MainWindow : public QMainWindow
 
 public:
     ///
-    /// \brief MainWindow it is the constructor of this class and initelizes tis class
+    /// \brief MainWindow it is the constructor of this class and initelizes this
+    /// class
     /// \param parent is the Qt parent object pointer
     ///
     explicit MainWindow(QWidget *parent = nullptr);
@@ -40,12 +41,12 @@ private slots:
 
 private:
     ///
-    /// \brief ui is the pointer to the ui and through this all the elements of the ui are accesed
-    /// through this
+    /// \brief ui is the pointer to the ui and through this all the elements of
+    /// the ui are accesed through this
     ///
-    Ui::MainWindow *ui;
+    Ui::MainWindow *m_ui;
 
-    std::shared_ptr<PreView> preView;
+    std::shared_ptr<PreView> m_preView;
 
     void resizeEvent(QResizeEvent *event);
 };

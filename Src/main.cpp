@@ -16,8 +16,13 @@
 #include "universaldraw.h"
 #include "PreView/preview.h"
 
+#include "PdfQtPaint/pdfqtpaint.h"
+#include "SvgQtPaint/svgqtpaint.h"
+#include "Svg/svgdraw.h"
+#include "FreeCADSvg/freecadsvg.h"
+
 ///
-/// \brief myMessageOutput is the handelar for all the Qt debuging messages and formats it
+/// \brief myMessageOutput is the handler for all the Qt debugging messages and formats it
 /// \param type
 /// \param context
 /// \param msg
@@ -71,7 +76,7 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
 }
 
 ///
-/// \brief main is the entrypoint for this programm and starts the actuall main window
+/// \brief main is the entry point for this program and starts the actual main window
 /// \param argc
 /// \param argv
 /// \return
@@ -97,7 +102,21 @@ auto main(int argc, char *argv[]) -> int
 
     // test::printTest(draw);
 
-    //style.draw(draw);
+    // style.draw(draw);
+
+    // std::shared_ptr<SvgQtPaint> draw = std::make_shared<SvgQtPaint>();
+    // draw->setFileName("test.svg");
+
+    // std::shared_ptr<SvgDraw> draw = std::make_shared<SvgDraw>();
+    // draw->setFileName("test_3.svg");
+
+    std::shared_ptr<FreeCADSvg> draw = std::make_shared<FreeCADSvg>();
+    draw->setFileName("test_4.svg");
+
+    // std::shared_ptr<PdfQtPaint> draw = std::make_shared<PdfQtPaint>();
+    // draw->setFileName("test.pdf");
+
+    UniversalDraw::printTest(draw);
 
     MainWindow window;
     window.show();

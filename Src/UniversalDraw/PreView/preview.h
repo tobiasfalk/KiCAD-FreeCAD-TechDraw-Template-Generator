@@ -22,15 +22,18 @@ public:
     PreView();
     ~PreView();
 
-private:
+    std::shared_ptr<QPainter> painter() const;
+    void setPainter(const std::shared_ptr<QPainter> &newPainter);
 
+private:
     ///
     /// \brief m_painter is a pointer to the painter to use
     ///
     std::shared_ptr<QPainter> m_painter;
 
     ///
-    /// \brief paintEvent is the event that acualy doues the painting and is cald when the windows changes or is build
+    /// \brief paintEvent is the event that acualy doues the painting and is cald when the windows
+    /// changes or is build
     /// \param e
     ///
     void paintEvent(QPaintEvent *e) override;

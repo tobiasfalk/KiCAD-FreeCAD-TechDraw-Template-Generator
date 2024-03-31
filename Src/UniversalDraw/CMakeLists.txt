@@ -11,6 +11,12 @@ add_library(UniversalDraw STATIC
     PreView/preview.cpp
     PdfQtPaint/pdfqtpaint.h
     PdfQtPaint/pdfqtpaint.cpp
+    SvgQtPaint/svgqtpaint.h
+    SvgQtPaint/svgqtpaint.cpp
+    Svg/svgdraw.h
+    Svg/svgdraw.cpp
+    FreeCADSvg/freecadsvg.h
+    FreeCADSvg/freecadsvg.cpp
 )
 
 target_link_libraries(UniversalDraw PRIVATE

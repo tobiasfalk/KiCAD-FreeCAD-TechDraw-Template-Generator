@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="100mm"
-   height="80mm"
-   viewBox="0 0 100 79.999999"
-   version="1.1"
-   id="svg8"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:dc="http://purl.org/dc/elements/1.1/">
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="100mm"
+   height="62.243999mm"
+   viewBox="0 0 100 62.243999"
+   version="1.1"
+   id="svg8">
   <defs
-     id="defs2">
-    <rect
-       x="0.28183034"
-       y="66.767326"
-       width="98.726433"
-       height="13.333585"
-       id="rect1087" />
-  </defs>
+     id="defs2" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -27,6 +20,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -65,14 +59,5 @@
          rx="0.029350597"
          ry="0.10515144" />
     </g>
-    <text
-       xml:space="preserve"
-       id="text1085"
-       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1087);fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(1.6517395,0,0,1.6517395,7.1008909,-46.188041)" x="0.28125"
-         y="76.39706"
-         ><tspan
-           style="font-family:osifont;-inkscape-font-specification:osifont"
-           id="tspan1">wieserfalke</tspan></text>
   </g>
 </svg>
