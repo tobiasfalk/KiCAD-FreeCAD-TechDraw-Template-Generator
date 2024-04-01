@@ -1,4 +1,5 @@
 #include "pagestyle.h"
+#include "universaldraw.h"
 
 #include <QDebug>
 
@@ -8,6 +9,7 @@ PageStyle::PageStyle() { }
 
 void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
 {
+    UniversalDraw::printTest(into);
     m_frame.draw(into, m_layout.fullRect());
 }
 

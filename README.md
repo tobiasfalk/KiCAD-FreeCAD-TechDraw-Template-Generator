@@ -19,17 +19,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ## Limitations
 
-### KiCAD 5
-
-* Not able to change the font (with 7 possible)
-* No Circlys(Used for Projektion)
-
-### KiCAD 6
-
-* Not able to change the font (with 7 possible)
-* No Circlys(Used for Projektion)
-
-### KiCAD 7
+### KiCAD 8
 
 * No Circlys(Used for Projektion)
 
@@ -40,39 +30,14 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 ### PDF
 This is mostly meant for printing as a template for hand drawing.
 
-* The text in the "editable fields" is not editable
-* The logo inclusion si not working(it draws a rectangle there where the logo should be)
 * Qt includes random spaces under Windows
 
-### Eagle 6.5 
-
-* No logo inclusion.
-* The text in the "editable fields" is not editable and need to be set before generation(in the FreeCAD Fileds)
-* No osifont
 
 ## Variable Docu
 
-* `&{N}` Number of repetition, see Rev. History
-* `&{F}` Field number, see the partslists
-
 ## Logo (Branding)
-
-It is possible to include a Logo in the Legal owner Field (name can be modified). This is meant for a company logo or brand. The specification for the logo: 
-
-* SVG format
-* maximum width is 24mm
-* the checkbox on the right side of the button needs to be checked (will be checked after clicking it). 
-* the location is on the right bottom side of the Legal owner field of the Titleblock 
- 
-**Notes**  
-Once the logo gets reaches a height of 30mm the width is reduced (the ratio will be kept). If text is included in the SVG it may create problems, so convert that to path.
 
 ## Icon Source
 The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenloses-icon/layout_7973492
 
 ## To do
-
-create universal draw
-
-## Notes
-In the FreeCAD variable values there are some varable that make the Templae easyer to use with this FreeCAD TD Macro(Objekt): https://forum.freecad.org/viewtopic.php?t=77705

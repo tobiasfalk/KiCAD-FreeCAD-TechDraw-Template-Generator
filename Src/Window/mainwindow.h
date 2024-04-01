@@ -9,6 +9,8 @@
 #include "PreView/preview.h"
 #include "universaldraw.h"
 
+#include "universaldrawthread.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -38,6 +40,8 @@ public:
 
 private slots:
     void on_GeneratePushButton_clicked();
+
+    void handleResults(UniversalDrawThread *thread);
 
 private:
     ///

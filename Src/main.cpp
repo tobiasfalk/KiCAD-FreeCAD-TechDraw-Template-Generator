@@ -20,6 +20,8 @@
 #include "SvgQtPaint/svgqtpaint.h"
 #include "Svg/svgdraw.h"
 #include "FreeCADSvg/freecadsvg.h"
+#include "KiCAD8/kicad8.h"
+#include "universaldrawthread.h"
 
 ///
 /// \brief myMessageOutput is the handler for all the Qt debugging messages and formats it
@@ -110,13 +112,16 @@ auto main(int argc, char *argv[]) -> int
     // std::shared_ptr<SvgDraw> draw = std::make_shared<SvgDraw>();
     // draw->setFileName("test_3.svg");
 
-    std::shared_ptr<FreeCADSvg> draw = std::make_shared<FreeCADSvg>();
-    draw->setFileName("test_4.svg");
+    // std::shared_ptr<FreeCADSvg> draw = std::make_shared<FreeCADSvg>();
+    // draw->setFileName("test_4.svg");
+
+    std::shared_ptr<KiCAD8> draw = std::make_shared<KiCAD8>();
+    draw->setFileName("test.kicad_wks");
 
     // std::shared_ptr<PdfQtPaint> draw = std::make_shared<PdfQtPaint>();
     // draw->setFileName("test.pdf");
 
-    UniversalDraw::printTest(draw);
+    // UniversalDraw::printTest(draw);
 
     MainWindow window;
     window.show();

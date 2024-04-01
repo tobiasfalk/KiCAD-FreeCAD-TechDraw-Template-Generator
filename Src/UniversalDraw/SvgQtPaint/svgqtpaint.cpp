@@ -6,6 +6,9 @@ void SvgQtPaint::drawText(QPointF position, QString text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, QString font, QString name, bool isEditable)
 {
+    if (isEditable) {
+        return;
+    }
     textSize = textSize / 458.612;
     QtPainterDrawer::drawText(position, text, textSize, textHeightAnchor, textWidthAnchor,
                               lineWidth, font, name, isEditable);

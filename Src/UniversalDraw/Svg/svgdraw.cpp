@@ -83,6 +83,9 @@ void SvgDraw::drawText(QPointF position, QString text, double textSize,
                        TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                        double lineWidth, QString font, QString name, bool isEditable)
 {
+    if (isEditable) {
+        return;
+    }
 
     QString anchorString = "";
     double posX = position.x();
@@ -134,7 +137,6 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         QDomElement root = xmlBOM.documentElement();
 
         double scale = width / root.attribute("width").remove("mm").toDouble();
-        qDebug() << "Scale: " << scale;
 
         QDomNamedNodeMap nodes = root.attributes();
         QStringList names;
@@ -153,8 +155,6 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         for (int i = 0; i < nodes.count(); i++) {
             QString name = nodes.item(i).toAttr().name();
             names.append(name);
-            qDebug() << "i: " << i << " Name: " << name
-                     << " exists:" << (name.contains("xmlns") && !(rootNnames.contains(name)));
             if (name.contains("xmlns") && !(rootNnames.contains(name))) {
                 m_root.setAttribute(name, root.attribute(name));
             }
@@ -177,51 +177,13 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         // Add to the document
         m_root.appendChild(root);
     } else if (picturePath.endsWith(".png")) {
-        qDebug() << "Nope";
-
-        // int pngEndPid = picturePath.lastIndexOf("/");
-        // if (pngEndPid == -1) {
-        //     pngEndPid = picturePath.lastIndexOf("\\");
-        // }
-
-        // QString pngName = picturePath;
-        // pngName = pngName.remove(0, pngEndPid + 1);
-        // QString destPath = "./" + this->fileName().remove(".svg") + "_svg_" + pngName;
-
-        // qDebug() << "Copy: " << QFile::copy(picturePath, destPath) << "::" << picturePath
-        //          << "::" << destPath;
-
-        // QDomElement obj = m_document.createElement("image");
-        // obj.setAttribute("x", QString::number(position.x()));
-        // obj.setAttribute("y", QString::number(position.y()));
-        // obj.setAttribute("width", QString::number(width));
-        // obj.setAttribute("height", QString::number(height));
-        // obj.setAttribute("preserveAspectRatio", "xMinYMin meet");
-        // obj.setAttribute("xlink:href", destPath);
-        // m_root.appendChild(obj);
 
         QImage image(picturePath);
-        // image.fill(0x00FFFFFF); // partly transparent background
-
-        // Get QPainter that paints to the image
-
-        // QByteArray ba;
-        // QBuffer buffer(&ba);
-        // buffer.open(QIODevice::WriteOnly);
-        // image.save(&buffer, "PNG");
-
-        // QDomElement obj = m_document.createElement("line");
-        // obj.setAttribute("width", QString::number(width));
-        // obj.setAttribute("height", QString::number(height));
-        // obj.setAttribute("preserveAspectRatio", "xMinYMin meet");
-        // obj.setAttribute("xlink:href", "data:image/png;base64," + ba);
-        // m_root.appendChild(obj);
 
         QPixmap qtPixmap;
         qtPixmap.load(picturePath, "PNG");
 
         // Prepare a QImage with desired characteritisc
-        // int widthPx = qtPixmap.width(); // 24mm bei 2400dpi(KiCAD scale 0.125)
         double widthCalc = width;
 
         int heightPx = qtPixmap.height();
@@ -244,10 +206,7 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
 
         painter.end();
 
-        // qDebug() << "Buffer: " << buffer.data();
-
         QString data = buffer.data();
-        // qDebug() << "Data Org: " << data;
 
         int endId = data.indexOf("<image");
 
@@ -256,12 +215,6 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         int startId = data.indexOf("</g>");
 
         data = data.remove(startId, data.length() - 1);
-
-        // qDebug() << "A";
-        // qDebug() << "Data: " << data;
-        // qDebug() << "B";
-
-        // data.replace("preserveAspectRatio=\"none\"", "preserveAspectRatio=\"xMinYMin meet\"");
 
         QDomDocument xmlBOM;
         xmlBOM.setContent(data);

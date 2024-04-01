@@ -13,6 +13,9 @@ target_link_libraries(Window PRIVATE
     Qt${QT_VERSION_MAJOR}::Xml
     Qt${QT_VERSION_MAJOR}::Svg
     UniversalDraw
+    PageLayout
+    PageFrame
+    Threads
 
     KiCAD_Symbol_scaler
 )

@@ -1,6 +1,7 @@
 # Subdirs
 add_subdirectory(UniversalDraw/)
 add_subdirectory(PageLayout/)
+add_subdirectory(Threads/)
 
 add_subdirectory(KiCAD_Symbol_Scaler/)
 add_subdirectory(TemplateOptions/)
@@ -48,6 +49,7 @@ target_link_libraries(KiCAD-FreeCAD-TechDraw-Template-Generator PRIVATE
     UniversalDraw
     PageLayout
     PageFrame
+    Threads
 )
 
 set_target_properties(KiCAD-FreeCAD-TechDraw-Template-Generator PROPERTIES

@@ -6,6 +6,9 @@ void PdfQtPaint::drawText(QPointF position, QString text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, QString font, QString name, bool isEditable)
 {
+    if (isEditable) {
+        return;
+    }
     textSize = ((textSize * std::sqrt(2)) / m_resolutionPMM) * 2.8346456692913;
     QtPainterDrawer::drawText(position, text, textSize, textHeightAnchor, textWidthAnchor,
                               lineWidth, font, name, isEditable);
