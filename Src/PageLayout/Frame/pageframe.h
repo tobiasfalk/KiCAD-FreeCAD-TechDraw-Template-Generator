@@ -30,7 +30,11 @@ public:
     /// \param where the rectangle where the frame is drawen in to(typicaly the dimasions of the
     /// page)
     ///
-    void draw(std::shared_ptr<UniversalDraw> into, QRectF where);
+    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where);
+
+    QRectF drawingArea() const;
+
+    QString description() const;
 
 protected:
     ///
@@ -39,11 +43,26 @@ protected:
     ///
     void setType(const QString &newType);
 
+    void setDescription(const QString &newDescription);
+
+    void setDrawingArea(const QRectF &newDrawingArea);
+
 private:
     ///
     /// \brief m_type the type name of the frame
     ///
     QString m_type = "none";
+
+    ///
+    /// \brief m_description is a more detailed description of the Frame, it is meant to be uses as
+    /// a user Info or something similar
+    ///
+    QString m_description = "No Frame at all";
+
+    ///
+    /// \brief m_drawingArea is the area inside the frame
+    ///
+    QRectF m_drawingArea;
 };
 
 ///

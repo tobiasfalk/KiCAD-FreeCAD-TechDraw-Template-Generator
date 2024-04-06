@@ -9,8 +9,39 @@ PageStyle::PageStyle() { }
 
 void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
 {
-    UniversalDraw::printTest(into);
-    m_frame.draw(into, m_layout.fullRect());
+    // UniversalDraw::printTest(into, m_layout);
+
+    into->setHight(m_layout.fullRect(QPageLayout::Millimeter).height());
+    into->setWidth(m_layout.fullRect(QPageLayout::Millimeter).width());
+
+    into->start();
+
+    m_frame->draw(into, m_layout.fullRect(QPageLayout::Millimeter));
+
+    // into->drawLine(QPointF{ 0, 0 }, QPointF{ 297, 210 }, .5);
+    // into->drawLine(QLineF{ 0, 210, 297, 0 }, 3);
+
+    // into->drawCircle(QPointF{ 297 / 2, 210 / 2 }, 50, 1);
+
+    // into->drawRect(QPointF{ 20, 20 }, QPointF{ 30, 30 }, .3);
+
+    // into->drawPoly(QPointF{ 40, 40 },
+    //                QList<QPointF>{ QPointF(0, 0), QPointF(0, 10), QPointF(10, 10), QPointF(10,
+    //                5),
+    //                                QPointF(5, 5), QPointF(5, 0) },
+    //                .8, true);
+
+    // into->drawText(QPointF{ 60, 10 }, "TextABCabc", 3, TextHeightAnchor::Bottom,
+    //                TextWidthAnchor::Left, .3, "osifont", "testText1", true);
+    // into->drawText(QPointF{ 60, 20 }, "TextABCabc", 5, TextHeightAnchor::Bottom,
+    //                TextWidthAnchor::Left, .5, "osifont");
+    // into->drawText(QPointF{ 60, 30 }, "TextABCabc", 1, TextHeightAnchor::Bottom,
+    //                TextWidthAnchor::Left, .1, "osifont");
+
+    // into->drawPicture("./Test/wieserfalke_2.svg", QPointF{ 80, 100 }, 30, 20, 3600);
+    // into->drawPicture("./Test/wieserfalke_1A.png", QPointF{ 160, 100 }, 30, 50);
+
+    into->end();
 }
 
 auto PageStyle::getLayout() const -> QPageLayout
@@ -62,12 +93,12 @@ void PageStyle::setPageSize(qreal newPageHight, qreal newPageWidth,
     m_layout.setOrientation(newOrientation);
 }
 
-auto PageStyle::getFrame() const -> PageFrame
+auto PageStyle::getFrame() const -> std::shared_ptr<PageFrame>
 {
     return m_frame;
 }
 
-void PageStyle::setFrame(PageFrame &newFrame)
+void PageStyle::setFrame(std::shared_ptr<PageFrame> newFrame)
 {
     m_frame = newFrame;
 }
@@ -75,6 +106,7 @@ void PageStyle::setFrame(PageFrame &newFrame)
 auto operator<<(QDebug debug, const PageStyle &style) -> QDebug
 {
     QDebugStateSaver saver(debug);
-    debug.nospace() << "PageStyle(" << style.getLayout() << ", " << style.getFrame() << ")";
+    debug.nospace() << "PageStyle(" << style.getLayout() << ", " << style.getLayout().pageSize()
+                    << ", " << style.getFrame().get() << ")";
     return debug;
 }

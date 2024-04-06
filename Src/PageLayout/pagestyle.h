@@ -85,12 +85,12 @@ public:
     /// \brief getFrame returns the frame objekt
     /// \return the frame
     ///
-    [[nodiscard]] auto getFrame() const -> PageFrame;
+    [[nodiscard]] auto getFrame() const -> std::shared_ptr<PageFrame>;
     ///
     /// \brief setFrame sets the frame objekt
     /// \param newFrame
     ///
-    void setFrame(PageFrame &newFrame);
+    void setFrame(std::shared_ptr<PageFrame> newFrame);
 
 private:
     ///
@@ -101,7 +101,7 @@ private:
     ///
     /// \brief frame contains the frame data
     ///
-    PageFrame m_frame;
+    std::shared_ptr<PageFrame> m_frame;
 };
 
 ///

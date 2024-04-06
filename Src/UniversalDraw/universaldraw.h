@@ -227,6 +227,7 @@ public:
     ///
     ///
     static void printTest(std::shared_ptr<UniversalDraw> drawer);
+    static void printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout);
 
 signals:
 

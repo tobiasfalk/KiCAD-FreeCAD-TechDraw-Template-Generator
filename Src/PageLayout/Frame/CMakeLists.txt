@@ -5,6 +5,7 @@ set(PageFrame_SOURCES
 
 add_library(PageFrame STATIC
     ${PageFrame_SOURCES}
+    Plain/plainframe.h Plain/plainframe.cpp
 )
 
 target_link_libraries(PageFrame PRIVATE

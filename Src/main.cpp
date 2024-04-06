@@ -115,8 +115,8 @@ auto main(int argc, char *argv[]) -> int
     // std::shared_ptr<FreeCADSvg> draw = std::make_shared<FreeCADSvg>();
     // draw->setFileName("test_4.svg");
 
-    std::shared_ptr<KiCAD8> draw = std::make_shared<KiCAD8>();
-    draw->setFileName("test.kicad_wks");
+    // std::shared_ptr<KiCAD8> draw = std::make_shared<KiCAD8>();
+    // draw->setFileName("test.kicad_wks");
 
     // std::shared_ptr<PdfQtPaint> draw = std::make_shared<PdfQtPaint>();
     // draw->setFileName("test.pdf");

@@ -42,6 +42,7 @@ void KiCAD8::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
                 + " ltcorner)\n"
                   "    (linewidth "
                 + QString::number(lineWidth) + ")\n  )\n";
+
         m_file->write(lineString.toLatin1());
     } else {
         drawPoly(QPolygonF{ QPointF{ start.x(), start.y() }, QPointF{ end.x(), start.y() },

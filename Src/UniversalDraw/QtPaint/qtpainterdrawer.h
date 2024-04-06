@@ -126,6 +126,19 @@ public:
                              int dpiVector = 33020) override;
 
     ///
+    /// \brief start initialises the file and make everything ready
+    /// to be drawn in to
+    /// \return true if successful
+    ///
+    virtual bool start() override;
+
+    ///
+    /// \brief end finishes and closes the file
+    /// \return true if successful
+    ///
+    virtual bool end() override;
+
+    ///
     /// \brief painter returns the painter that is painted on
     /// \return
     ///

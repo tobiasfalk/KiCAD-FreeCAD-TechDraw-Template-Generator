@@ -13,7 +13,9 @@ QString PageFrame::type() const
 
 void PageFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where)
 {
-    into->drawRect(where, 1, 0);
+    qDebug() << where;
+
+    setDrawingArea(where);
 
     qDebug() << "PageFram, into: " << into.get();
 
@@ -26,6 +28,32 @@ void PageFrame::setType(const QString &newType)
     m_type = newType;
 }
 
+QString PageFrame::description() const
+{
+    return m_description;
+}
+
+void PageFrame::setDescription(const QString &newDescription)
+{
+    m_description = newDescription;
+}
+
+QRectF PageFrame::drawingArea() const
+{
+    return m_drawingArea;
+}
+
+void PageFrame::setDrawingArea(const QRectF &newDrawingArea)
+{
+    m_drawingArea = newDrawingArea;
+}
+
+///
+/// \brief operator << is used to print the state of the class to a debuging consol, with qDebug()
+/// \param debug
+/// \param frame
+/// \return
+///
 auto operator<<(QDebug debug, const PageFrame &frame) -> QDebug
 {
     QDebugStateSaver saver(debug);

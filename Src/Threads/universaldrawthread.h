@@ -43,9 +43,10 @@ public:
     /// \brief UniversalDrawThread is a constructor that sets the name and the page style
     /// \param fileName
     /// \param pageStyle
-    /// \param drawingFormate
+    /// \param drawingFormates
     ///
-    UniversalDrawThread(QString fileName, PageStyle pageStyle, DrawingFormate drawingFormate);
+    UniversalDrawThread(QString fileName, PageStyle pageStyle,
+                        QList<DrawingFormate> drawingFormates);
 
     ///
     /// \brief run starts the thread
@@ -75,8 +76,8 @@ public:
     ///
     void setPageStyle(const PageStyle &newPageStyle);
 
-    DrawingFormate drawingFormate() const;
-    void setDrawingFormate(DrawingFormate newDrawingFormate);
+    QList<DrawingFormate> drawingFormates() const;
+    void setDrawingFormate(QList<DrawingFormate> newDrawingFormates);
 
 signals:
     ///
@@ -96,14 +97,35 @@ private:
     PageStyle m_pageStyle;
 
     ///
-    /// \brief m_drawingFormate is the style/file formate of the output;
+    /// \brief m_drawingFormates is the style/file formate of the output;
     ///
-    DrawingFormate m_drawingFormate;
+    QList<DrawingFormate> m_drawingFormates;
 
     ///
-    /// \brief runFreeCADSvg creates a FreeCADSVG file
+    /// \brief runFreeCADSvg creates a FreeCADSVG file and is triggered by
+    /// DrawingFormate::FreeCADSvg
     ///
     void runFreeCADSvg();
+    ///
+    /// \brief runKiCAD8 creates a KiCAD WKS file and is triggered by
+    /// DrawingFormate::KiCAD8
+    ///
+    void runKiCAD8();
+    ///
+    /// \brief runPdfQtPaint creates a PDF file and is triggered by
+    /// DrawingFormate::PdfQtPaint
+    ///
+    void runPdfQtPaint();
+    ///
+    /// \brief runSvg creates a SVG file and is triggered by
+    /// DrawingFormate::SVG
+    ///
+    void runSvg();
+    ///
+    /// \brief runSvgQtPaint creates a SVG file and is triggered by
+    /// DrawingFormate::SvgQtPaint
+    ///
+    void runSvgQtPaint();
 };
 
 #endif // UNIVERSALDRAWTHREAD_H

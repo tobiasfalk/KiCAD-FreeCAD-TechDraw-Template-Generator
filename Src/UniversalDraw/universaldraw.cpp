@@ -140,6 +140,38 @@ void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer)
     drawer->end();
 }
 
+void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout)
+{
+    drawer->setHight(layout.fullRect(QPageLayout::Millimeter).height());
+    drawer->setWidth(layout.fullRect(QPageLayout::Millimeter).width());
+
+    drawer->start();
+
+    drawer->drawLine(QPointF{ 0, 0 }, QPointF{ drawer->width(), drawer->height() }, .5);
+    drawer->drawLine(QLineF{ 0, drawer->height(), drawer->width(), 0 }, 3);
+
+    drawer->drawCircle(QPointF{ drawer->width() / 2, drawer->height() / 2 }, 50, 1);
+
+    drawer->drawRect(QPointF{ 20, 20 }, QPointF{ 30, 30 }, .3);
+
+    drawer->drawPoly(QPointF{ 40, 40 },
+                     QList<QPointF>{ QPointF(0, 0), QPointF(0, 10), QPointF(10, 10), QPointF(10, 5),
+                                     QPointF(5, 5), QPointF(5, 0) },
+                     .8, true);
+
+    drawer->drawText(QPointF{ 60, 10 }, "TextABCabc", 3, TextHeightAnchor::Bottom,
+                     TextWidthAnchor::Left, .3, "osifont", "testText1", true);
+    drawer->drawText(QPointF{ 60, 20 }, "TextABCabc", 5, TextHeightAnchor::Bottom,
+                     TextWidthAnchor::Left, .5, "osifont");
+    drawer->drawText(QPointF{ 60, 30 }, "TextABCabc", 1, TextHeightAnchor::Bottom,
+                     TextWidthAnchor::Left, .1, "osifont");
+
+    drawer->drawPicture("./Test/wieserfalke_2.svg", QPointF{ 80, 100 }, 30, 20, 3600);
+    drawer->drawPicture("./Test/wieserfalke_1A.png", QPointF{ 160, 100 }, 30, 50);
+
+    drawer->end();
+}
+
 auto operator<<(QDebug debug, const UniversalDraw &style) -> QDebug
 {
     QDebugStateSaver saver(debug);

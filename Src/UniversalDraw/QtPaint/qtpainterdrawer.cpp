@@ -153,7 +153,6 @@ void QtPainterDrawer::drawText(QPointF position, QString text, double textSize,
 
     m_painter->setFont(qFont);
     m_painter->drawText(QPointF(posX, posY), text);
-    // qDebug() << "QtPainterDrawer::drawText";
 }
 
 void QtPainterDrawer::drawPicture(QString picturePath, QPointF position, double width,
@@ -214,6 +213,16 @@ void QtPainterDrawer::drawPicture(QString picturePath, QPointF position, double 
         QRectF target(position, QSizeF(widthCalc, heightCalc));
         m_painter->drawPixmap(target, qtPixmap, qtPixmap.rect());
     }
+}
+
+bool QtPainterDrawer::start()
+{
+    return true;
+}
+
+bool QtPainterDrawer::end()
+{
+    return true;
 }
 
 std::shared_ptr<QPainter> QtPainterDrawer::painter() const
