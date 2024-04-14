@@ -5,17 +5,34 @@
 #include "pagestyle.h"
 #include "Plain/plainframe.h"
 #include "universaldrawthread.h"
+#include "Plain/plainframedialog.h"
+#include "universaldraw.h"
 #include <cstdlib>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
+    qDebug() << "Nope";
 
     m_preView = std::make_shared<PreView>();
+    qDebug() << "Nope A";
+    m_pageStyle = std::make_shared<PageStyle>();
+    qDebug() << "Nope B";
+    m_pageStyle->setPageSize(
+            QPageSize{ QSizeF{ 210, 297 }, QPageSize::Millimeter, "A4", QPageSize::ExactMatch },
+            QPageLayout::Orientation::Landscape);
+    m_frame = std::make_shared<PlainFrame>();
+    m_pageStyle->setFrame(m_frame);
+
+    qDebug() << "Nope C";
+    m_preView->setPageStyle(m_pageStyle);
+    qDebug() << "Nope D";
 
     m_ui->PreViewGridLayout->addWidget(m_preView.get());
+    qDebug() << "Nope E";
 
     initPageSizes();
+    qDebug() << "Nope F";
 }
 
 MainWindow::~MainWindow()
@@ -26,7 +43,12 @@ MainWindow::~MainWindow()
 void MainWindow::on_GeneratePushButton_clicked()
 {
     PageStyle pageStyle;
-    std::shared_ptr<PageFrame> frame = std::make_shared<PlainFrame>();
+
+    PlainFrameDialog frameDialog;
+
+    frameDialog.show();
+
+    std::shared_ptr<PageFrame> frame = frameDialog.getFrame();
 
     pageStyle.setFrame(frame);
 
@@ -152,4 +174,11 @@ void MainWindow::on_NameLineEdit_editingFinished()
             QPageSize{ QSizeF{ m_ui->PageWidthDoubleSpinBox->value(),
                                m_ui->PageHeigthDoubleSpinBox->value() },
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    PlainFrameDialog frameDialog;
+
+    frameDialog.show();
 }

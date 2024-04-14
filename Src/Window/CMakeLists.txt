@@ -15,10 +15,15 @@ target_link_libraries(Window PRIVATE
     UniversalDraw
     PageLayout
     PageFrame
+    PreView
     Threads
 
     KiCAD_Symbol_scaler
 )
 
 target_include_directories(Window PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+get_target_property(LIB_INCLUDES PreView INCLUDE_DIRECTORIES)
+
+message(${LIB_INCLUDES})
 

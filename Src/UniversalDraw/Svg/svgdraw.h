@@ -25,7 +25,7 @@ public:
 
     ///
     /// \brief drawLine draws a line between the start point and the end point with
-    /// a certin line width
+    /// a certain line width
     /// \param start is the start point of the line in mm
     /// \param end is the end point of the line
     /// \param lineWidth is the width of the line in mm
@@ -33,7 +33,7 @@ public:
     virtual void drawLine(QPointF start, QPointF end, double lineWidth) override;
     ///
     /// \brief drawLine draws a line between the start point and the end point with
-    /// a certin line width
+    /// a certain line width
     /// \param line is the line to be drawn
     /// \param lineWidth
     /// is the width of the line in mm

@@ -2,11 +2,12 @@
 add_subdirectory(UniversalDraw/)
 add_subdirectory(PageLayout/)
 add_subdirectory(Threads/)
+add_subdirectory(PreView/)
+add_subdirectory(Window/)
 
 add_subdirectory(KiCAD_Symbol_Scaler/)
 add_subdirectory(TemplateOptions/)
 add_subdirectory(TemplateGen/)
-add_subdirectory(Window/)
 add_subdirectory(Icon/)
 
 # Executable

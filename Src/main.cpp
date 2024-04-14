@@ -14,7 +14,7 @@
 #include "pageframe.h"
 
 #include "universaldraw.h"
-#include "PreView/preview.h"
+// #include "PreView/preview.h"
 
 #include "PdfQtPaint/pdfqtpaint.h"
 #include "SvgQtPaint/svgqtpaint.h"
@@ -22,6 +22,8 @@
 #include "FreeCADSvg/freecadsvg.h"
 #include "KiCAD8/kicad8.h"
 #include "universaldrawthread.h"
+
+// #include "preview.h"
 
 ///
 /// \brief myMessageOutput is the handler for all the Qt debugging messages and formats it

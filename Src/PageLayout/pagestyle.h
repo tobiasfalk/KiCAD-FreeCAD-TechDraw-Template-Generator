@@ -23,36 +23,36 @@ public:
     PageStyle();
 
     ///
-    /// \brief draw draws the seten pagestyle
-    /// \param into is a pointor to the Universal Draw class that is to be used
+    /// \brief draw draws the set page style
+    /// \param into is a pointer to the Universal Draw class that is to be used
     ///
     void draw(std::shared_ptr<UniversalDraw> into);
 
     ///
-    /// \brief getLayout returns the current pagelayout/size and nothing mor, no settings of
-    /// the titleblock, frome or other \return
+    /// \brief getLayout returns the current page layout/size and nothing more, no settings of
+    /// the title-block, frame or other \return
     ///
     [[nodiscard]] auto getLayout() const -> QPageLayout;
     ///
     /// \brief setLayout sets the current layout of the page, this includes size, sizeSting and
     /// orientation
-    /// \param newLayout the new layout objekt
+    /// \param newLayout the new layout object
     ///
     void setLayout(const QPageLayout &newLayout);
 
     ///
-    /// \brief getPageSize returns the pagesize, as an objekt with the width, height and
-    /// sizeStrin but NOT with considoration of the orientation
-    /// \return a QPageSize objekt
+    /// \brief getPageSize returns the page-size, as an object with the width, height and
+    /// size string but NOT with consideration of the orientation
+    /// \return a QPageSize object
     ///
     [[nodiscard]] auto getPageSize() const -> QPageSize;
     ///
-    /// \brief getPageHight returns the Hight of the page, with considoration of the Oriontetion
+    /// \brief getPageHight returns the height of the page, with consideration of the orientation
     /// \return
     ///
     [[nodiscard]] auto getPageHight() const -> qreal;
     ///
-    /// \brief getPageWidth  returns the Hight of the page, with considoration of the Oriontetion
+    /// \brief getPageWidth  returns the Height of the page, with consideration of the orientation
     /// \return
     ///
     [[nodiscard]] auto getPageWidth() const -> qreal;
@@ -63,31 +63,31 @@ public:
     ///
     void setPageSize(const QPageSize &newPageSize, QPageLayout::Orientation newOrientation);
     ///
-    /// \brief setPageSize setzt the page size
-    /// \param newPageHight is the hight or one side of the page, it is orientation independent on
+    /// \brief setPageSize sets the page size
+    /// \param newPageHeight is the height or one side of the page, it is orientation independent on
     /// sizes known to Qt(QPageSize::PageSizeId)
     /// \param newPageWidth is the width or one side of the page, it is orientation independent on
     /// sizes known to Qt(QPageSize::PageSizeId)
     /// \param newOrientation is the orientation of the page
     /// \param newName on custom pages this is the name of the page, on sizes known to
-    /// Qt(QPageSize::PageSizeId) this is ignord
+    /// Qt(QPageSize::PageSizeId) this is ignored
     ///
-    /// The width and hight are orinetation independent on sizes known to Qt(QPageSize::PageSizeId)
+    /// The width and height are orientation independent on sizes known to Qt(QPageSize::PageSizeId)
     /// this means that, 297x210 and 210x297 are both A4 and only newOrientation says if it is
-    /// Landscape or Portrit. The width and hight on costom pages should be treates as if they where
-    /// in Portrit orientation, this is how Qt is using it, so in general heigth > width, this is
-    /// not checkt.
+    /// Landscape or Portrait. The width and height on custom pages should be treated as if they where
+    /// in Portrait orientation, this is how Qt is using it, so in general height > width, this is
+    /// not checked.
     ///
-    void setPageSize(qreal newPageHight, qreal newPageWidth,
+    void setPageSize(qreal , qreal newPageWidth,
                      QPageLayout::Orientation newOrientation, const QString &newName = QString());
 
     ///
-    /// \brief getFrame returns the frame objekt
+    /// \brief getFrame returns the frame object
     /// \return the frame
     ///
     [[nodiscard]] auto getFrame() const -> std::shared_ptr<PageFrame>;
     ///
-    /// \brief setFrame sets the frame objekt
+    /// \brief setFrame sets the frame object
     /// \param newFrame
     ///
     void setFrame(std::shared_ptr<PageFrame> newFrame);
@@ -105,7 +105,7 @@ private:
 };
 
 ///
-/// \brief operator << is used to print the state of the class to a debuging consol, with qDebug()
+/// \brief operator << is used to print the state of the class to a debugging console, with qDebug()
 /// \param debug
 /// \param style
 /// \return

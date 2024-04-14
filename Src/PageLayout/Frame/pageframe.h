@@ -25,12 +25,13 @@ public:
     QString type() const;
 
     ///
-    /// \brief draw draws the frame into the given drawer and into the given rectangal
-    /// \param into the universal drawer that is drawen in to
-    /// \param where the rectangle where the frame is drawen in to(typicaly the dimasions of the
+    /// \brief draw draws the frame into the given drawer and into the given rectangle
+    /// \param into the universal drawer that is drawn in to
+    /// \param where the rectangle where the frame is drawn in to(typically the dimensions of the
     /// page)
+    /// \param onWhat is the page layout the frame is to be draw on
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where);
+    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat);
 
     QRectF drawingArea() const;
 
@@ -66,7 +67,7 @@ private:
 };
 
 ///
-/// \brief operator << is used to print the state of the class to a debuging consol, with qDebug()
+/// \brief operator << is used to print the state of the class to a debugging console, with qDebug()
 /// \param debug
 /// \param frame
 /// \return

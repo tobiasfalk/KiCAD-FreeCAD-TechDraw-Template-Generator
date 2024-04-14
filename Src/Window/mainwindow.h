@@ -6,8 +6,13 @@
 #include <QFileDialog>
 #include <QMainWindow>
 
-#include "PreView/preview.h"
-#include "universaldraw.h"
+// #include "preview.h"
+#include "../PreView/preview.h"
+// #include "PreView/preview.h"
+
+#include "pageframe.h"
+#include "pagestyle.h"
+#include "Plain/plainframe.h"
 
 #include "universaldrawthread.h"
 
@@ -50,6 +55,8 @@ private slots:
     void on_PageHeigthDoubleSpinBox_valueChanged(double arg1);
 
     void on_NameLineEdit_editingFinished();
+
+    void on_pushButton_clicked();
 
 private:
     ///
@@ -275,6 +282,9 @@ private:
     QList<DrawingFormate> getDrawingFormates();
 
     QString m_lastPath = "./";
+
+    std::shared_ptr<PageStyle> m_pageStyle;
+    std::shared_ptr<PlainFrame> m_frame;
 };
 
 #endif // MAINWINDOW_H

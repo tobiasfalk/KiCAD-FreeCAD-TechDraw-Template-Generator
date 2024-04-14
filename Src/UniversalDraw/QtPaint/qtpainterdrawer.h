@@ -15,7 +15,7 @@ class QtPainterDrawer : public UniversalDraw
 {
 public:
     ///
-    /// \brief QtPainterDrawer is the basic constuctor with an initilasytion of
+    /// \brief QtPainterDrawer is the basic constructor with an initialization of
     /// the painter
     /// \param painter is the painter to use
     ///
@@ -27,64 +27,64 @@ public:
     ~QtPainterDrawer();
 
     ///
-    /// \brief drawLine draws a line betwen the start point and the end point with
-    /// a certin line width
+    /// \brief drawLine draws a line between the start point and the end point with
+    /// a certain line width
     /// \param start is the start point of the line in mm
     /// \param end is the end point of the line
     /// \param lineWidth is the width of the line in mm
     ///
     virtual void drawLine(QPointF start, QPointF end, double lineWidth) override;
     ///
-    /// \brief drawLine draws a line betwen the start point and the end point with
-    /// a certin line width
+    /// \brief drawLine draws a line between the start point and the end point with
+    /// a certain line width
     /// \param line is the line to be drawn
     /// \param lineWidth
     /// is the width of the line in mm
     ///
     virtual void drawLine(QLineF line, double lineWidth) override;
     ///
-    /// \brief drawRect draws a rectangel betwen start and end point where the top
-    /// line parralel to the upper page edge
-    /// \param start is the start point of the rectagle in mm
-    /// \param end is the end point of the rectagle in mm
-    /// \param lineWidth is the line width that the rectagen is drawn in mm
-    /// \param fill defines if the polygone is filled(true) or not(false)
+    /// \brief drawRect draws a rectangle between start and end point where the top
+    /// line parallel to the upper page edge
+    /// \param start is the start point of the rectangle in mm
+    /// \param end is the end point of the rectangle in mm
+    /// \param lineWidth is the line width that the rectangle is drawn in mm
+    /// \param fill defines if the polygon is filled(true) or not(false)
     ///
     virtual void drawRect(QPointF start, QPointF end, double lineWidth, bool fill = false) override;
     ///
-    /// \brief drawRect draws a rectangel betwen start and end point where the top
-    /// line parralel to the upper page edge
-    /// \param rect is the rectanlge to be drawn
-    /// \param lineWidth is the line width that the rectagen is drawn in mm
-    /// \param fill defines if the polygone is filled(true) or not(false)
+    /// \brief drawRect draws a rectangle between start and end point where the top
+    /// line parallel to the upper page edge
+    /// \param rect is the rectangle to be drawn
+    /// \param lineWidth is the line width that the recta gen is drawn in mm
+    /// \param fill defines if the polygon is filled(true) or not(false)
     ///
     virtual void drawRect(QRectF rect, double lineWidth, bool fill = false) override;
     ///
     /// \brief drawPoly draws a polygon
     /// \param position is the position of the first point in mm
     /// \param points is a list of points that define the polygon, all points are
-    /// moved py position and therfore position is alwys the (0,0) for this list
+    /// moved by position and therefore position is always the (0,0) for this list
     /// of points in mm
-    /// \param lineWidth is the width of line that the polygone
+    /// \param lineWidth is the width of line that the polygon
     /// is drawn width in mm
-    /// \param fill defines if the polygone is filled(true) or not(false)
+    /// \param fill defines if the polygon is filled(true) or not(false)
     ///
     virtual void drawPoly(QPointF position, QList<QPointF> points, double lineWidth,
                           bool fill = false) override;
     ///
     /// \brief drawPoly draws a polygon
-    /// \param poly is the polygone to be drawn
-    /// \param lineWidth is the width of line that the polygone is drawn width in
+    /// \param poly is the polygon to be drawn
+    /// \param lineWidth is the width of line that the polygon is drawn width in
     /// mm
-    /// \param fill defines if the polygone is filled(true) or not(false)
+    /// \param fill defines if the polygon is filled(true) or not(false)
     ///
     virtual void drawPoly(QPolygonF poly, double lineWidth, bool fill = false) override;
     ///
     /// \brief drawCircle draws a circle
-    /// \param center is the position of the cener point in mm
+    /// \param center is the position of the Center point in mm
     /// \param radius is the radius of of the circle in mm
-    /// \param lineWidth is the width of the line that the cirleis drwn with in mm
-    /// \param fill defines if the polygone is filled(true) or not(false)
+    /// \param lineWidth is the width of the line that the circles drawn with in mm
+    /// \param fill defines if the polygon is filled(true) or not(false)
     ///
     virtual void drawCircle(QPointF center, double radius, double lineWidth,
                             bool fill = false) override;
@@ -99,7 +99,7 @@ public:
     /// \param font is the name of the font
     /// \param isEditable defines if the text field is editable(true) or
     /// not(false)
-    /// \param name is the name that the text field is given, ofthen
+    /// \param name is the name that the text field is given, often
     /// used for variable/editable text
     ///
     virtual void drawText(QPointF position, QString text, double textSize,
@@ -113,13 +113,13 @@ public:
     /// \param position is the position of the anchor in mm, witch is on the top
     /// left
     /// \param width is the the width of the picture in mm, it is also the primary
-    /// size. the height is adjustet to keep the aspect ratio
+    /// size. the height is adjusted to keep the aspect ratio
     /// \param height is the
     /// the height of the picture in mm, it is the secondary size, if the
-    /// calculated(with the width) picture heigth is higher than this than it
-    /// reducec the with to fit
+    /// calculated(with the width) picture height is higher than this than it
+    /// reduce the with to fit
     /// \param dpiVector is the resolution per inch that a
-    /// Vector graphics should be drawen with, this may needlowering if a picture
+    /// Vector graphics should be drawn with, this may need lowering if a picture
     /// is big
     ///
     virtual void drawPicture(QString picturePath, QPointF position, double width, double height,
@@ -158,7 +158,7 @@ private:
 
 ///
 /// \brief operator << is to print out the status of the QtPainterDrawer class
-/// to the Debuging interface
+/// to the Debugging interface
 /// \param debug
 /// \param qtpainterdrawer
 /// \return

@@ -7,8 +7,6 @@ add_library(UniversalDraw STATIC
     ${UniversalDraw_SOURCES}
     QtPaint/qtpainterdrawer.h
     QtPaint/qtpainterdrawer.cpp
-    PreView/preview.h
-    PreView/preview.cpp
     PdfQtPaint/pdfqtpaint.h
     PdfQtPaint/pdfqtpaint.cpp
     SvgQtPaint/svgqtpaint.h
@@ -19,7 +17,6 @@ add_library(UniversalDraw STATIC
     FreeCADSvg/freecadsvg.cpp
     KiCAD8/kicad8.h
     KiCAD8/kicad8.cpp
-
 )
 
 target_link_libraries(UniversalDraw PRIVATE

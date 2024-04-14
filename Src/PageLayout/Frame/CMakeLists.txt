@@ -3,9 +3,17 @@ set(PageFrame_SOURCES
      pageframe.cpp
 )
 
+set(PlainFrame_SOURCES
+    Plain/plainframe.h
+    Plain/plainframe.cpp
+    Plain/plainframedialog.h
+    Plain/plainframedialog.cpp
+    Plain/plainframedialog.ui
+)
+
 add_library(PageFrame STATIC
     ${PageFrame_SOURCES}
-    Plain/plainframe.h Plain/plainframe.cpp
+    ${PlainFrame_SOURCES}
 )
 
 target_link_libraries(PageFrame PRIVATE

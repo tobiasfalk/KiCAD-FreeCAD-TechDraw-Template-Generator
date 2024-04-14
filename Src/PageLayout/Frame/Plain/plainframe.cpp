@@ -7,11 +7,15 @@ PlainFrame::PlainFrame()
                    "rectangle/page border");
 }
 
-void PlainFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where)
+void PlainFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
 {
+    qDebug() << "ABA";
     setDrawingArea(QRectF{ where.topLeft() + QPointF{ m_indentLeft, m_indentTop },
                            where.bottomRight() - QPointF{ m_indentRigth, m_indentBottom } });
+    qDebug() << "ABB";
     into->drawRect(drawingArea(), m_lineWidth, 0);
+    qDebug() << "ABC";
+    qDebug() << "On What: " << onWhat;
 }
 
 double PlainFrame::indentLeft() const

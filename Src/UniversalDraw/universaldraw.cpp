@@ -81,9 +81,9 @@ qreal UniversalDraw::height() const
     return m_height;
 }
 
-void UniversalDraw::setHight(qreal newHight)
+void UniversalDraw::setHeight(qreal newHeight)
 {
-    m_height = newHight;
+    m_height = newHeight;
 }
 
 qreal UniversalDraw::width() const
@@ -110,7 +110,7 @@ bool UniversalDraw::end()
 
 void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer)
 {
-    drawer->setHight(210);
+    drawer->setHeight(210);
     drawer->setWidth(297);
 
     drawer->start();
@@ -142,7 +142,7 @@ void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer)
 
 void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout)
 {
-    drawer->setHight(layout.fullRect(QPageLayout::Millimeter).height());
+    drawer->setHeight(layout.fullRect(QPageLayout::Millimeter).height());
     drawer->setWidth(layout.fullRect(QPageLayout::Millimeter).width());
 
     drawer->start();

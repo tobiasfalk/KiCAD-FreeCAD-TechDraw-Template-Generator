@@ -105,7 +105,7 @@ public:
     virtual void drawPoly(QPolygonF poly, double lineWidth, bool fill = false);
     ///
     /// \brief drawCircle draws a circle
-    /// \param center is the position of the center point in mm
+    /// \param center is the position of the Center point in mm
     /// \param radius is the radius of of the circle in mm
     /// \param lineWidth is the width of the line that the circle drawn with in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
@@ -160,10 +160,10 @@ public:
     ///
     qreal height() const;
     ///
-    /// \brief setHight sets the height of the page/template
-    /// \param newHight
+    /// \brief setHeight sets the height of the page/template
+    /// \param newHeight
     ///
-    void setHight(qreal newHight);
+    void setHeight(qreal newHeight);
 
     ///
     /// \brief width is the width of the page/template
@@ -197,7 +197,7 @@ public:
     /// corner to the bottom right, one 3mm line from the top right to the bottom
     /// left,
     ///
-    /// one circle with the center at the middle of the page(where the two lines
+    /// one circle with the Center at the middle of the page(where the two lines
     /// cross) with a 1mm line width a 50mm radius and no fill,
     ///
     /// a rectangle with start(20,20) end(30,30) a .3mm line width and no fill,
@@ -206,7 +206,7 @@ public:
     /// points[(0,0),(0,10),(10,10),(10,5),(5,5),(5,0)] a .8 line width and no
     /// fill,
     ///
-    /// one circle with the center at (100,20) with a 1mm line width a 5mm radius
+    /// one circle with the Center at (100,20) with a 1mm line width a 5mm radius
     /// and fill,
     ///
     /// a rectangle with start(120,20) end(130,30) a .3mm line width and fill,

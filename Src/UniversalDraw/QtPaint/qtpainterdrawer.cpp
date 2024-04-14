@@ -68,7 +68,7 @@ void QtPainterDrawer::drawPoly(QPointF position, QList<QPointF> points, double l
 
 void QtPainterDrawer::drawPoly(QPolygonF poly, double lineWidth, bool fill)
 {
-    // Becaus ther is a ofset with the size of the line width
+    // Because there is a offset with the size of the line width
     // if(!fill)
     // {
     //     position.X += lineWidth;
@@ -165,53 +165,53 @@ void QtPainterDrawer::drawPicture(QString picturePath, QPointF position, double 
                 std::shared_ptr<QSvgRenderer>(new QSvgRenderer(picturePath));
         QSize size = svgRenderer->defaultSize();
 
-        // Prepare a QImage with desired characteritisc
-        int widthPx = resulutionPMM * width; // 24mm bei 2400dpi(KiCAD scale 0.125)
+        // Prepare a QImage with desired characteristic
+        int widthPx = resulutionPMM * width;
         int widthCalc = width;
 
         int heightPx = int(widthPx * (double(size.height()) / size.width()));
-        double heightCalc = heightPx / resulutionPMM; // 2400dpi to p/mm
+        double heightCalc = heightPx / resulutionPMM;
 
         if (heightCalc > height) {
-            heightPx = resulutionPMM * height; // 30mm bei 2400dpi(KiCAD scale 0.25)
+            heightPx = resulutionPMM * height;
             widthPx = int(heightPx * (double(size.width()) / size.height()));
 
             heightCalc = height;
-            widthCalc = widthPx / resulutionPMM; // 2400dpi to p/mm
+            widthCalc = widthPx / resulutionPMM;
+
+            QImage image(widthPx, heightPx, QImage::Format_ARGB32);
+            image.fill(Qt::transparent); // partly transparent background
+
+            // Get QPainter that paints to the image
+            QPainter painter(&image);
+            painter.setBackground(QBrush{ Qt::transparent });
+            svgRenderer->render(&painter);
+
+            QRectF target(position, QSizeF(widthCalc, heightCalc));
+
+            // Draw the Logo
+            // m_painter->drawImage(target, image);
+
+            svgRenderer->render(m_painter.get(), target);
+        } else if (picturePath.endsWith(".png")) {
+            QPixmap qtPixmap;
+            qtPixmap.load(picturePath, "PNG");
+
+            // Prepare a QImage with desired characteristic
+            // int widthPx = qtPixmap.width(); // 24mm at 2400dpi(KiCAD scale 0.125)
+            double widthCalc = width;
+
+            int heightPx = qtPixmap.height();
+            double heightCalc = heightPx / (qtPixmap.width() / widthCalc); // px/mm
+
+            if (heightCalc > height) {
+                heightCalc = height;
+                widthCalc = qtPixmap.width() / (qtPixmap.height() / heightCalc); // 2400dpi to p/mm
+            }
+
+            QRectF target(position, QSizeF(widthCalc, heightCalc));
+            m_painter->drawPixmap(target, qtPixmap, qtPixmap.rect());
         }
-
-        QImage image(widthPx, heightPx, QImage::Format_ARGB32);
-        image.fill(Qt::transparent); // partly transparent background
-
-        // Get QPainter that paints to the image
-        QPainter painter(&image);
-        painter.setBackground(QBrush{ Qt::transparent });
-        svgRenderer->render(&painter);
-
-        QRectF target(position, QSizeF(widthCalc, heightCalc));
-
-        // Draw the Logo
-        // m_painter->drawImage(target, image);
-
-        svgRenderer->render(m_painter.get(), target);
-    } else if (picturePath.endsWith(".png")) {
-        QPixmap qtPixmap;
-        qtPixmap.load(picturePath, "PNG");
-
-        // Prepare a QImage with desired characteritisc
-        // int widthPx = qtPixmap.width(); // 24mm bei 2400dpi(KiCAD scale 0.125)
-        double widthCalc = width;
-
-        int heightPx = qtPixmap.height();
-        double heightCalc = heightPx / (qtPixmap.width() / widthCalc); // px/mm
-
-        if (heightCalc > height) {
-            heightCalc = height;
-            widthCalc = qtPixmap.width() / (qtPixmap.height() / heightCalc); // 2400dpi to p/mm
-        }
-
-        QRectF target(position, QSizeF(widthCalc, heightCalc));
-        m_painter->drawPixmap(target, qtPixmap, qtPixmap.rect());
     }
 }
 

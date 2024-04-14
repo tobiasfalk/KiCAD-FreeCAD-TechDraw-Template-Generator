@@ -27,7 +27,7 @@ public:
     /// \param font is the name of the font
     /// \param isEditable defines if the text field is editable(true) or not(false), this does
     /// nothing with base
-    /// \param name is the name that the text field is given, ofthen used for
+    /// \param name is the name that the text field is given, often used for
     /// variable/editable text
     ///
     virtual void drawText(QPointF position, QString text, double textSize,
@@ -36,35 +36,35 @@ public:
                           QString name = QString::fromLatin1(""), bool isEditable = false) override;
 
     ///
-    /// \brief start initilyses the file and make everything ready to be drawn in to
-    /// \return true if sucsesfull
+    /// \brief start initialises the file and make everything ready to be drawn in to
+    /// \return true if successful
     ///
     virtual bool start() override;
 
     ///
     /// \brief end finishes and closes the file
-    /// \return true if sucsesfull
+    /// \return true if successful
     ///
     virtual bool end() override;
 
     ///
-    /// \brief resolutionDPI is the generall resolution the PDF is generated with in DPI
+    /// \brief resolutionDPI is the general resolution the PDF is generated with in DPI
     /// \return
     ///
     int resolutionDPI() const;
     ///
-    /// \brief setResolutionDPI sets the generall resolution the PDF is generated with in DPI
+    /// \brief setResolutionDPI sets the general resolution the PDF is generated with in DPI
     /// \param newResolutionDPI
     ///
     void setResolutionDPI(int newResolutionDPI);
 
     ///
-    /// \brief resolutionPMM is the generall resolution the PDF is generated with in Px Per mm
+    /// \brief resolutionPMM is the general resolution the PDF is generated with in Px Per mm
     /// \return
     ///
     double resolutionPMM() const;
     ///
-    /// \brief setResolutionPMM sets the generall resolution the PDF is generated with in Px Per mm
+    /// \brief setResolutionPMM sets the general resolution the PDF is generated with in Px Per mm
     /// \param newResolutionPMM
     ///
     void setResolutionPMM(double newResolutionPMM);
