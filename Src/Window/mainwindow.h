@@ -69,6 +69,8 @@ private:
 
     void resizeEvent(QResizeEvent *event) override;
 
+    void updatePreView();
+
     ///
     /// \brief m_pagesizes is a list of all the page sizes
     ///

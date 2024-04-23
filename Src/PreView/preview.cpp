@@ -11,9 +11,9 @@ void PreView::paintEvent(QPaintEvent *e)
 
     std::shared_ptr<QtPainterDrawer> pre_painter = std::make_shared<QtPainterDrawer>(m_painter);
 
-    double scale = this->minimumWidth() / 297;
-    if (210 * scale > this->height()) {
-        scale = this->height() / 210;
+    double scale = this->minimumWidth() / m_pageStyle->getPageWidth();
+    if (m_pageStyle->getPageHight() * scale > this->height()) {
+        scale = this->height() / m_pageStyle->getPageHight();
     }
     m_painter->setTransform(QTransform().scale(scale, scale)); // 18,897.6378 p/mm = 480,000 dpi
 
@@ -47,7 +47,7 @@ void PreView::paintEvent(QPaintEvent *e)
     //     drawRect(Coordinate{0,0}, Coordinate{SHEETSIZE.width, SHEETSIZE.height}, 1);
     // }
 
-    // m_painter->end();
+    m_painter->end();
 
     QFrame::paintEvent(e);
 }

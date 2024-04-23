@@ -52,7 +52,7 @@ public:
     ///
     [[nodiscard]] auto getPageHight() const -> qreal;
     ///
-    /// \brief getPageWidth  returns the Height of the page, with consideration of the orientation
+    /// \brief getPageWidth  returns the Width of the page, with consideration of the orientation
     /// \return
     ///
     [[nodiscard]] auto getPageWidth() const -> qreal;
@@ -74,12 +74,12 @@ public:
     ///
     /// The width and height are orientation independent on sizes known to Qt(QPageSize::PageSizeId)
     /// this means that, 297x210 and 210x297 are both A4 and only newOrientation says if it is
-    /// Landscape or Portrait. The width and height on custom pages should be treated as if they where
-    /// in Portrait orientation, this is how Qt is using it, so in general height > width, this is
-    /// not checked.
+    /// Landscape or Portrait. The width and height on custom pages should be treated as if they
+    /// where in Portrait orientation, this is how Qt is using it, so in general height > width,
+    /// this is not checked.
     ///
-    void setPageSize(qreal , qreal newPageWidth,
-                     QPageLayout::Orientation newOrientation, const QString &newName = QString());
+    void setPageSize(qreal, qreal newPageWidth, QPageLayout::Orientation newOrientation,
+                     const QString &newName = QString());
 
     ///
     /// \brief getFrame returns the frame object

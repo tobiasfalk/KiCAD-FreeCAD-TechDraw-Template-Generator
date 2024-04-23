@@ -18,14 +18,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::Main
     qDebug() << "Nope A";
     m_pageStyle = std::make_shared<PageStyle>();
     qDebug() << "Nope B";
-    m_pageStyle->setPageSize(
-            QPageSize{ QSizeF{ 210, 297 }, QPageSize::Millimeter, "A4", QPageSize::ExactMatch },
-            QPageLayout::Orientation::Landscape);
-    m_frame = std::make_shared<PlainFrame>();
-    m_pageStyle->setFrame(m_frame);
 
     qDebug() << "Nope C";
-    m_preView->setPageStyle(m_pageStyle);
+    updatePreView();
     qDebug() << "Nope D";
 
     m_ui->PreViewGridLayout->addWidget(m_preView.get());
@@ -79,6 +74,16 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     m_preView->setMinimumWidth(m_ui->centralwidget->size().width() - 800);
     QWidget::resizeEvent(event);
+}
+
+void MainWindow::updatePreView()
+{
+    m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
+                             getOrientationFromUi());
+    m_frame = std::make_shared<PlainFrame>();
+    m_pageStyle->setFrame(m_frame);
+    m_preView->setPageStyle(m_pageStyle);
+    m_preView->update();
 }
 
 void MainWindow::initPageSizes()
@@ -152,6 +157,8 @@ void MainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
         m_ui->PageHeigthDoubleSpinBox->setEnabled(false);
         m_ui->NameLineEdit->setEnabled(false);
     }
+
+    updatePreView();
 }
 
 void MainWindow::on_PageWidthDoubleSpinBox_valueChanged(double width)
