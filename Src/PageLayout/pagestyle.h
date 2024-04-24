@@ -10,6 +10,7 @@
 #include "universaldraw.h"
 
 #include "pageframe.h"
+#include "titleblock.h"
 
 ///
 /// \brief The PageStyle class manages the layout and style for a page
@@ -92,6 +93,9 @@ public:
     ///
     void setFrame(std::shared_ptr<PageFrame> newFrame);
 
+    std::shared_ptr<TitleBlock> titleblocke() const;
+    void setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke);
+
 private:
     ///
     /// \brief layout holds the general layout of the page
@@ -102,6 +106,7 @@ private:
     /// \brief frame contains the frame data
     ///
     std::shared_ptr<PageFrame> m_frame;
+    std::shared_ptr<TitleBlock> m_titleblocke;
 };
 
 ///

@@ -20,6 +20,6 @@ message(STATUS "Conft PreView")
 
 target_include_directories(PreView PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-get_target_property(LIB_INCLUDES PreView INCLUDE_DIRECTORIES)
+# get_target_property(LIB_INCLUDES PreView INCLUDE_DIRECTORIES)
 
-message(${LIB_INCLUDES})
+# message(${LIB_INCLUDES})

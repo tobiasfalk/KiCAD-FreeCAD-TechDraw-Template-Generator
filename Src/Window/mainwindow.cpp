@@ -12,22 +12,16 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
-    qDebug() << "Nope";
 
     m_preView = std::make_shared<PreView>();
-    qDebug() << "Nope A";
     m_pageStyle = std::make_shared<PageStyle>();
-    qDebug() << "Nope B";
-
-    qDebug() << "Nope C";
+    m_frame = std::make_shared<PageFrame>();
     updatePreView();
-    qDebug() << "Nope D";
 
     m_ui->PreViewGridLayout->addWidget(m_preView.get());
-    qDebug() << "Nope E";
 
     initPageSizes();
-    qDebug() << "Nope F";
+    initFrames();
 }
 
 MainWindow::~MainWindow()
@@ -39,13 +33,7 @@ void MainWindow::on_GeneratePushButton_clicked()
 {
     PageStyle pageStyle;
 
-    PlainFrameDialog frameDialog;
-
-    frameDialog.show();
-
-    std::shared_ptr<PageFrame> frame = frameDialog.getFrame();
-
-    pageStyle.setFrame(frame);
+    pageStyle.setFrame(m_frame);
 
     pageStyle.setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                           getOrientationFromUi());
@@ -80,8 +68,8 @@ void MainWindow::updatePreView()
 {
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
-    m_frame = std::make_shared<PlainFrame>();
     m_pageStyle->setFrame(m_frame);
+    m_pageStyle->setTitleblocke(std::make_shared<TitleBlock>());
     m_preView->setPageStyle(m_pageStyle);
     m_preView->update();
 }
@@ -93,6 +81,13 @@ void MainWindow::initPageSizes()
     }
     m_ui->PageWidthDoubleSpinBox->setValue(m_pagesizes[0].size(QPageSize::Millimeter).width());
     m_ui->PageHeigthDoubleSpinBox->setValue(m_pagesizes[0].size(QPageSize::Millimeter).height());
+}
+
+void MainWindow::initFrames()
+{
+    foreach (QString frameStr, m_frames) {
+        m_ui->FrameComboBox->addItem(frameStr);
+    }
 }
 
 QPageSize MainWindow::getPageSizeFromName(QString name)
@@ -183,9 +178,28 @@ void MainWindow::on_NameLineEdit_editingFinished()
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_framePushButton_clicked()
 {
-    PlainFrameDialog frameDialog;
+    if (m_frame->type() == "Plain Frame") {
+        PlainFrameDialog frameDialog;
 
-    frameDialog.show();
+        // frameDialog.setFrame(m_frame);
+
+        // frameDialog.show();
+        frameDialog.setModal(true);
+        frameDialog.exec();
+
+        m_frame = frameDialog.getFrame();
+    }
+    updatePreView();
+}
+
+void MainWindow::on_FrameComboBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1 == "None") {
+        m_frame = std::make_shared<PageFrame>();
+    } else if (arg1 == "Plain Frame") {
+        m_frame = std::make_shared<PlainFrame>();
+    }
+    updatePreView();
 }

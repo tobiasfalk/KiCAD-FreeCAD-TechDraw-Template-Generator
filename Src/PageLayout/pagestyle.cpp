@@ -11,22 +11,16 @@ void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
 {
     // UniversalDraw::printTest(into, m_layout);
 
-    qDebug() << "AA";
-
     into->setHeight(m_layout.fullRect(QPageLayout::Millimeter).height());
     into->setWidth(m_layout.fullRect(QPageLayout::Millimeter).width());
 
     into->start();
 
-    qDebug() << "AB";
-
     m_frame->draw(into, m_layout.fullRect(QPageLayout::Millimeter), m_layout);
 
-    qDebug() << "AC";
+    m_titleblocke->draw(into, m_frame->drawingArea(), m_layout);
 
     into->end();
-
-    qDebug() << "AD";
 }
 
 auto PageStyle::getLayout() const -> QPageLayout
@@ -86,6 +80,16 @@ auto PageStyle::getFrame() const -> std::shared_ptr<PageFrame>
 void PageStyle::setFrame(std::shared_ptr<PageFrame> newFrame)
 {
     m_frame = newFrame;
+}
+
+std::shared_ptr<TitleBlock> PageStyle::titleblocke() const
+{
+    return m_titleblocke;
+}
+
+void PageStyle::setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke)
+{
+    m_titleblocke = newTitleblocke;
 }
 
 auto operator<<(QDebug debug, const PageStyle &style) -> QDebug

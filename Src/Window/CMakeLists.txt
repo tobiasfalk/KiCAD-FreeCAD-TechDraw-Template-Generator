@@ -15,6 +15,7 @@ target_link_libraries(Window PRIVATE
     UniversalDraw
     PageLayout
     PageFrame
+    TitleBlock
     PreView
     Threads
 

@@ -35,11 +35,7 @@ void PreView::paintEvent(QPaintEvent *e)
     // path.addPolygon(rectangle);
     // m_painter->fillPath(path, brush);
 
-    qDebug() << "A";
-
     m_pageStyle->draw(pre_painter);
-
-    qDebug() << "B";
 
     // UniversalDraw::printTest(pre_painter);
 

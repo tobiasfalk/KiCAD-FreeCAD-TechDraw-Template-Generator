@@ -56,7 +56,9 @@ private slots:
 
     void on_NameLineEdit_editingFinished();
 
-    void on_pushButton_clicked();
+    void on_framePushButton_clicked();
+
+    void on_FrameComboBox_currentTextChanged(const QString &arg1);
 
 private:
     ///
@@ -278,7 +280,10 @@ private:
         QPageSize{ QSizeF{ 686, 991 }, QPageSize::Millimeter, "Arch E3", QPageSize::ExactMatch },
     };
 
+    QList<QString> m_frames = QList<QString>{ "None", "Plain Frame" };
+
     void initPageSizes();
+    void initFrames();
     QPageSize getPageSizeFromName(QString name);
     QPageLayout::Orientation getOrientationFromUi();
     QList<DrawingFormate> getDrawingFormates();
@@ -286,7 +291,7 @@ private:
     QString m_lastPath = "./";
 
     std::shared_ptr<PageStyle> m_pageStyle;
-    std::shared_ptr<PlainFrame> m_frame;
+    std::shared_ptr<PageFrame> m_frame;
 };
 
 #endif // MAINWINDOW_H

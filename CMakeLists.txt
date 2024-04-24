@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
+message(${CMAKE_VERSION})
 
 project(KiCAD-FreeCAD-TechDraw-Template-Generator VERSION 2.0 LANGUAGES CXX)
 

@@ -352,7 +352,7 @@
     <item row="3" column="0">
      <layout class="QHBoxLayout" name="FrameHorizontalLayout">
       <item>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="FrameComboBox">
         <property name="minimumSize">
          <size>
           <width>200</width>
@@ -362,7 +362,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="framePushButton">
         <property name="text">
          <string>Frame Options</string>
         </property>
