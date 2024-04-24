@@ -132,16 +132,16 @@
         </spacer>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="RigthVerticalLayout">
+        <layout class="QVBoxLayout" name="RightVerticalLayout">
          <item>
-          <widget class="QLabel" name="RigthLabel">
+          <widget class="QLabel" name="RightLabel">
            <property name="text">
-            <string>Rigth</string>
+            <string>Right</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="RigthDoubleSpinBox">
+          <widget class="QDoubleSpinBox" name="RightDoubleSpinBox">
            <property name="minimumSize">
             <size>
              <width>100</width>

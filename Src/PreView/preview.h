@@ -20,10 +20,26 @@ public:
     PreView();
     ~PreView();
 
+    ///
+    /// \brief painter is the qt painter that is used to draw the preview
+    /// \return
+    ///
     std::shared_ptr<QPainter> painter() const;
+    ///
+    /// \brief setPainter sets the qt painter that is used to draw the preview
+    /// \param newPainter
+    ///
     void setPainter(const std::shared_ptr<QPainter> &newPainter);
 
+    ///
+    /// \brief pageStyle returns the style of the page
+    /// \return
+    ///
     std::shared_ptr<PageStyle> pageStyle() const;
+    ///
+    /// \brief setPageStyle sets the style of the page
+    /// \param newPageStyle
+    ///
     void setPageStyle(const std::shared_ptr<PageStyle> newPageStyle);
 
 private:

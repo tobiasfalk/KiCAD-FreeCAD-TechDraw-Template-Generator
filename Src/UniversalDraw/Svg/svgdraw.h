@@ -15,6 +15,9 @@
 #include <QPainter>
 #include <QBuffer>
 
+///
+/// \brief The SvgDraw class is used to draw in to a simple SVG
+///
 class SvgDraw : public UniversalDraw
 {
 public:
@@ -134,8 +137,16 @@ public:
     ///
     virtual bool end() override;
 
+    ///
+    /// \brief file returns the file that is written in to
+    /// \return
+    ///
     std::shared_ptr<QFile> file() const;
 
+    ///
+    /// \brief document returns the Qt XML document that is used
+    /// \return
+    ///
     QDomDocument document() const;
 
 protected:

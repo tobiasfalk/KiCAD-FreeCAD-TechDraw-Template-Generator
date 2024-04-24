@@ -19,17 +19,17 @@ void PlainFrameDialog::setFrame(std::shared_ptr<PlainFrame> newFrame)
     m_ui->BottomDoubleSpinBox->setValue(newFrame->indentBottom());
     m_ui->TopDoubleSpinBox->setValue(newFrame->indentTop());
     m_ui->LeftDoubleSpinBox->setValue(newFrame->indentLeft());
-    m_ui->RigthDoubleSpinBox->setValue(newFrame->indentRigth());
+    m_ui->RightDoubleSpinBox->setValue(newFrame->indentRight());
     m_frame = newFrame;
 }
 
-std::shared_ptr<PlainFrame> PlainFrameDialog::getFrame()
+std::shared_ptr<PlainFrame> PlainFrameDialog::frame()
 {
     m_frame->setLineWidth(m_ui->LineWidthDoubleSpinBox->value());
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());
     m_frame->setIndentTop(m_ui->TopDoubleSpinBox->value());
     m_frame->setIndentLeft(m_ui->LeftDoubleSpinBox->value());
-    m_frame->setIndentRigth(m_ui->RigthDoubleSpinBox->value());
+    m_frame->setIndentRight(m_ui->RightDoubleSpinBox->value());
 
     return m_frame;
 }
@@ -40,7 +40,7 @@ void PlainFrameDialog::on_LineWidthDoubleSpinBox_editingFinished()
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());
     m_frame->setIndentTop(m_ui->TopDoubleSpinBox->value());
     m_frame->setIndentLeft(m_ui->LeftDoubleSpinBox->value());
-    m_frame->setIndentRigth(m_ui->RigthDoubleSpinBox->value());
+    m_frame->setIndentRight(m_ui->RightDoubleSpinBox->value());
 }
 
 void PlainFrameDialog::on_TopDoubleSpinBox_editingFinished()
@@ -49,16 +49,16 @@ void PlainFrameDialog::on_TopDoubleSpinBox_editingFinished()
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());
     m_frame->setIndentTop(m_ui->TopDoubleSpinBox->value());
     m_frame->setIndentLeft(m_ui->LeftDoubleSpinBox->value());
-    m_frame->setIndentRigth(m_ui->RigthDoubleSpinBox->value());
+    m_frame->setIndentRight(m_ui->RightDoubleSpinBox->value());
 }
 
-void PlainFrameDialog::on_RigthDoubleSpinBox_editingFinished()
+void PlainFrameDialog::on_RightDoubleSpinBox_editingFinished()
 {
     m_frame->setLineWidth(m_ui->LineWidthDoubleSpinBox->value());
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());
     m_frame->setIndentTop(m_ui->TopDoubleSpinBox->value());
     m_frame->setIndentLeft(m_ui->LeftDoubleSpinBox->value());
-    m_frame->setIndentRigth(m_ui->RigthDoubleSpinBox->value());
+    m_frame->setIndentRight(m_ui->RightDoubleSpinBox->value());
 }
 
 void PlainFrameDialog::on_LeftDoubleSpinBox_editingFinished()
@@ -67,7 +67,7 @@ void PlainFrameDialog::on_LeftDoubleSpinBox_editingFinished()
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());
     m_frame->setIndentTop(m_ui->TopDoubleSpinBox->value());
     m_frame->setIndentLeft(m_ui->LeftDoubleSpinBox->value());
-    m_frame->setIndentRigth(m_ui->RigthDoubleSpinBox->value());
+    m_frame->setIndentRight(m_ui->RightDoubleSpinBox->value());
 }
 
 void PlainFrameDialog::on_BottomDoubleSpinBox_editingFinished()
@@ -76,5 +76,5 @@ void PlainFrameDialog::on_BottomDoubleSpinBox_editingFinished()
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());
     m_frame->setIndentTop(m_ui->TopDoubleSpinBox->value());
     m_frame->setIndentLeft(m_ui->LeftDoubleSpinBox->value());
-    m_frame->setIndentRigth(m_ui->RigthDoubleSpinBox->value());
+    m_frame->setIndentRight(m_ui->RightDoubleSpinBox->value());
 }

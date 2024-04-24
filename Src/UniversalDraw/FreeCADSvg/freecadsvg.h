@@ -3,6 +3,9 @@
 
 #include "UniversalDraw/Svg/svgdraw.h"
 
+///
+/// \brief The FreeCADSvg class is used to draw a FreeCAD Compatible SVG
+///
 class FreeCADSvg : public SvgDraw
 {
 public:

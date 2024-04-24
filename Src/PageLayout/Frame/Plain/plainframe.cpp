@@ -10,7 +10,7 @@ PlainFrame::PlainFrame()
 void PlainFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
 {
     setDrawingArea(QRectF{ where.topLeft() + QPointF{ m_indentLeft, m_indentTop },
-                           where.bottomRight() - QPointF{ m_indentRigth, m_indentBottom } });
+                           where.bottomRight() - QPointF{ m_indentRight, m_indentBottom } });
     into->drawRect(drawingArea(), m_lineWidth, 0);
     qDebug() << "On What: " << onWhat;
 }
@@ -25,14 +25,14 @@ void PlainFrame::setIndentLeft(double newIndentLeft)
     m_indentLeft = newIndentLeft;
 }
 
-double PlainFrame::indentRigth() const
+double PlainFrame::indentRight() const
 {
-    return m_indentRigth;
+    return m_indentRight;
 }
 
-void PlainFrame::setIndentRigth(double newIndentRigth)
+void PlainFrame::setIndentRight(double newIndentRight)
 {
-    m_indentRigth = newIndentRigth;
+    m_indentRight = newIndentRight;
 }
 
 double PlainFrame::indentTop() const

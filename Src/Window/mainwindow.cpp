@@ -204,7 +204,7 @@ void MainWindow::on_framePushButton_clicked()
         frameDialog.setModal(true);
         frameDialog.exec();
 
-        m_frame = frameDialog.getFrame();
+        m_frame = frameDialog.frame();
     }
     updatePreView();
 }

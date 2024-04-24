@@ -6,9 +6,15 @@
 #include <QFile>
 #include <QDebug>
 
+///
+/// \brief The KiCAD8 class is used to draw a KiCAD 8 compatible Template file
+///
 class KiCAD8 : public UniversalDraw
 {
 public:
+    ///
+    /// \brief KiCAD8 the base constructor
+    ///
     KiCAD8();
 
     ///

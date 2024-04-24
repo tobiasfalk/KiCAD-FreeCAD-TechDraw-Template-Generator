@@ -83,10 +83,10 @@ public:
                      const QString &newName = QString());
 
     ///
-    /// \brief getFrame returns the frame object
+    /// \brief frame returns the frame object
     /// \return the frame
     ///
-    [[nodiscard]] auto getFrame() const -> std::shared_ptr<PageFrame>;
+    [[nodiscard]] auto frame() const -> std::shared_ptr<PageFrame>;
     ///
     /// \brief setFrame sets the frame object
     /// \param newFrame
@@ -106,6 +106,9 @@ private:
     /// \brief frame contains the frame data
     ///
     std::shared_ptr<PageFrame> m_frame;
+    ///
+    /// \brief m_titleblocke is the title-block to be drawn
+    ///
     std::shared_ptr<TitleBlock> m_titleblocke;
 };
 

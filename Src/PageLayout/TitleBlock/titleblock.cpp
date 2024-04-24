@@ -1,6 +1,9 @@
 #include "titleblock.h"
 
-TitleBlock::TitleBlock() { }
+TitleBlock::TitleBlock()
+{
+    setTitleBlockArea(QRect{ 0, 0, 0, 0 });
+}
 
 QString TitleBlock::type() const
 {

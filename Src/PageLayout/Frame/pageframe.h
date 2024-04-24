@@ -16,6 +16,9 @@
 class PageFrame
 {
 public:
+    ///
+    /// \brief PageFrame is the base constructor
+    ///
     PageFrame();
 
     ///
@@ -33,8 +36,17 @@ public:
     ///
     virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat);
 
+    ///
+    /// \brief drawingArea returns a rectangle with the inside of the frame, where drawing should be
+    /// placed. It is used as orientation for all the other options like the TitleBlock
+    /// \return the rectangle, in mm
+    ///
     QRectF drawingArea() const;
 
+    ///
+    /// \brief description returns a description of the frame
+    /// \return the description
+    ///
     QString description() const;
 
 protected:
@@ -44,8 +56,19 @@ protected:
     ///
     void setType(const QString &newType);
 
+    ///
+    /// \brief setDescription sets the description of the frame, this is used in the constructor of
+    /// a frame derivative
+    /// \param newDescription the new description
+    ///
     void setDescription(const QString &newDescription);
 
+    ///
+    /// \brief setDrawingArea sets a rectangle with the inside of the frame, where drawing should be
+    /// placed. It is used as orientation for all the other options like the TitleBlock. this is
+    /// used in the constructor of a frame derivative
+    /// \param newDrawingArea the new area
+    ///
     void setDrawingArea(const QRectF &newDrawingArea);
 
 private:

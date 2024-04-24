@@ -8,9 +8,15 @@
 #include "UniversalDraw/QtPaint/qtpainterdrawer.h"
 #include "UniversalDraw/universaldraw.h"
 
+///
+/// \brief The SvgQtPaint class is used to draw in to SVG using the QT Painter class
+///
 class SvgQtPaint : public QtPainterDrawer
 {
 public:
+    ///
+    /// \brief SvgQtPaint the base constructor
+    ///
     SvgQtPaint();
 
     ///
@@ -46,6 +52,9 @@ public:
     virtual bool end() override;
 
 private:
+    ///
+    /// \brief m_svgWriter the Qt SVG generator that is used
+    ///
     std::shared_ptr<QSvgGenerator> m_svgWriter;
 };
 

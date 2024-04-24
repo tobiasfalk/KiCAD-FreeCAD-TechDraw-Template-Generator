@@ -72,7 +72,7 @@ void PageStyle::setPageSize(qreal newPageHeight, qreal newPageWidth,
     m_layout.setOrientation(newOrientation);
 }
 
-auto PageStyle::getFrame() const -> std::shared_ptr<PageFrame>
+auto PageStyle::frame() const -> std::shared_ptr<PageFrame>
 {
     return m_frame;
 }
@@ -96,6 +96,6 @@ auto operator<<(QDebug debug, const PageStyle &style) -> QDebug
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "PageStyle(" << style.getLayout() << ", " << style.getLayout().pageSize()
-                    << ", " << style.getFrame().get() << ")";
+                    << ", " << style.frame().get() << ")";
     return debug;
 }

@@ -8,6 +8,9 @@
 #include "UniversalDraw/universaldraw.h"
 #include "UniversalDraw/QtPaint/qtpainterdrawer.h"
 
+///
+/// \brief The PdfQtPaint class is used to draw a PDF with the Qt Painter
+///
 class PdfQtPaint : public QtPainterDrawer
 {
 public:
@@ -70,9 +73,18 @@ public:
     void setResolutionPMM(double newResolutionPMM);
 
 private:
+    ///
+    /// \brief m_pdfWriter the Qt PDF writer that is used to crearte the PDF
+    ///
     std::shared_ptr<QPdfWriter> m_pdfWriter;
 
+    ///
+    /// \brief m_resolutionDPI the used resolution of the drawing coordinates
+    ///
     int m_resolutionDPI = 33020;
+    ///
+    /// \brief m_resolutionPMM the used resolution of the drawing coordinates in Px per mm
+    ///
     double m_resolutionPMM = m_resolutionDPI * (1 / 25.4);
 };
 

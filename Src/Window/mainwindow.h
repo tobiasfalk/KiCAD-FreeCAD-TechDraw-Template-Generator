@@ -71,10 +71,21 @@ private:
     ///
     Ui::MainWindow *m_ui;
 
+    ///
+    /// \brief m_preView is the PreView of the page
+    ///
     std::shared_ptr<PreView> m_preView;
 
+    ///
+    /// \brief resizeEvent is the event that redraws the preview, it is called when the window sice
+    /// changes
+    /// \param event
+    ///
     void resizeEvent(QResizeEvent *event) override;
 
+    ///
+    /// \brief updatePreView redraws the preview
+    ///
     void updatePreView();
 
     ///
@@ -284,21 +295,62 @@ private:
         QPageSize{ QSizeF{ 686, 991 }, QPageSize::Millimeter, "Arch E3", QPageSize::ExactMatch },
     };
 
+    ///
+    /// \brief m_frames a list for selection the frame
+    ///
     QList<QString> m_frames = QList<QString>{ "None", "Plain Frame" };
 
+    ///
+    /// \brief m_titleBlocks a list for selecting the title-block
+    ///
     QList<QString> m_titleBlocks = QList<QString>{ "None", "Plain TitleBlock" };
 
+    ///
+    /// \brief initPageSizes initialises the PageSice combobox with m_pagesizes
+    ///
     void initPageSizes();
+    ///
+    /// \brief initFrames initialises the FrameComboBox with m_frames
+    ///
     void initFrames();
+    ///
+    /// \brief initTitleBlocks initialises the TitleBlockComboBox with m_titleBlocks
+    ///
     void initTitleBlocks();
+    ///
+    /// \brief getPageSizeFromName returns the PageSize with a give size string
+    /// \param name the size string
+    /// \return
+    ///
     QPageSize getPageSizeFromName(QString name);
+    ///
+    /// \brief getOrientationFromUi returns the page orientation depending on the PortraitCheckBox
+    /// \return
+    ///
     QPageLayout::Orientation getOrientationFromUi();
+    ///
+    /// \brief getDrawingFormates returns a List with all the Formates that should be created,
+    /// depending witch are selected in the ui
+    /// \return
+    ///
     QList<DrawingFormate> getDrawingFormates();
 
+    ///
+    /// \brief m_lastPath saves the last path that was selected on generate
+    ///
     QString m_lastPath = "./";
 
+    ///
+    /// \brief m_pageStyle is the pageStyle to be drawn
+    ///
     std::shared_ptr<PageStyle> m_pageStyle;
+    ///
+    /// \brief m_frame is the Frame style to be drawn
+    ///
     std::shared_ptr<PageFrame> m_frame;
+    ///
+    /// \brief m_titleblock is the TitleBlock style to be drawn
+    ///
     std::shared_ptr<TitleBlock> m_titleblock;
 };
 

@@ -227,6 +227,11 @@ public:
     ///
     ///
     static void printTest(std::shared_ptr<UniversalDraw> drawer);
+    ///
+    /// \brief printTest makes the same as printTest but scales everything to the given page layout
+    /// \param drawer
+    /// \param layout
+    ///
     static void printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout);
 
 signals:
