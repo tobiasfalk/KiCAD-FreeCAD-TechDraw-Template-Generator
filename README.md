@@ -10,65 +10,16 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ## Prerequisites
 
-* Qt 5.12 or newer
+* Qt 6.5 or newer
 * [Osifont](https://github.com/hikikomori82/osifont)
 
 # Features
 
-* ISO 5457 style border and ISO 7200 style Titelblock
-
-![ISO 5457 & ISO 7200 image](Images/ISO5457_ISO7200_Demo.freecad.svg)
-
-
-* ASME Y14.35 style revision history
-
-![ASME Y14.35 image](Images/ASME_Y14-35_Demo.svg)
-
-
-* Description field
-
-![Description field image](Images/Description_Demo.svg)
-
-
-* Folding liens to A4 and 200mmx290mm
-
-* Full Sheet Parts list
-
-![Full Sheet list image](Images/FullPartsList_Demo.svg)
-
-* Full Sheet Parts list from CSV
-
-![Full Sheet list image CSV ](Images/CSV_Partslist_Demo.svg)
-
-
-* Small Parts list directly over the Titelblock
-
-![Small Parts list image](Images/SmallPartsList_Demo.svg)
-
-
-* Logo inclusion in to the Legal owner field
-
-![Logo image](Images/Logo_Demo.svg)
-
-* CSV inclusion, KiCAD with bom_csv_grouped_by_value_with_fp or Standard where in the first line the size in percentage to the drawing with(0.1 for 10% or 0.5 for 50%). The second line defines the Titel of the column,
-all the lines below that are the Parts that are to be drawn
-
 ## Styles
-- ISO5457 ISO700
 
 ## Limitations
 
-### KiCAD 5
-
-* Not able to change the font (with 7(6.99) possible)
-* No Circlys(Used for Projektion)
-
-### KiCAD 6
-
-* Not able to change the font (with 7(6.99) possible)
-* No Circlys(Used for Projektion)
-
-### KiCAD 7
+### KiCAD 8
 
 * No Circlys(Used for Projektion)
 
@@ -79,40 +30,36 @@ all the lines below that are the Parts that are to be drawn
 ### PDF
 This is mostly meant for printing as a template for hand drawing.
 
-* The text in the "editable fields" is not editable
-* The logo inclusion si not working(it draws a rectangle there where the logo should be)
 * Qt includes random spaces under Windows
 
-### Eagle 6.5 
-
-* No logo inclusion.
-* The text in the "editable fields" is not editable and need to be set before generation(in the FreeCAD Fileds)
-* No osifont
 
 ## Variable Docu
 
-* `&{N}` Number of repetition, see Rev. History
-* `&{F}` Field number, see the partslists
+## Reference/Link Colection
+
+* [FreeCAD Templates Src on Git](https://github.com/FreeCAD/FreeCAD/tree/main/src/Mod/TechDraw/Templates)
+* [FreeCAD Template HowTo](https://wiki.freecad.org/TechDraw_TemplateHowTo#Remove_transformans_on_the_SVG)
+* [KiCAD PI Editor Doc](https://docs.kicad.org/8.0/en/pl_editor/pl_editor.html)
+* [KiCAD Work Sheet File Format](https://dev-docs.kicad.org/en/file-formats/sexpr-worksheet/)
+* [KiCAD EESchema Doc Sheet Titleblock](https://docs.kicad.org/8.0/en/eeschema/eeschema.html#sheet-title-block)
+* [KiCAD EESchema Doc Text Variables](https://docs.kicad.org/8.0/en/eeschema/eeschema.html#text-variables)
+* [KiCAD Doc Schematic Sheet Setup](https://docs.kicad.org/8.0/en/getting_started_in_kicad/getting_started_in_kicad.html#schematic_sheet_setup)
+* [KiCAD Doc Board Setup and Stackup](https://docs.kicad.org/8.0/en/getting_started_in_kicad/getting_started_in_kicad.html#board_setup_and_stackup)
+
+
+### Titleblock
+* [FreeCAD Forum Thread "TechDraw's ISO 7200 templates don't conform to ISO 7200 (or ISO 5457)"](https://forum.freecad.org/viewtopic.php?t=85519)
+* Leiterplatten Stromlaufplan, Layout und Fertigung from Geral Zickert, Publisht from Hanser Fachbuch, page:29(ISBN: 978-3-446-47583-0)
+* Tabellenbuch für Metalltechnik from ing. Adof Frischherz, Publisht from Jugend & Volk, page: 46(ISBN: 978-3-7100-2503-7)
+* Mechanical and metal trades handbook from Gomeringer Roland, Heinzler Max, .., Published from Euro-Lehrmittle, page: 66 (ISBN: 978-3-8085-1915-8)
+* Friedrich Tabellenbuch Metall- und Maschinentechnik from Barthel Maria, ..., Published from Bildungsverlag EINS - westermann, page 5-11(ISBN: 978-3-427-51033-8)
+* [Wikipedia ISO 7200 Titleblock](https://en.wikipedia.org/wiki/File:Title_block_EN_ISO_7200.svg)
+* [Wikipedia ISO 7200 German](https://de.wikipedia.org/wiki/ISO_7200)
+* [Newton World, basic elements of engineering drawings](https://newtonianworld.com/mechanical-design-engineering-topics/engineering-drawings/basic-elements-of-engineering-drawings/#elementor-toc__heading-anchor-7)(may relode/reenter the link to jump to the rigth chapter)
 
 ## Logo (Branding)
-
-It is possible to include a Logo in the Legal owner Field (name can be modified). This is meant for a company logo or brand. The specification for the logo: 
-
-* SVG format
-* maximum width is 24mm
-* the checkbox on the right side of the button needs to be checked (will be checked after clicking it). 
-* the location is on the right bottom side of the Legal owner field of the Titleblock 
- 
-**Notes**  
-Once the logo gets reaches a height of 30mm the width is reduced (the ratio will be kept). If text is included in the SVG it may create problems, so convert that to path.
 
 ## Icon Source
 The Icon for the app was downloaded from: https://www.flaticon.com/de/kostenloses-icon/layout_7973492
 
 ## To do
-
-* Complete Doxygen Documentation
-* PDF Text problems
-
-## Notes
-In the FreeCAD variable values there are some varable that make the Templae easyer to use with this FreeCAD TD Macro(Objekt): https://forum.freecad.org/viewtopic.php?t=77705

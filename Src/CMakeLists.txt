@@ -1,8 +1,12 @@
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 # Subdirs
-add_subdirectory(KiCAD_Symbol_Scaler/)
-add_subdirectory(TemplateOptions/)
-add_subdirectory(TemplateGen/)
+add_subdirectory(UniversalDraw/)
+add_subdirectory(PageLayout/)
+add_subdirectory(Threads/)
+add_subdirectory(PreView/)
 add_subdirectory(Window/)
+
+add_subdirectory(KiCAD_Symbol_Scaler/)
 add_subdirectory(Icon/)
 
 # Executable
@@ -38,10 +42,12 @@ target_link_libraries(KiCAD-FreeCAD-TechDraw-Template-Generator PRIVATE
     Qt${QT_VERSION_MAJOR}::Xml
     Qt${QT_VERSION_MAJOR}::Svg
     Qt${QT_VERSION_MAJOR}::SvgWidgets
-    TemplateGen
-    Templateoptions
     KiCAD_Symbol_scaler
     Window
+    UniversalDraw
+    PageLayout
+    PageFrame
+    Threads
 )
 
 set_target_properties(KiCAD-FreeCAD-TechDraw-Template-Generator PROPERTIES
@@ -70,4 +76,8 @@ if(TARGET Qt6::windeployqt)
 #        DESTINATION ${FOO_INSTALL_RUNTIME_DESTINATION}
 #    )
 endif()
+
+# Copy Test Folder
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Test/
+    DESTINATION ${CMAKE_BINARY_DIR}/bin/Test/)
 

@@ -1,65 +1,131 @@
-#include "mainwindow.h"
+#include "Window/mainwindow.h"
 
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
+#include <cstdio>
+#include <cstdlib>
+
+#include "PageLayout/pagestyle.h"
+
+#include "PageLayout/Frame/pageframe.h"
+
+#include "UniversalDraw/universaldraw.h"
+// #include "PreView/preview.h"
+
+#include "UniversalDraw/PdfQtPaint/pdfqtpaint.h"
+#include "UniversalDraw/SvgQtPaint/svgqtpaint.h"
+#include "UniversalDraw/Svg/svgdraw.h"
+#include "UniversalDraw/FreeCADSvg/freecadsvg.h"
+#include "UniversalDraw/KiCAD8/kicad8.h"
+#include "Threads/universaldrawthread.h"
+
+// #include "preview.h"
+
+///
+/// \brief myMessageOutput is the handler for all the Qt debugging messages and formats it
+/// \param type
+/// \param context
+/// \param msg
+///
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QByteArray localMsg = msg.toLocal8Bit();
-    const char *file = context.file ? context.file : "";
-    const char *function = context.function ? context.function : "";
-    if(strcmp(file, "") && strcmp(function, ""))
-    {
-        switch (type)
-        {
+    const char *file = context.file != nullptr ? context.file : "";
+    const char *function = context.function != nullptr ? context.function : "";
+    if ((strcmp(file, "") != 0) && (strcmp(function, "") != 0)) {
+        switch (type) {
         case QtDebugMsg:
-            fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            std::cerr << "Debug: " << localMsg.constData() << " (" << file << ":" << context.line
+                      << ", " << function << ")" << std::endl;
             break;
         case QtInfoMsg:
-            fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            std::cerr << "Info: " << localMsg.constData() << " (" << file << ":" << context.line
+                      << ", " << function << ")" << std::endl;
             break;
         case QtWarningMsg:
-            fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            std::cerr << "Warning: " << localMsg.constData() << " (" << file << ":" << context.line
+                      << ", " << function << ")" << std::endl;
             break;
         case QtCriticalMsg:
-            fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            std::cerr << "Critical: " << localMsg.constData() << " (" << file << ":" << context.line
+                      << ", " << function << ")" << std::endl;
             break;
         case QtFatalMsg:
-            fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            std::cerr << "Fatal: " << localMsg.constData() << " (" << file << ":" << context.line
+                      << ", " << function << ")" << std::endl;
             break;
         }
-    }
-    else
-    {
-        switch (type)
-        {
+    } else {
+        switch (type) {
         case QtDebugMsg:
             break;
         case QtInfoMsg:
-            fprintf(stderr, "%s\n", localMsg.constData());
+            std::cerr << localMsg.constData() << std::endl;
             break;
         case QtWarningMsg:
-            fprintf(stderr, "Warning: %s\n", localMsg.constData());
+            std::cerr << "Warning: " << localMsg.constData() << std::endl;
             break;
         case QtCriticalMsg:
-            fprintf(stderr, "Critical: %s\n", localMsg.constData());
+            std::cerr << "Critical: " << localMsg.constData() << std::endl;
             break;
         case QtFatalMsg:
-            fprintf(stderr, "Fatal: %s\n", localMsg.constData());
+            std::cerr << "Fatal: " << localMsg.constData() << std::endl;
             break;
         }
     }
 }
 
-int main(int argc, char *argv[])
+///
+/// \brief main is the entry point for this program and starts the actual main window
+/// \param argc
+/// \param argv
+/// \return
+///
+auto main(int argc, char *argv[]) -> int
 {
     qInstallMessageHandler(myMessageOutput);
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+    QApplication application(argc, argv);
+
+    // PageStyle style;
+
+    // style.setPageSize(297, 215, QPageLayout::Landscape);
+    // qDebug() << style.getPageHight();
+    // qDebug() << style.getPageSize();
+    // qDebug() << style.getLayout();
+    // qDebug() << style << "ABC";
+
+    // std::shared_ptr<UniversalDraw> draw = std::make_shared<UniversalDraw>();
+
+    // // PreView view;
+
+    // // printTest(view);
+
+    // test::printTest(draw);
+
+    // style.draw(draw);
+
+    // std::shared_ptr<SvgQtPaint> draw = std::make_shared<SvgQtPaint>();
+    // draw->setFileName("test.svg");
+
+    // std::shared_ptr<SvgDraw> draw = std::make_shared<SvgDraw>();
+    // draw->setFileName("test_3.svg");
+
+    // std::shared_ptr<FreeCADSvg> draw = std::make_shared<FreeCADSvg>();
+    // draw->setFileName("test_4.svg");
+
+    // std::shared_ptr<KiCAD8> draw = std::make_shared<KiCAD8>();
+    // draw->setFileName("test.kicad_wks");
+
+    // std::shared_ptr<PdfQtPaint> draw = std::make_shared<PdfQtPaint>();
+    // draw->setFileName("test.pdf");
+
+    // UniversalDraw::printTest(draw);
+
+    MainWindow window;
+    window.show();
+    return QApplication::exec();
 }
