@@ -11,9 +11,15 @@ set(PlainFrame_SOURCES
     Plain/plainframedialog.ui
 )
 
+set(ISO5457_SOURCES
+    ISO5457/iso5457frame.h
+    ISO5457/iso5457frame.cpp
+)
+
 add_library(PageFrame STATIC
     ${PageFrame_SOURCES}
     ${PlainFrame_SOURCES}
+    ${ISO5457_SOURCES}
 )
 
 target_link_libraries(PageFrame PRIVATE

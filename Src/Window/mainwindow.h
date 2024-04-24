@@ -87,6 +87,8 @@ private:
     /// \brief updatePreView redraws the preview
     ///
     void updatePreView();
+    void updateFrame(QString framStr);
+    void updateFrame();
 
     ///
     /// \brief m_pagesizes is a list of all the page sizes
@@ -298,7 +300,7 @@ private:
     ///
     /// \brief m_frames a list for selection the frame
     ///
-    QList<QString> m_frames = QList<QString>{ "None", "Plain Frame" };
+    QList<QString> m_frames = QList<QString>{ "None", "Plain Frame", "ISO5457" };
 
     ///
     /// \brief m_titleBlocks a list for selecting the title-block

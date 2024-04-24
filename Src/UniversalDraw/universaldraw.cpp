@@ -58,6 +58,45 @@ void UniversalDraw::drawText(QPointF position, QString text, double textSize,
             << font << "), bool isEditable(" << isEditable << "), QString name(" << name << "))";
 }
 
+void UniversalDraw::drawText(QPointF position, QStringList text, double textSize,
+                             TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
+                             double lineWidth, QString font, QString name, bool isEditable)
+{
+    if (text.length() == 1) {
+        drawText(position, text[0], textSize, textHeightAnchor, textWidthAnchor, lineWidth, font,
+                 name, isEditable);
+    } else if (text.length() > 1) {
+        double lineHeight = (textSize * 1.5);
+        double heightTotal = lineHeight * text.length();
+        switch (textHeightAnchor) {
+        case TextHeightAnchor::Top:
+            for (int i = 0; i < text.length(); i++) {
+                double height = position.y() + lineHeight * i;
+                QString txt = text.at(i);
+                drawText(QPointF{ position.x(), height }, txt, textSize, TextHeightAnchor::Top,
+                         textWidthAnchor, lineWidth, font, name + QString::number(i), isEditable);
+            }
+            break;
+        case TextHeightAnchor::Middle:
+            for (int i = 0; i < text.length(); i++) {
+                double height = position.y() - (heightTotal / 2) + lineHeight * i;
+                QString txt = text.at(i);
+                drawText(QPointF{ position.x(), height }, txt, textSize, TextHeightAnchor::Top,
+                         textWidthAnchor, lineWidth, font, name + QString::number(i), isEditable);
+            }
+            break;
+        case TextHeightAnchor::Bottom:
+            for (int i = 0; i < text.length(); i++) {
+                double height = position.y() - heightTotal + lineHeight * i;
+                QString txt = text.at(i);
+                drawText(QPointF{ position.x(), height }, txt, textSize, TextHeightAnchor::Top,
+                         textWidthAnchor, lineWidth, font, name + QString::number(i), isEditable);
+            }
+            break;
+        }
+    }
+}
+
 void UniversalDraw::drawPicture(QString picturePath, QPointF position, double width, double height,
                                 int dpiVector)
 {

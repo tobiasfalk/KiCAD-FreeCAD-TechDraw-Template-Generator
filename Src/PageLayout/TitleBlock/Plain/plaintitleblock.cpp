@@ -3,6 +3,7 @@
 PlainTitleBlock::PlainTitleBlock()
 {
     setType("Plain TitleBlock");
+    setTitleBlockArea(QRectF{ 0, 0, m_width, m_height });
 }
 
 void PlainTitleBlock::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
@@ -21,6 +22,7 @@ double PlainTitleBlock::height() const
 
 void PlainTitleBlock::setHeight(double newHeight)
 {
+    setTitleBlockArea(QRectF{ 0, 0, m_width, m_height });
     m_height = newHeight;
 }
 

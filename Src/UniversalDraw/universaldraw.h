@@ -129,6 +129,10 @@ public:
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, QString font = QString::fromLatin1("osifont"),
                           QString name = QString::fromLatin1(""), bool isEditable = false);
+    void drawText(QPointF position, QStringList text, double textSize,
+                  TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
+                  double lineWidth, QString font = QString::fromLatin1("osifont"),
+                  QString name = QString::fromLatin1(""), bool isEditable = false);
     ///
     /// \brief drawPicture draws a Picture on the given position, the anchor is on
     /// the Top Left

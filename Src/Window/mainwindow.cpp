@@ -6,6 +6,7 @@
 #include "PageLayout/Frame/Plain/plainframedialog.h"
 #include "PageLayout/TitleBlock/Plain/plaintitleblock.h"
 #include "PageLayout/TitleBlock/Plain/plaintitleblockdialog.h"
+#include "PageLayout/Frame/ISO5457/iso5457frame.h"
 #include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
 
@@ -80,6 +81,29 @@ void MainWindow::updatePreView()
     m_pageStyle->setTitleblocke(m_titleblock);
     m_preView->setPageStyle(m_pageStyle);
     m_preView->update();
+}
+
+void MainWindow::updateFrame(QString framStr)
+{
+    m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
+                             getOrientationFromUi());
+    if (framStr == "None") {
+        m_frame = std::make_shared<PageFrame>();
+    } else if (framStr == "Plain Frame") {
+        m_frame = std::make_shared<PlainFrame>();
+    } else if (framStr == "ISO5457") {
+        std::shared_ptr<ISO5457Frame> tmp = std::make_shared<ISO5457Frame>();
+        tmp->decideBottomAndTopCenteringLine(
+                m_titleblock->titleBlockArea().width(), m_titleblock->titleBlockArea().height(),
+                m_pageStyle->getLayout().fullRect(QPageLayout::Millimeter));
+        m_frame = tmp;
+    }
+    updatePreView();
+}
+
+void MainWindow::updateFrame()
+{
+    updateFrame(m_ui->FrameComboBox->currentText());
 }
 
 void MainWindow::initPageSizes()
@@ -168,6 +192,7 @@ void MainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
         m_ui->NameLineEdit->setEnabled(false);
     }
 
+    updateFrame();
     updatePreView();
 }
 
@@ -206,17 +231,13 @@ void MainWindow::on_framePushButton_clicked()
 
         m_frame = frameDialog.frame();
     }
+    updateFrame();
     updatePreView();
 }
 
 void MainWindow::on_FrameComboBox_currentTextChanged(const QString &arg1)
 {
-    if (arg1 == "None") {
-        m_frame = std::make_shared<PageFrame>();
-    } else if (arg1 == "Plain Frame") {
-        m_frame = std::make_shared<PlainFrame>();
-    }
-    updatePreView();
+    updateFrame(arg1);
 }
 
 void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
@@ -226,6 +247,7 @@ void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
     } else if (arg1 == "Plain TitleBlock") {
         m_titleblock = std::make_shared<PlainTitleBlock>();
     }
+    updateFrame();
     updatePreView();
 }
 
@@ -239,5 +261,6 @@ void MainWindow::on_TitleBlockPushButton_clicked()
 
         m_titleblock = dialog.titleBlock();
     }
+    updateFrame();
     updatePreView();
 }
