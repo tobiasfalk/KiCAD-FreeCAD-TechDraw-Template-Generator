@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QThread>
 
-#include "pagestyle.h"
+#include "PageLayout/pagestyle.h"
 
 ///
 /// \brief The DrawingFormate enum defines in what formate the output should have

@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "Plain/plainframe.h"
-#include "pageframe.h"
-#include "pagestyle.h"
-#include "Plain/plainframe.h"
-#include "universaldrawthread.h"
-#include "Plain/plainframedialog.h"
-#include "universaldraw.h"
+#include "PageLayout/Frame/pageframe.h"
+#include "PageLayout/pagestyle.h"
+#include "Threads/universaldrawthread.h"
+#include "PageLayout/Frame/Plain/plainframedialog.h"
+#include "PageLayout/TitleBlock/Plain/plaintitleblock.h"
+#include "PageLayout/TitleBlock/Plain/plaintitleblockdialog.h"
+#include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow)
@@ -16,12 +16,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::Main
     m_preView = std::make_shared<PreView>();
     m_pageStyle = std::make_shared<PageStyle>();
     m_frame = std::make_shared<PageFrame>();
+    m_titleblock = std::make_shared<TitleBlock>();
     updatePreView();
 
     m_ui->PreViewGridLayout->addWidget(m_preView.get());
 
     initPageSizes();
     initFrames();
+    initTitleBlocks();
 }
 
 MainWindow::~MainWindow()
@@ -34,15 +36,21 @@ void MainWindow::on_GeneratePushButton_clicked()
     PageStyle pageStyle;
 
     pageStyle.setFrame(m_frame);
+    pageStyle.setTitleblocke(m_titleblock);
 
     pageStyle.setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                           getOrientationFromUi());
 
     // qDebug() << pageStyle;
 
-    m_lastPath = QFileDialog::getExistingDirectory(this, tr("Open Directory"), m_lastPath,
-                                                   QFileDialog::ShowDirsOnly
-                                                           | QFileDialog::DontResolveSymlinks);
+    QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory"), m_lastPath,
+                                                     QFileDialog::ShowDirsOnly
+                                                             | QFileDialog::DontResolveSymlinks);
+    if (path.isEmpty()) {
+        return;
+    }
+
+    m_lastPath = path;
 
     UniversalDrawThread *thread = new UniversalDrawThread(
             m_lastPath + "/" + m_ui->fileNameLineEdit->text(), pageStyle, getDrawingFormates());
@@ -69,7 +77,7 @@ void MainWindow::updatePreView()
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
     m_pageStyle->setFrame(m_frame);
-    m_pageStyle->setTitleblocke(std::make_shared<TitleBlock>());
+    m_pageStyle->setTitleblocke(m_titleblock);
     m_preView->setPageStyle(m_pageStyle);
     m_preView->update();
 }
@@ -87,6 +95,13 @@ void MainWindow::initFrames()
 {
     foreach (QString frameStr, m_frames) {
         m_ui->FrameComboBox->addItem(frameStr);
+    }
+}
+
+void MainWindow::initTitleBlocks()
+{
+    foreach (QString titleBlockStr, m_titleBlocks) {
+        m_ui->TitleBlockComboBox->addItem(titleBlockStr);
     }
 }
 
@@ -200,6 +215,29 @@ void MainWindow::on_FrameComboBox_currentTextChanged(const QString &arg1)
         m_frame = std::make_shared<PageFrame>();
     } else if (arg1 == "Plain Frame") {
         m_frame = std::make_shared<PlainFrame>();
+    }
+    updatePreView();
+}
+
+void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1 == "None") {
+        m_titleblock = std::make_shared<TitleBlock>();
+    } else if (arg1 == "Plain TitleBlock") {
+        m_titleblock = std::make_shared<PlainTitleBlock>();
+    }
+    updatePreView();
+}
+
+void MainWindow::on_TitleBlockPushButton_clicked()
+{
+    if (m_titleblock->type() == "Plain TitleBlock") {
+        PlainTitleBlockDialog dialog;
+
+        dialog.setModal(true);
+        dialog.exec();
+
+        m_titleblock = dialog.titleBlock();
     }
     updatePreView();
 }

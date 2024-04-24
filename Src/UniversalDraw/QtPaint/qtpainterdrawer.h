@@ -6,7 +6,7 @@
 #include <QPainter>
 #include <QSvgRenderer>
 
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
 ///
 /// \brief The QtPainterDrawer class draws on to a provided QPainter

@@ -1,7 +1,7 @@
 #ifndef FREECADSVG_H
 #define FREECADSVG_H
 
-#include "Svg/svgdraw.h"
+#include "UniversalDraw/Svg/svgdraw.h"
 
 class FreeCADSvg : public SvgDraw
 {

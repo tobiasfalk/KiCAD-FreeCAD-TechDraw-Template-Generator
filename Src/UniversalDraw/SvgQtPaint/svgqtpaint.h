@@ -5,8 +5,8 @@
 #include <QSvgGenerator>
 #include <QSvgRenderer>
 
-#include "QtPaint/qtpainterdrawer.h"
-#include "universaldraw.h"
+#include "UniversalDraw/QtPaint/qtpainterdrawer.h"
+#include "UniversalDraw/universaldraw.h"
 
 class SvgQtPaint : public QtPainterDrawer
 {

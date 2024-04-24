@@ -7,10 +7,10 @@
 #include <QPageLayout>
 #include <QSharedData>
 
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
-#include "pageframe.h"
-#include "titleblock.h"
+#include "PageLayout/Frame/pageframe.h"
+#include "PageLayout/TitleBlock/titleblock.h"
 
 ///
 /// \brief The PageStyle class manages the layout and style for a page

@@ -25,4 +25,4 @@ target_link_libraries(UniversalDraw PRIVATE
     Qt${QT_VERSION_MAJOR}::Svg
 )
 
-target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -17,4 +17,4 @@ target_link_libraries(Threads PRIVATE
     PageFrame
 )
 
-target_include_directories(Threads PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(Threads PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

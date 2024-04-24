@@ -14,4 +14,4 @@ target_link_libraries(PageLayout PRIVATE
     UniversalDraw
 )
 
-target_include_directories(PageLayout PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(PageLayout PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

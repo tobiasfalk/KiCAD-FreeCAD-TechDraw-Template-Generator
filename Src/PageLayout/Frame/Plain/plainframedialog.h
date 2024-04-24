@@ -2,7 +2,7 @@
 #define PLAINFRAMEDIALOG_H
 
 #include <QDialog>
-#include "Plain/plainframe.h"
+#include "PageLayout/Frame/Plain/plainframe.h"
 
 namespace Ui {
 class PlainFrameDialog;

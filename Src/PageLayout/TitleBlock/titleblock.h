@@ -8,7 +8,7 @@
 
 #include <QDebug>
 
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
 class TitleBlock
 {
@@ -29,6 +29,8 @@ public:
     ///
     virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat);
 
+    QRectF titleBlockArea() const;
+
 protected:
     ///
     /// \brief setType sets the type of the frame, the base class TitleBlock has the type "none"
@@ -36,6 +38,7 @@ protected:
     ///
     void setType(const QString &newType);
     void setDescription(const QString &newDescription);
+    void setTitleBlockArea(const QRectF &newTitleBlockArea);
 
 private:
     ///
@@ -48,6 +51,11 @@ private:
     /// uses as a user Info or something similar
     ///
     QString m_description = "No Titleblock at all";
+
+    ///
+    /// \brief m_titleBlockArea the Area the TitleBlock is placed,
+    ///
+    QRectF m_titleBlockArea;
 };
 
 #endif // TITLEBLOCK_H

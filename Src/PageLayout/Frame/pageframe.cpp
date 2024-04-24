@@ -1,6 +1,6 @@
 #include "pageframe.h"
 
-#include "../../UniversalDraw/universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
 #include <QDebug>
 

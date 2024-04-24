@@ -175,7 +175,8 @@ void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout
 auto operator<<(QDebug debug, const UniversalDraw &style) -> QDebug
 {
     QDebugStateSaver saver(debug);
-    debug.nospace() << "UniversalDraw(" << ")";
+    debug.nospace() << "UniversalDraw("
+                    << ")";
     return debug;
 }
 // }

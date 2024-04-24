@@ -10,11 +10,11 @@
 #include "../PreView/preview.h"
 // #include "PreView/preview.h"
 
-#include "pageframe.h"
-#include "pagestyle.h"
-#include "Plain/plainframe.h"
+#include "PageLayout/Frame/pageframe.h"
+#include "PageLayout/pagestyle.h"
+#include "PageLayout/Frame/Plain/plainframe.h"
 
-#include "universaldrawthread.h"
+#include "Threads/universaldrawthread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -59,6 +59,10 @@ private slots:
     void on_framePushButton_clicked();
 
     void on_FrameComboBox_currentTextChanged(const QString &arg1);
+
+    void on_TitleBlockComboBox_currentTextChanged(const QString &arg1);
+
+    void on_TitleBlockPushButton_clicked();
 
 private:
     ///
@@ -282,8 +286,11 @@ private:
 
     QList<QString> m_frames = QList<QString>{ "None", "Plain Frame" };
 
+    QList<QString> m_titleBlocks = QList<QString>{ "None", "Plain TitleBlock" };
+
     void initPageSizes();
     void initFrames();
+    void initTitleBlocks();
     QPageSize getPageSizeFromName(QString name);
     QPageLayout::Orientation getOrientationFromUi();
     QList<DrawingFormate> getDrawingFormates();
@@ -292,6 +299,7 @@ private:
 
     std::shared_ptr<PageStyle> m_pageStyle;
     std::shared_ptr<PageFrame> m_frame;
+    std::shared_ptr<TitleBlock> m_titleblock;
 };
 
 #endif // MAINWINDOW_H

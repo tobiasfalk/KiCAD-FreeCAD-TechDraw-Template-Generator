@@ -5,6 +5,11 @@ set(TitleBlock_SOURCES
 
 add_library(TitleBlock STATIC
     ${TitleBlock_SOURCES}
+    Plain/plaintitleblock.h
+    Plain/plaintitleblock.cpp
+    Plain/plaintitleblockdialog.h
+    Plain/plaintitleblockdialog.cpp
+    Plain/plaintitleblockdialog.ui
 )
 
 target_link_libraries(TitleBlock PRIVATE
@@ -15,6 +20,6 @@ target_link_libraries(TitleBlock PRIVATE
     PageLayout
 )
 
-target_include_directories(TitleBlock PUBLIC BEFORE ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(TitleBlock PUBLIC BEFORE ${CMAKE_CURRENT_SOURCE_DIR})
 # set(INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
 

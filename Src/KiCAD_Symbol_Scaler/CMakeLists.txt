@@ -11,4 +11,4 @@ target_link_libraries(KiCAD_Symbol_scaler PRIVATE
     Qt${QT_VERSION_MAJOR}::Svg
 )
 
-target_include_directories(KiCAD_Symbol_scaler PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(KiCAD_Symbol_scaler PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

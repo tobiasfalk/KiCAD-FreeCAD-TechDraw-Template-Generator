@@ -1,7 +1,7 @@
 #ifndef KICAD8_H
 #define KICAD8_H
 
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
 #include <QFile>
 #include <QDebug>

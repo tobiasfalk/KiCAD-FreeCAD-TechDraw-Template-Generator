@@ -6,7 +6,7 @@
 #include <QPainter>
 #include <QSvgRenderer>
 
-#include "pagestyle.h"
+#include "PageLayout/pagestyle.h"
 
 ///
 /// \brief The PreView class uses the QtPainterDrawer class to draw a PreView in to the main window

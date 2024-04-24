@@ -1,11 +1,11 @@
 #include "universaldrawthread.h"
 #include "qtmetamacros.h"
 
-#include "PdfQtPaint/pdfqtpaint.h"
-#include "SvgQtPaint/svgqtpaint.h"
-#include "Svg/svgdraw.h"
-#include "FreeCADSvg/freecadsvg.h"
-#include "KiCAD8/kicad8.h"
+#include "UniversalDraw/PdfQtPaint/pdfqtpaint.h"
+#include "UniversalDraw/SvgQtPaint/svgqtpaint.h"
+#include "UniversalDraw/Svg/svgdraw.h"
+#include "UniversalDraw/FreeCADSvg/freecadsvg.h"
+#include "UniversalDraw/KiCAD8/kicad8.h"
 
 UniversalDrawThread::UniversalDrawThread() { }
 

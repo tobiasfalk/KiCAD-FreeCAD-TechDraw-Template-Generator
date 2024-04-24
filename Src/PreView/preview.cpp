@@ -1,8 +1,7 @@
 #include "preview.h"
 
-#include "universaldraw.h"
-
-#include "QtPaint/qtpainterdrawer.h"
+#include "UniversalDraw/universaldraw.h"
+#include "UniversalDraw/QtPaint/qtpainterdrawer.h"
 
 void PreView::paintEvent(QPaintEvent *e)
 {

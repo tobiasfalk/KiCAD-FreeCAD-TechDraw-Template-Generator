@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "Window/mainwindow.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -9,19 +9,19 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include "pagestyle.h"
+#include "PageLayout/pagestyle.h"
 
-#include "pageframe.h"
+#include "PageLayout/Frame/pageframe.h"
 
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 // #include "PreView/preview.h"
 
-#include "PdfQtPaint/pdfqtpaint.h"
-#include "SvgQtPaint/svgqtpaint.h"
-#include "Svg/svgdraw.h"
-#include "FreeCADSvg/freecadsvg.h"
-#include "KiCAD8/kicad8.h"
-#include "universaldrawthread.h"
+#include "UniversalDraw/PdfQtPaint/pdfqtpaint.h"
+#include "UniversalDraw/SvgQtPaint/svgqtpaint.h"
+#include "UniversalDraw/Svg/svgdraw.h"
+#include "UniversalDraw/FreeCADSvg/freecadsvg.h"
+#include "UniversalDraw/KiCAD8/kicad8.h"
+#include "Threads/universaldrawthread.h"
 
 // #include "preview.h"
 

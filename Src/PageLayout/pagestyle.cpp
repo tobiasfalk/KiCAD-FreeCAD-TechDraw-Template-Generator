@@ -1,5 +1,5 @@
 #include "pagestyle.h"
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
 #include <QDebug>
 

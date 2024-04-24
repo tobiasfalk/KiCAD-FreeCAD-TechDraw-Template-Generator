@@ -5,8 +5,8 @@
 #include <QSvgRenderer>
 #include <QPdfWriter>
 
-#include "universaldraw.h"
-#include "QtPaint/qtpainterdrawer.h"
+#include "UniversalDraw/universaldraw.h"
+#include "UniversalDraw/QtPaint/qtpainterdrawer.h"
 
 class PdfQtPaint : public QtPainterDrawer
 {

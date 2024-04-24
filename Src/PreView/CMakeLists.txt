@@ -18,7 +18,7 @@ target_link_libraries(PreView PRIVATE
 
 message(STATUS "Conft PreView")
 
-target_include_directories(PreView PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(PreView PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # get_target_property(LIB_INCLUDES PreView INCLUDE_DIRECTORIES)
 

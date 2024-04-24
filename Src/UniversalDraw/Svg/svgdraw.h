@@ -1,7 +1,7 @@
 #ifndef SVGDRAW_H
 #define SVGDRAW_H
 
-#include "universaldraw.h"
+#include "UniversalDraw/universaldraw.h"
 
 #include <QFile>
 #include <QTextStream>

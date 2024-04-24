@@ -1,7 +1,7 @@
 #ifndef PLAINFRAME_H
 #define PLAINFRAME_H
 
-#include "pageframe.h"
+#include "PageLayout/Frame/pageframe.h"
 
 ///
 /// \brief The PlainFrame class sets up and draws a simple and plain frame only consisting of a
