@@ -276,4 +276,10 @@ void ISO5457Frame::decideBottomAndTopCenteringLine(double TitleBlockWidth, doubl
             m_topCenteringLines = false;
         }
     }
+    if (TitleBlockHeight + 10 > where.height() / 2) {
+        m_rigthCenteringLines = false;
+        if (TitleBlockWidth > where.width() - 40) {
+            m_leftCenteringLines = false;
+        }
+    }
 }

@@ -396,6 +396,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QComboBox" name="TitleBlLanguageComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="TitleBlockPushButton">
         <property name="text">
          <string>Titleblock Options</string>

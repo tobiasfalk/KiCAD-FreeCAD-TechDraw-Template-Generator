@@ -50,6 +50,24 @@ public:
     ///
     QRectF titleBlockArea() const;
 
+    ///
+    /// \brief language returns the current selected language
+    /// \return
+    ///
+    QString language() const;
+    ///
+    /// \brief setLanguage sets the to be used, if it is not part of m_languages than it does
+    /// nothing
+    /// \param newLanguage
+    ///
+    void setLanguage(const QString &newLanguage);
+
+    ///
+    /// \brief languages returns a list of available languages
+    /// \return
+    ///
+    QList<QString> languages() const;
+
 protected:
     ///
     /// \brief setType sets the type of the frame, the base class TitleBlock has the type "none"
@@ -69,6 +87,8 @@ protected:
     ///
     void setTitleBlockArea(const QRectF &newTitleBlockArea);
 
+    void setLanguages(const QList<QString> &newLanguages);
+
 private:
     ///
     /// \brief m_type the type name of the title-block
@@ -85,6 +105,17 @@ private:
     /// \brief m_titleBlockArea the Area the TitleBlock is placed,
     ///
     QRectF m_titleBlockArea;
+
+    ///
+    /// \brief m_language is the selected language of the template, it structure is
+    /// <ISO 639 language code>_<ISO 3166 country code>, examples: de_at, en_us or en_gb
+    ///
+    QString m_language = "none";
+
+    ///
+    /// \brief m_languages is a list of all available languages
+    ///
+    QList<QString> m_languages = { "none" };
 };
 
 #endif // TITLEBLOCK_H

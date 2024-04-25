@@ -72,25 +72,37 @@ void UniversalDraw::drawText(QPointF position, QStringList text, double textSize
         case TextHeightAnchor::Top:
             for (int i = 0; i < text.length(); i++) {
                 double height = position.y() + lineHeight * i;
+                QString nameIndex = name + QString::number(i);
+                if (i == 0) {
+                    nameIndex = name;
+                }
                 QString txt = text.at(i);
                 drawText(QPointF{ position.x(), height }, txt, textSize, TextHeightAnchor::Top,
-                         textWidthAnchor, lineWidth, font, name + QString::number(i), isEditable);
+                         textWidthAnchor, lineWidth, font, nameIndex, isEditable);
             }
             break;
         case TextHeightAnchor::Middle:
             for (int i = 0; i < text.length(); i++) {
+                QString nameIndex = name + QString::number(i);
+                if (i == 0) {
+                    nameIndex = name;
+                }
                 double height = position.y() - (heightTotal / 2) + lineHeight * i;
                 QString txt = text.at(i);
                 drawText(QPointF{ position.x(), height }, txt, textSize, TextHeightAnchor::Top,
-                         textWidthAnchor, lineWidth, font, name + QString::number(i), isEditable);
+                         textWidthAnchor, lineWidth, font, nameIndex, isEditable);
             }
             break;
         case TextHeightAnchor::Bottom:
             for (int i = 0; i < text.length(); i++) {
+                QString nameIndex = name + QString::number(i);
+                if (i == 0) {
+                    nameIndex = name;
+                }
                 double height = position.y() - heightTotal + lineHeight * i;
                 QString txt = text.at(i);
                 drawText(QPointF{ position.x(), height }, txt, textSize, TextHeightAnchor::Top,
-                         textWidthAnchor, lineWidth, font, name + QString::number(i), isEditable);
+                         textWidthAnchor, lineWidth, font, nameIndex, isEditable);
             }
             break;
         }

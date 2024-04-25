@@ -6,6 +6,7 @@
 #include "PageLayout/Frame/Plain/plainframedialog.h"
 #include "PageLayout/TitleBlock/Plain/plaintitleblock.h"
 #include "PageLayout/TitleBlock/Plain/plaintitleblockdialog.h"
+#include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
 #include "PageLayout/Frame/ISO5457/iso5457frame.h"
 #include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::Main
     initPageSizes();
     initFrames();
     initTitleBlocks();
+    initTitleBlockLanguages();
 }
 
 MainWindow::~MainWindow()
@@ -129,6 +131,15 @@ void MainWindow::initTitleBlocks()
     }
 }
 
+void MainWindow::initTitleBlockLanguages()
+{
+    m_ui->TitleBlLanguageComboBox->clear();
+    QList<QString> langs = m_titleblock->languages();
+    foreach (QString lan, langs) {
+        m_ui->TitleBlLanguageComboBox->addItem(lan);
+    }
+}
+
 QPageSize MainWindow::getPageSizeFromName(QString name)
 {
     foreach (QPageSize page, m_pagesizes) {
@@ -201,6 +212,9 @@ void MainWindow::on_PageWidthDoubleSpinBox_valueChanged(double width)
     m_pagesizes[0] =
             QPageSize{ QSizeF{ width, m_ui->PageHeigthDoubleSpinBox->value() },
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
+
+    updateFrame();
+    updatePreView();
 }
 
 void MainWindow::on_PageHeigthDoubleSpinBox_valueChanged(double height)
@@ -208,6 +222,9 @@ void MainWindow::on_PageHeigthDoubleSpinBox_valueChanged(double height)
     m_pagesizes[0] =
             QPageSize{ QSizeF{ m_ui->PageWidthDoubleSpinBox->value(), height },
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
+
+    updateFrame();
+    updatePreView();
 }
 
 void MainWindow::on_NameLineEdit_editingFinished()
@@ -246,9 +263,12 @@ void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
         m_titleblock = std::make_shared<TitleBlock>();
     } else if (arg1 == "Plain TitleBlock") {
         m_titleblock = std::make_shared<PlainTitleBlock>();
+    } else if (arg1 == "ISO7200 Style A") {
+        m_titleblock = std::make_shared<ISO7200A>();
     }
     updateFrame();
     updatePreView();
+    initTitleBlockLanguages();
 }
 
 void MainWindow::on_TitleBlockPushButton_clicked()
@@ -263,4 +283,9 @@ void MainWindow::on_TitleBlockPushButton_clicked()
     }
     updateFrame();
     updatePreView();
+}
+
+void MainWindow::on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1)
+{
+    m_titleblock->setLanguage(arg1);
 }

@@ -10,6 +10,7 @@ add_library(TitleBlock STATIC
     Plain/plaintitleblockdialog.h
     Plain/plaintitleblockdialog.cpp
     Plain/plaintitleblockdialog.ui
+    ISO7200A/iso7200a.h ISO7200A/iso7200a.cpp
 )
 
 target_link_libraries(TitleBlock PRIVATE

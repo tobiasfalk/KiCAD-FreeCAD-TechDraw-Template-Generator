@@ -64,6 +64,8 @@ private slots:
 
     void on_TitleBlockPushButton_clicked();
 
+    void on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1);
+
 private:
     ///
     /// \brief ui is the pointer to the ui and through this all the elements of
@@ -305,7 +307,7 @@ private:
     ///
     /// \brief m_titleBlocks a list for selecting the title-block
     ///
-    QList<QString> m_titleBlocks = QList<QString>{ "None", "Plain TitleBlock" };
+    QList<QString> m_titleBlocks = QList<QString>{ "None", "Plain TitleBlock", "ISO7200 Style A" };
 
     ///
     /// \brief initPageSizes initialises the PageSice combobox with m_pagesizes
@@ -319,6 +321,7 @@ private:
     /// \brief initTitleBlocks initialises the TitleBlockComboBox with m_titleBlocks
     ///
     void initTitleBlocks();
+    void initTitleBlockLanguages();
     ///
     /// \brief getPageSizeFromName returns the PageSize with a give size string
     /// \param name the size string

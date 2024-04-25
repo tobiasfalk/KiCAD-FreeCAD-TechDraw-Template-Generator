@@ -141,6 +141,10 @@ void KiCAD8::drawText(QPointF position, QString text, double textSize,
         anchorString = "(justify right bottom)";
     }
 
+    if (isEditable) {
+        text = "${" + name + "}";
+    }
+
     QString lineString = "  (tbtext \"" + text + "\" (name \"\")\n    (pos "
             + QString::number(position.x()) + " " + QString::number(position.y() + .3)
             + " ltcorner)\n    (font (face \"" + font + "\") (linewidth "

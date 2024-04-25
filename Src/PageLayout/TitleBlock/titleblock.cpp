@@ -40,3 +40,25 @@ void TitleBlock::setTitleBlockArea(const QRectF &newTitleBlockArea)
 {
     m_titleBlockArea = newTitleBlockArea;
 }
+
+QList<QString> TitleBlock::languages() const
+{
+    return m_languages;
+}
+
+void TitleBlock::setLanguages(const QList<QString> &newLanguages)
+{
+    m_languages = newLanguages;
+}
+
+QString TitleBlock::language() const
+{
+    return m_language;
+}
+
+void TitleBlock::setLanguage(const QString &newLanguage)
+{
+    if (m_languages.contains(newLanguage)) {
+        m_language = newLanguage;
+    }
+}
