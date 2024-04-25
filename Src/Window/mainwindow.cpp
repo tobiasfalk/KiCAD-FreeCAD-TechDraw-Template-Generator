@@ -288,4 +288,5 @@ void MainWindow::on_TitleBlockPushButton_clicked()
 void MainWindow::on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1)
 {
     m_titleblock->setLanguage(arg1);
+    updatePreView();
 }
