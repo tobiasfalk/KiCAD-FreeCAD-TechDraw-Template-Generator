@@ -1,18 +1,13 @@
-#ifndef ISO7200A_H
-#define ISO7200A_H
+#ifndef ISO7200B_H
+#define ISO7200B_H
 
 #include "PageLayout/TitleBlock/titleblock.h"
+#include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
 
-struct ISO7200ATextStruct
-{
-    QString lable;
-    QString text;
-};
-
-class ISO7200A : public TitleBlock
+class ISO7200B : public ISO7200A
 {
 public:
-    ISO7200A();
+    ISO7200B();
 
     ///
     /// \brief draw draws the title-block into the given drawer and into the given rectangle
@@ -26,23 +21,10 @@ public:
                       QPageLayout onWhat) override;
 
 protected:
-    //   Key/varName, values
-    ///
-    /// \brief m_currentLanguage is the Map with the current language texts
-    ///
-    QMap<QString, ISO7200ATextStruct> m_currentLanguage;
-
-    ///
-    /// \brief m_languageText a map with all the language texts
-    ///
-    QMap<QString, QMap<QString, ISO7200ATextStruct>> m_languageTexts;
-
     ///
     /// \brief initLanguages initialises the Languages map(m_languageTexts)
     ///
-    virtual void initLanguages();
-
-private:
+    void initLanguages() override;
 };
 
-#endif // ISO7200A_H
+#endif // ISO7200B_H

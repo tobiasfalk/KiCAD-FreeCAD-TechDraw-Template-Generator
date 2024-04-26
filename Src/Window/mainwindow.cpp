@@ -7,6 +7,7 @@
 #include "PageLayout/TitleBlock/Plain/plaintitleblock.h"
 #include "PageLayout/TitleBlock/Plain/plaintitleblockdialog.h"
 #include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
+#include "PageLayout/TitleBlock/ISO7200B/iso7200b.h"
 #include "PageLayout/Frame/ISO5457/iso5457frame.h"
 #include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
@@ -265,6 +266,8 @@ void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
         m_titleblock = std::make_shared<PlainTitleBlock>();
     } else if (arg1 == "ISO7200 Style A") {
         m_titleblock = std::make_shared<ISO7200A>();
+    } else if (arg1 == "ISO7200 Style B") {
+        m_titleblock = std::make_shared<ISO7200B>();
     }
     updateFrame();
     updatePreView();

@@ -307,7 +307,8 @@ private:
     ///
     /// \brief m_titleBlocks a list for selecting the title-block
     ///
-    QList<QString> m_titleBlocks = QList<QString>{ "None", "Plain TitleBlock", "ISO7200 Style A" };
+    QList<QString> m_titleBlocks =
+            QList<QString>{ "None", "Plain TitleBlock", "ISO7200 Style A", "ISO7200 Style B" };
 
     ///
     /// \brief initPageSizes initialises the PageSice combobox with m_pagesizes
