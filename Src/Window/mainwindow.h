@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <memory>
-#include <utility>
+// #include <utility>
 
 #include <QFileDialog>
 #include <QMainWindow>
@@ -12,7 +12,7 @@
 
 #include "PageLayout/Frame/pageframe.h"
 #include "PageLayout/pagestyle.h"
-#include "PageLayout/Frame/Plain/plainframe.h"
+// #include "PageLayout/Frame/Plain/plainframe.h"
 
 #include "Threads/universaldrawthread.h"
 

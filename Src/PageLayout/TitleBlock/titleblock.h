@@ -87,6 +87,10 @@ protected:
     ///
     void setTitleBlockArea(const QRectF &newTitleBlockArea);
 
+    ///
+    /// \brief setLanguages sets a list of avalible languages, see m_language for more details
+    /// \param newLanguages
+    ///
     void setLanguages(const QList<QString> &newLanguages);
 
 private:

@@ -4,9 +4,15 @@
 #include "PageLayout/TitleBlock/titleblock.h"
 #include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
 
+///
+/// \brief The ISO7200B class draws a ISO 7200 conform title-block
+///
 class ISO7200B : public ISO7200A
 {
 public:
+    ///
+    /// \brief ISO7200B is the base constructor
+    ///
     ISO7200B();
 
     ///

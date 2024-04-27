@@ -40,18 +40,22 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
         into->drawRect(QPointF{ 20, 10 }, QPointF{ where.width() - 10, where.height() - 10 }, 0.7);
     }
 
-    QList<QPointF> trimmingMarkLT{ QPointF{ 0, 0 }, QPointF{ 10, 0 }, QPointF{ 10, 5 },
-                                   QPointF{ 5, 5 }, QPointF{ 5, 10 }, QPointF{ 0, 10 } };
-    QList<QPointF> trimmingMarkRT{ QPointF{ 0, 0 },  QPointF{ -10, 0 }, QPointF{ -10, 5 },
-                                   QPointF{ -5, 5 }, QPointF{ -5, 10 }, QPointF{ 0, 10 } };
-    QList<QPointF> trimmingMarkRB{ QPointF{ 0, 0 },   QPointF{ -10, 0 },  QPointF{ -10, -5 },
-                                   QPointF{ -5, -5 }, QPointF{ -5, -10 }, QPointF{ 0, -10 } };
-    QList<QPointF> trimmingMarkLB{ QPointF{ 0, 0 },  QPointF{ 10, 0 },  QPointF{ 10, -5 },
-                                   QPointF{ 5, -5 }, QPointF{ 5, -10 }, QPointF{ 0, -10 } };
-    into->drawPoly(QPointF{ 0, 0 }, trimmingMarkLT, 0, true);
-    into->drawPoly(QPointF{ where.width(), 0 }, trimmingMarkRT, 0, true);
-    into->drawPoly(QPointF{ where.width(), where.height() }, trimmingMarkRB, 0, true);
-    into->drawPoly(QPointF{ 0, where.height() }, trimmingMarkLB, 0, true);
+    // draw Trimming Marks
+    if (m_showTrimmingMarks) {
+
+        QList<QPointF> trimmingMarkLT{ QPointF{ 0, 0 }, QPointF{ 10, 0 }, QPointF{ 10, 5 },
+                                       QPointF{ 5, 5 }, QPointF{ 5, 10 }, QPointF{ 0, 10 } };
+        QList<QPointF> trimmingMarkRT{ QPointF{ 0, 0 },  QPointF{ -10, 0 }, QPointF{ -10, 5 },
+                                       QPointF{ -5, 5 }, QPointF{ -5, 10 }, QPointF{ 0, 10 } };
+        QList<QPointF> trimmingMarkRB{ QPointF{ 0, 0 },   QPointF{ -10, 0 },  QPointF{ -10, -5 },
+                                       QPointF{ -5, -5 }, QPointF{ -5, -10 }, QPointF{ 0, -10 } };
+        QList<QPointF> trimmingMarkLB{ QPointF{ 0, 0 },  QPointF{ 10, 0 },  QPointF{ 10, -5 },
+                                       QPointF{ 5, -5 }, QPointF{ 5, -10 }, QPointF{ 0, -10 } };
+        into->drawPoly(QPointF{ 0, 0 }, trimmingMarkLT, 0, true);
+        into->drawPoly(QPointF{ where.width(), 0 }, trimmingMarkRT, 0, true);
+        into->drawPoly(QPointF{ where.width(), where.height() }, trimmingMarkRB, 0, true);
+        into->drawPoly(QPointF{ 0, where.height() }, trimmingMarkLB, 0, true);
+    }
 
     // Centermarks
     if (!noDrawingAreaIndent()) {
@@ -164,20 +168,43 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                                TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
             }
             // Bottom
-            if (lineX < where.width() - spaceRightBottom) {
-                into->drawLine(QPointF{ lineX, where.height() - 5 },
-                               QPointF{ lineX, where.height() - 10 }, 0.35);
-                lastBottomLine = lineX;
-            }
+            if (m_showPageSize) {
+                if (lineX < where.width() - spaceRightBottom) {
+                    into->drawLine(QPointF{ lineX, where.height() - 5 },
+                                   QPointF{ lineX, where.height() - 10 }, 0.35);
+                    lastBottomLine = lineX;
+                }
 
-            if (lineX >= where.width() - 55) {
-                into->drawText(QPointF{ lastBottomLine + (where.width() - lastBottomLine) / 2,
-                                        where.height() - 7.5 },
-                               onWhat.pageSize().name(), 3.5, TextHeightAnchor::Middle,
-                               TextWidthAnchor::Center, 0.35);
-            } else if (where.height() >= 297 && lineX < where.width() - spaceRightBottom - 50) {
-                into->drawText(QPointF{ lineX + 25, where.height() - 7.5 }, QString::number(index),
-                               3.5, TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                if (lineX >= where.width() - 55) {
+                    into->drawText(QPointF{ lastBottomLine + (where.width() - lastBottomLine) / 2,
+                                            where.height() - 7.5 },
+                                   onWhat.pageSize().name(), 3.5, TextHeightAnchor::Middle,
+                                   TextWidthAnchor::Center, 0.35);
+                } else if (where.height() >= 297 && lineX < where.width() - spaceRightBottom - 50) {
+                    into->drawText(QPointF{ lineX + 25, where.height() - 7.5 },
+                                   QString::number(index), 3.5, TextHeightAnchor::Middle,
+                                   TextWidthAnchor::Center, 0.35);
+                }
+            } else {
+                if (lineX <= (double)where.width() - (double)spaceRight) {
+                    into->drawLine(QPointF{ lineX, where.height() - 5 },
+                                   QPointF{ lineX, where.height() - 10 }, 0.35);
+                    lastTopLine = lineX;
+                }
+
+                if (where.height() >= 297 && where.width() >= 297 && where.height() >= 297
+                    && lineX >= (double)where.width() - (double)spaceRight - 50
+                    && lineX <= (double)where.width() - (double)spaceRight) {
+                    into->drawText(QPointF{ lastTopLine + ((where.width() - 5) - lastTopLine) / 2,
+                                            where.height() - 7.5 },
+                                   QString::number(index), 3.5, TextHeightAnchor::Middle,
+                                   TextWidthAnchor::Center, 0.35);
+                } else if (where.height() >= 297 && where.width() >= 297
+                           && lineX + 25 <= where.width()) {
+                    into->drawText(QPointF{ lineX + 25, where.height() - 7.5 },
+                                   QString::number(index), 3.5, TextHeightAnchor::Middle,
+                                   TextWidthAnchor::Center, 0.35);
+                }
             }
             lineX += 50;
             index++;
@@ -271,6 +298,8 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
 void ISO5457Frame::decideBottomAndTopCenteringLine(double TitleBlockWidth, double TitleBlockHeight,
                                                    QRectF where)
 {
+    m_bottomCenteringLines = true;
+    m_rigthCenteringLines = true;
     if (TitleBlockWidth > where.width() / 2) {
         m_bottomCenteringLines = false;
         if (TitleBlockHeight > where.height() - 30) {
@@ -283,4 +312,24 @@ void ISO5457Frame::decideBottomAndTopCenteringLine(double TitleBlockWidth, doubl
             m_leftCenteringLines = false;
         }
     }
+}
+
+bool ISO5457Frame::showPageSize() const
+{
+    return m_showPageSize;
+}
+
+void ISO5457Frame::setShowPageSize(bool newShowPageSize)
+{
+    m_showPageSize = newShowPageSize;
+}
+
+bool ISO5457Frame::showTrimmingMarks() const
+{
+    return m_showTrimmingMarks;
+}
+
+void ISO5457Frame::setShowTrimmingMarks(bool newShowTrimmingMarks)
+{
+    m_showTrimmingMarks = newShowTrimmingMarks;
 }

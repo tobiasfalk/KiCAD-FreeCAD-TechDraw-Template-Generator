@@ -9,6 +9,7 @@
 #include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
 #include "PageLayout/TitleBlock/ISO7200B/iso7200b.h"
 #include "PageLayout/Frame/ISO5457/iso5457frame.h"
+#include "PageLayout/Frame/ISO5457/iso5457framedialog.h"
 #include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
 
@@ -90,9 +91,25 @@ void UTGMainWindow::updateFrame(QString framStr)
     bool indent = m_frame->noDrawingAreaIndent();
     if (framStr == "None") {
         m_frame = std::make_shared<PageFrame>();
-    } else if (framStr == "Plain Frame") {
+    } else
+
+            if (framStr == "Plain Frame" && m_frame->type() == "Plain Frame") {
+        auto shared_base = std::shared_ptr<PageFrame>{ std::move(m_frame) };
+        std::shared_ptr<PlainFrame> tmp = std::static_pointer_cast<PlainFrame>(shared_base);
+        m_frame = tmp;
+    } else if (framStr == "Plain Frame" && m_frame->type() != "Plain Frame") {
         m_frame = std::make_shared<PlainFrame>();
-    } else if (framStr == "ISO5457") {
+    } else
+
+            if (framStr == "ISO5457" && m_frame->type() == "ISO5457") {
+        auto shared_base = std::shared_ptr<PageFrame>{ std::move(m_frame) };
+        std::shared_ptr<ISO5457Frame> tmp = std::static_pointer_cast<ISO5457Frame>(
+                shared_base); // std::make_shared<ISO5457Frame>();
+        tmp->decideBottomAndTopCenteringLine(
+                m_titleblock->titleBlockArea().width(), m_titleblock->titleBlockArea().height(),
+                m_pageStyle->getLayout().fullRect(QPageLayout::Millimeter));
+        m_frame = tmp;
+    } else if (framStr == "ISO5457" && m_frame->type() != "ISO5457") {
         std::shared_ptr<ISO5457Frame> tmp = std::make_shared<ISO5457Frame>();
         tmp->decideBottomAndTopCenteringLine(
                 m_titleblock->titleBlockArea().width(), m_titleblock->titleBlockArea().height(),
@@ -240,6 +257,11 @@ void UTGMainWindow::on_framePushButton_clicked()
     if (m_frame->type() == "Plain Frame") {
         PlainFrameDialog frameDialog;
 
+        auto shared_base = std::shared_ptr<PageFrame>{ std::move(m_frame) };
+        std::shared_ptr<PlainFrame> tmp = std::static_pointer_cast<PlainFrame>(shared_base);
+
+        frameDialog.setFrame(tmp);
+
         // frameDialog.setFrame(m_frame);
 
         // frameDialog.show();
@@ -247,6 +269,18 @@ void UTGMainWindow::on_framePushButton_clicked()
         frameDialog.exec();
 
         m_frame = frameDialog.frame();
+    } else if (m_frame->type() == "ISO5457") {
+        ISO5457FrameDialog dialog;
+
+        auto shared_base = std::shared_ptr<PageFrame>{ std::move(m_frame) };
+        std::shared_ptr<ISO5457Frame> tmp = std::static_pointer_cast<ISO5457Frame>(shared_base);
+
+        dialog.setFrame(tmp);
+
+        dialog.setModal(true);
+        dialog.exec();
+
+        m_frame = dialog.frame();
     }
     updateFrame();
     updatePreView();

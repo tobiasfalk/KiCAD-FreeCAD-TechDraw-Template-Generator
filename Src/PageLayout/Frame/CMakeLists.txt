@@ -20,6 +20,7 @@ add_library(PageFrame STATIC
     ${PageFrame_SOURCES}
     ${PlainFrame_SOURCES}
     ${ISO5457_SOURCES}
+    ISO5457/iso5457framedialog.h ISO5457/iso5457framedialog.cpp ISO5457/iso5457framedialog.ui
 )
 
 target_link_libraries(PageFrame PRIVATE

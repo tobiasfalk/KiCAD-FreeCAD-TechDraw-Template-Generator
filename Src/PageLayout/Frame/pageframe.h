@@ -49,7 +49,17 @@ public:
     ///
     QString description() const;
 
+    ///
+    /// \brief noDrawingAreaIndent returns true if there should be nothing that intrudes in to the
+    /// drawing area, for example the Centering Marks of ISO5457Frame
+    /// \return
+    ///
     bool noDrawingAreaIndent() const;
+    ///
+    /// \brief setNoDrawingAreaIndent if set to true there should be nothing that intrudes in to the
+    /// drawing area, for example the Centering Marks of ISO5457Frame
+    /// \param newNoDrawingAreaIndent
+    ///
     void setNoDrawingAreaIndent(bool newNoDrawingAreaIndent);
 
 protected:

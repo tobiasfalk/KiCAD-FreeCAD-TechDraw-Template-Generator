@@ -93,7 +93,15 @@ public:
     ///
     void setFrame(std::shared_ptr<PageFrame> newFrame);
 
+    ///
+    /// \brief titleblocke returns the title-block that is used
+    /// \return
+    ///
     std::shared_ptr<TitleBlock> titleblocke() const;
+    ///
+    /// \brief setTitleblocke sets the title-block that is used
+    /// \param newTitleblocke
+    ///
     void setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke);
 
 private:

@@ -3,15 +3,24 @@
 
 #include "PageLayout/TitleBlock/titleblock.h"
 
+///
+/// \brief The ISO7200ATextStruct struct is used to link a lable to a given Text
+///
 struct ISO7200ATextStruct
 {
     QString lable;
     QString text;
 };
 
+///
+/// \brief The ISO7200A class draws a ISO 7200 conform title-block
+///
 class ISO7200A : public TitleBlock
 {
 public:
+    ///
+    /// \brief ISO7200A is the base constructor
+    ///
     ISO7200A();
 
     ///
