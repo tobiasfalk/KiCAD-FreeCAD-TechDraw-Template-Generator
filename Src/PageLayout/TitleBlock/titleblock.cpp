@@ -22,8 +22,8 @@ QString TitleBlock::description() const
 
 void TitleBlock::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
 {
-    qDebug() << "TitleBlock, into: " << into.get();
-    qDebug() << "On What: " << onWhat;
+    qInfo() << "TitleBlock None, into: " << into.get();
+    qInfo() << "TitleBlock None, On What: " << onWhat;
 }
 
 void TitleBlock::setDescription(const QString &newDescription)

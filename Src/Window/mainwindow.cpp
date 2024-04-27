@@ -12,7 +12,7 @@
 #include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow)
+UTGMainWindow::UTGMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::UTGMainWindow)
 {
     m_ui->setupUi(this);
 
@@ -30,12 +30,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::Main
     initTitleBlockLanguages();
 }
 
-MainWindow::~MainWindow()
+UTGMainWindow::~UTGMainWindow()
 {
     delete m_ui;
 }
 
-void MainWindow::on_GeneratePushButton_clicked()
+void UTGMainWindow::on_GeneratePushButton_clicked()
 {
     PageStyle pageStyle;
 
@@ -44,8 +44,6 @@ void MainWindow::on_GeneratePushButton_clicked()
 
     pageStyle.setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                           getOrientationFromUi());
-
-    // qDebug() << pageStyle;
 
     QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory"), m_lastPath,
                                                      QFileDialog::ShowDirsOnly
@@ -59,24 +57,23 @@ void MainWindow::on_GeneratePushButton_clicked()
     UniversalDrawThread *thread = new UniversalDrawThread(
             m_lastPath + "/" + m_ui->fileNameLineEdit->text(), pageStyle, getDrawingFormates());
 
-    connect(thread, &UniversalDrawThread::resultReady, this, &MainWindow::handleResults);
+    connect(thread, &UniversalDrawThread::resultReady, this, &UTGMainWindow::handleResults);
 
     thread->start();
 }
 
-void MainWindow::handleResults(UniversalDrawThread *thread)
+void UTGMainWindow::handleResults(UniversalDrawThread *thread)
 {
-    // qDebug() << thread->fileName();
     delete thread;
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event)
+void UTGMainWindow::resizeEvent(QResizeEvent *event)
 {
     m_preView->setMinimumWidth(m_ui->centralwidget->size().width() - 800);
     QWidget::resizeEvent(event);
 }
 
-void MainWindow::updatePreView()
+void UTGMainWindow::updatePreView()
 {
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
@@ -86,10 +83,11 @@ void MainWindow::updatePreView()
     m_preView->update();
 }
 
-void MainWindow::updateFrame(QString framStr)
+void UTGMainWindow::updateFrame(QString framStr)
 {
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
+    bool indent = m_frame->noDrawingAreaIndent();
     if (framStr == "None") {
         m_frame = std::make_shared<PageFrame>();
     } else if (framStr == "Plain Frame") {
@@ -101,15 +99,16 @@ void MainWindow::updateFrame(QString framStr)
                 m_pageStyle->getLayout().fullRect(QPageLayout::Millimeter));
         m_frame = tmp;
     }
+    m_frame->setNoDrawingAreaIndent(indent);
     updatePreView();
 }
 
-void MainWindow::updateFrame()
+void UTGMainWindow::updateFrame()
 {
     updateFrame(m_ui->FrameComboBox->currentText());
 }
 
-void MainWindow::initPageSizes()
+void UTGMainWindow::initPageSizes()
 {
     foreach (QPageSize page, m_pagesizes) {
         m_ui->PageSizeComboBox->addItem(page.name());
@@ -118,21 +117,21 @@ void MainWindow::initPageSizes()
     m_ui->PageHeigthDoubleSpinBox->setValue(m_pagesizes[0].size(QPageSize::Millimeter).height());
 }
 
-void MainWindow::initFrames()
+void UTGMainWindow::initFrames()
 {
     foreach (QString frameStr, m_frames) {
         m_ui->FrameComboBox->addItem(frameStr);
     }
 }
 
-void MainWindow::initTitleBlocks()
+void UTGMainWindow::initTitleBlocks()
 {
     foreach (QString titleBlockStr, m_titleBlocks) {
         m_ui->TitleBlockComboBox->addItem(titleBlockStr);
     }
 }
 
-void MainWindow::initTitleBlockLanguages()
+void UTGMainWindow::initTitleBlockLanguages()
 {
     m_ui->TitleBlLanguageComboBox->clear();
     QList<QString> langs = m_titleblock->languages();
@@ -141,7 +140,7 @@ void MainWindow::initTitleBlockLanguages()
     }
 }
 
-QPageSize MainWindow::getPageSizeFromName(QString name)
+QPageSize UTGMainWindow::getPageSizeFromName(QString name)
 {
     foreach (QPageSize page, m_pagesizes) {
         if (name == page.name()) {
@@ -151,7 +150,7 @@ QPageSize MainWindow::getPageSizeFromName(QString name)
     return QPageSize{ QSizeF{ 420, 297 }, QPageSize::Millimeter, "A3", QPageSize::ExactMatch };
 }
 
-QPageLayout::Orientation MainWindow::getOrientationFromUi()
+QPageLayout::Orientation UTGMainWindow::getOrientationFromUi()
 {
     if (m_ui->PortraitCheckBox->isChecked()) {
         return QPageLayout::Orientation::Portrait;
@@ -160,7 +159,7 @@ QPageLayout::Orientation MainWindow::getOrientationFromUi()
     }
 }
 
-QList<DrawingFormate> MainWindow::getDrawingFormates()
+QList<DrawingFormate> UTGMainWindow::getDrawingFormates()
 {
     QList<DrawingFormate> ret;
 
@@ -187,7 +186,7 @@ QList<DrawingFormate> MainWindow::getDrawingFormates()
     return ret;
 }
 
-void MainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
+void UTGMainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
 {
     QPageSize page = getPageSizeFromName(name);
     m_ui->PageWidthDoubleSpinBox->setValue(page.size(QPageSize::Millimeter).width());
@@ -208,7 +207,7 @@ void MainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
     updatePreView();
 }
 
-void MainWindow::on_PageWidthDoubleSpinBox_valueChanged(double width)
+void UTGMainWindow::on_PageWidthDoubleSpinBox_valueChanged(double width)
 {
     m_pagesizes[0] =
             QPageSize{ QSizeF{ width, m_ui->PageHeigthDoubleSpinBox->value() },
@@ -218,7 +217,7 @@ void MainWindow::on_PageWidthDoubleSpinBox_valueChanged(double width)
     updatePreView();
 }
 
-void MainWindow::on_PageHeigthDoubleSpinBox_valueChanged(double height)
+void UTGMainWindow::on_PageHeigthDoubleSpinBox_valueChanged(double height)
 {
     m_pagesizes[0] =
             QPageSize{ QSizeF{ m_ui->PageWidthDoubleSpinBox->value(), height },
@@ -228,7 +227,7 @@ void MainWindow::on_PageHeigthDoubleSpinBox_valueChanged(double height)
     updatePreView();
 }
 
-void MainWindow::on_NameLineEdit_editingFinished()
+void UTGMainWindow::on_NameLineEdit_editingFinished()
 {
     m_pagesizes[0] =
             QPageSize{ QSizeF{ m_ui->PageWidthDoubleSpinBox->value(),
@@ -236,7 +235,7 @@ void MainWindow::on_NameLineEdit_editingFinished()
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
 }
 
-void MainWindow::on_framePushButton_clicked()
+void UTGMainWindow::on_framePushButton_clicked()
 {
     if (m_frame->type() == "Plain Frame") {
         PlainFrameDialog frameDialog;
@@ -253,13 +252,14 @@ void MainWindow::on_framePushButton_clicked()
     updatePreView();
 }
 
-void MainWindow::on_FrameComboBox_currentTextChanged(const QString &arg1)
+void UTGMainWindow::on_FrameComboBox_currentTextChanged(const QString &arg1)
 {
     updateFrame(arg1);
 }
 
-void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
+void UTGMainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
 {
+    m_frame->setNoDrawingAreaIndent(false);
     if (arg1 == "None") {
         m_titleblock = std::make_shared<TitleBlock>();
     } else if (arg1 == "Plain TitleBlock") {
@@ -274,7 +274,7 @@ void MainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
     initTitleBlockLanguages();
 }
 
-void MainWindow::on_TitleBlockPushButton_clicked()
+void UTGMainWindow::on_TitleBlockPushButton_clicked()
 {
     if (m_titleblock->type() == "Plain TitleBlock") {
         PlainTitleBlockDialog dialog;
@@ -288,7 +288,7 @@ void MainWindow::on_TitleBlockPushButton_clicked()
     updatePreView();
 }
 
-void MainWindow::on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1)
+void UTGMainWindow::on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1)
 {
     m_titleblock->setLanguage(arg1);
     updatePreView();

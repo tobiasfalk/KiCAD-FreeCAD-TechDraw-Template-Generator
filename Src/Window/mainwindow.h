@@ -18,7 +18,7 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
+class UTGMainWindow;
 } // namespace Ui
 QT_END_NAMESPACE
 
@@ -27,7 +27,7 @@ QT_END_NAMESPACE
 ///
 /// The MainWindow class creates and manages the main Window
 ///
-class MainWindow : public QMainWindow
+class UTGMainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -37,11 +37,11 @@ public:
     /// class
     /// \param parent is the Qt parent object pointer
     ///
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit UTGMainWindow(QWidget *parent = nullptr);
     ///
     /// \brief is the de constructor
     ///
-    ~MainWindow() override;
+    ~UTGMainWindow() override;
 
 private slots:
     void on_GeneratePushButton_clicked();
@@ -71,7 +71,7 @@ private:
     /// \brief ui is the pointer to the ui and through this all the elements of
     /// the ui are accessed through this
     ///
-    Ui::MainWindow *m_ui;
+    Ui::UTGMainWindow *m_ui;
 
     ///
     /// \brief m_preView is the PreView of the page

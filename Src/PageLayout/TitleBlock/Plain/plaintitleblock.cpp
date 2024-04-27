@@ -11,8 +11,6 @@ void PlainTitleBlock::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QP
     setTitleBlockArea(
             QRectF{ where.bottomRight() - QPointF{ m_width, m_height }, where.bottomRight() });
     into->drawRect(titleBlockArea(), 1);
-    qDebug() << "TitleBlock, into: " << into.get();
-    qDebug() << "On What: " << onWhat;
 }
 
 double PlainTitleBlock::height() const

@@ -49,6 +49,9 @@ public:
     ///
     QString description() const;
 
+    bool noDrawingAreaIndent() const;
+    void setNoDrawingAreaIndent(bool newNoDrawingAreaIndent);
+
 protected:
     ///
     /// \brief setType sets the type of the frame, the base class PageFrame has the type "none"
@@ -87,6 +90,12 @@ private:
     /// \brief m_drawingArea is the area inside the frame
     ///
     QRectF m_drawingArea;
+
+    ///
+    /// \brief noDrawingAreaIndent if the Frame has something going in to the Drawing area, like
+    /// the Centering marks on ISO5457Frame, this can turn them of(true)
+    ///
+    bool m_noDrawingAreaIndent = false;
 };
 
 ///

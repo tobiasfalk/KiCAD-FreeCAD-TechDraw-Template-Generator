@@ -34,6 +34,27 @@ void FreeCADSvg::drawText(QPointF position, QString text, double textSize,
                          "fill: #000000; stroke: none; font-family: " + font + "; font-size: "
                                  + QString::number(textSize * (1 + double(7) / 18))
                                  + "; text-anchor: " + anchorString + ";");
+
+        // Autofill artibute
+        QList<QString> keyWords = {
+            "PageNumberNumbers", "LegalOwner", "DateOfIssue", "Title", "Scale", "Creator"
+        };
+
+        if (keyWords.contains(name)) {
+            if (name == "PageNumberNumbers") {
+                obj.setAttribute("freecad:autofill", "sheet");
+            } else if (name == "LegalOwner") {
+                obj.setAttribute("freecad:autofill", "organization");
+            } else if (name == "DateOfIssue") {
+                obj.setAttribute("freecad:autofill", "date");
+            } else if (name == "Title") {
+                obj.setAttribute("freecad:autofill", "title");
+            } else if (name == "Scale") {
+                obj.setAttribute("freecad:autofill", "scale");
+            } else if (name == "Creator") {
+                obj.setAttribute("freecad:autofill", "author");
+            }
+        }
         QDomElement obj2 = m_document.createElement("tspan");
         obj2.setAttribute("x", QString::number(posX));
         obj2.setAttribute("y", QString::number(posY));

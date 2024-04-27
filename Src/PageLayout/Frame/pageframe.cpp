@@ -13,12 +13,12 @@ QString PageFrame::type() const
 
 void PageFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
 {
-    qDebug() << where;
 
     setDrawingArea(where);
 
-    qDebug() << "PageFrame, into: " << into.get();
-    qDebug() << "On What: " << onWhat;
+    qInfo() << "PageFrame None, Into: " << into.get();
+    qInfo() << "PageFrame None, On What: " << onWhat;
+    qInfo() << "PageFrame None, Where: " << where;
 
     // into.drawRect(QPointF{ 0, 0 }, QPointF{0, 0}, 1);
     // into.fileName();
@@ -47,6 +47,16 @@ QRectF PageFrame::drawingArea() const
 void PageFrame::setDrawingArea(const QRectF &newDrawingArea)
 {
     m_drawingArea = newDrawingArea;
+}
+
+bool PageFrame::noDrawingAreaIndent() const
+{
+    return m_noDrawingAreaIndent;
+}
+
+void PageFrame::setNoDrawingAreaIndent(bool newNoDrawingAreaIndent)
+{
+    m_noDrawingAreaIndent = newNoDrawingAreaIndent;
 }
 auto operator<<(QDebug debug, const PageFrame &frame) -> QDebug
 {

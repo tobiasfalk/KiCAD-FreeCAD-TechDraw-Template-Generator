@@ -5,9 +5,11 @@
 
 #include "PageLayout/TitleBlock/Plain/plaintitleblock.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class PlainTitleBlockDialog;
 }
+QT_END_NAMESPACE
 
 ///
 /// \brief The PlainTitleBlockDialog class creates a dialog for setting all the parameters of the

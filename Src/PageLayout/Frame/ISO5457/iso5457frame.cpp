@@ -54,7 +54,7 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
     into->drawPoly(QPointF{ 0, where.height() }, trimmingMarkLB, 0, true);
 
     // Centermarks
-    {
+    if (!noDrawingAreaIndent()) {
         if (m_topCenteringLines) {
             into->drawLine(QPointF{ where.width() / 2, 5 }, QPointF{ where.width() / 2, 20 }, 0.7);
         } else {
@@ -271,7 +271,6 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
 void ISO5457Frame::decideBottomAndTopCenteringLine(double TitleBlockWidth, double TitleBlockHeight,
                                                    QRectF where)
 {
-    qDebug() << where.width();
     if (TitleBlockWidth > where.width() / 2) {
         m_bottomCenteringLines = false;
         if (TitleBlockHeight > where.height() - 30) {

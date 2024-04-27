@@ -4,9 +4,11 @@
 #include <QDialog>
 #include "PageLayout/Frame/Plain/plainframe.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class PlainFrameDialog;
 }
+QT_END_NAMESPACE
 
 ///
 /// \brief The PlainFrameDialog class creates a dialog to set the parameters of the PlainFrame

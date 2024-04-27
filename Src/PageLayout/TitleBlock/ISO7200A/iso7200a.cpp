@@ -187,12 +187,12 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 28 },
-            m_currentLanguage["SheetNumber"].lable, 1.8, TextHeightAnchor::Top,
+            m_currentLanguage["PageNumberNumbers"].lable, 1.8, TextHeightAnchor::Top,
             TextWidthAnchor::Left, .18);
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 34.5 },
-            m_currentLanguage["SheetNumber"].text, 1.8, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .18, "osifont", "SheetNumber", true);
+            m_currentLanguage["PageNumberNumbers"].text, 1.8, TextHeightAnchor::Bottom,
+            TextWidthAnchor::Left, .18, "osifont", "PageNumberNumbers", true);
 }
 
 void ISO7200A::initLanguages()
@@ -212,7 +212,7 @@ void ISO7200A::initLanguages()
         { "RevisionIndex", ISO7200ATextStruct{ "Rev.", "A" } },
         { "DateOfIssue", ISO7200ATextStruct{ "Release date", "2014-01-15" } },
         { "LanguageCode", ISO7200ATextStruct{ "L.", "en" } },
-        { "SheetNumber", ISO7200ATextStruct{ "Sheet", "1/3" } }
+        { "PageNumberNumbers", ISO7200ATextStruct{ "Sheet", "1/3" } }
     };
     m_languageTexts.insert("en_gb", en_gb);
     QMap<QString, ISO7200ATextStruct> de_at = {
@@ -230,7 +230,7 @@ void ISO7200A::initLanguages()
         { "RevisionIndex", ISO7200ATextStruct{ "Änd.", "A" } },
         { "DateOfIssue", ISO7200ATextStruct{ "Ausgabedatum", "2014-01-15" } },
         { "LanguageCode", ISO7200ATextStruct{ "Spr.", "de" } },
-        { "SheetNumber", ISO7200ATextStruct{ "Blatt", "1/3" } }
+        { "PageNumberNumbers", ISO7200ATextStruct{ "Blatt", "1/3" } }
     };
     m_languageTexts.insert("de_at", de_at);
 }

@@ -38,25 +38,25 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     const char *function = context.function != nullptr ? context.function : "";
     if ((strcmp(file, "") != 0) && (strcmp(function, "") != 0)) {
         switch (type) {
-        case QtDebugMsg:
-            std::cerr << "Debug: " << localMsg.constData() << " (" << file << ":" << context.line
-                      << ", " << function << ")" << std::endl;
+        case QtDebugMsg: // blue
+            std::cerr << "\033[0;34mDebug:\033[0m " << localMsg.constData() << " (" << file << ":"
+                      << context.line << ", " << function << ")" << std::endl;
             break;
-        case QtInfoMsg:
-            std::cerr << "Info: " << localMsg.constData() << " (" << file << ":" << context.line
-                      << ", " << function << ")" << std::endl;
+        case QtInfoMsg: // green
+            std::cerr << "\033[0;32mInfo:\033[0m " << localMsg.constData() << " (" << file << ":"
+                      << context.line << ", " << function << ")" << std::endl;
             break;
         case QtWarningMsg:
-            std::cerr << "Warning: " << localMsg.constData() << " (" << file << ":" << context.line
-                      << ", " << function << ")" << std::endl;
+            std::cerr << "\033[0;35mWarning:\033[0m " << localMsg.constData() << " (" << file << ":"
+                      << context.line << ", " << function << ")" << std::endl;
             break;
         case QtCriticalMsg:
-            std::cerr << "Critical: " << localMsg.constData() << " (" << file << ":" << context.line
-                      << ", " << function << ")" << std::endl;
+            std::cerr << "\033[0;91mCritical:\033[0m " << localMsg.constData() << " (" << file
+                      << ":" << context.line << ", " << function << ")" << std::endl;
             break;
         case QtFatalMsg:
-            std::cerr << "Fatal: " << localMsg.constData() << " (" << file << ":" << context.line
-                      << ", " << function << ")" << std::endl;
+            std::cerr << "\033[0;31mFatal:\033[0m " << localMsg.constData() << " (" << file << ":"
+                      << context.line << ", " << function << ")" << std::endl;
             break;
         }
     } else {
@@ -67,13 +67,13 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
             std::cerr << localMsg.constData() << std::endl;
             break;
         case QtWarningMsg:
-            std::cerr << "Warning: " << localMsg.constData() << std::endl;
+            std::cerr << "\033[0;35mWarning:\033[0m " << localMsg.constData() << std::endl;
             break;
         case QtCriticalMsg:
-            std::cerr << "Critical: " << localMsg.constData() << std::endl;
+            std::cerr << "\033[0;91mCritical:\033[0m " << localMsg.constData() << std::endl;
             break;
         case QtFatalMsg:
-            std::cerr << "Fatal: " << localMsg.constData() << std::endl;
+            std::cerr << "\033[0;31mFatal:\033[0m " << localMsg.constData() << std::endl;
             break;
         }
     }
@@ -90,42 +90,7 @@ auto main(int argc, char *argv[]) -> int
     qInstallMessageHandler(myMessageOutput);
     QApplication application(argc, argv);
 
-    // PageStyle style;
-
-    // style.setPageSize(297, 215, QPageLayout::Landscape);
-    // qDebug() << style.getPageHight();
-    // qDebug() << style.getPageSize();
-    // qDebug() << style.getLayout();
-    // qDebug() << style << "ABC";
-
-    // std::shared_ptr<UniversalDraw> draw = std::make_shared<UniversalDraw>();
-
-    // // PreView view;
-
-    // // printTest(view);
-
-    // test::printTest(draw);
-
-    // style.draw(draw);
-
-    // std::shared_ptr<SvgQtPaint> draw = std::make_shared<SvgQtPaint>();
-    // draw->setFileName("test.svg");
-
-    // std::shared_ptr<SvgDraw> draw = std::make_shared<SvgDraw>();
-    // draw->setFileName("test_3.svg");
-
-    // std::shared_ptr<FreeCADSvg> draw = std::make_shared<FreeCADSvg>();
-    // draw->setFileName("test_4.svg");
-
-    // std::shared_ptr<KiCAD8> draw = std::make_shared<KiCAD8>();
-    // draw->setFileName("test.kicad_wks");
-
-    // std::shared_ptr<PdfQtPaint> draw = std::make_shared<PdfQtPaint>();
-    // draw->setFileName("test.pdf");
-
-    // UniversalDraw::printTest(draw);
-
-    MainWindow window;
+    UTGMainWindow window;
     window.show();
     return QApplication::exec();
 }
