@@ -149,14 +149,23 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, .25, "osifont", "SupplementaryTitle",
             true);
 
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 19 },
+    //         m_currentLanguage["IdentificationNumber"].lable, 1.8, TextHeightAnchor::Top,
+    //         TextWidthAnchor::Left, .18);
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 25.5
+    //         }, m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
+    //         TextWidthAnchor::Left, .35, "osifont", "IdentificationNumber", true);
+
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 19 },
             m_currentLanguage["IdentificationNumber"].lable, 1.8, TextHeightAnchor::Top,
             TextWidthAnchor::Left, .18);
-    into->drawText(
-            QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 25.5 },
-            m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .35, "osifont", "IdentificationNumber", true);
+    into->drawText(QPointF{ titleBlockArea().topLeft().x() + 154.5,
+                            titleBlockArea().topLeft().y() + 25.5 },
+                   m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
+                   TextWidthAnchor::Center, .35, "osifont", "IdentificationNumber", true);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 28 },
@@ -185,14 +194,23 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             m_currentLanguage["LanguageCode"].text, 2.5, TextHeightAnchor::Bottom,
             TextWidthAnchor::Left, .25, "osifont", "LanguageCode", true);
 
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 28 },
+    //         m_currentLanguage["PageNumberNumbers"].lable, 1.8, TextHeightAnchor::Top,
+    //         TextWidthAnchor::Left, .18);
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 34.5
+    //         }, m_currentLanguage["PageNumberNumbers"].text, 1.8, TextHeightAnchor::Bottom,
+    //         TextWidthAnchor::Left, .18, "osifont", "PageNumberNumbers", true);
+
     into->drawText(
-            QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 28 },
+            QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 28 },
             m_currentLanguage["PageNumberNumbers"].lable, 1.8, TextHeightAnchor::Top,
             TextWidthAnchor::Left, .18);
     into->drawText(
-            QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 34.5 },
-            m_currentLanguage["PageNumberNumbers"].text, 1.8, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .18, "osifont", "PageNumberNumbers", true);
+            QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 34.5 },
+            m_currentLanguage["PageNumberNumbers"].text, 2.5, TextHeightAnchor::Bottom,
+            TextWidthAnchor::Left, .25, "osifont", "PageNumberNumbers", true);
 }
 
 void ISO7200A::initLanguages()

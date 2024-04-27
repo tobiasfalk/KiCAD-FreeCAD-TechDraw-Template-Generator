@@ -116,18 +116,33 @@ void ISO7200B::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             m_currentLanguage["Creator"].text, 2.5, TextHeightAnchor::Bottom, TextWidthAnchor::Left,
             .25, "osifont", "Creator", true);
 
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 10 },
+    //         m_currentLanguage["Title"].lable, 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left,
+    //         .18);
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 14 },
+    //         m_currentLanguage["Title"].text, 5, TextHeightAnchor::Top, TextWidthAnchor::Left, .5,
+    //         "osifont", "Title", true);
+    // into->drawText(
+    //         QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 21 },
+    //         m_currentLanguage["SupplementaryTitle"].text, 2.5, TextHeightAnchor::Top,
+    //         TextWidthAnchor::Left, .25, "osifont", "SupplementaryTitle", true);
+
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 10 },
             m_currentLanguage["Title"].lable, 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left,
             .18);
     into->drawText(
-            QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 14 },
-            m_currentLanguage["Title"].text, 5, TextHeightAnchor::Top, TextWidthAnchor::Left, .5,
-            "osifont", "Title", true);
+            QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 17 },
+            m_currentLanguage["Title"].text, 3.5, TextHeightAnchor::Bottom, TextWidthAnchor::Left,
+            .35, "osifont", "Title", true);
     into->drawText(
-            QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 21 },
-            m_currentLanguage["SupplementaryTitle"].text, 2.5, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .25, "osifont", "SupplementaryTitle", true);
+            QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 19 },
+            QList<QString>{ m_currentLanguage["SupplementaryTitle"].text,
+                            m_currentLanguage["SupplementaryTitle"].text },
+            2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, .25, "osifont", "SupplementaryTitle",
+            true);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 10 },
@@ -201,7 +216,7 @@ void ISO7200B::initLanguages()
         { "RevisionIndex", ISO7200ATextStruct{ "Rev.", "A" } },
         { "DateOfIssue", ISO7200ATextStruct{ "Release date", "2014-01-15" } },
         { "LanguageCode", ISO7200ATextStruct{ "L.", "en" } },
-        { "PageNumberNumbers", ISO7200ATextStruct{ "Sheet", "1/3" } }
+        { "PageNumberNumbers", ISO7200ATextStruct{ "Sheet", "100/300" } }
     };
     m_languageTexts.insert("en_gb", en_gb);
     QMap<QString, ISO7200ATextStruct> de_de = {
