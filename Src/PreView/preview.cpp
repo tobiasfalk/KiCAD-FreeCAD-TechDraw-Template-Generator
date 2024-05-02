@@ -9,6 +9,7 @@ void PreView::paintEvent(QPaintEvent *e)
     m_painter = std::shared_ptr<QPainter>(new QPainter(this));
 
     std::shared_ptr<QtPainterDrawer> pre_painter = std::make_shared<QtPainterDrawer>(m_painter);
+    pre_painter->setEditableBlue(true);
 
     double scale = this->minimumWidth() / m_pageStyle->getPageWidth();
     if (m_pageStyle->getPageHight() * scale > this->height()) {

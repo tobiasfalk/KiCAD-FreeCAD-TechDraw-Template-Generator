@@ -55,6 +55,7 @@ This is mostly meant for printing as a template for hand drawing.
 * Friedrich Tabellenbuch Metall- und Maschinentechnik from Barthel Maria, ..., Published from Bildungsverlag EINS - westermann, page 5-11(ISBN: 978-3-427-51033-8)
 * [Wikipedia ISO 7200 Titleblock](https://en.wikipedia.org/wiki/File:Title_block_EN_ISO_7200.svg)
 * [Wikipedia ISO 7200 German](https://de.wikipedia.org/wiki/ISO_7200)
+* [Wikipedia DIN 6771 German](https://de.wikipedia.org/wiki/DIN_6771)
 * [Newton World, basic elements of engineering drawings](https://newtonianworld.com/mechanical-design-engineering-topics/engineering-drawings/basic-elements-of-engineering-drawings/#elementor-toc__heading-anchor-7)(may relode/reenter the link to jump to the rigth chapter)
 
 ## Logo (Branding)

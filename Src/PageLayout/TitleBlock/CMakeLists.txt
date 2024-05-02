@@ -3,17 +3,35 @@ set(TitleBlock_SOURCES
      titleblock.cpp
 )
 
-add_library(TitleBlock STATIC
-    ${TitleBlock_SOURCES}
+set(PlainTitleBlock_SOURCES
     Plain/plaintitleblock.h
     Plain/plaintitleblock.cpp
     Plain/plaintitleblockdialog.h
     Plain/plaintitleblockdialog.cpp
     Plain/plaintitleblockdialog.ui
+)
+
+set(ISO7200ATitleBlock_SOURCES
     ISO7200A/iso7200a.h
     ISO7200A/iso7200a.cpp
+    ISO7200A/iso7200adialog.h
+    ISO7200A/iso7200adialog.cpp
+    ISO7200A/iso7200adialog.ui
+)
+
+set(ISO7200BTitleBlock_SOURCES
     ISO7200B/iso7200b.h
     ISO7200B/iso7200b.cpp
+    ISO7200B/iso7200bdialog.h
+    ISO7200B/iso7200bdialog.cpp
+    ISO7200B/iso7200bdialog.ui
+)
+
+add_library(TitleBlock STATIC
+    ${TitleBlock_SOURCES}
+    ${PlainTitleBlock_SOURCES}
+    ${ISO7200ATitleBlock_SOURCES}
+    ${ISO7200BTitleBlock_SOURCES}
 )
 
 target_link_libraries(TitleBlock PRIVATE

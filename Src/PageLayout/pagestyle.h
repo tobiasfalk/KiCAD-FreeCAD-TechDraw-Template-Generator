@@ -11,6 +11,7 @@
 
 #include "PageLayout/Frame/pageframe.h"
 #include "PageLayout/TitleBlock/titleblock.h"
+#include "PageLayout/FoldingLines/foldinglines.h"
 
 ///
 /// \brief The PageStyle class manages the layout and style for a page
@@ -104,6 +105,9 @@ public:
     ///
     void setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke);
 
+    std::shared_ptr<FoldingLines> foldingLines() const;
+    void setFoldingLines(const std::shared_ptr<FoldingLines> &newFoldingLines);
+
 private:
     ///
     /// \brief layout holds the general layout of the page
@@ -118,6 +122,10 @@ private:
     /// \brief m_titleblocke is the title-block to be drawn
     ///
     std::shared_ptr<TitleBlock> m_titleblocke;
+    ///
+    /// \brief m_titleblocke is the title-block to be drawn
+    ///
+    std::shared_ptr<FoldingLines> m_foldingLines;
 };
 
 ///

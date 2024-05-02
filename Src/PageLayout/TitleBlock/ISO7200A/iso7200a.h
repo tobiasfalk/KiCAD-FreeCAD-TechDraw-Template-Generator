@@ -10,6 +10,7 @@ struct ISO7200ATextStruct
 {
     QString lable;
     QString text;
+    bool isEditable = true;
 };
 
 ///
@@ -34,6 +35,20 @@ public:
     virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where,
                       QPageLayout onWhat) override;
 
+    QMap<QString, ISO7200ATextStruct> currentLanguage() const;
+    void setCurrentLanguage(const QMap<QString, ISO7200ATextStruct> &newCurrentLanguage);
+    void updateCurrentLanguage();
+    ///
+    /// \brief setLanguage sets the to be used, if it is not part of m_languages than it does
+    /// nothing
+    /// \param newLanguage
+    ///
+    virtual void setLanguage(const QString &newLanguage) override;
+
+    std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> languageTexts() const;
+    void setLanguageTexts(const std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>>
+                                  &newLanguageTexts);
+
 protected:
     //   Key/varName, values
     ///
@@ -44,7 +59,8 @@ protected:
     ///
     /// \brief m_languageText a map with all the language texts
     ///
-    QMap<QString, QMap<QString, ISO7200ATextStruct>> m_languageTexts;
+    std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> m_languageTexts =
+            std::make_shared<QMap<QString, QMap<QString, ISO7200ATextStruct>>>();
 
     ///
     /// \brief initLanguages initialises the Languages map(m_languageTexts)

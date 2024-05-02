@@ -60,7 +60,7 @@ public:
     /// nothing
     /// \param newLanguage
     ///
-    void setLanguage(const QString &newLanguage);
+    virtual void setLanguage(const QString &newLanguage);
 
     ///
     /// \brief languages returns a list of available languages

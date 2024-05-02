@@ -20,6 +20,8 @@ void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
 
     m_titleblocke->draw(into, m_frame->drawingArea(), m_layout);
 
+    m_foldingLines->draw(into, m_layout);
+
     into->end();
 }
 
@@ -90,6 +92,16 @@ std::shared_ptr<TitleBlock> PageStyle::titleblocke() const
 void PageStyle::setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke)
 {
     m_titleblocke = newTitleblocke;
+}
+
+std::shared_ptr<FoldingLines> PageStyle::foldingLines() const
+{
+    return m_foldingLines;
+}
+
+void PageStyle::setFoldingLines(const std::shared_ptr<FoldingLines> &newFoldingLines)
+{
+    m_foldingLines = newFoldingLines;
 }
 
 auto operator<<(QDebug debug, const PageStyle &style) -> QDebug

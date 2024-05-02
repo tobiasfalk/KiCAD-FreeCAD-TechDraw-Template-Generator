@@ -1,5 +1,6 @@
 subdirs(Frame/)
 subdirs(TitleBlock/)
+subdirs(FoldingLines/)
 
 add_library(PageLayout STATIC
     pagestyle.h pagestyle.cpp

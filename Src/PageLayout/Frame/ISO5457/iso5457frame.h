@@ -75,7 +75,8 @@ private:
     bool m_rigthCenteringLines = true;
 
     ///
-    /// \brief m_showPageSize true if the page size should be drawn on the bottom right
+    /// \brief m_showPageSize true if the page size should be drawn on the bottom right,
+    /// setting this to false, it is no longer confirm to ISO 5457
     ///
     bool m_showPageSize = true;
 

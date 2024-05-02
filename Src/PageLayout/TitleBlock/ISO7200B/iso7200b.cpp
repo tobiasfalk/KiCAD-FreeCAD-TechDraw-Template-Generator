@@ -17,7 +17,7 @@ void ISO7200B::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 27 }, where.bottomRight() });
     into->drawRect(titleBlockArea(), .7);
 
-    m_currentLanguage = m_languageTexts[language()];
+    m_currentLanguage = m_languageTexts->value(language());
 
     // Grid
     // Horizontal
@@ -218,7 +218,7 @@ void ISO7200B::initLanguages()
         { "LanguageCode", ISO7200ATextStruct{ "L.", "en" } },
         { "PageNumberNumbers", ISO7200ATextStruct{ "Sheet", "100/300" } }
     };
-    m_languageTexts.insert("en_gb", en_gb);
+    m_languageTexts->insert("en_gb", en_gb);
     QMap<QString, ISO7200ATextStruct> de_de = {
         { "ResponsibleDepartment", ISO7200ATextStruct{ "Verantwortl. Abt.", "AB 131" } },
         { "TechnicalReference", ISO7200ATextStruct{ "Techn. Referenz", "Susan Müller" } },
@@ -236,5 +236,5 @@ void ISO7200B::initLanguages()
         { "LanguageCode", ISO7200ATextStruct{ "Spr.", "de" } },
         { "PageNumberNumbers", ISO7200ATextStruct{ "Blatt", "1/3" } }
     };
-    m_languageTexts.insert("de_de", de_de);
+    m_languageTexts->insert("de_de", de_de);
 }

@@ -7,9 +7,14 @@
 #include "PageLayout/TitleBlock/Plain/plaintitleblock.h"
 #include "PageLayout/TitleBlock/Plain/plaintitleblockdialog.h"
 #include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
+#include "PageLayout/TitleBlock/ISO7200A/iso7200adialog.h"
 #include "PageLayout/TitleBlock/ISO7200B/iso7200b.h"
+#include "PageLayout/TitleBlock/ISO7200B/iso7200bdialog.h"
 #include "PageLayout/Frame/ISO5457/iso5457frame.h"
 #include "PageLayout/Frame/ISO5457/iso5457framedialog.h"
+#include "PageLayout/FoldingLines/foldinglines.h"
+#include "PageLayout/FoldingLines/DIN824ALike/din824alike.h"
+#include "PageLayout/FoldingLines/DIN824CLike/din824clike.h"
 #include "UniversalDraw/universaldraw.h"
 #include <cstdlib>
 
@@ -21,6 +26,7 @@ UTGMainWindow::UTGMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui
     m_pageStyle = std::make_shared<PageStyle>();
     m_frame = std::make_shared<PageFrame>();
     m_titleblock = std::make_shared<TitleBlock>();
+    m_foldingLines = std::make_shared<FoldingLines>();
     updatePreView();
 
     m_ui->PreViewGridLayout->addWidget(m_preView.get());
@@ -29,6 +35,7 @@ UTGMainWindow::UTGMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui
     initFrames();
     initTitleBlocks();
     initTitleBlockLanguages();
+    initFoldingLineAlgs();
 }
 
 UTGMainWindow::~UTGMainWindow()
@@ -42,6 +49,7 @@ void UTGMainWindow::on_GeneratePushButton_clicked()
 
     pageStyle.setFrame(m_frame);
     pageStyle.setTitleblocke(m_titleblock);
+    pageStyle.setFoldingLines(m_foldingLines);
 
     pageStyle.setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                           getOrientationFromUi());
@@ -80,6 +88,8 @@ void UTGMainWindow::updatePreView()
                              getOrientationFromUi());
     m_pageStyle->setFrame(m_frame);
     m_pageStyle->setTitleblocke(m_titleblock);
+    // std::shared_ptr<FoldingLines> fold = std::make_shared<FoldingLines>();
+    m_pageStyle->setFoldingLines(m_foldingLines);
     m_preView->setPageStyle(m_pageStyle);
     m_preView->update();
 }
@@ -125,13 +135,130 @@ void UTGMainWindow::updateFrame()
     updateFrame(m_ui->FrameComboBox->currentText());
 }
 
+void UTGMainWindow::updateFoldingLines(QString foldStr)
+{
+    if (foldStr == "None") {
+        m_foldingLines = std::make_shared<FoldingLines>();
+    } else if (foldStr == "DIN 824 A Like") {
+        double depth = m_foldingLines->depth();
+        m_foldingLines = std::make_shared<DIN824ALike>();
+        m_foldingLines->setDepth(depth);
+    } else if (foldStr == "DIN 824 C Like") {
+        double depth = m_foldingLines->depth();
+        m_foldingLines = std::make_shared<DIN824CLike>();
+        m_foldingLines->setDepth(depth);
+    }
+    m_foldingLines->setToWhat(
+            QPageLayout{ getPageSizeFromName(m_ui->FoldingLinesTagetComboBox->currentText()),
+                         getFoldOrientationFromUi(), QMargins{ 0, 0, 0, 0 } });
+    updatePreView();
+}
+
+void UTGMainWindow::updateFoldingLines()
+{
+    updateFoldingLines(m_ui->FoldingLineComboBox->currentText());
+}
+
+QList<QString> UTGMainWindow::sortedPageNames(QMap<QString, QPageSize> pageMap)
+{
+    QList<QString> ret;
+    ret.append("User defined");
+    QList<QPageSize> values = pageMap.values();
+    QStringList names;
+    int nmsSize = names.size();
+    foreach (QPageSize page, values) {
+        if (page.name() != "") {
+            names.append(page.name());
+        }
+    }
+    QStringList aSeries = names.filter(QRegularExpression{ "^[0-9]*A[0-9]" });
+    // aSeries.append(names.filter(QRegularExpression{ "^A[0-9]" }));
+    // aSeries.append(names.filter(QRegularExpression{ "[0-9]*^A[0-9]*\\+" }));
+    // aSeries.append(names.filter(QRegularExpression{ "^A[0-9]*\\+" }));
+    qDebug() << "aSeries: " << aSeries;
+    ret.append(aSeries);
+    QStringList bSeries = names.filter(QRegularExpression{ "^[0-9]*B[0-9]" });
+    // bSeries.append(names.filter(QRegularExpression{ "^B[0-9]" }));
+    // bSeries.append(names.filter(QRegularExpression{ "[0-9]*^B[0-9]*\\+" }));
+    // bSeries.append(names.filter(QRegularExpression{ "^B[0-9]*\\+" }));
+    ret.append(bSeries);
+    QStringList cSeries = names.filter(QRegularExpression{ "^[0-9]*C[0-9]" });
+    // cSeries.append(names.filter(QRegularExpression{ "^C[0-9]" }));
+    // cSeries.append(names.filter(QRegularExpression{ "[0-9]*^C[0-9]*\\+" }));
+    // cSeries.append(names.filter(QRegularExpression{ "^C[0-9]*\\+" }));
+    ret.append(cSeries);
+    QStringList dSeries = names.filter(QRegularExpression{ "^[0-9]*D[0-9]" });
+    // dSeries.append(names.filter(QRegularExpression{ "^D[0-9]" }));
+    // dSeries.append(names.filter(QRegularExpression{ "[0-9]*^D[0-9]*\\+" }));
+    // cSeries.append(names.filter(QRegularExpression{ "^D[0-9]*\\+" }));
+    ret.append(dSeries);
+
+    QStringList jbSeries = names.filter(QRegularExpression{ "^JB[0-9]" });
+    ret.append(jbSeries);
+
+    QStringList sisdSeries = names.filter(QRegularExpression{ "^SIS D[0-9]" });
+    ret.append(sisdSeries);
+    QStringList siseSeries = names.filter(QRegularExpression{ "^SIS E[0-9]" });
+    ret.append(siseSeries);
+    QStringList sisfSeries = names.filter(QRegularExpression{ "^SIS F[0-9]" });
+    ret.append(sisfSeries);
+    QStringList sisgSeries = names.filter(QRegularExpression{ "^SIS G[0-9]" });
+    ret.append(sisgSeries);
+
+    QStringList custom = names.filter(QRegularExpression{ "^([0-9]*mm)X([0-9]*mm)" });
+    ret.append(custom);
+
+    QStringList norRealASeries = names.filter(QRegularExpression{ "^Not real [0-9]*A[0-9]" });
+    ret.append(norRealASeries);
+
+    QStringList ansi = names.filter(QRegularExpression{ "^ANSI Y14.1 [ABCDEF]" });
+    ret.append(ansi);
+    QStringList arch = names.filter(QRegularExpression{ "^Arch [ABCDEF]" });
+    ret.append(arch);
+    ret.append("Letter");
+    ret.append("Legal");
+    ret.append("Tabloid");
+    ret.append("Ledger");
+
+    if (ret.size() != nmsSize) {
+        foreach (QString nm, names) {
+            if (!ret.contains(nm)) {
+                ret.append(nm);
+                qWarning() << "Not Sorted Paper Sizes: " << nm;
+            }
+        }
+    }
+
+    qDebug() << "ret: " << ret;
+
+    return ret;
+}
+
 void UTGMainWindow::initPageSizes()
 {
-    foreach (QPageSize page, m_pagesizes) {
-        m_ui->PageSizeComboBox->addItem(page.name());
+    // sortedPageNames(m_pagesizes);
+    // QList<QPageSize> values = m_pagesizes.values();
+    // QStringList names;
+    // foreach (QPageSize page, values) {
+    //     if (page.name() != "") {
+    //         names.append(page.name());
+    //     }
+    // }
+    // names.sort();
+    QList<QString> names = sortedPageNames(m_pagesizes);
+    qDebug() << "names: " << names;
+    m_ui->PageSizeComboBox->clear();
+    m_ui->FoldingLinesTagetComboBox->clear();
+    foreach (QString nm, names) {
+        m_ui->PageSizeComboBox->addItem(nm);
+        m_ui->FoldingLinesTagetComboBox->addItem(nm);
     }
-    m_ui->PageWidthDoubleSpinBox->setValue(m_pagesizes[0].size(QPageSize::Millimeter).width());
-    m_ui->PageHeigthDoubleSpinBox->setValue(m_pagesizes[0].size(QPageSize::Millimeter).height());
+    m_ui->PageSizeComboBox->setCurrentText("User defined");
+    m_ui->FoldingLinesTagetComboBox->setCurrentText("A4");
+    m_ui->PageWidthDoubleSpinBox->setValue(
+            m_pagesizes["User defined"].size(QPageSize::Millimeter).width());
+    m_ui->PageHeigthDoubleSpinBox->setValue(
+            m_pagesizes["User defined"].size(QPageSize::Millimeter).height());
 }
 
 void UTGMainWindow::initFrames()
@@ -157,19 +284,41 @@ void UTGMainWindow::initTitleBlockLanguages()
     }
 }
 
+void UTGMainWindow::initFoldingLineAlgs()
+{
+    m_ui->FoldingLineComboBox->clear();
+    foreach (QString alg, m_foldingLineAlgs) {
+        m_ui->FoldingLineComboBox->addItem(alg);
+    }
+}
+
 QPageSize UTGMainWindow::getPageSizeFromName(QString name)
 {
-    foreach (QPageSize page, m_pagesizes) {
-        if (name == page.name()) {
-            return page;
-        }
-    }
-    return QPageSize{ QSizeF{ 420, 297 }, QPageSize::Millimeter, "A3", QPageSize::ExactMatch };
+    qDebug() << "Size Str: " << name;
+    // foreach (QPageSize page, m_pagesizes) {
+    //     qDebug() << "Page Test: " << name << "==" << page << " => " << (name == page.name());
+    //     if (name == page.name()) {
+    //         qDebug() << "Page Found: " << page;
+    //         return page;
+    //     }
+    // }
+    // return QPageSize{ QSizeF{ 420, 297 }, QPageSize::Millimeter, "Error", QPageSize::ExactMatch
+    // };
+    return m_pagesizes[name];
 }
 
 QPageLayout::Orientation UTGMainWindow::getOrientationFromUi()
 {
     if (m_ui->PortraitCheckBox->isChecked()) {
+        return QPageLayout::Orientation::Portrait;
+    } else {
+        return QPageLayout::Orientation::Landscape;
+    }
+}
+
+QPageLayout::Orientation UTGMainWindow::getFoldOrientationFromUi()
+{
+    if (m_ui->FoldingKinesTargetPortraitCheckBox->isChecked()) {
         return QPageLayout::Orientation::Portrait;
     } else {
         return QPageLayout::Orientation::Landscape;
@@ -210,6 +359,7 @@ void UTGMainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
     m_ui->PageHeigthDoubleSpinBox->setValue(page.size(QPageSize::Millimeter).height());
     m_ui->NameLineEdit->setText(page.name());
     m_ui->fileNameLineEdit->setText(page.name().replace(" ", "_") + "_template");
+    qDebug() << "Page: " << page;
     if (name == "User defined") {
         m_ui->PageWidthDoubleSpinBox->setEnabled(true);
         m_ui->PageHeigthDoubleSpinBox->setEnabled(true);
@@ -221,26 +371,29 @@ void UTGMainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
     }
 
     updateFrame();
+    updateFoldingLines();
     updatePreView();
 }
 
 void UTGMainWindow::on_PageWidthDoubleSpinBox_valueChanged(double width)
 {
-    m_pagesizes[0] =
+    m_pagesizes["User defined"] =
             QPageSize{ QSizeF{ width, m_ui->PageHeigthDoubleSpinBox->value() },
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
 
     updateFrame();
+    updateFoldingLines();
     updatePreView();
 }
 
 void UTGMainWindow::on_PageHeigthDoubleSpinBox_valueChanged(double height)
 {
-    m_pagesizes[0] =
+    m_pagesizes["User defined"] =
             QPageSize{ QSizeF{ m_ui->PageWidthDoubleSpinBox->value(), height },
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
 
     updateFrame();
+    updateFoldingLines();
     updatePreView();
 }
 
@@ -250,6 +403,7 @@ void UTGMainWindow::on_NameLineEdit_editingFinished()
             QPageSize{ QSizeF{ m_ui->PageWidthDoubleSpinBox->value(),
                                m_ui->PageHeigthDoubleSpinBox->value() },
                        QPageSize::Millimeter, m_ui->NameLineEdit->text(), QPageSize::ExactMatch };
+    updatePreView();
 }
 
 void UTGMainWindow::on_framePushButton_clicked()
@@ -283,12 +437,14 @@ void UTGMainWindow::on_framePushButton_clicked()
         m_frame = dialog.frame();
     }
     updateFrame();
+    updateFoldingLines();
     updatePreView();
 }
 
 void UTGMainWindow::on_FrameComboBox_currentTextChanged(const QString &arg1)
 {
     updateFrame(arg1);
+    updatePreView();
 }
 
 void UTGMainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1)
@@ -299,13 +455,22 @@ void UTGMainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1
     } else if (arg1 == "Plain TitleBlock") {
         m_titleblock = std::make_shared<PlainTitleBlock>();
     } else if (arg1 == "ISO7200 Style A") {
-        m_titleblock = std::make_shared<ISO7200A>();
+        if (m_titleblock->type() == "ISO7200 Style A") {
+
+            auto shared_base = std::shared_ptr<TitleBlock>{ std::move(m_titleblock) };
+            std::shared_ptr<ISO7200A> tmp = std::static_pointer_cast<ISO7200A>(shared_base);
+
+            m_titleblock = tmp;
+        } else {
+            m_titleblock = std::make_shared<ISO7200A>();
+        }
     } else if (arg1 == "ISO7200 Style B") {
         m_titleblock = std::make_shared<ISO7200B>();
     }
     updateFrame();
-    updatePreView();
     initTitleBlockLanguages();
+    updateFoldingLines();
+    updatePreView();
 }
 
 void UTGMainWindow::on_TitleBlockPushButton_clicked()
@@ -317,13 +482,89 @@ void UTGMainWindow::on_TitleBlockPushButton_clicked()
         dialog.exec();
 
         m_titleblock = dialog.titleBlock();
+    } else if (m_titleblock->type() == "ISO7200 Style A") {
+        ISO7200ADialog dialog;
+
+        auto shared_base = std::shared_ptr<TitleBlock>{ std::move(m_titleblock) };
+        std::shared_ptr<ISO7200A> tmp = std::static_pointer_cast<ISO7200A>(shared_base);
+
+        dialog.setTitleBlock(tmp);
+
+        dialog.setModal(true);
+        dialog.exec();
+
+        m_titleblock = tmp; // dialog.titleBlock();
+        m_ui->TitleBlLanguageComboBox->setCurrentText(m_titleblock->language());
+    } else if (m_titleblock->type() == "ISO7200 Style B") {
+        ISO7200BDialog dialog;
+
+        auto shared_base = std::shared_ptr<TitleBlock>{ std::move(m_titleblock) };
+        std::shared_ptr<ISO7200B> tmp = std::static_pointer_cast<ISO7200B>(shared_base);
+
+        dialog.setTitleBlock(tmp);
+
+        dialog.setModal(true);
+        dialog.exec();
+
+        m_titleblock = tmp; // dialog.titleBlock();
+        m_ui->TitleBlLanguageComboBox->setCurrentText(m_titleblock->language());
     }
     updateFrame();
+    updateFoldingLines();
     updatePreView();
 }
 
 void UTGMainWindow::on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1)
 {
     m_titleblock->setLanguage(arg1);
+    updatePreView();
+}
+
+void UTGMainWindow::on_FoldingLineComboBox_currentTextChanged(const QString &arg1)
+{
+    updateFoldingLines(arg1);
+    updatePreView();
+}
+
+void UTGMainWindow::on_FoldingLinesTagetComboBox_currentTextChanged(const QString &arg1)
+{
+    updateFoldingLines();
+    updatePreView();
+}
+
+void UTGMainWindow::on_PortraitCheckBox_stateChanged(int arg1)
+{
+    updateFrame();
+    updateFoldingLines();
+    updatePreView();
+}
+
+void UTGMainWindow::on_FoldingKinesTargetPortraitCheckBox_stateChanged(int arg1)
+{
+    updateFrame();
+    updateFoldingLines();
+    updatePreView();
+}
+
+void UTGMainWindow::on_updatePushButton_clicked()
+{
+    updateFrame();
+    updateFoldingLines();
+    updatePreView();
+}
+
+void UTGMainWindow::on_FoldingLineDepthDoubleSpinBox_editingFinished()
+{
+    m_foldingLines->setDepth(m_ui->FoldingLineDepthDoubleSpinBox->value());
+    updateFrame();
+    updateFoldingLines();
+    updatePreView();
+}
+
+void UTGMainWindow::on_FoldingLineDepthDoubleSpinBox_valueChanged(double arg1)
+{
+    m_foldingLines->setDepth(arg1);
+    updateFrame();
+    updateFoldingLines();
     updatePreView();
 }

@@ -17,7 +17,7 @@
    <item>
     <widget class="QCheckBox" name="pageSizeCheckBox">
      <property name="text">
-      <string>Show Page Size:</string>
+      <string>Show Page Size(if unchecked, the frame is no longer comform to ISO 5457)</string>
      </property>
      <property name="checked">
       <bool>true</bool>

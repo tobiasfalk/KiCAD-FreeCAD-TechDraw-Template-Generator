@@ -18,7 +18,7 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 36 }, where.bottomRight() });
     into->drawRect(titleBlockArea(), .7);
 
-    m_currentLanguage = m_languageTexts[language()];
+    m_currentLanguage = m_languageTexts->value(language());
 
     // Grid
     // Horizontal
@@ -71,7 +71,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["ResponsibleDepartment"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "ResponsibleDepartment", true);
+            TextWidthAnchor::Left, .25, "osifont", "ResponsibleDepartment",
+            m_currentLanguage["ResponsibleDepartment"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 28, titleBlockArea().topLeft().y() + 1 },
@@ -80,7 +81,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 28, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["TechnicalReference"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "TechnicalReference", true);
+            TextWidthAnchor::Left, .25, "osifont", "TechnicalReference",
+            m_currentLanguage["TechnicalReference"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 1 },
@@ -89,7 +91,7 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["Creator"].text, 2.5, TextHeightAnchor::Bottom, TextWidthAnchor::Left,
-            .25, "osifont", "Creator", true);
+            .25, "osifont", "Creator", m_currentLanguage["Creator"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 115, titleBlockArea().topLeft().y() + 1 },
@@ -98,12 +100,14 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 115, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["ApprovalPerson"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "ApprovalPerson", true);
+            TextWidthAnchor::Left, .25, "osifont", "ApprovalPerson",
+            m_currentLanguage["ApprovalPerson"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 158, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["ClassificationKeyWords"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "ClassificationKeyWords", true);
+            TextWidthAnchor::Left, .25, "osifont", "ClassificationKeyWords",
+            m_currentLanguage["ClassificationKeyWords"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 10 },
@@ -114,7 +118,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             QList<QString>{ m_currentLanguage["LegalOwner"].text,
                             m_currentLanguage["LegalOwner"].text,
                             m_currentLanguage["LegalOwner"].text },
-            5, TextHeightAnchor::Top, TextWidthAnchor::Center, .5, "osifont", "LegalOwner", true);
+            5, TextHeightAnchor::Top, TextWidthAnchor::Center, .5, "osifont", "LegalOwner",
+            m_currentLanguage["LegalOwner"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 10 },
@@ -123,7 +128,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 16.5 },
             m_currentLanguage["DocumentType"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "DocumentType", true);
+            TextWidthAnchor::Left, .25, "osifont", "DocumentType",
+            m_currentLanguage["DocumentType"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 10 },
@@ -132,7 +138,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 16.5 },
             m_currentLanguage["DocumentStatus"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "DocumentStatus", true);
+            TextWidthAnchor::Left, .25, "osifont", "DocumentStatus",
+            m_currentLanguage["DocumentStatus"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 19 },
@@ -141,13 +148,13 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 26 },
             m_currentLanguage["Title"].text, 3.5, TextHeightAnchor::Bottom, TextWidthAnchor::Left,
-            .35, "osifont", "Title", true);
+            .35, "osifont", "Title", m_currentLanguage["Title"].isEditable);
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 28 },
             QList<QString>{ m_currentLanguage["SupplementaryTitle"].text,
                             m_currentLanguage["SupplementaryTitle"].text },
             2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, .25, "osifont", "SupplementaryTitle",
-            true);
+            m_currentLanguage["SupplementaryTitle"].isEditable);
 
     // into->drawText(
     //         QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 19 },
@@ -156,7 +163,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     // into->drawText(
     //         QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 25.5
     //         }, m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
-    //         TextWidthAnchor::Left, .35, "osifont", "IdentificationNumber", true);
+    //         TextWidthAnchor::Left, .35, "osifont", "IdentificationNumber",
+    //         m_currentLanguage["IdentificationNumber"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 19 },
@@ -165,7 +173,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 154.5,
                             titleBlockArea().topLeft().y() + 25.5 },
                    m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
-                   TextWidthAnchor::Center, .35, "osifont", "IdentificationNumber", true);
+                   TextWidthAnchor::Center, .35, "osifont", "IdentificationNumber",
+                   m_currentLanguage["IdentificationNumber"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 28 },
@@ -174,7 +183,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["RevisionIndex"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "RevisionIndex", true);
+            TextWidthAnchor::Left, .25, "osifont", "RevisionIndex",
+            m_currentLanguage["RevisionIndex"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 138, titleBlockArea().topLeft().y() + 28 },
@@ -183,7 +193,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 138, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["DateOfIssue"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "DateOfIssue", true);
+            TextWidthAnchor::Left, .25, "osifont", "DateOfIssue",
+            m_currentLanguage["DateOfIssue"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 163, titleBlockArea().topLeft().y() + 28 },
@@ -192,7 +203,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 163, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["LanguageCode"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "LanguageCode", true);
+            TextWidthAnchor::Left, .25, "osifont", "LanguageCode",
+            m_currentLanguage["LanguageCode"].isEditable);
 
     // into->drawText(
     //         QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 28 },
@@ -201,7 +213,8 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     // into->drawText(
     //         QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 34.5
     //         }, m_currentLanguage["PageNumberNumbers"].text, 1.8, TextHeightAnchor::Bottom,
-    //         TextWidthAnchor::Left, .18, "osifont", "PageNumberNumbers", true);
+    //         TextWidthAnchor::Left, .18, "osifont", "PageNumberNumbers",
+    //         m_currentLanguage["PageNumberNumbers"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 28 },
@@ -210,7 +223,41 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["PageNumberNumbers"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "PageNumberNumbers", true);
+            TextWidthAnchor::Left, .25, "osifont", "PageNumberNumbers",
+            m_currentLanguage["PageNumberNumbers"].isEditable);
+}
+
+QMap<QString, ISO7200ATextStruct> ISO7200A::currentLanguage() const
+{
+    return m_currentLanguage;
+}
+
+void ISO7200A::setLanguage(const QString &newLanguage)
+{
+    TitleBlock::setLanguage(newLanguage);
+
+    m_currentLanguage = m_languageTexts->value(language());
+}
+
+std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> ISO7200A::languageTexts() const
+{
+    return m_languageTexts;
+}
+
+void ISO7200A::setLanguageTexts(
+        const std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> &newLanguageTexts)
+{
+    m_languageTexts = newLanguageTexts;
+}
+
+void ISO7200A::setCurrentLanguage(const QMap<QString, ISO7200ATextStruct> &newCurrentLanguage)
+{
+    m_currentLanguage = newCurrentLanguage;
+}
+
+void ISO7200A::updateCurrentLanguage()
+{
+    m_currentLanguage = m_languageTexts->value(language());
 }
 
 void ISO7200A::initLanguages()
@@ -232,7 +279,7 @@ void ISO7200A::initLanguages()
         { "LanguageCode", ISO7200ATextStruct{ "L.", "en" } },
         { "PageNumberNumbers", ISO7200ATextStruct{ "Sheet", "1/3" } }
     };
-    m_languageTexts.insert("en_gb", en_gb);
+    m_languageTexts->insert("en_gb", en_gb);
     QMap<QString, ISO7200ATextStruct> de_at = {
         { "ResponsibleDepartment", ISO7200ATextStruct{ "Verantwortl. Abteilung.", "AB 131" } },
         { "TechnicalReference", ISO7200ATextStruct{ "Technische Referenz", "Susan Müller" } },
@@ -250,5 +297,5 @@ void ISO7200A::initLanguages()
         { "LanguageCode", ISO7200ATextStruct{ "Spr.", "de" } },
         { "PageNumberNumbers", ISO7200ATextStruct{ "Blatt", "1/3" } }
     };
-    m_languageTexts.insert("de_at", de_at);
+    m_languageTexts->insert("de_at", de_at);
 }

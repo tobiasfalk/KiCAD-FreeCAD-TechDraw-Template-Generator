@@ -146,6 +146,10 @@ void QtPainterDrawer::drawText(QPointF position, QString text, double textSize,
     }
 
     QPen pen(Qt::black);
+    if (m_editableBlue && isEditable) {
+        pen = QPen(Qt::blue);
+    }
+
     pen.setStyle(Qt::SolidLine);
     pen.setWidthF(lineWidth);
     m_painter->setPen(pen);
@@ -233,6 +237,16 @@ std::shared_ptr<QPainter> QtPainterDrawer::painter() const
 void QtPainterDrawer::setPainter(const std::shared_ptr<QPainter> &newPainter)
 {
     m_painter = newPainter;
+}
+
+bool QtPainterDrawer::editableBlue() const
+{
+    return m_editableBlue;
+}
+
+void QtPainterDrawer::setEditableBlue(bool newEditableBlue)
+{
+    m_editableBlue = newEditableBlue;
 }
 
 auto operator<<(QDebug debug, const QtPainterDrawer &qtpainterdrawer) -> QDebug

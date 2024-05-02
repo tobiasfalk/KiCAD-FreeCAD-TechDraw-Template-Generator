@@ -16,6 +16,7 @@ target_link_libraries(Window PRIVATE
     PageLayout
     PageFrame
     TitleBlock
+    FoldingLines
     PreView
     Threads
 

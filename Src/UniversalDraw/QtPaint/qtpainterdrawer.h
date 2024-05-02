@@ -149,11 +149,24 @@ public:
     ///
     void setPainter(const std::shared_ptr<QPainter> &newPainter);
 
+    ///
+    /// \brief editableBlue if true, the editable Text will be printed in Blue
+    /// \return
+    ///
+    bool editableBlue() const;
+    ///
+    /// \brief setEditableBlue if set to true, the editable Text will be printed in Blue
+    /// \param newEditableBlue
+    ///
+    void setEditableBlue(bool newEditableBlue);
+
 private:
     ///
     /// \brief m_painter is the painter that is painted on
     ///
     std::shared_ptr<QPainter> m_painter;
+
+    bool m_editableBlue = false;
 };
 
 ///
