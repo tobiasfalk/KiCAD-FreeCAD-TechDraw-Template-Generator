@@ -9,9 +9,45 @@ void PdfQtPaint::drawText(QPointF position, QString text, double textSize,
     if (isEditable) {
         return;
     }
-    textSize = ((textSize * std::sqrt(2)) / m_resolutionPMM) * 2.8346456692913;
-    QtPainterDrawer::drawText(position, text, textSize, textHeightAnchor, textWidthAnchor,
-                              lineWidth, font, name, isEditable);
+
+    QFont qFont(font);
+    QFont qFontA(font);
+    qFont.setPointSizeF(((textSize * std::sqrt(2)) / m_resolutionPMM)
+                        * 2.8346456692913); // 18897.6378
+    qFontA.setPointSizeF(100);
+    double posX = position.x();
+    double posY = position.y();
+    QFontMetrics fm(qFontA);
+
+    if (textWidthAnchor == TextWidthAnchor::Left) {
+    } else if (textWidthAnchor == TextWidthAnchor::Center) {
+        posX -= (textSize * (fm.size(Qt::TextDontPrint, text).width() / double(100))) / 2;
+    } else if (textWidthAnchor == TextWidthAnchor::Right) {
+        posX -= (textSize * (fm.size(Qt::TextDontPrint, text).width() / double(100)));
+    }
+
+    if (textHeightAnchor == TextHeightAnchor::Top) {
+        posY += textSize;
+        qDebug() << "HA Top:" << (int)textHeightAnchor << "::" << text;
+    } else if (textHeightAnchor == TextHeightAnchor::Middle) {
+        posY += (textSize / 2);
+        qDebug() << "HA Middle:" << (int)textHeightAnchor << "::" << text;
+    } else if (textHeightAnchor == TextHeightAnchor::Bottom) {
+        qDebug() << "HA Bottom:" << (int)textHeightAnchor << "::" << text;
+    }
+
+    QPen pen(Qt::black);
+    if (editableBlue() && isEditable) {
+        pen = QPen(Qt::blue);
+    }
+
+    pen.setStyle(Qt::SolidLine);
+    pen.setWidthF(lineWidth);
+    painter()->setPen(pen);
+    painter()->setBrush(Qt::NoBrush);
+
+    painter()->setFont(qFont);
+    painter()->drawText(QPointF(posX, posY), text);
 }
 
 bool PdfQtPaint::start()
