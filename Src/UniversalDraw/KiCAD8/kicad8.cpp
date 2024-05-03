@@ -215,8 +215,8 @@ void KiCAD8::drawPicture(QString picturePath, QPointF position, double width, do
             rows++;
 
         // create hex dump(https://forum.qt.io/topic/106891/displaying-data-in-hex-format)
-        QString data = "  (bitmap (name \"\") (pos " + QString::number(position.x() + widthMM / 2)
-                + " " + QString::number(position.y() + heightMM / 2) + "  ltcorner) (scale "
+        QString data = "  (bitmap (name \"\") (pos " + QString::number(position.x() - widthMM / 2)
+                + " " + QString::number((position.y()) - heightMM / 2) + "  ltcorner) (scale "
                 + QString::number((double)300 / (double)resulutionDPI) + ")\n";
         data += "  (pngdata\n";
         for (int i = 0; i < rows; i++) {
@@ -273,8 +273,8 @@ void KiCAD8::drawPicture(QString picturePath, QPointF position, double width, do
             rows++;
 
         // create hex dump(https://forum.qt.io/topic/106891/displaying-data-in-hex-format)
-        QString data = "  (bitmap (name \"\") (pos " + QString::number(position.x() + (widthMM / 2))
-                + " " + QString::number(position.y() + (heightMM / 2)) + "  ltcorner) (scale "
+        QString data = "  (bitmap (name \"\") (pos " + QString::number(position.x() - (widthMM / 2))
+                + " " + QString::number(position.y() - (heightMM / 2)) + "  ltcorner) (scale "
                 + QString::number((double)300 / resulutionDPI) + ")\n";
         data += "  (pngdata\n";
         for (int i = 0; i < rows; i++) {

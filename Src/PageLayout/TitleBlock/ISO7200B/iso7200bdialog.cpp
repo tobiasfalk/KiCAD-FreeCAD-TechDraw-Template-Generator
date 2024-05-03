@@ -1,6 +1,8 @@
 #include "iso7200bdialog.h"
 #include "ui_iso7200bdialog.h"
 
+#include <QFileDialog>
+
 ISO7200BDialog::ISO7200BDialog(QWidget *parent) : QDialog(parent), m_ui(new Ui::ISO7200BDialog)
 {
     m_ui->setupUi(this);
@@ -45,18 +47,7 @@ void ISO7200BDialog::on_fieldComboBox_currentTextChanged(const QString &arg1)
     m_ui->isEditableCheckBox->setChecked(m_titleBlock->currentLanguage()[arg1].isEditable);
 }
 
-void ISO7200BDialog::on_lableLineEdit_textEdited(const QString &arg1)
-{
-    // std::shared_ptr<QMap<QString, QMap<QString, ISO7200BTextStruct>>> tmp1 =
-    //         m_titleBlock->languageTexts();
-    // QMap<QString, ISO7200BTextStruct> tmp2 = tmp1->value(m_ui->languageComboBox->currentText());
-    // tmp2[m_ui->fieldComboBox->currentText()].lable = arg1;
-    // tmp1->remove(m_ui->languageComboBox->currentText());
-    // tmp1->insert(m_ui->languageComboBox->currentText(), tmp2);
-    // m_titleBlock->updateCurrentLanguage();
-    // qDebug() << "L1: " <<
-    // m_titleBlock->currentLanguage()[m_ui->fieldComboBox->currentText()].lable;
-}
+void ISO7200BDialog::on_lableLineEdit_textEdited(const QString &arg1) { }
 
 void ISO7200BDialog::on_lableLineEdit_textChanged(const QString &arg1)
 {
@@ -67,8 +58,6 @@ void ISO7200BDialog::on_lableLineEdit_textChanged(const QString &arg1)
     tmp1->remove(m_ui->languageComboBox->currentText());
     tmp1->insert(m_ui->languageComboBox->currentText(), tmp2);
     m_titleBlock->updateCurrentLanguage();
-    qDebug() << "Lable: "
-             << m_titleBlock->currentLanguage()[m_ui->fieldComboBox->currentText()].lable;
 }
 
 void ISO7200BDialog::on_textLineEdit_textEdited(const QString &arg1)
@@ -80,8 +69,6 @@ void ISO7200BDialog::on_textLineEdit_textEdited(const QString &arg1)
     tmp1->remove(m_ui->languageComboBox->currentText());
     tmp1->insert(m_ui->languageComboBox->currentText(), tmp2);
     m_titleBlock->updateCurrentLanguage();
-    qDebug() << "Text: "
-             << m_titleBlock->currentLanguage()[m_ui->fieldComboBox->currentText()].lable;
 }
 
 void ISO7200BDialog::on_isEditableCheckBox_clicked(bool checked)
@@ -93,12 +80,23 @@ void ISO7200BDialog::on_isEditableCheckBox_clicked(bool checked)
     tmp1->remove(m_ui->languageComboBox->currentText());
     tmp1->insert(m_ui->languageComboBox->currentText(), tmp2);
     m_titleBlock->updateCurrentLanguage();
-    qDebug() << "Editable: "
-             << m_titleBlock->currentLanguage()[m_ui->fieldComboBox->currentText()].lable;
 }
 
 void ISO7200BDialog::on_languageComboBox_currentTextChanged(const QString &arg1)
 {
     m_titleBlock->setLanguage(arg1);
     on_fieldComboBox_currentTextChanged(m_ui->fieldComboBox->currentText());
+}
+
+void ISO7200BDialog::on_LogoPathPushButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "./",
+                                                    tr("Image Files (*.png *.svg)"));
+    m_titleBlock->setPicturePath(fileName);
+    m_ui->LogoPathLineEdit->setText(fileName);
+}
+
+void ISO7200BDialog::on_LogoPathLineEdit_textEdited(const QString &arg1)
+{
+    m_titleBlock->setPicturePath(arg1);
 }

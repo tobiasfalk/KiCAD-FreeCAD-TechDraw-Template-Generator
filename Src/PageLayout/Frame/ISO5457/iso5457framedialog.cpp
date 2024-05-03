@@ -15,11 +15,8 @@ ISO5457FrameDialog::~ISO5457FrameDialog()
 
 std::shared_ptr<ISO5457Frame> ISO5457FrameDialog::frame() const
 {
-    qDebug() << "A";
     m_frame->setShowPageSize(m_ui->pageSizeCheckBox->isChecked());
-    qDebug() << "B" << m_frame->showPageSize();
     m_frame->setShowTrimmingMarks(m_ui->trimmingCheckBox->isChecked());
-    qDebug() << "C" << m_frame->showTrimmingMarks();
     return m_frame;
 }
 

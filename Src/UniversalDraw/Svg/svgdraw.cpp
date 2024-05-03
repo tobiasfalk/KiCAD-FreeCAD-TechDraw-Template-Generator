@@ -137,6 +137,14 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         QDomElement root = xmlBOM.documentElement();
 
         double scale = width / root.attribute("width").remove("mm").toDouble();
+        double widthSvg = scale * root.attribute("width").remove("mm").toDouble();
+        double heightSvg = scale * root.attribute("height").remove("mm").toDouble();
+
+        if (heightSvg > height) {
+            scale = height / root.attribute("height").remove("mm").toDouble();
+            widthSvg = scale * root.attribute("width").remove("mm").toDouble();
+            heightSvg = scale * root.attribute("height").remove("mm").toDouble();
+        }
 
         QDomNamedNodeMap nodes = root.attributes();
         QStringList names;
@@ -170,8 +178,8 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         // Rename and add transfom Attribute
         root.setTagName("g");
         root.setAttribute("transform",
-                          "translate(" + QString::number(position.x()) + " "
-                                  + QString::number(position.y()) + ") scale("
+                          "translate(" + QString::number(position.x() - widthSvg) + " "
+                                  + QString::number(position.y() - heightSvg) + ") scale("
                                   + QString::number(scale) + ")");
 
         // Add to the document
@@ -200,7 +208,8 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         // svgGen.setFileName("abc.svg");
         QPainter painter(&svgGen);
 
-        QRectF target(position, QSizeF(widthCalc, heightCalc));
+        QRectF target(QPointF{ position.x() - widthCalc, position.y() - heightCalc },
+                      QSizeF(widthCalc, heightCalc));
         // Draw the Logo
         painter.drawImage(target, image);
 

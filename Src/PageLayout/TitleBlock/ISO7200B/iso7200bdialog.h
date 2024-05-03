@@ -32,6 +32,10 @@ private slots:
 
     void on_languageComboBox_currentTextChanged(const QString &arg1);
 
+    void on_LogoPathPushButton_clicked();
+
+    void on_LogoPathLineEdit_textEdited(const QString &arg1);
+
 private:
     Ui::ISO7200BDialog *m_ui;
 

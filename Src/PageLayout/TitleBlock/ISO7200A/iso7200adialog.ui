@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>345</width>
-    <height>218</height>
+    <height>274</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -222,6 +222,27 @@
         </size>
        </property>
       </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Logo path:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="LogoPathLineEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="LogoPathPushButton">
+       <property name="text">
+        <string>Select</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

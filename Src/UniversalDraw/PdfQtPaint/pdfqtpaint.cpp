@@ -28,12 +28,9 @@ void PdfQtPaint::drawText(QPointF position, QString text, double textSize,
 
     if (textHeightAnchor == TextHeightAnchor::Top) {
         posY += textSize;
-        qDebug() << "HA Top:" << (int)textHeightAnchor << "::" << text;
     } else if (textHeightAnchor == TextHeightAnchor::Middle) {
         posY += (textSize / 2);
-        qDebug() << "HA Middle:" << (int)textHeightAnchor << "::" << text;
     } else if (textHeightAnchor == TextHeightAnchor::Bottom) {
-        qDebug() << "HA Bottom:" << (int)textHeightAnchor << "::" << text;
     }
 
     QPen pen(Qt::black);

@@ -1,6 +1,7 @@
 #include "iso7200a.h"
 
 #include <QPointF>
+#include <QFileInfo>
 
 ISO7200A::ISO7200A()
 {
@@ -114,11 +115,11 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             m_currentLanguage["LegalOwner"].lable, 1.8, TextHeightAnchor::Top,
             TextWidthAnchor::Left, .18);
     into->drawText(
-            QPointF{ titleBlockArea().topLeft().x() + 34.5, titleBlockArea().topLeft().y() + 14 },
+            QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 14 },
             QList<QString>{ m_currentLanguage["LegalOwner"].text,
                             m_currentLanguage["LegalOwner"].text,
                             m_currentLanguage["LegalOwner"].text },
-            5, TextHeightAnchor::Top, TextWidthAnchor::Center, .5, "osifont", "LegalOwner",
+            5, TextHeightAnchor::Top, TextWidthAnchor::Left, .5, "osifont", "LegalOwner",
             m_currentLanguage["LegalOwner"].isEditable);
 
     into->drawText(
@@ -225,6 +226,13 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             m_currentLanguage["PageNumberNumbers"].text, 2.5, TextHeightAnchor::Bottom,
             TextWidthAnchor::Left, .25, "osifont", "PageNumberNumbers",
             m_currentLanguage["PageNumberNumbers"].isEditable);
+
+    if (QFileInfo::exists(m_picturePath)) {
+        into->drawPicture(m_picturePath,
+                          QPointF{ titleBlockArea().topLeft().x() + 67,
+                                   titleBlockArea().bottomRight().y() - 2 },
+                          65, 23);
+    }
 }
 
 QMap<QString, ISO7200ATextStruct> ISO7200A::currentLanguage() const
@@ -298,4 +306,14 @@ void ISO7200A::initLanguages()
         { "PageNumberNumbers", ISO7200ATextStruct{ "Blatt", "1/3" } }
     };
     m_languageTexts->insert("de_at", de_at);
+}
+
+QString ISO7200A::picturePath() const
+{
+    return m_picturePath;
+}
+
+void ISO7200A::setPicturePath(const QString &newPicturePath)
+{
+    m_picturePath = newPicturePath;
 }

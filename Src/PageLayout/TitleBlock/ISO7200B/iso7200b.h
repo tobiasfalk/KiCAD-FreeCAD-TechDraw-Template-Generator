@@ -26,11 +26,20 @@ public:
     virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where,
                       QPageLayout onWhat) override;
 
+    QString picturePath() const;
+    void setPicturePath(const QString &newPicturePath);
+
 protected:
     ///
     /// \brief initLanguages initialises the Languages map(m_languageTexts)
     ///
     void initLanguages() override;
+
+    ///
+    /// \brief m_picturePath is the Path to a Picture, if it is a walyed path to a picture(.svg or
+    /// .png) than it is drawn.
+    ///
+    QString m_picturePath = "";
 };
 
 #endif // ISO7200B_H

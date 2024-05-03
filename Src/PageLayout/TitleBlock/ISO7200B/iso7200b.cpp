@@ -1,5 +1,7 @@
 #include "iso7200b.h"
 
+#include <QFileDialog>
+
 ISO7200B::ISO7200B()
 {
     setType("ISO7200 Style B");
@@ -197,6 +199,13 @@ void ISO7200B::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
             QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 25.5 },
             m_currentLanguage["PageNumberNumbers"].text, 2.5, TextHeightAnchor::Bottom,
             TextWidthAnchor::Left, .25, "osifont", "PageNumberNumbers", true);
+
+    if (QFileInfo::exists(m_picturePath)) {
+        into->drawPicture(m_picturePath,
+                          QPointF{ titleBlockArea().topLeft().x() + 28,
+                                   titleBlockArea().bottomRight().y() - 2 },
+                          26, 14);
+    }
 }
 
 void ISO7200B::initLanguages()
@@ -237,4 +246,14 @@ void ISO7200B::initLanguages()
         { "PageNumberNumbers", ISO7200ATextStruct{ "Blatt", "1/3" } }
     };
     m_languageTexts->insert("de_de", de_de);
+}
+
+QString ISO7200B::picturePath() const
+{
+    return m_picturePath;
+}
+
+void ISO7200B::setPicturePath(const QString &newPicturePath)
+{
+    m_picturePath = newPicturePath;
 }

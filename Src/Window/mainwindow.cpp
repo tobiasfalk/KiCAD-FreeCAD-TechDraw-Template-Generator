@@ -175,7 +175,6 @@ QList<QString> UTGMainWindow::sortedPageNames(QMap<QString, QPageSize> pageMap)
     // aSeries.append(names.filter(QRegularExpression{ "^A[0-9]" }));
     // aSeries.append(names.filter(QRegularExpression{ "[0-9]*^A[0-9]*\\+" }));
     // aSeries.append(names.filter(QRegularExpression{ "^A[0-9]*\\+" }));
-    qDebug() << "aSeries: " << aSeries;
     ret.append(aSeries);
     QStringList bSeries = names.filter(QRegularExpression{ "^[0-9]*B[0-9]" });
     // bSeries.append(names.filter(QRegularExpression{ "^B[0-9]" }));
@@ -229,8 +228,6 @@ QList<QString> UTGMainWindow::sortedPageNames(QMap<QString, QPageSize> pageMap)
         }
     }
 
-    qDebug() << "ret: " << ret;
-
     return ret;
 }
 
@@ -246,7 +243,6 @@ void UTGMainWindow::initPageSizes()
     // }
     // names.sort();
     QList<QString> names = sortedPageNames(m_pagesizes);
-    qDebug() << "names: " << names;
     m_ui->PageSizeComboBox->clear();
     m_ui->FoldingLinesTagetComboBox->clear();
     foreach (QString nm, names) {
@@ -294,7 +290,6 @@ void UTGMainWindow::initFoldingLineAlgs()
 
 QPageSize UTGMainWindow::getPageSizeFromName(QString name)
 {
-    qDebug() << "Size Str: " << name;
     // foreach (QPageSize page, m_pagesizes) {
     //     qDebug() << "Page Test: " << name << "==" << page << " => " << (name == page.name());
     //     if (name == page.name()) {
@@ -359,7 +354,6 @@ void UTGMainWindow::on_PageSizeComboBox_currentTextChanged(const QString &name)
     m_ui->PageHeigthDoubleSpinBox->setValue(page.size(QPageSize::Millimeter).height());
     m_ui->NameLineEdit->setText(page.name());
     m_ui->fileNameLineEdit->setText(page.name().replace(" ", "_") + "_template");
-    qDebug() << "Page: " << page;
     if (name == "User defined") {
         m_ui->PageWidthDoubleSpinBox->setEnabled(true);
         m_ui->PageHeigthDoubleSpinBox->setEnabled(true);

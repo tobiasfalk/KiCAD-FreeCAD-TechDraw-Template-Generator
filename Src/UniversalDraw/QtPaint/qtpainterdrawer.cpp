@@ -191,31 +191,34 @@ void QtPainterDrawer::drawPicture(QString picturePath, QPointF position, double 
             painter.setBackground(QBrush{ Qt::transparent });
             svgRenderer->render(&painter);
 
-            QRectF target(position, QSizeF(widthCalc, heightCalc));
+            QRectF target(QPointF{ position.x() - widthCalc, position.y() - heightCalc },
+                          QSizeF(widthCalc, heightCalc));
 
             // Draw the Logo
             // m_painter->drawImage(target, image);
 
             svgRenderer->render(m_painter.get(), target);
-        } else if (picturePath.endsWith(".png")) {
-            QPixmap qtPixmap;
-            qtPixmap.load(picturePath, "PNG");
-
-            // Prepare a QImage with desired characteristic
-            // int widthPx = qtPixmap.width(); // 24mm at 2400dpi(KiCAD scale 0.125)
-            double widthCalc = width;
-
-            int heightPx = qtPixmap.height();
-            double heightCalc = heightPx / (qtPixmap.width() / widthCalc); // px/mm
-
-            if (heightCalc > height) {
-                heightCalc = height;
-                widthCalc = qtPixmap.width() / (qtPixmap.height() / heightCalc); // 2400dpi to p/mm
-            }
-
-            QRectF target(position, QSizeF(widthCalc, heightCalc));
-            m_painter->drawPixmap(target, qtPixmap, qtPixmap.rect());
         }
+    } else if (picturePath.endsWith(".png")) {
+
+        QPixmap qtPixmap;
+        qtPixmap.load(picturePath, "PNG");
+
+        // Prepare a QImage with desired characteristic
+        // int widthPx = qtPixmap.width(); // 24mm at 2400dpi(KiCAD scale 0.125)
+        double widthCalc = width;
+
+        int heightPx = qtPixmap.height();
+        double heightCalc = heightPx / (qtPixmap.width() / widthCalc); // px/mm
+
+        if (heightCalc > height) {
+            heightCalc = height;
+            widthCalc = qtPixmap.width() / (qtPixmap.height() / heightCalc); // 2400dpi to p/mm
+        }
+
+        QRectF target(QPointF{ position.x() - widthCalc, position.y() - heightCalc },
+                      QSizeF(widthCalc, heightCalc));
+        m_painter->drawPixmap(target, qtPixmap, qtPixmap.rect());
     }
 }
 
