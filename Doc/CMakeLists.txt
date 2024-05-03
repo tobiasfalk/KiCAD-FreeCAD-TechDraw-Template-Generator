@@ -1,7 +1,7 @@
 # Documentation
 #option(BUILD_DOC "Build documentation" ON)
-find_package(Doxygen REQUIRED dot
-    OPTIONAL_COMPONENTS mscgen dia)
+find_package(Doxygen #REQUIRED
+    OPTIONAL_COMPONENTS mscgen dia dot)
 string(TIMESTAMP timestamp "%Y-%m-%d %H:%M:%S")
 message(STATUS "local time: ${timestamp}")
 find_program (qhelpgen NAMES qhelpgenerator)
