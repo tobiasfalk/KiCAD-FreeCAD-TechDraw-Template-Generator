@@ -37,12 +37,19 @@ void FreeCADSvg::drawText(QPointF position, QString text, double textSize,
 
         // Autofill artibute
         QList<QString> keyWords = {
-            "PageNumberNumbers", "LegalOwner", "DateOfIssue", "Title", "Scale", "Creator"
+            "PageNumberNumbers", "LegalOwner", "DateOfIssue",  "Title", "Scale",
+            "Creator",           "PageNumber", "NumberOfPages"
         };
 
         if (keyWords.contains(name)) {
             if (name == "PageNumberNumbers") {
                 obj.setAttribute("freecad:autofill", "sheet");
+            } else if (name == "PageNumber") {
+                qDebug() << "FreeCAD PageNumber: " << name;
+                obj.setAttribute("freecad:autofill", "page_number");
+            } else if (name == "NumberOfPages") {
+                qDebug() << "FreeCAD NumberOfPages: " << name;
+                obj.setAttribute("freecad:autofill", "page_count");
             } else if (name == "LegalOwner") {
                 obj.setAttribute("freecad:autofill", "organization");
             } else if (name == "DateOfIssue") {
