@@ -116,10 +116,10 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                 pos = 10 + (lastLine - 10) / 2;
             }
             into->drawText(QPointF{ pos, 7.5 }, QString::number(index), 3.5,
-                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
             if (where.height() >= 297 && where.width() >= 297) {
                 into->drawText(QPointF{ pos, where.height() - 7.5 }, QString::number(index), 3.5,
-                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
             }
             index++;
         }
@@ -127,20 +127,20 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
         // Middle Text
         //  Left
         into->drawText(QPointF{ halfSheetWidth - 25, 7.5 }, QString::number(index), 3.5,
-                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
         if (where.height() >= 297 && where.width() >= 297) {
             into->drawText(QPointF{ halfSheetWidth - 25, where.height() - 7.5 },
                            QString::number(index), 3.5, TextHeightAnchor::Middle,
-                           TextWidthAnchor::Center, 0.35);
+                           TextWidthAnchor::Center, 0.35, font());
         }
         index++;
         // Right
         into->drawText(QPointF{ halfSheetWidth + 25, 7.5 }, QString::number(index), 3.5,
-                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
         if (where.height() >= 297 && where.width() >= 297) {
             into->drawText(QPointF{ halfSheetWidth + 25, where.height() - 7.5 },
                            QString::number(index), 3.5, TextHeightAnchor::Middle,
-                           TextWidthAnchor::Center, 0.35);
+                           TextWidthAnchor::Center, 0.35, font());
         }
         index++;
 
@@ -162,10 +162,10 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                 into->drawText(
                         QPointF{ lastTopLine + ((where.width() - 5) - lastTopLine) / 2, 7.5 },
                         QString::number(index), 3.5, TextHeightAnchor::Middle,
-                        TextWidthAnchor::Center, 0.35);
+                        TextWidthAnchor::Center, 0.35, font());
             } else if (lineX + 25 <= where.width()) {
                 into->drawText(QPointF{ lineX + 25, 7.5 }, QString::number(index), 3.5,
-                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
             }
             // Bottom
             if (m_showPageSize) {
@@ -179,11 +179,11 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                     into->drawText(QPointF{ lastBottomLine + (where.width() - lastBottomLine) / 2,
                                             where.height() - 7.5 },
                                    onWhat.pageSize().name(), 3.5, TextHeightAnchor::Middle,
-                                   TextWidthAnchor::Center, 0.35);
+                                   TextWidthAnchor::Center, 0.35, font());
                 } else if (where.height() >= 297 && lineX < where.width() - spaceRightBottom - 50) {
                     into->drawText(QPointF{ lineX + 25, where.height() - 7.5 },
                                    QString::number(index), 3.5, TextHeightAnchor::Middle,
-                                   TextWidthAnchor::Center, 0.35);
+                                   TextWidthAnchor::Center, 0.35, font());
                 }
             } else {
                 if (lineX <= (double)where.width() - (double)spaceRight) {
@@ -198,12 +198,12 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                     into->drawText(QPointF{ lastTopLine + ((where.width() - 5) - lastTopLine) / 2,
                                             where.height() - 7.5 },
                                    QString::number(index), 3.5, TextHeightAnchor::Middle,
-                                   TextWidthAnchor::Center, 0.35);
+                                   TextWidthAnchor::Center, 0.35, font());
                 } else if (where.height() >= 297 && where.width() >= 297
                            && lineX + 25 <= where.width()) {
                     into->drawText(QPointF{ lineX + 25, where.height() - 7.5 },
                                    QString::number(index), 3.5, TextHeightAnchor::Middle,
-                                   TextWidthAnchor::Center, 0.35);
+                                   TextWidthAnchor::Center, 0.35, font());
                 }
             }
             lineX += 50;
@@ -236,26 +236,26 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                 pos = (10 + (lastLine - 10) / 2);
             }
             into->drawText(QPointF{ where.width() - 7.5, pos }, NumToABC(index), 3.5,
-                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
             if (where.width() >= 297 && where.height() >= 297) {
                 into->drawText(QPointF{ 17.5, pos }, NumToABC(index), 3.5, TextHeightAnchor::Middle,
-                               TextWidthAnchor::Center, 0.35);
+                               TextWidthAnchor::Center, 0.35, font());
             }
             index++;
         }
         // Middle
         into->drawText(QPointF{ where.width() - 7.5, halfSheetHeight - 25 }, NumToABC(index), 3.5,
-                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
         if (where.width() >= 297 && where.height() >= 297) {
             into->drawText(QPointF{ 17.5, halfSheetHeight - 25 }, NumToABC(index), 3.5,
-                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
         }
         index++;
         into->drawText(QPointF{ where.width() - 7.5, halfSheetHeight + 25 }, NumToABC(index), 3.5,
-                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                       TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
         if (where.width() >= 297 && where.height() >= 297) {
             into->drawText(QPointF{ 17.5, halfSheetHeight + 25 }, NumToABC(index), 3.5,
-                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                           TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
         }
         index++;
 
@@ -270,10 +270,10 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
                 if (lineY > where.height() - 60) {
                     textY = lineY + ((where.height() - 10) - lineY) / 2;
                     into->drawText(QPointF{ 17.5, textY }, NumToABC(index), 3.5,
-                                   TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                                   TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
                 } else {
                     into->drawText(QPointF{ 17.5, lineY + 25 }, NumToABC(index), 3.5,
-                                   TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                                   TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
                 }
             }
             // Right
@@ -283,11 +283,11 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
             }
             if (lineY <= where.height() - 60) {
                 into->drawText(QPointF{ where.width() - 7.5, lineY + 25 }, NumToABC(index), 3.5,
-                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
             } else if (lineY > where.height() - 60) { //
                 textY = lineY + ((where.height() - 10) - lineY) / 2;
                 into->drawText(QPointF{ where.width() - 7.5, textY }, NumToABC(index), 3.5,
-                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35);
+                               TextHeightAnchor::Middle, TextWidthAnchor::Center, 0.35, font());
             }
             lineY += 50;
             index++;

@@ -25,6 +25,8 @@ enum class DrawingFormate {
     /// saves the output as a SVG with all the editable fields empty,
     /// it ends with <b>".qt.svg"</b> and uses the SvgQtPaint class
     SvgQtPaint,
+    ///
+    Html,
 };
 
 ///
@@ -126,6 +128,8 @@ private:
     /// DrawingFormate::SvgQtPaint
     ///
     void runSvgQtPaint();
+
+    void runHtml();
 };
 
 #endif // UNIVERSALDRAWTHREAD_H

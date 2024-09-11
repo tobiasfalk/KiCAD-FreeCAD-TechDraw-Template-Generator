@@ -11,13 +11,17 @@ void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
 {
     // UniversalDraw::printTest(into, m_layout);
 
+    into->setShowEditable(m_showEditable);
+
     into->setHeight(m_layout.fullRect(QPageLayout::Millimeter).height());
     into->setWidth(m_layout.fullRect(QPageLayout::Millimeter).width());
 
     into->start();
 
+    m_frame->setFont(m_font);
     m_frame->draw(into, m_layout.fullRect(QPageLayout::Millimeter), m_layout);
 
+    m_titleblocke->setFont(m_font);
     m_titleblocke->draw(into, m_frame->drawingArea(), m_layout);
 
     m_foldingLines->draw(into, m_layout);
@@ -102,6 +106,26 @@ std::shared_ptr<FoldingLines> PageStyle::foldingLines() const
 void PageStyle::setFoldingLines(const std::shared_ptr<FoldingLines> &newFoldingLines)
 {
     m_foldingLines = newFoldingLines;
+}
+
+bool PageStyle::showEditable() const
+{
+    return m_showEditable;
+}
+
+void PageStyle::setShowEditable(bool newShowEditable)
+{
+    m_showEditable = newShowEditable;
+}
+
+QString PageStyle::font() const
+{
+    return m_font;
+}
+
+void PageStyle::setFont(const QString &newFont)
+{
+    m_font = newFont;
 }
 
 auto operator<<(QDebug debug, const PageStyle &style) -> QDebug

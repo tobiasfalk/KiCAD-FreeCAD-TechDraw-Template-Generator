@@ -45,10 +45,8 @@ void FreeCADSvg::drawText(QPointF position, QString text, double textSize,
             if (name == "PageNumberNumbers") {
                 obj.setAttribute("freecad:autofill", "sheet");
             } else if (name == "PageNumber") {
-                qDebug() << "FreeCAD PageNumber: " << name;
                 obj.setAttribute("freecad:autofill", "page_number");
             } else if (name == "NumberOfPages") {
-                qDebug() << "FreeCAD NumberOfPages: " << name;
                 obj.setAttribute("freecad:autofill", "page_count");
             } else if (name == "LegalOwner") {
                 obj.setAttribute("freecad:autofill", "organization");

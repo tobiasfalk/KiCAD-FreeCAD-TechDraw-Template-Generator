@@ -166,6 +166,10 @@ protected:
     /// \brief m_root is the XML root of the file
     ///
     QDomElement m_root;
+
+    double m_svgTextScaler = (1 + double(7) / 18);
+
+    QString m_svgUnit = "";
 };
 
 #endif // SVGDRAW_H

@@ -68,6 +68,9 @@ public:
     ///
     QList<QString> languages() const;
 
+    QString font() const;
+    void setFont(const QString &newFont);
+
 protected:
     ///
     /// \brief setType sets the type of the frame, the base class TitleBlock has the type "none"
@@ -120,6 +123,11 @@ private:
     /// \brief m_languages is a list of all available languages
     ///
     QList<QString> m_languages = { "none" };
+
+    ///
+    /// \brief m_font contains the name of the font to use
+    ///
+    QString m_font = "osifont";
 };
 
 #endif // TITLEBLOCK_H

@@ -223,6 +223,16 @@ void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout
     drawer->end();
 }
 
+bool UniversalDraw::showEditable() const
+{
+    return m_showEditable;
+}
+
+void UniversalDraw::setShowEditable(bool newShowEditable)
+{
+    m_showEditable = newShowEditable;
+}
+
 auto operator<<(QDebug debug, const UniversalDraw &style) -> QDebug
 {
     QDebugStateSaver saver(debug);

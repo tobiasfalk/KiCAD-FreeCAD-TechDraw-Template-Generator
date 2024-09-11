@@ -62,6 +62,9 @@ public:
     ///
     void setNoDrawingAreaIndent(bool newNoDrawingAreaIndent);
 
+    QString font() const;
+    void setFont(const QString &newFont);
+
 protected:
     ///
     /// \brief setType sets the type of the frame, the base class PageFrame has the type "none"
@@ -106,6 +109,11 @@ private:
     /// the Centering marks on ISO5457Frame, this can turn them of(true)
     ///
     bool m_noDrawingAreaIndent = false;
+
+    ///
+    /// \brief m_font contains the name of the font to use
+    ///
+    QString m_font = "osifont";
 };
 
 ///

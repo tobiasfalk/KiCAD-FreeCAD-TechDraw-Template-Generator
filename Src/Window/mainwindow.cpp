@@ -54,6 +54,9 @@ void UTGMainWindow::on_GeneratePushButton_clicked()
     pageStyle.setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                           getOrientationFromUi());
 
+    pageStyle.setShowEditable(m_ui->ShowEditTextCheckBox->isChecked());
+    pageStyle.setFont(m_ui->FontLineEdit->text());
+
     QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory"), m_lastPath,
                                                      QFileDialog::ShowDirsOnly
                                                              | QFileDialog::DontResolveSymlinks);
@@ -90,6 +93,7 @@ void UTGMainWindow::updatePreView()
     m_pageStyle->setTitleblocke(m_titleblock);
     // std::shared_ptr<FoldingLines> fold = std::make_shared<FoldingLines>();
     m_pageStyle->setFoldingLines(m_foldingLines);
+    m_pageStyle->setFont(m_ui->FontLineEdit->text());
     m_preView->setPageStyle(m_pageStyle);
     m_preView->update();
 }
@@ -344,6 +348,10 @@ QList<DrawingFormate> UTGMainWindow::getDrawingFormates()
         ret.append(DrawingFormate::Svg);
     }
 
+    if (m_ui->HtmlCheckBox->isChecked()) {
+        ret.append(DrawingFormate::Html);
+    }
+
     return ret;
 }
 
@@ -558,6 +566,13 @@ void UTGMainWindow::on_FoldingLineDepthDoubleSpinBox_editingFinished()
 void UTGMainWindow::on_FoldingLineDepthDoubleSpinBox_valueChanged(double arg1)
 {
     m_foldingLines->setDepth(arg1);
+    updateFrame();
+    updateFoldingLines();
+    updatePreView();
+}
+
+void UTGMainWindow::on_FontLineEdit_textChanged(const QString &arg1)
+{
     updateFrame();
     updateFoldingLines();
     updatePreView();

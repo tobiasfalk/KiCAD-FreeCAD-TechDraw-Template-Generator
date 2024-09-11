@@ -72,89 +72,89 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["ResponsibleDepartment"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "ResponsibleDepartment",
+            TextWidthAnchor::Left, .25, font(), "ResponsibleDepartment",
             m_currentLanguage["ResponsibleDepartment"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 28, titleBlockArea().topLeft().y() + 1 },
             m_currentLanguage["TechnicalReference"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 28, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["TechnicalReference"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "TechnicalReference",
+            TextWidthAnchor::Left, .25, font(), "TechnicalReference",
             m_currentLanguage["TechnicalReference"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 1 },
             m_currentLanguage["Creator"].lable, 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left,
-            .18);
+            .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["Creator"].text, 2.5, TextHeightAnchor::Bottom, TextWidthAnchor::Left,
-            .25, "osifont", "Creator", m_currentLanguage["Creator"].isEditable);
+            .25, font(), "Creator", m_currentLanguage["Creator"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 115, titleBlockArea().topLeft().y() + 1 },
             m_currentLanguage["ApprovalPerson"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 115, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["ApprovalPerson"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "ApprovalPerson",
+            TextWidthAnchor::Left, .25, font(), "ApprovalPerson",
             m_currentLanguage["ApprovalPerson"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 158, titleBlockArea().topLeft().y() + 7.5 },
             m_currentLanguage["ClassificationKeyWords"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "ClassificationKeyWords",
+            TextWidthAnchor::Left, .25, font(), "ClassificationKeyWords",
             m_currentLanguage["ClassificationKeyWords"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 10 },
             m_currentLanguage["LegalOwner"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 14 },
             QList<QString>{ m_currentLanguage["LegalOwner"].text,
                             m_currentLanguage["LegalOwner"].text,
                             m_currentLanguage["LegalOwner"].text },
-            5, TextHeightAnchor::Top, TextWidthAnchor::Left, .5, "osifont", "LegalOwner",
+            5, TextHeightAnchor::Top, TextWidthAnchor::Left, .5, font(), "LegalOwner",
             m_currentLanguage["LegalOwner"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 10 },
             m_currentLanguage["DocumentType"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 16.5 },
             m_currentLanguage["DocumentType"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "DocumentType",
+            TextWidthAnchor::Left, .25, font(), "DocumentType",
             m_currentLanguage["DocumentType"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 10 },
             m_currentLanguage["DocumentStatus"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 16.5 },
             m_currentLanguage["DocumentStatus"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "DocumentStatus",
+            TextWidthAnchor::Left, .25, font(), "DocumentStatus",
             m_currentLanguage["DocumentStatus"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 19 },
             m_currentLanguage["Title"].lable, 1.8, TextHeightAnchor::Top, TextWidthAnchor::Left,
-            .18);
+            .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 26 },
             m_currentLanguage["Title"].text, 3.5, TextHeightAnchor::Bottom, TextWidthAnchor::Left,
-            .35, "osifont", "Title", m_currentLanguage["Title"].isEditable);
+            .35, font(), "Title", m_currentLanguage["Title"].isEditable);
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 71, titleBlockArea().topLeft().y() + 28 },
             QList<QString>{ m_currentLanguage["SupplementaryTitle"].text,
                             m_currentLanguage["SupplementaryTitle"].text },
-            2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, .25, "osifont", "SupplementaryTitle",
+            2.5, TextHeightAnchor::Top, TextWidthAnchor::Left, .25, font(), "SupplementaryTitle",
             m_currentLanguage["SupplementaryTitle"].isEditable);
 
     // into->drawText(
@@ -164,47 +164,47 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     // into->drawText(
     //         QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 25.5
     //         }, m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
-    //         TextWidthAnchor::Left, .35, "osifont", "IdentificationNumber",
+    //         TextWidthAnchor::Left, .35, font(), "IdentificationNumber",
     //         m_currentLanguage["IdentificationNumber"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 19 },
             m_currentLanguage["IdentificationNumber"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 154.5,
                             titleBlockArea().topLeft().y() + 25.5 },
                    m_currentLanguage["IdentificationNumber"].text, 3.5, TextHeightAnchor::Bottom,
-                   TextWidthAnchor::Center, .35, "osifont", "IdentificationNumber",
+                   TextWidthAnchor::Center, .35, font(), "IdentificationNumber",
                    m_currentLanguage["IdentificationNumber"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 28 },
             m_currentLanguage["RevisionIndex"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 131, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["RevisionIndex"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "RevisionIndex",
+            TextWidthAnchor::Left, .25, font(), "RevisionIndex",
             m_currentLanguage["RevisionIndex"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 138, titleBlockArea().topLeft().y() + 28 },
             m_currentLanguage["DateOfIssue"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 138, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["DateOfIssue"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "DateOfIssue",
+            TextWidthAnchor::Left, .25, font(), "DateOfIssue",
             m_currentLanguage["DateOfIssue"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 163, titleBlockArea().topLeft().y() + 28 },
             m_currentLanguage["LanguageCode"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 163, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["LanguageCode"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "LanguageCode",
+            TextWidthAnchor::Left, .25, font(), "LanguageCode",
             m_currentLanguage["LanguageCode"].isEditable);
 
     // into->drawText(
@@ -214,17 +214,17 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     // into->drawText(
     //         QPointF{ titleBlockArea().topLeft().x() + 173, titleBlockArea().topLeft().y() + 34.5
     //         }, m_currentLanguage["PageNumberNumbers"].text, 1.8, TextHeightAnchor::Bottom,
-    //         TextWidthAnchor::Left, .18, "osifont", "PageNumberNumbers",
+    //         TextWidthAnchor::Left, .18, font(), "PageNumberNumbers",
     //         m_currentLanguage["PageNumberNumbers"].isEditable);
 
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 28 },
             m_currentLanguage["PageNumberNumbers"].lable, 1.8, TextHeightAnchor::Top,
-            TextWidthAnchor::Left, .18);
+            TextWidthAnchor::Left, .18, font());
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 172, titleBlockArea().topLeft().y() + 34.5 },
             m_currentLanguage["PageNumberNumbers"].text, 2.5, TextHeightAnchor::Bottom,
-            TextWidthAnchor::Left, .25, "osifont", "PageNumberNumbers",
+            TextWidthAnchor::Left, .25, font(), "PageNumberNumbers",
             m_currentLanguage["PageNumberNumbers"].isEditable);
 
     if (QFileInfo::exists(m_picturePath)) {

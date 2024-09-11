@@ -80,6 +80,8 @@ private slots:
 
     void on_FoldingLineDepthDoubleSpinBox_valueChanged(double arg1);
 
+    void on_FontLineEdit_textChanged(const QString &arg1);
+
 private:
     ///
     /// \brief ui is the pointer to the ui and through this all the elements of

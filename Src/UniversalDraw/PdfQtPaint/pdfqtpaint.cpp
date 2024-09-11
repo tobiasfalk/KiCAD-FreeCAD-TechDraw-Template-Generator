@@ -6,7 +6,7 @@ void PdfQtPaint::drawText(QPointF position, QString text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, QString font, QString name, bool isEditable)
 {
-    if (isEditable) {
+    if (isEditable && !this->showEditable()) {
         return;
     }
 

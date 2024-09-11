@@ -49,6 +49,16 @@ void PageFrame::setDrawingArea(const QRectF &newDrawingArea)
     m_drawingArea = newDrawingArea;
 }
 
+QString PageFrame::font() const
+{
+    return m_font;
+}
+
+void PageFrame::setFont(const QString &newFont)
+{
+    m_font = newFont;
+}
+
 bool PageFrame::noDrawingAreaIndent() const
 {
     return m_noDrawingAreaIndent;

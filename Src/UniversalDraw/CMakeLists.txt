@@ -17,6 +17,8 @@ add_library(UniversalDraw STATIC
     FreeCADSvg/freecadsvg.cpp
     KiCAD8/kicad8.h
     KiCAD8/kicad8.cpp
+    Html/htmldraw.h
+    Html/htmldraw.cpp
 )
 
 target_link_libraries(UniversalDraw PRIVATE

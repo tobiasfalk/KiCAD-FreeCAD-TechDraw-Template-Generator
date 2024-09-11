@@ -108,6 +108,12 @@ public:
     std::shared_ptr<FoldingLines> foldingLines() const;
     void setFoldingLines(const std::shared_ptr<FoldingLines> &newFoldingLines);
 
+    bool showEditable() const;
+    void setShowEditable(bool newShowEditable);
+
+    QString font() const;
+    void setFont(const QString &newFont);
+
 private:
     ///
     /// \brief layout holds the general layout of the page
@@ -126,6 +132,14 @@ private:
     /// \brief m_titleblocke is the title-block to be drawn
     ///
     std::shared_ptr<FoldingLines> m_foldingLines;
+    ///
+    /// \brief m_showEditable if set to true, editable text is shown
+    ///
+    bool m_showEditable = false;
+    ///
+    /// \brief m_font contains the name of the font to use
+    ///
+    QString m_font = "osifont";
 };
 
 ///

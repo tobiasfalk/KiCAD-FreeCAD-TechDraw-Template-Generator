@@ -7,10 +7,10 @@ SvgDraw::SvgDraw() { }
 void SvgDraw::drawLine(QPointF start, QPointF end, double lineWidth)
 {
     QDomElement obj = m_document.createElement("line");
-    obj.setAttribute("x1", QString::number(start.x()));
-    obj.setAttribute("y1", QString::number(start.y()));
-    obj.setAttribute("x2", QString::number(end.x()));
-    obj.setAttribute("y2", QString::number(end.y()));
+    obj.setAttribute("x1", QString::number(start.x()) + m_svgUnit);
+    obj.setAttribute("y1", QString::number(start.y()) + m_svgUnit);
+    obj.setAttribute("x2", QString::number(end.x()) + m_svgUnit);
+    obj.setAttribute("y2", QString::number(end.y()) + m_svgUnit);
     obj.setAttribute("style", "stroke:black;stroke-width:" + QString::number(lineWidth));
     m_root.appendChild(obj);
 }
@@ -23,17 +23,17 @@ void SvgDraw::drawLine(QLineF line, double lineWidth)
 void SvgDraw::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
 {
     QDomElement obj = m_document.createElement("rect");
-    obj.setAttribute("x", QString::number(start.x()));
-    obj.setAttribute("y", QString::number(start.y()));
-    obj.setAttribute("width", QString::number(end.x() - start.x()));
-    obj.setAttribute("height", QString::number(end.y() - start.y()));
+    obj.setAttribute("x", QString::number(start.x()) + m_svgUnit);
+    obj.setAttribute("y", QString::number(start.y()) + m_svgUnit);
+    obj.setAttribute("width", QString::number(end.x() - start.x()) + m_svgUnit);
+    obj.setAttribute("height", QString::number(end.y() - start.y()) + m_svgUnit);
     QString fillString = "none";
     if (fill) {
         fillString = "black";
     }
     obj.setAttribute("style",
-                     "fill:" + fillString
-                             + ";stroke:black;stroke-width:" + QString::number(lineWidth));
+                     "fill:" + fillString + ";stroke:black;stroke-width:"
+                             + QString::number(lineWidth) + m_svgUnit);
     m_root.appendChild(obj);
 }
 
@@ -46,8 +46,8 @@ void SvgDraw::drawPoly(QPointF position, QList<QPointF> points, double lineWidth
 {
     QString pointsString = "";
     foreach (QPointF point, points) {
-        pointsString += QString::number(position.x() + point.x()) + ","
-                + QString::number(position.y() + point.y()) + " ";
+        pointsString += QString::number(position.x() + point.x()) /* + m_svgUnit*/ + ","
+                + QString::number(position.y() + point.y()) /* + m_svgUnit*/ + " ";
     }
     QDomElement obj = m_document.createElement("polygon");
     obj.setAttribute("points", pointsString);
@@ -55,7 +55,7 @@ void SvgDraw::drawPoly(QPointF position, QList<QPointF> points, double lineWidth
     if (!fill) {
         style = "fill:none;stroke:black;stroke-width:";
     }
-    obj.setAttribute("style", style + QString::number(lineWidth));
+    obj.setAttribute("style", style + QString::number(lineWidth) + m_svgUnit);
     m_root.appendChild(obj);
 }
 
@@ -67,15 +67,16 @@ void SvgDraw::drawPoly(QPolygonF poly, double lineWidth, bool fill)
 void SvgDraw::drawCircle(QPointF center, double radius, double lineWidth, bool fill)
 {
     QDomElement obj = m_document.createElement("circle");
-    obj.setAttribute("cx", QString::number(center.x()));
-    obj.setAttribute("cy", QString::number(center.y()));
-    obj.setAttribute("r", QString::number(radius));
+    obj.setAttribute("cx", QString::number(center.x()) + m_svgUnit);
+    obj.setAttribute("cy", QString::number(center.y()) + m_svgUnit);
+    obj.setAttribute("r", QString::number(radius) + m_svgUnit);
     QString fillString = "none";
     if (fill) {
         fillString = "black";
     }
     obj.setAttribute("fill", fillString);
-    obj.setAttribute("style", "stroke:black;stroke-width:" + QString::number(lineWidth));
+    obj.setAttribute("style",
+                     "stroke:black;stroke-width:" + QString::number(lineWidth) + m_svgUnit);
     m_root.appendChild(obj);
 }
 
@@ -83,7 +84,7 @@ void SvgDraw::drawText(QPointF position, QString text, double textSize,
                        TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                        double lineWidth, QString font, QString name, bool isEditable)
 {
-    if (isEditable) {
+    if (isEditable && !this->showEditable()) {
         return;
     }
 
@@ -107,12 +108,12 @@ void SvgDraw::drawText(QPointF position, QString text, double textSize,
     }
 
     QDomElement obj = m_document.createElement("text");
-    obj.setAttribute("x", QString::number(posX));
-    obj.setAttribute("y", QString::number(posY));
+    obj.setAttribute("x", QString::number(posX) + m_svgUnit);
+    obj.setAttribute("y", QString::number(posY) + m_svgUnit);
     obj.setAttribute("style",
                      "fill: #000000; stroke: none; font-family: " + font
-                             + "; font-size: " + QString::number(textSize * (1 + double(7) / 18))
-                             + "; text-anchor: " + anchorString + ";");
+                             + "; font-size: " + QString::number(textSize * m_svgTextScaler)
+                             + m_svgUnit + "; text-anchor: " + anchorString + ";");
     obj.appendChild(m_document.createTextNode(text));
     m_root.appendChild(obj);
 }
@@ -178,9 +179,9 @@ void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, d
         // Rename and add transfom Attribute
         root.setTagName("g");
         root.setAttribute("transform",
-                          "translate(" + QString::number(position.x() - widthSvg) + " "
-                                  + QString::number(position.y() - heightSvg) + ") scale("
-                                  + QString::number(scale) + ")");
+                          "translate(" + QString::number(position.x() - widthSvg) + m_svgUnit + " "
+                                  + QString::number(position.y() - heightSvg) + m_svgUnit
+                                  + ") scale(" + QString::number(scale) + ")");
 
         // Add to the document
         m_root.appendChild(root);
@@ -254,8 +255,8 @@ bool SvgDraw::start()
         m_root.setAttribute("width", QString::number(this->width()) + "mm");
         m_root.setAttribute("height", QString::number(this->height()) + "mm");
         m_root.setAttribute("viewBox",
-                            "0 0 " + QString::number(this->width()) + " "
-                                    + QString::number(this->height()));
+                            "0 0 " + QString::number(this->width()) + m_svgUnit + " "
+                                    + QString::number(this->height()) + m_svgUnit);
 
         m_document.appendChild(m_root);
         return true;

@@ -238,6 +238,9 @@ public:
     ///
     static void printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout);
 
+    bool showEditable() const;
+    void setShowEditable(bool newShowEditable);
+
 signals:
 
 protected:
@@ -254,6 +257,10 @@ private:
     /// \brief m_width is the width of the sheet/page
     ///
     qreal m_width;
+    ///
+    /// \brief m_showEditable if set to true, editable text is shown
+    ///
+    bool m_showEditable = false;
 };
 
 ///
