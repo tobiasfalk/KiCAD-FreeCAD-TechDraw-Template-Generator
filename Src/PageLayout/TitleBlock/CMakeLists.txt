@@ -27,11 +27,18 @@ set(ISO7200BTitleBlock_SOURCES
     ISO7200B/iso7200bdialog.ui
 )
 
+set(FreeCADATitleBlock_SOURCES
+    FreeCADA/freecada.h
+    FreeCADA/freecada.cpp
+)
+
 add_library(TitleBlock STATIC
     ${TitleBlock_SOURCES}
     ${PlainTitleBlock_SOURCES}
     ${ISO7200ATitleBlock_SOURCES}
     ${ISO7200BTitleBlock_SOURCES}
+    ${FreeCADATitleBlock_SOURCES}
+
 )
 
 target_link_libraries(TitleBlock PRIVATE

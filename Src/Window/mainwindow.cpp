@@ -10,6 +10,7 @@
 #include "PageLayout/TitleBlock/ISO7200A/iso7200adialog.h"
 #include "PageLayout/TitleBlock/ISO7200B/iso7200b.h"
 #include "PageLayout/TitleBlock/ISO7200B/iso7200bdialog.h"
+#include "PageLayout/TitleBlock/FreeCADA/freecada.h"
 #include "PageLayout/Frame/ISO5457/iso5457frame.h"
 #include "PageLayout/Frame/ISO5457/iso5457framedialog.h"
 #include "PageLayout/FoldingLines/foldinglines.h"
@@ -222,6 +223,9 @@ QList<QString> UTGMainWindow::sortedPageNames(QMap<QString, QPageSize> pageMap)
     ret.append("Legal");
     ret.append("Tabloid");
     ret.append("Ledger");
+
+    QStringList titleBlocks = names.filter(QRegularExpression{ "^TitleBlock .*" });
+    ret.append(titleBlocks);
 
     if (ret.size() != nmsSize) {
         foreach (QString nm, names) {
@@ -468,6 +472,8 @@ void UTGMainWindow::on_TitleBlockComboBox_currentTextChanged(const QString &arg1
         }
     } else if (arg1 == "ISO7200 Style B") {
         m_titleblock = std::make_shared<ISO7200B>();
+    } else if (arg1 == "FreeCAD Style A") {
+        m_titleblock = std::make_shared<FreeCADA>();
     }
     updateFrame();
     initTitleBlockLanguages();
@@ -502,6 +508,20 @@ void UTGMainWindow::on_TitleBlockPushButton_clicked()
 
         auto shared_base = std::shared_ptr<TitleBlock>{ std::move(m_titleblock) };
         std::shared_ptr<ISO7200B> tmp = std::static_pointer_cast<ISO7200B>(shared_base);
+
+        dialog.setTitleBlock(tmp);
+
+        dialog.setModal(true);
+        dialog.exec();
+
+        m_titleblock = tmp; // dialog.titleBlock();
+        m_ui->TitleBlLanguageComboBox->setCurrentText(m_titleblock->language());
+    } else if (m_titleblock->type() == "FreeCAD Style A") {
+        // TODO
+        ISO7200ADialog dialog;
+
+        auto shared_base = std::shared_ptr<TitleBlock>{ std::move(m_titleblock) };
+        std::shared_ptr<FreeCADA> tmp = std::static_pointer_cast<FreeCADA>(shared_base);
 
         dialog.setTitleBlock(tmp);
 

@@ -71,7 +71,7 @@ protected:
     virtual void initLanguages();
 
     ///
-    /// \brief m_picturePath is the Path to a Picture, if it is a walyed path to a picture(.svg or
+    /// \brief m_picturePath is the Path to a Picture, if it is a waled path to a picture(.svg or
     /// .png) than it is drawn.
     ///
     QString m_picturePath = "";

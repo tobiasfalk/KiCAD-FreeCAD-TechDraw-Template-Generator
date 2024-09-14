@@ -210,6 +210,7 @@ void ISO7200B::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
 
 void ISO7200B::initLanguages()
 {
+    m_languageTexts->clear();
     QMap<QString, ISO7200ATextStruct> en_gb = {
         { "ResponsibleDepartment", ISO7200ATextStruct{ "Resp. dept.", "AB 131" } },
         { "TechnicalReference", ISO7200ATextStruct{ "Technical reference.", "Susan Müller" } },
@@ -248,12 +249,12 @@ void ISO7200B::initLanguages()
     m_languageTexts->insert("de_de", de_de);
 }
 
-QString ISO7200B::picturePath() const
-{
-    return m_picturePath;
-}
+// QString ISO7200B::picturePath() const
+// {
+//     return m_picturePath;
+// }
 
-void ISO7200B::setPicturePath(const QString &newPicturePath)
-{
-    m_picturePath = newPicturePath;
-}
+// void ISO7200B::setPicturePath(const QString &newPicturePath)
+// {
+//     m_picturePath = newPicturePath;
+// }

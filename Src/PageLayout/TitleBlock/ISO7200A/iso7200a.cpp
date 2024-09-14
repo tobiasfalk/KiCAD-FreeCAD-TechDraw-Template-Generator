@@ -270,6 +270,7 @@ void ISO7200A::updateCurrentLanguage()
 
 void ISO7200A::initLanguages()
 {
+    m_languageTexts->clear();
     QMap<QString, ISO7200ATextStruct> en_gb = {
         { "ResponsibleDepartment", ISO7200ATextStruct{ "Resp. dept.", "AB 131" } },
         { "TechnicalReference", ISO7200ATextStruct{ "Technical reference.", "Susan Müller" } },

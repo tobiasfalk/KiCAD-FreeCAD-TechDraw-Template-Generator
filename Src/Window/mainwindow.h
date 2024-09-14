@@ -479,6 +479,20 @@ private:
                      QPageSize::ExactMatch } },
         { "Ledger",
           QPageSize{ QSizeF{ 279, 432 }, QPageSize::Millimeter, "Ledger", QPageSize::ExactMatch } },
+
+        // Titleblock Sizes
+        { "TitleBlock Plain",
+          QPageSize{ QSizeF{ 50, 180 }, QPageSize::Millimeter, "TitleBlock Plain",
+                     QPageSize::ExactMatch } },
+        { "TitleBlock ISO7200 Style A",
+          QPageSize{ QSizeF{ 36, 180 }, QPageSize::Millimeter, "TitleBlock ISO7200 Style A",
+                     QPageSize::ExactMatch } },
+        { "TitleBlock ISO7200 Style B",
+          QPageSize{ QSizeF{ 27, 180 }, QPageSize::Millimeter, "TitleBlock ISO7200 Style B",
+                     QPageSize::ExactMatch } },
+        { "TitleBlock FreeCAD Style A",
+          QPageSize{ QSizeF{ 47, 140.35 }, QPageSize::Millimeter, "TitleBlock FreeCAD Style A",
+                     QPageSize::ExactMatch } },
     };
     QList<QString> sortedPageNames(QMap<QString, QPageSize> pageMap);
 
@@ -490,8 +504,8 @@ private:
     ///
     /// \brief m_titleBlocks a list for selecting the title-block
     ///
-    QList<QString> m_titleBlocks =
-            QList<QString>{ "None", "Plain TitleBlock", "ISO7200 Style A", "ISO7200 Style B" };
+    QList<QString> m_titleBlocks = QList<QString>{ "None", "Plain TitleBlock", "ISO7200 Style A",
+                                                   "ISO7200 Style B", "FreeCAD Style A" };
 
     ///
     /// \brief m_foldingLineAlgs is a list of all Folding Line Algorithms available
