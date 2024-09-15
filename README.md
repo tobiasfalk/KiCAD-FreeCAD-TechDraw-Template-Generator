@@ -6,7 +6,7 @@ This small and crudely programmed Qt Program creates drawing sheet templates for
 
 The aim of this Project was to create a unified template for KiCAD and FreeCAD TechDraw. The template is similar to the ISO 5457 standard for the general layout; ISO 7200 for the Titelblock; ASME Y14.35 for the optional revision history; and DIN 824 for the optional folding lines. 
 
-For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO font was used for DXF.
+For the font [osifont](https://github.com/hikikomori82/osifont) was used.
 
 ## Prerequisites
 
