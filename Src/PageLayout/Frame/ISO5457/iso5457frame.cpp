@@ -298,15 +298,16 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
 void ISO5457Frame::decideBottomAndTopCenteringLine(double TitleBlockWidth, double TitleBlockHeight,
                                                    QRectF where)
 {
+    qDebug() << "TitleBlockWidth: " << TitleBlockWidth;
     m_bottomCenteringLines = true;
     m_rigthCenteringLines = true;
-    if (TitleBlockWidth > where.width() / 2) {
+    if (TitleBlockWidth > (where.width() - 20.0) / 2) {
         m_bottomCenteringLines = false;
         if (TitleBlockHeight > where.height() - 30) {
             m_topCenteringLines = false;
         }
     }
-    if (TitleBlockHeight + 10 > where.height() / 2) {
+    if (TitleBlockHeight + 10 > (where.height() - 20.0) / 2) {
         m_rigthCenteringLines = false;
         if (TitleBlockWidth > where.width() - 40) {
             m_leftCenteringLines = false;

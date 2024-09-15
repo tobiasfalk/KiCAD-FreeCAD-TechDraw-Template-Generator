@@ -208,56 +208,56 @@ void FreeCADA::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 3.325 },
-                   m_currentLanguage["G"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "G", m_currentLanguage["G"].isEditable);
+                   m_currentLanguage["G"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "G", m_currentLanguage["G"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 9.985 },
                    m_currentLanguage["F"].lable, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 9.985 },
-                   m_currentLanguage["F"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "F", m_currentLanguage["F"].isEditable);
+                   m_currentLanguage["F"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "F", m_currentLanguage["F"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 16.655 },
                    m_currentLanguage["E"].lable, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 16.655 },
-                   m_currentLanguage["E"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "E", m_currentLanguage["E"].isEditable);
+                   m_currentLanguage["E"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "E", m_currentLanguage["E"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 23.32 },
                    m_currentLanguage["D"].lable, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 23.32 },
-                   m_currentLanguage["D"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "D", m_currentLanguage["D"].isEditable);
+                   m_currentLanguage["D"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "D", m_currentLanguage["D"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 29.985 },
                    m_currentLanguage["C"].lable, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 29.985 },
-                   m_currentLanguage["C"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "C", m_currentLanguage["C"].isEditable);
+                   m_currentLanguage["C"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "C", m_currentLanguage["C"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 36.655 },
                    m_currentLanguage["B"].lable, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 36.655 },
-                   m_currentLanguage["B"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "B", m_currentLanguage["B"].isEditable);
+                   m_currentLanguage["B"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "B", m_currentLanguage["B"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 43.495 },
                    m_currentLanguage["A"].lable, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 132.135,
                             titleBlockArea().topLeft().y() + 43.495 },
-                   m_currentLanguage["A"].text, 3, TextHeightAnchor::Middle, TextWidthAnchor::Left,
-                   .3, font(), "A", m_currentLanguage["A"].isEditable);
+                   m_currentLanguage["A"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "A", m_currentLanguage["A"].isEditable);
 
     // Picture
     if (QFileInfo::exists(m_picturePath)) {
