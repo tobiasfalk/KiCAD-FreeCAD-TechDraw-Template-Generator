@@ -17,6 +17,11 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ## Styles
 
+### Frames
+
+* Plain
+![Plain Frame](/Doc/Img/Frame_Plain.png)
+
 ## Limitations
 
 ### KiCAD 8

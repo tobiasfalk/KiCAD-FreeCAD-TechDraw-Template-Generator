@@ -27,6 +27,8 @@ enum class DrawingFormate {
     SvgQtPaint,
     ///
     Html,
+    ///
+    PngQtPaint,
 };
 
 ///
@@ -130,6 +132,8 @@ private:
     void runSvgQtPaint();
 
     void runHtml();
+
+    void runPng();
 };
 
 #endif // UNIVERSALDRAWTHREAD_H

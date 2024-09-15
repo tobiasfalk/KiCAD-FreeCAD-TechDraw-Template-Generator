@@ -7,6 +7,7 @@
 #include "UniversalDraw/FreeCADSvg/freecadsvg.h"
 #include "UniversalDraw/KiCAD8/kicad8.h"
 #include "UniversalDraw/Html/htmldraw.h"
+#include "UniversalDraw/PngQtPaint/pngqtpaint.h"
 
 UniversalDrawThread::UniversalDrawThread() { }
 
@@ -47,6 +48,10 @@ void UniversalDrawThread::run()
         case DrawingFormate::Html:
             qInfo() << "Html";
             runHtml();
+            break;
+        case DrawingFormate::PngQtPaint:
+            qInfo() << "Png";
+            runPng();
             break;
         default:
             break;
@@ -136,6 +141,15 @@ void UniversalDrawThread::runHtml()
     std::shared_ptr<HtmlDraw> draw = std::make_shared<HtmlDraw>();
 
     draw->setFileName(m_fileName + ".html");
+
+    m_pageStyle.draw(draw);
+}
+
+void UniversalDrawThread::runPng()
+{
+    std::shared_ptr<PngQtPaint> draw = std::make_shared<PngQtPaint>();
+
+    draw->setFileName(m_fileName + ".qt.png");
 
     m_pageStyle.draw(draw);
 }

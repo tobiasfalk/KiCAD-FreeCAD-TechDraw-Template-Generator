@@ -356,6 +356,10 @@ QList<DrawingFormate> UTGMainWindow::getDrawingFormates()
         ret.append(DrawingFormate::Html);
     }
 
+    if (m_ui->QtPngCheckBox->isChecked()) {
+        ret.append(DrawingFormate::PngQtPaint);
+    }
+
     return ret;
 }
 

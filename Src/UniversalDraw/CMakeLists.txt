@@ -19,6 +19,8 @@ add_library(UniversalDraw STATIC
     KiCAD8/kicad8.cpp
     Html/htmldraw.h
     Html/htmldraw.cpp
+    PngQtPaint/pngqtpaint.h
+    PngQtPaint/pngqtpaint.cpp
 )
 
 target_link_libraries(UniversalDraw PRIVATE
