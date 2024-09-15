@@ -43,7 +43,7 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used.
 
 * SVG text height is not the same as the real height, Correction factor is applied
 
-### PDF
+### PDF, Qt SVG & Qt PNG
 This is mostly meant for printing as a template for hand drawing.
 
 * Qt includes random spaces on Windows
