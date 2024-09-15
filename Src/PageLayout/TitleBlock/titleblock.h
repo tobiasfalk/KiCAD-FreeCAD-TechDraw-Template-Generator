@@ -11,6 +11,16 @@
 #include "UniversalDraw/universaldraw.h"
 
 ///
+/// \brief The TitleBlockTextStruct struct is used to link a lable to a given Text
+///
+struct TitleBlockTextStruct
+{
+    QString lable;
+    QString text;
+    bool isEditable = true;
+};
+
+///
 /// \brief The TitleBlock class is the bases for all Title-blocks and if used for drawing will do
 /// nothing
 ///
@@ -95,6 +105,22 @@ protected:
     /// \param newLanguages
     ///
     void setLanguages(const QList<QString> &newLanguages);
+
+    ///
+    /// \brief m_currentLanguage is the Map with the current language texts
+    ///
+    QMap<QString, TitleBlockTextStruct> m_currentLanguage;
+
+    ///
+    /// \brief m_languageText a map with all the language texts
+    ///
+    std::shared_ptr<QMap<QString, QMap<QString, TitleBlockTextStruct>>> m_languageTexts =
+            std::make_shared<QMap<QString, QMap<QString, TitleBlockTextStruct>>>();
+
+    ///
+    /// \brief initLanguages initialises the Languages map(m_languageTexts)
+    ///
+    virtual void initLanguages();
 
 private:
     ///

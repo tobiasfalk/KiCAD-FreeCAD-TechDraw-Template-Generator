@@ -51,6 +51,11 @@ void TitleBlock::setLanguages(const QList<QString> &newLanguages)
     m_languages = newLanguages;
 }
 
+void TitleBlock::initLanguages()
+{
+
+}
+
 QString TitleBlock::font() const
 {
     return m_font;

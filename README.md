@@ -55,8 +55,8 @@ If the Text Name is one of the below the Drawers detect that and Fill in the fol
 
 | **Name**              | **FreeCAD**                        | **KiCAD**     |
 |-----------------------|------------------------------------|---------------|
-| **PageNumberNumbers** | "freecad:autofill", "sheet"        | ${#}/${##}    |
-| **PageNumber**        | "freecad:autofill", "page_number"  | ${#}          |
+| **SheetNumberNumbers** | "freecad:autofill", "sheet"        | ${#}/${##}    |
+| **SheetNumber**        | "freecad:autofill", "page_number"  | ${#}          |
 | **NumberOfPages**     | "freecad:autofill", "page_count"   | ${##}         |
 | **LegalOwner**        | "freecad:autofill", "organization" | ${COMPANY}    |
 | **DateOfIssue**       | "freecad:autofill", "date"         | ${ISSUE_DATE} |

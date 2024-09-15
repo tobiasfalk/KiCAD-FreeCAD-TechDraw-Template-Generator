@@ -186,13 +186,13 @@ void FreeCADA::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
                    m_currentLanguage["IdentificationNumber"].isEditable);
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 101.25,
                             titleBlockArea().topLeft().y() + 30.5 },
-                   m_currentLanguage["PageNumberNumbers"].lable, 1.5, TextHeightAnchor::Top,
+                   m_currentLanguage["SheetNumberNumbers"].lable, 1.5, TextHeightAnchor::Top,
                    TextWidthAnchor::Left, .15, font());
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 109.5,
                             titleBlockArea().topLeft().y() + 36.15 },
-                   m_currentLanguage["PageNumberNumbers"].text, 3, TextHeightAnchor::Middle,
-                   TextWidthAnchor::Center, .3, font(), "PageNumberNumbers",
-                   m_currentLanguage["PageNumberNumbers"].isEditable);
+                   m_currentLanguage["SheetNumberNumbers"].text, 3, TextHeightAnchor::Middle,
+                   TextWidthAnchor::Center, .3, font(), "SheetNumberNumbers",
+                   m_currentLanguage["SheetNumberNumbers"].isEditable);
 
     // Disclaimer
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 1.25,
@@ -282,7 +282,7 @@ void FreeCADA::initLanguages()
         { "Scale", ISO7200ATextStruct{ "SCALE:", "Scale" } },
         { "Weight", ISO7200ATextStruct{ "WEIGHT (kg):", "Weight" } },
         { "IdentificationNumber", ISO7200ATextStruct{ "DRAWING NUMBER:", "Drawing number" } },
-        { "PageNumberNumbers", ISO7200ATextStruct{ "SHEET:", "Sheet" } },
+        { "SheetNumberNumbers", ISO7200ATextStruct{ "SHEET:", "Sheet" } },
         { "Disclaimer",
           ISO7200ATextStruct{ "",
                               "This drawing is our property; it can't be reproduced or "
@@ -307,7 +307,7 @@ void FreeCADA::initLanguages()
         { "Scale", ISO7200ATextStruct{ "MAẞSTAB:", "Scale" } },
         { "Weight", ISO7200ATextStruct{ "GEWICHT (kg):", "Weight" } },
         { "IdentificationNumber", ISO7200ATextStruct{ "ZEICHNUNGS NUMMER:", "Drawing number" } },
-        { "PageNumberNumbers", ISO7200ATextStruct{ "BLATT:", "Sheet" } },
+        { "SheetNumberNumbers", ISO7200ATextStruct{ "BLATT:", "Sheet" } },
         { "Disclaimer",
           ISO7200ATextStruct{ "",
                               "This drawing is our property; it can't be reproduced or "

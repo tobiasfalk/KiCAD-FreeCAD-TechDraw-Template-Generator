@@ -141,15 +141,15 @@ void KiCAD8::drawText(QPointF position, QString text, double textSize,
         anchorString = "(justify right bottom)";
     }
 
-    QList<QString> keyWords = { "PageNumberNumbers", "PageNumber",    "NumberOfPages", "LegalOwner",
+    QList<QString> keyWords = { "SheetNumberNumbers", "SheetNumber",    "NumberOfPages", "LegalOwner",
                                 "DateOfIssue",       "RevisionIndex", "Title" };
 
     if (isEditable && !(keyWords.contains(name))) {
         text = "${" + name + "}";
     } else if (keyWords.contains(name)) {
-        if (name == "PageNumberNumbers") {
+        if (name == "SheetNumberNumbers") {
             text = "${#}/${##}";
-        } else if (name == "PageNumber") {
+        } else if (name == "SheetNumber") {
             text = "${#}";
         } else if (name == "NumberOfPages") {
             text = "${##}";

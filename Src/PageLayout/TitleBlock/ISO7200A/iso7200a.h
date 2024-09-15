@@ -3,15 +3,7 @@
 
 #include "PageLayout/TitleBlock/titleblock.h"
 
-///
-/// \brief The ISO7200ATextStruct struct is used to link a lable to a given Text
-///
-struct ISO7200ATextStruct
-{
-    QString lable;
-    QString text;
-    bool isEditable = true;
-};
+typedef TitleBlockTextStruct ISO7200ATextStruct;
 
 ///
 /// \brief The ISO7200A class draws a ISO 7200 conform title-block
@@ -54,21 +46,11 @@ public:
 
 protected:
     //   Key/varName, values
-    ///
-    /// \brief m_currentLanguage is the Map with the current language texts
-    ///
-    QMap<QString, ISO7200ATextStruct> m_currentLanguage;
-
-    ///
-    /// \brief m_languageText a map with all the language texts
-    ///
-    std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> m_languageTexts =
-            std::make_shared<QMap<QString, QMap<QString, ISO7200ATextStruct>>>();
 
     ///
     /// \brief initLanguages initialises the Languages map(m_languageTexts)
     ///
-    virtual void initLanguages();
+    virtual void initLanguages() override;
 
     ///
     /// \brief m_picturePath is the Path to a Picture, if it is a waled path to a picture(.svg or
