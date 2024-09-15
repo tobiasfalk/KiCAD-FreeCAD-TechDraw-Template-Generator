@@ -37,19 +37,33 @@ For the font [osifont](https://github.com/hikikomori82/osifont) was used. ISO fo
 
 ### KiCAD 8
 
-* No Circlys(Used for Projektion)
+* No Circlys(Used for Projektion), the circles are made out of single lines a therfor makes rather big files
 
 ### FreeCAD
 
-* SVG text height is not the same as the real height
+* SVG text height is not the same as the real height, Correction factor is applied
 
 ### PDF
 This is mostly meant for printing as a template for hand drawing.
 
-* Qt includes random spaces under Windows
+* Qt includes random spaces on Windows
 
 
 ## Variable Docu
+
+If the Text Name is one of the below the Drawers detect that and Fill in the folowing
+
+| **Name**              | **FreeCAD**                        | **KiCAD**     |
+|-----------------------|------------------------------------|---------------|
+| **PageNumberNumbers** | "freecad:autofill", "sheet"        | ${#}/${##}    |
+| **PageNumber**        | "freecad:autofill", "page_number"  | ${#}          |
+| **NumberOfPages**     | "freecad:autofill", "page_count"   | ${##}         |
+| **LegalOwner**        | "freecad:autofill", "organization" | ${COMPANY}    |
+| **DateOfIssue**       | "freecad:autofill", "date"         | ${ISSUE_DATE} |
+| **RevisionIndex**     |                                    | ${REVISION}   |
+| **Title**             | "freecad:autofill", "title"        | ${TITLE}      |
+| **Scale**             | "freecad:autofill", "scale"        |               |
+| **Creator**           | "freecad:autofill", "author"       |               |
 
 ## Reference/Link Colection
 
