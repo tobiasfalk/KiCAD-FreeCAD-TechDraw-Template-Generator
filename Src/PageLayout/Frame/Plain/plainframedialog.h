@@ -29,12 +29,12 @@ public:
     /// \brief setFrame sets the parameters to those of a existing frame
     /// \param newFrame
     ///
-    void setFrame(std::shared_ptr<PlainFrame> newFrame);
+    void setFrame(const std::shared_ptr<PlainFrame> &newFrame);
     ///
     /// \brief frame returns a frame with the set parameters
     /// \return
     ///
-    std::shared_ptr<PlainFrame> frame();
+    const std::shared_ptr<PlainFrame> &frame();
 
 private slots:
     void on_LineWidthDoubleSpinBox_editingFinished();

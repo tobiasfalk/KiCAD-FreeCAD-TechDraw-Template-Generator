@@ -13,7 +13,7 @@ PlainTitleBlockDialog::~PlainTitleBlockDialog()
     delete m_ui;
 }
 
-std::shared_ptr<PlainTitleBlock> PlainTitleBlockDialog::titleBlock() const
+const std::shared_ptr<PlainTitleBlock> &PlainTitleBlockDialog::titleBlock() const
 {
     m_titleBlock->setHeight(m_ui->heigthDoubleSpinBox->value());
     m_titleBlock->setWidth(m_ui->widthDoubleSpinBox->value());

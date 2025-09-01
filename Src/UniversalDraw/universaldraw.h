@@ -56,14 +56,14 @@ public:
     /// \param end is the end point of the line
     /// \param lineWidth is the width of the line in mm
     ///
-    virtual void drawLine(QPointF start, QPointF end, double lineWidth);
+    virtual void drawLine(const QPointF &start, const QPointF &end, double lineWidth);
     ///
     /// \brief drawLine draws a line between the start point and the end point with
     /// a certain line width
     /// \param line is the line to be drawn
     /// \param lineWidth is the width of the line in mm
     ///
-    virtual void drawLine(QLineF line, double lineWidth);
+    virtual void drawLine(const QLineF &line, double lineWidth);
     ///
     /// \brief drawRect draws a rectangle between start and end point where the top
     /// line parallel to the upper page edge
@@ -73,7 +73,7 @@ public:
     /// \param lineWidth is the line width that the rectangle is drawn in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawRect(QPointF start, QPointF end, double lineWidth, bool fill = false);
+    virtual void drawRect(const QPointF &start, const QPointF &end, double lineWidth, bool fill = false);
     ///
     /// \brief drawRect draws a rectangle between start and end point where the top
     /// line parallel to the upper page edge
@@ -81,7 +81,7 @@ public:
     /// \param lineWidth is the line width that the rectangle is drawn in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawRect(QRectF rect, double lineWidth, bool fill = false);
+    virtual void drawRect(const QRectF &rect, double lineWidth, bool fill = false);
     ///
     /// \brief drawPoly draws a polygon
     /// \param position is the position of the first point in mm
@@ -93,7 +93,7 @@ public:
     /// \param fill defines if the polygon is filled(true) or
     /// not(false)
     ///
-    virtual void drawPoly(QPointF position, QList<QPointF> points, double lineWidth,
+    virtual void drawPoly(const QPointF &position, const QList<QPointF> &points, double lineWidth,
                           bool fill = false);
     ///
     /// \brief drawPoly draws a polygon
@@ -102,7 +102,7 @@ public:
     /// is drawn width in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawPoly(QPolygonF poly, double lineWidth, bool fill = false);
+    virtual void drawPoly(const QPolygonF &poly, double lineWidth, bool fill = false);
     ///
     /// \brief drawCircle draws a circle
     /// \param center is the position of the Center point in mm
@@ -110,7 +110,7 @@ public:
     /// \param lineWidth is the width of the line that the circle drawn with in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawCircle(QPointF center, double radius, double lineWidth, bool fill = false);
+    virtual void drawCircle(const QPointF &center, double radius, double lineWidth, bool fill = false);
     ///
     /// \brief drawText draws Text on the given position
     /// \param position is the Position of the Text(Text Anchor) in mm
@@ -125,14 +125,14 @@ public:
     /// \param name is the name that the text field is given, often
     /// used for variable/editable text
     ///
-    virtual void drawText(QPointF position, QString text, double textSize,
+    virtual void drawText(const QPointF &position, const QString &text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                          double lineWidth, QString font = QString::fromLatin1("osifont"),
-                          QString name = QString::fromLatin1(""), bool isEditable = false);
-    void drawText(QPointF position, QStringList text, double textSize,
+                          double lineWidth, const QString &font = QString::fromLatin1("osifont"),
+                          const QString &name = QString::fromLatin1(""), bool isEditable = false);
+    void drawText(const QPointF &position, const QStringList &text, double textSize,
                   TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                  double lineWidth, QString font = QString::fromLatin1("osifont"),
-                  QString name = QString::fromLatin1(""), bool isEditable = false);
+                  double lineWidth, const QString &font = QString::fromLatin1("osifont"),
+                  const QString &name = QString::fromLatin1(""), bool isEditable = false);
     ///
     /// \brief drawPicture draws a Picture on the given position, the anchor is on
     /// the Top Left
@@ -144,14 +144,14 @@ public:
     /// renders, this may needs to be lowered if the picture should be big, it may
     /// not be used in every output format
     ///
-    virtual void drawPicture(QString picturePath, QPointF position, double width, double height,
+    virtual void drawPicture(const QString &picturePath, const QPointF &position, double width, double height,
                              int dpiVector = 33020);
 
     ///
     /// \brief fileName returns the name of the file to draw in to
     /// \return
     ///
-    QString fileName() const;
+    const QString &fileName() const;
     ///
     /// \brief setFileName sets the name of the file to draw in to
     /// \param newFileName
@@ -230,13 +230,13 @@ public:
     /// \image html Test/test.SVG
     ///
     ///
-    static void printTest(std::shared_ptr<UniversalDraw> drawer);
+    static void printTest(const std::shared_ptr<UniversalDraw> &drawer);
     ///
     /// \brief printTest makes the same as printTest but scales everything to the given page layout
     /// \param drawer
     /// \param layout
     ///
-    static void printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout);
+    static void printTest(const std::shared_ptr<UniversalDraw> &drawer, const QPageLayout &layout);
 
     bool showEditable() const;
     void setShowEditable(bool newShowEditable);

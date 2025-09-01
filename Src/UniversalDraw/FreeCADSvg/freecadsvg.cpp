@@ -2,9 +2,9 @@
 
 FreeCADSvg::FreeCADSvg() { }
 
-void FreeCADSvg::drawText(QPointF position, QString text, double textSize,
+void FreeCADSvg::drawText(const QPointF &position, const QString &text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                          double lineWidth, QString font, QString name, bool isEditable)
+                          double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     QString anchorString = "";
     double posX = position.x();

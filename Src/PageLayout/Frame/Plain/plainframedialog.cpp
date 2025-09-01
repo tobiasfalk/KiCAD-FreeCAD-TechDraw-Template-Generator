@@ -13,7 +13,7 @@ PlainFrameDialog::~PlainFrameDialog()
     delete m_ui;
 }
 
-void PlainFrameDialog::setFrame(std::shared_ptr<PlainFrame> newFrame)
+void PlainFrameDialog::setFrame(const std::shared_ptr<PlainFrame> &newFrame)
 {
     m_ui->LineWidthDoubleSpinBox->setValue(newFrame->lineWidth());
     m_ui->BottomDoubleSpinBox->setValue(newFrame->indentBottom());
@@ -23,7 +23,7 @@ void PlainFrameDialog::setFrame(std::shared_ptr<PlainFrame> newFrame)
     m_frame = newFrame;
 }
 
-std::shared_ptr<PlainFrame> PlainFrameDialog::frame()
+const std::shared_ptr<PlainFrame> &PlainFrameDialog::frame()
 {
     m_frame->setLineWidth(m_ui->LineWidthDoubleSpinBox->value());
     m_frame->setIndentBottom(m_ui->BottomDoubleSpinBox->value());

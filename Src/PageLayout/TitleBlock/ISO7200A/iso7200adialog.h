@@ -16,7 +16,7 @@ public:
     explicit ISO7200ADialog(QWidget *parent = nullptr);
     ~ISO7200ADialog();
 
-    std::shared_ptr<ISO7200A> titleBlock() const;
+    const std::shared_ptr<ISO7200A> &titleBlock() const;
     void setTitleBlock(const std::shared_ptr<ISO7200A> &newTitleBlock);
 
 private slots:

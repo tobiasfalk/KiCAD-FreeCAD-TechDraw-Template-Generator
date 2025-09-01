@@ -2,7 +2,7 @@
 
 #include <QFile>
 
-QtPainterDrawer::QtPainterDrawer(std::shared_ptr<QPainter> painter)
+QtPainterDrawer::QtPainterDrawer(const std::shared_ptr<QPainter> &painter)
 {
     m_painter = painter;
 }
@@ -11,7 +11,7 @@ QtPainterDrawer::QtPainterDrawer() { }
 
 QtPainterDrawer::~QtPainterDrawer() { }
 
-void QtPainterDrawer::drawLine(QPointF start, QPointF end, double lineWidth)
+void QtPainterDrawer::drawLine(const QPointF &start, const QPointF &end, double lineWidth)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -23,17 +23,17 @@ void QtPainterDrawer::drawLine(QPointF start, QPointF end, double lineWidth)
     m_painter->drawLine(line);
 }
 
-void QtPainterDrawer::drawLine(QLineF line, double lineWidth)
+void QtPainterDrawer::drawLine(const QLineF &line, double lineWidth)
 {
     drawLine(line.p1(), line.p2(), lineWidth);
 }
 
-void QtPainterDrawer::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
+void QtPainterDrawer::drawRect(const QPointF &start, const QPointF &end, double lineWidth, bool fill)
 {
     drawRect(QRectF{ start, end }, lineWidth, fill);
 }
 
-void QtPainterDrawer::drawRect(QRectF rect, double lineWidth, bool fill)
+void QtPainterDrawer::drawRect(const QRectF &rect, double lineWidth, bool fill)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -57,7 +57,7 @@ void QtPainterDrawer::drawRect(QRectF rect, double lineWidth, bool fill)
     }
 }
 
-void QtPainterDrawer::drawPoly(QPointF position, QList<QPointF> points, double lineWidth, bool fill)
+void QtPainterDrawer::drawPoly(const QPointF &position, const QList<QPointF> &points, double lineWidth, bool fill)
 {
     QList<QPointF> qPoints;
     for (int i = 0; i < points.length(); i++) {
@@ -66,7 +66,7 @@ void QtPainterDrawer::drawPoly(QPointF position, QList<QPointF> points, double l
     drawPoly(qPoints, lineWidth, fill);
 }
 
-void QtPainterDrawer::drawPoly(QPolygonF poly, double lineWidth, bool fill)
+void QtPainterDrawer::drawPoly(const QPolygonF &poly, double lineWidth, bool fill)
 {
     // Because there is a offset with the size of the line width
     // if(!fill)
@@ -94,7 +94,7 @@ void QtPainterDrawer::drawPoly(QPolygonF poly, double lineWidth, bool fill)
     }
 }
 
-void QtPainterDrawer::drawCircle(QPointF center, double radius, double lineWidth, bool fill)
+void QtPainterDrawer::drawCircle(const QPointF &center, double radius, double lineWidth, bool fill)
 {
     QPen pen(Qt::black);
     pen.setStyle(Qt::SolidLine);
@@ -119,9 +119,9 @@ void QtPainterDrawer::drawCircle(QPointF center, double radius, double lineWidth
     }
 }
 
-void QtPainterDrawer::drawText(QPointF position, QString text, double textSize,
+void QtPainterDrawer::drawText(const QPointF &position, const QString &text, double textSize,
                                TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                               double lineWidth, QString font, QString name, bool isEditable)
+                               double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     QFont qFont(font);
     QFont qFontA(font);
@@ -159,7 +159,7 @@ void QtPainterDrawer::drawText(QPointF position, QString text, double textSize,
     m_painter->drawText(QPointF(posX, posY), text);
 }
 
-void QtPainterDrawer::drawPicture(QString picturePath, QPointF position, double width,
+void QtPainterDrawer::drawPicture(const QString &picturePath, const QPointF &position, double width,
                                   double height, int dpiVector)
 {
     double resulutionPMM = dpiVector * (1 / 25.4);
@@ -232,7 +232,7 @@ bool QtPainterDrawer::end()
     return true;
 }
 
-std::shared_ptr<QPainter> QtPainterDrawer::painter() const
+const std::shared_ptr<QPainter> &QtPainterDrawer::painter() const
 {
     return m_painter;
 }

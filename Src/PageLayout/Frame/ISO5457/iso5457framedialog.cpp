@@ -13,7 +13,7 @@ ISO5457FrameDialog::~ISO5457FrameDialog()
     delete m_ui;
 }
 
-std::shared_ptr<ISO5457Frame> ISO5457FrameDialog::frame() const
+const std::shared_ptr<ISO5457Frame> &ISO5457FrameDialog::frame() const
 {
     m_frame->setShowPageSize(m_ui->pageSizeCheckBox->isChecked());
     m_frame->setShowTrimmingMarks(m_ui->trimmingCheckBox->isChecked());

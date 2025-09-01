@@ -31,7 +31,7 @@ public:
     /// \brief titleBlock returns the title-block with the set parameters
     /// \return the title-block
     ///
-    std::shared_ptr<PlainTitleBlock> titleBlock() const;
+    const std::shared_ptr<PlainTitleBlock> &titleBlock() const;
     ///
     /// \brief setTitleBlock sets the parameters to those of the title-block
     /// \param newTitleBlock

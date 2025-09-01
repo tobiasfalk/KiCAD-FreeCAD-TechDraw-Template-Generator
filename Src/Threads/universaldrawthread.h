@@ -49,8 +49,8 @@ public:
     /// \param pageStyle
     /// \param drawingFormates
     ///
-    UniversalDrawThread(QString fileName, PageStyle pageStyle,
-                        QList<DrawingFormate> drawingFormates);
+    UniversalDrawThread(const QString &fileName, const PageStyle &pageStyle,
+                        const QList<DrawingFormate> &drawingFormates);
 
     ///
     /// \brief run starts the thread
@@ -61,7 +61,7 @@ public:
     /// \brief fileName is the name of the file the Thread should write in to(without a file ending)
     /// \return
     ///
-    QString fileName() const;
+    const QString &fileName() const;
     ///
     /// \brief setFileName sets the name of the file the Thread should write in to(without a file
     /// ending)
@@ -73,15 +73,15 @@ public:
     /// \brief pageStyle is the page style
     /// \return
     ///
-    PageStyle pageStyle() const;
+    const PageStyle &pageStyle() const;
     ///
     /// \brief setPageStyle sets the page style
     /// \param newPageStyle
     ///
     void setPageStyle(const PageStyle &newPageStyle);
 
-    QList<DrawingFormate> drawingFormates() const;
-    void setDrawingFormate(QList<DrawingFormate> newDrawingFormates);
+    const QList<DrawingFormate> &drawingFormates() const;
+    void setDrawingFormate(const QList<DrawingFormate> &newDrawingFormates);
 
 signals:
     ///

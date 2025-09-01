@@ -23,8 +23,8 @@ public:
     /// \param onWhat is the page layout the frame is to be draw on, this is to get
     /// the name for example
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where,
-                      QPageLayout onWhat) override;
+    virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
+                      const QPageLayout &onWhat) override;
 
     // QString picturePath() const;
     // void setPicturePath(const QString &newPicturePath);

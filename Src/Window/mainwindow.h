@@ -104,11 +104,11 @@ private:
     ///
     /// \brief updatePreView redraws the preview
     ///
-    void updatePreView();
-    void updateFrame(QString framStr);
-    void updateFrame();
-    void updateFoldingLines(QString foldStr);
-    void updateFoldingLines();
+  void updatePreView();
+  void updateFrame(const QString &framStr);
+  void updateFrame();
+  void updateFoldingLines(const QString &foldStr);
+  void updateFoldingLines();
 
     ///
     /// \brief m_pagesizes is a list of all the page sizes
@@ -494,7 +494,7 @@ private:
           QPageSize{ QSizeF{ 47, 140.35 }, QPageSize::Millimeter, "TitleBlock FreeCAD Style A",
                      QPageSize::ExactMatch } },
     };
-    QList<QString> sortedPageNames(QMap<QString, QPageSize> pageMap);
+  QList<QString> sortedPageNames(const QMap<QString, QPageSize> &pageMap);
 
     ///
     /// \brief m_frames a list for selection the frame
@@ -531,7 +531,7 @@ private:
     /// \param name the size string
     /// \return
     ///
-    QPageSize getPageSizeFromName(QString name);
+  QPageSize getPageSizeFromName(const QString &name);
     ///
     /// \brief getOrientationFromUi returns the page orientation depending on the PortraitCheckBox
     /// \return

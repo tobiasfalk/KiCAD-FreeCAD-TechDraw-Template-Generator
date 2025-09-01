@@ -7,7 +7,7 @@ DIN824ALike::DIN824ALike()
             "This creates folding lines where the algorithm is based on the DIN 824 standard");
 }
 
-void DIN824ALike::draw(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat)
+void DIN824ALike::draw(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat)
 {
     double len = 0; // length of the remaining block
     int num = 0; // number of blocks

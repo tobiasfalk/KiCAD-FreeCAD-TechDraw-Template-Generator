@@ -1,12 +1,11 @@
 set(Window_SOURCES
     mainwindow.cpp
-    mainwindow.h
     mainwindow.ui
 )
 
-add_library(Window STATIC
-    ${Window_SOURCES}
-)
+add_library(Window STATIC ${Window_SOURCES})
+target_sources(Window PRIVATE ${Window_SOURCES})
+target_include_directories(Window PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(Window PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -21,11 +20,8 @@ target_link_libraries(Window PRIVATE
     Threads
 
     KiCAD_Symbol_scaler
+    ProjectIncludes
 )
 
-# target_include_directories(Window PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-get_target_property(LIB_INCLUDES PreView INCLUDE_DIRECTORIES)
-
-message(${LIB_INCLUDES})
 

@@ -14,7 +14,7 @@ ISO7200A::ISO7200A()
     initLanguages();
 }
 
-void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void ISO7200A::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
     setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 36 }, where.bottomRight() });
     into->drawRect(titleBlockArea(), .7);
@@ -235,9 +235,9 @@ void ISO7200A::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayo
     }
 }
 
-QMap<QString, ISO7200ATextStruct> ISO7200A::currentLanguage() const
+const QMap<QString, ISO7200ATextStruct> &ISO7200A::currentLanguage() const
 {
-    return m_currentLanguage;
+        return m_currentLanguage;
 }
 
 void ISO7200A::setLanguage(const QString &newLanguage)
@@ -247,9 +247,9 @@ void ISO7200A::setLanguage(const QString &newLanguage)
     m_currentLanguage = m_languageTexts->value(language());
 }
 
-std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> ISO7200A::languageTexts() const
+const std::shared_ptr<QMap<QString, QMap<QString, ISO7200ATextStruct>>> &ISO7200A::languageTexts() const
 {
-    return m_languageTexts;
+        return m_languageTexts;
 }
 
 void ISO7200A::setLanguageTexts(
@@ -309,9 +309,9 @@ void ISO7200A::initLanguages()
     m_languageTexts->insert("de_at", de_at);
 }
 
-QString ISO7200A::picturePath() const
+const QString &ISO7200A::picturePath() const
 {
-    return m_picturePath;
+        return m_picturePath;
 }
 
 void ISO7200A::setPicturePath(const QString &newPicturePath)

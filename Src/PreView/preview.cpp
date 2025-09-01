@@ -52,7 +52,7 @@ PreView::PreView() { }
 
 PreView::~PreView() { }
 
-std::shared_ptr<QPainter> PreView::painter() const
+const std::shared_ptr<QPainter> &PreView::painter() const
 {
     return m_painter;
 }
@@ -62,12 +62,12 @@ void PreView::setPainter(const std::shared_ptr<QPainter> &newPainter)
     m_painter = newPainter;
 }
 
-std::shared_ptr<PageStyle> PreView::pageStyle() const
+const std::shared_ptr<PageStyle> &PreView::pageStyle() const
 {
     return m_pageStyle;
 }
 
-void PreView::setPageStyle(const std::shared_ptr<PageStyle> newPageStyle)
+void PreView::setPageStyle(const std::shared_ptr<PageStyle> &newPageStyle)
 {
     m_pageStyle = newPageStyle;
 }

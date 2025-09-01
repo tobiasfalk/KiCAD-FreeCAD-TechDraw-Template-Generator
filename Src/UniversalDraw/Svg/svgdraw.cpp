@@ -4,7 +4,7 @@
 
 SvgDraw::SvgDraw() { }
 
-void SvgDraw::drawLine(QPointF start, QPointF end, double lineWidth)
+void SvgDraw::drawLine(const QPointF &start, const QPointF &end, double lineWidth)
 {
     QDomElement obj = m_document.createElement("line");
     obj.setAttribute("x1", QString::number(start.x()) + m_svgUnit);
@@ -15,12 +15,12 @@ void SvgDraw::drawLine(QPointF start, QPointF end, double lineWidth)
     m_root.appendChild(obj);
 }
 
-void SvgDraw::drawLine(QLineF line, double lineWidth)
+void SvgDraw::drawLine(const QLineF &line, double lineWidth)
 {
     drawLine(line.p1(), line.p2(), lineWidth);
 }
 
-void SvgDraw::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
+void SvgDraw::drawRect(const QPointF &start, const QPointF &end, double lineWidth, bool fill)
 {
     QDomElement obj = m_document.createElement("rect");
     obj.setAttribute("x", QString::number(start.x()) + m_svgUnit);
@@ -37,12 +37,12 @@ void SvgDraw::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
     m_root.appendChild(obj);
 }
 
-void SvgDraw::drawRect(QRectF rect, double lineWidth, bool fill)
+void SvgDraw::drawRect(const QRectF &rect, double lineWidth, bool fill)
 {
     drawRect(rect.topLeft(), rect.bottomRight(), lineWidth, fill);
 }
 
-void SvgDraw::drawPoly(QPointF position, QList<QPointF> points, double lineWidth, bool fill)
+void SvgDraw::drawPoly(const QPointF &position, const QList<QPointF> &points, double lineWidth, bool fill)
 {
     QString pointsString = "";
     foreach (QPointF point, points) {
@@ -59,12 +59,12 @@ void SvgDraw::drawPoly(QPointF position, QList<QPointF> points, double lineWidth
     m_root.appendChild(obj);
 }
 
-void SvgDraw::drawPoly(QPolygonF poly, double lineWidth, bool fill)
+void SvgDraw::drawPoly(const QPolygonF &poly, double lineWidth, bool fill)
 {
     drawPoly(QPointF{ 0, 0 }, poly, lineWidth, fill);
 }
 
-void SvgDraw::drawCircle(QPointF center, double radius, double lineWidth, bool fill)
+void SvgDraw::drawCircle(const QPointF &center, double radius, double lineWidth, bool fill)
 {
     QDomElement obj = m_document.createElement("circle");
     obj.setAttribute("cx", QString::number(center.x()) + m_svgUnit);
@@ -80,9 +80,9 @@ void SvgDraw::drawCircle(QPointF center, double radius, double lineWidth, bool f
     m_root.appendChild(obj);
 }
 
-void SvgDraw::drawText(QPointF position, QString text, double textSize,
+void SvgDraw::drawText(const QPointF &position, const QString &text, double textSize,
                        TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                       double lineWidth, QString font, QString name, bool isEditable)
+                       double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     if (isEditable && !this->showEditable()) {
         return;
@@ -118,7 +118,7 @@ void SvgDraw::drawText(QPointF position, QString text, double textSize,
     m_root.appendChild(obj);
 }
 
-void SvgDraw::drawPicture(QString picturePath, QPointF position, double width, double height,
+void SvgDraw::drawPicture(const QString &picturePath, const QPointF &position, double width, double height,
                           int dpiVector)
 {
     double resulutionPMM = dpiVector * (1 / 25.4);
@@ -283,12 +283,12 @@ bool SvgDraw::end()
     return ret;
 }
 
-std::shared_ptr<QFile> SvgDraw::file() const
+const std::shared_ptr<QFile> &SvgDraw::file() const
 {
     return m_file;
 }
 
-QDomDocument SvgDraw::document() const
+const QDomDocument &SvgDraw::document() const
 {
     return m_document;
 }

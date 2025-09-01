@@ -13,7 +13,7 @@ FreeCADA::FreeCADA()
     initLanguages();
 }
 
-void FreeCADA::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void FreeCADA::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
     setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 140.35, 47 }, where.bottomRight() });
     into->drawRect(titleBlockArea(), .35);

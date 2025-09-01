@@ -31,7 +31,7 @@ ISO5457Frame::ISO5457Frame()
     setType("ISO5457");
 }
 
-void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void ISO5457Frame::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
     setDrawingArea(QRectF{ QPointF{ 20, 10 }, QPointF{ where.width() - 10, where.height() - 10 } });
     // Inseid and Outseid Rectangal
@@ -296,7 +296,7 @@ void ISO5457Frame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPage
 }
 
 void ISO5457Frame::decideBottomAndTopCenteringLine(double TitleBlockWidth, double TitleBlockHeight,
-                                                   QRectF where)
+                                                   const QRectF &where)
 {
     qDebug() << "TitleBlockWidth: " << TitleBlockWidth;
     m_bottomCenteringLines = true;

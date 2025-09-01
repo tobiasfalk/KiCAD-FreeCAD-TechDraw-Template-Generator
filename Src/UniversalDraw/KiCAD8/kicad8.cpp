@@ -8,7 +8,7 @@
 
 KiCAD8::KiCAD8() { }
 
-void KiCAD8::drawLine(QPointF start, QPointF end, double lineWidth)
+void KiCAD8::drawLine(const QPointF &start, const QPointF &end, double lineWidth)
 {
     QString lineString = "  (line\n"
                          "    (name \"\")\n"
@@ -25,12 +25,12 @@ void KiCAD8::drawLine(QPointF start, QPointF end, double lineWidth)
     m_file->write(lineString.toLatin1());
 }
 
-void KiCAD8::drawLine(QLineF line, double lineWidth)
+void KiCAD8::drawLine(const QLineF &line, double lineWidth)
 {
     drawLine(line.p1(), line.p2(), lineWidth);
 }
 
-void KiCAD8::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
+void KiCAD8::drawRect(const QPointF &start, const QPointF &end, double lineWidth, bool fill)
 {
     if (!fill) {
         QString lineString = "  (rect (name \"\")\n"
@@ -51,12 +51,12 @@ void KiCAD8::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
     }
 }
 
-void KiCAD8::drawRect(QRectF rect, double lineWidth, bool fill)
+void KiCAD8::drawRect(const QRectF &rect, double lineWidth, bool fill)
 {
     drawRect(rect.topLeft(), rect.bottomRight(), lineWidth, fill);
 }
 
-void KiCAD8::drawPoly(QPointF position, QList<QPointF> points, double lineWidth, bool fill)
+void KiCAD8::drawPoly(const QPointF &position, const QList<QPointF> &points, double lineWidth, bool fill)
 {
     if (fill) {
         QString lineString = "  (polygon (name \"\")\n    (pos " + QString::number(position.x())
@@ -78,12 +78,12 @@ void KiCAD8::drawPoly(QPointF position, QList<QPointF> points, double lineWidth,
     }
 }
 
-void KiCAD8::drawPoly(QPolygonF poly, double lineWidth, bool fill)
+void KiCAD8::drawPoly(const QPolygonF &poly, double lineWidth, bool fill)
 {
     drawPoly(QPointF{ 0, 0 }, poly, lineWidth, fill);
 }
 
-void KiCAD8::drawCircle(QPointF center, double radius, double lineWidth, bool fill)
+void KiCAD8::drawCircle(const QPointF &center, double radius, double lineWidth, bool fill)
 {
     double arc = 0;
     double arcPre = 0;
@@ -100,11 +100,14 @@ void KiCAD8::drawCircle(QPointF center, double radius, double lineWidth, bool fi
     }
 }
 
-void KiCAD8::drawText(QPointF position, QString text, double textSize,
+void KiCAD8::drawText(const QPointF &position, const QString &text, double textSize,
                       TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                      double lineWidth, QString font, QString name, bool isEditable)
+                      double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     QString anchorString = "";
+    // make mutable copies because parameters are const-ref
+    QString mutableText = text;
+    QString mutableName = name;
 
     // Left
     if (textHeightAnchor == TextHeightAnchor::Top && textWidthAnchor == TextWidthAnchor::Left) {
@@ -144,27 +147,27 @@ void KiCAD8::drawText(QPointF position, QString text, double textSize,
     QList<QString> keyWords = { "SheetNumberNumbers", "SheetNumber",    "NumberOfPages", "LegalOwner",
                                 "DateOfIssue",       "RevisionIndex", "Title" };
 
-    if (isEditable && !(keyWords.contains(name))) {
-        text = "${" + name + "}";
-    } else if (keyWords.contains(name)) {
-        if (name == "SheetNumberNumbers") {
-            text = "${#}/${##}";
-        } else if (name == "SheetNumber") {
-            text = "${#}";
-        } else if (name == "NumberOfPages") {
-            text = "${##}";
-        } else if (name == "LegalOwner") {
-            text = "${COMPANY}";
-        } else if (name == "DateOfIssue") {
-            text = "${ISSUE_DATE}";
-        } else if (name == "RevisionIndex") {
-            text = "${REVISION}";
-        } else if (name == "Title") {
-            text = "${TITLE}";
+    if (isEditable && !(keyWords.contains(mutableName))) {
+        mutableText = "${" + mutableName + "}";
+    } else if (keyWords.contains(mutableName)) {
+        if (mutableName == "SheetNumberNumbers") {
+            mutableText = "${#}/${##}";
+        } else if (mutableName == "SheetNumber") {
+            mutableText = "${#}";
+        } else if (mutableName == "NumberOfPages") {
+            mutableText = "${##}";
+        } else if (mutableName == "LegalOwner") {
+            mutableText = "${COMPANY}";
+        } else if (mutableName == "DateOfIssue") {
+            mutableText = "${ISSUE_DATE}";
+        } else if (mutableName == "RevisionIndex") {
+            mutableText = "${REVISION}";
+        } else if (mutableName == "Title") {
+            mutableText = "${TITLE}";
         }
     }
 
-    QString lineString = "  (tbtext \"" + text + "\" (name \"\")\n    (pos "
+    QString lineString = "  (tbtext \"" + mutableText + "\" (name \"\")\n    (pos "
             + QString::number(position.x()) + " " + QString::number(position.y() + .3)
             + " ltcorner)\n    (font (face \"" + font + "\") (linewidth "
             + QString::number(lineWidth) + ") (size " + QString::number(textSize) + " "
@@ -172,7 +175,7 @@ void KiCAD8::drawText(QPointF position, QString text, double textSize,
     m_file->write(lineString.toLatin1());
 }
 
-void KiCAD8::drawPicture(QString picturePath, QPointF position, double width, double height,
+void KiCAD8::drawPicture(const QString &picturePath, const QPointF &position, double width, double height,
                          int dpiVector)
 {
 

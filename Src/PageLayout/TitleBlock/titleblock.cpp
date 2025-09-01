@@ -5,7 +5,7 @@ TitleBlock::TitleBlock()
     setTitleBlockArea(QRect{ 0, 0, 0, 0 });
 }
 
-QString TitleBlock::type() const
+const QString &TitleBlock::type() const
 {
     return m_type;
 }
@@ -15,12 +15,12 @@ void TitleBlock::setType(const QString &newType)
     m_type = newType;
 }
 
-QString TitleBlock::description() const
+const QString &TitleBlock::description() const
 {
     return m_description;
 }
 
-void TitleBlock::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void TitleBlock::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
     qInfo() << "TitleBlock None, into: " << into.get();
     qInfo() << "TitleBlock None, On What: " << onWhat;
@@ -31,7 +31,7 @@ void TitleBlock::setDescription(const QString &newDescription)
     m_description = newDescription;
 }
 
-QRectF TitleBlock::titleBlockArea() const
+const QRectF &TitleBlock::titleBlockArea() const
 {
     return m_titleBlockArea;
 }
@@ -41,7 +41,7 @@ void TitleBlock::setTitleBlockArea(const QRectF &newTitleBlockArea)
     m_titleBlockArea = newTitleBlockArea;
 }
 
-QList<QString> TitleBlock::languages() const
+const QList<QString> &TitleBlock::languages() const
 {
     return m_languages;
 }
@@ -56,7 +56,7 @@ void TitleBlock::initLanguages()
 
 }
 
-QString TitleBlock::font() const
+const QString &TitleBlock::font() const
 {
     return m_font;
 }
@@ -66,7 +66,7 @@ void TitleBlock::setFont(const QString &newFont)
     m_font = newFont;
 }
 
-QString TitleBlock::language() const
+const QString &TitleBlock::language() const
 {
     return m_language;
 }

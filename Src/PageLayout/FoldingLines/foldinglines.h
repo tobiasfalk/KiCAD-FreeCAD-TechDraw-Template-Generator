@@ -26,7 +26,7 @@ public:
     /// \param into the universal drawer that is drawn in to
     /// \param onWhat is the page layout the folding lines is to be draw on
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat);
+    virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat);
 
     ///
     /// \brief depth returns the the length of the line from the border on in to the page
@@ -39,13 +39,13 @@ public:
     ///
     void setDepth(double newDepth);
 
-    QString type() const;
+    const QString &type() const;
     void setType(const QString &newType);
 
-    QString description() const;
+    const QString &description() const;
     void setDescription(const QString &newDescription);
 
-    QPageLayout toWhat() const;
+    const QPageLayout &toWhat() const;
     void setToWhat(const QPageLayout &newToWhat);
 
 protected:
@@ -57,7 +57,7 @@ protected:
     /// \param depth
     /// \param width
     ///
-    void drawVerFoldLine(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat, double x,
+    void drawVerFoldLine(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat, double x,
                          double depth, double width);
     ///
     /// \brief drawHorFoldLine draws two lines on the Left and Right of the page at position y
@@ -67,7 +67,7 @@ protected:
     /// \param depth
     /// \param width
     ///
-    void drawHorFoldLine(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat, double y,
+    void drawHorFoldLine(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat, double y,
                          double depth, double width);
 
 private:

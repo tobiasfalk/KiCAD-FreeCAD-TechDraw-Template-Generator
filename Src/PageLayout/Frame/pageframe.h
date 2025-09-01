@@ -25,7 +25,7 @@ public:
     /// \brief type returns the frame type, the base class PageFrame has the type "none".
     /// \return
     ///
-    QString type() const;
+    const QString &type() const;
 
     ///
     /// \brief draw draws the frame into the given drawer and into the given rectangle
@@ -34,20 +34,20 @@ public:
     /// page)
     /// \param onWhat is the page layout the frame is to be draw on
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat);
+    virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat);
 
     ///
     /// \brief drawingArea returns a rectangle with the inside of the frame, where drawing should be
     /// placed. It is used as orientation for all the other options like the TitleBlock
     /// \return the rectangle, in mm
     ///
-    QRectF drawingArea() const;
+    const QRectF &drawingArea() const;
 
     ///
     /// \brief description returns a description of the frame
     /// \return the description
     ///
-    QString description() const;
+    const QString &description() const;
 
     ///
     /// \brief noDrawingAreaIndent returns true if there should be nothing that intrudes in to the
@@ -62,7 +62,7 @@ public:
     ///
     void setNoDrawingAreaIndent(bool newNoDrawingAreaIndent);
 
-    QString font() const;
+    const QString &font() const;
     void setFont(const QString &newFont);
 
 protected:

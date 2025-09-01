@@ -2,9 +2,9 @@
 
 PdfQtPaint::PdfQtPaint() : QtPainterDrawer() { }
 
-void PdfQtPaint::drawText(QPointF position, QString text, double textSize,
+void PdfQtPaint::drawText(const QPointF &position, const QString &text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                          double lineWidth, QString font, QString name, bool isEditable)
+                          double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     if (isEditable && !this->showEditable()) {
         return;

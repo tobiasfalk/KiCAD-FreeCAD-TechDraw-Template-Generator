@@ -99,7 +99,7 @@ void UTGMainWindow::updatePreView()
     m_preView->update();
 }
 
-void UTGMainWindow::updateFrame(QString framStr)
+void UTGMainWindow::updateFrame(const QString &framStr)
 {
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
@@ -140,7 +140,7 @@ void UTGMainWindow::updateFrame()
     updateFrame(m_ui->FrameComboBox->currentText());
 }
 
-void UTGMainWindow::updateFoldingLines(QString foldStr)
+void UTGMainWindow::updateFoldingLines(const QString &foldStr)
 {
     if (foldStr == "None") {
         m_foldingLines = std::make_shared<FoldingLines>();
@@ -164,7 +164,7 @@ void UTGMainWindow::updateFoldingLines()
     updateFoldingLines(m_ui->FoldingLineComboBox->currentText());
 }
 
-QList<QString> UTGMainWindow::sortedPageNames(QMap<QString, QPageSize> pageMap)
+QList<QString> UTGMainWindow::sortedPageNames(const QMap<QString, QPageSize> &pageMap)
 {
     QList<QString> ret;
     ret.append("User defined");
@@ -296,7 +296,7 @@ void UTGMainWindow::initFoldingLineAlgs()
     }
 }
 
-QPageSize UTGMainWindow::getPageSizeFromName(QString name)
+QPageSize UTGMainWindow::getPageSizeFromName(const QString &name)
 {
     // foreach (QPageSize page, m_pagesizes) {
     //     qDebug() << "Page Test: " << name << "==" << page << " => " << (name == page.name());

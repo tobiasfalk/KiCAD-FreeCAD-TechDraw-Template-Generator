@@ -6,7 +6,7 @@ PlainTitleBlock::PlainTitleBlock()
     setTitleBlockArea(QRectF{ 0, 0, m_width, m_height });
 }
 
-void PlainTitleBlock::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void PlainTitleBlock::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
     setTitleBlockArea(
             QRectF{ where.bottomRight() - QPointF{ m_width, m_height }, where.bottomRight() });

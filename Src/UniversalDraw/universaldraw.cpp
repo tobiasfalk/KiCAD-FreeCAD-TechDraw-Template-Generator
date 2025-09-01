@@ -4,52 +4,52 @@
 
 UniversalDraw::UniversalDraw() { }
 
-void UniversalDraw::drawLine(QPointF start, QPointF end, double lineWidth)
+void UniversalDraw::drawLine(const QPointF &start, const QPointF &end, double lineWidth)
 {
     qInfo() << "UniversalDraw::drawLine(QPointF start(" << start << "), QPointF end(" << end
             << "), double lineWidth(" << lineWidth << "))";
 }
 
-void UniversalDraw::drawLine(QLineF line, double lineWidth)
+void UniversalDraw::drawLine(const QLineF &line, double lineWidth)
 {
     qInfo() << "UniversalDraw::drawLine(QLineF line(" << line << "), double lineWidth(" << lineWidth
             << "))";
 }
 
-void UniversalDraw::drawRect(QPointF start, QPointF end, double lineWidth, bool fill)
+void UniversalDraw::drawRect(const QPointF &start, const QPointF &end, double lineWidth, bool fill)
 {
     qInfo() << "UniversalDraw::drawRect(QPointF start(" << start << "), QPointF end(" << end
             << "), double lineWidth(" << lineWidth << "), bool fill(" << fill << "))";
 }
 
-void UniversalDraw::drawRect(QRectF rect, double lineWidth, bool fill)
+void UniversalDraw::drawRect(const QRectF &rect, double lineWidth, bool fill)
 {
     qInfo() << "UniversalDraw::drawRect(QRectF rect(" << rect << "), double lineWidth(" << lineWidth
             << "), bool fill(" << fill << "))";
 }
 
-void UniversalDraw::drawPoly(QPointF position, QList<QPointF> points, double lineWidth, bool fill)
+void UniversalDraw::drawPoly(const QPointF &position, const QList<QPointF> &points, double lineWidth, bool fill)
 {
     qInfo() << "UniversalDraw::drawPoly(QPointF position(" << position
             << "), QList<QPointF> points(" << points << "), double lineWidth(" << lineWidth
             << "), bool fill(" << fill << "))";
 }
 
-void UniversalDraw::drawPoly(QPolygonF poly, double lineWidth, bool fill)
+void UniversalDraw::drawPoly(const QPolygonF &poly, double lineWidth, bool fill)
 {
     qInfo() << "UniversalDraw::drawPoly(QPolygonF poly(" << poly << "), double lineWidth("
             << lineWidth << "), bool fill(" << fill << "))";
 }
 
-void UniversalDraw::drawCircle(QPointF center, double radius, double lineWidth, bool fill)
+void UniversalDraw::drawCircle(const QPointF &center, double radius, double lineWidth, bool fill)
 {
     qInfo() << "UniversalDraw::drawCircle(QPointF center(" << center << "), double radius("
             << radius << "), double lineWidth(" << lineWidth << "), bool fill(" << fill << "))";
 }
 
-void UniversalDraw::drawText(QPointF position, QString text, double textSize,
+void UniversalDraw::drawText(const QPointF &position, const QString &text, double textSize,
                              TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                             double lineWidth, QString font, QString name, bool isEditable)
+                             double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     qInfo() << "UniversalDraw::drawText(QPointF position(" << position << "), QString text(" << text
             << "), double textSize(" << textSize << "), TextHeightAnchor textHeightAnchor("
@@ -58,9 +58,9 @@ void UniversalDraw::drawText(QPointF position, QString text, double textSize,
             << font << "), bool isEditable(" << isEditable << "), QString name(" << name << "))";
 }
 
-void UniversalDraw::drawText(QPointF position, QStringList text, double textSize,
+void UniversalDraw::drawText(const QPointF &position, const QStringList &text, double textSize,
                              TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                             double lineWidth, QString font, QString name, bool isEditable)
+                             double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
     if (text.length() == 1) {
         drawText(position, text[0], textSize, textHeightAnchor, textWidthAnchor, lineWidth, font,
@@ -109,7 +109,7 @@ void UniversalDraw::drawText(QPointF position, QStringList text, double textSize
     }
 }
 
-void UniversalDraw::drawPicture(QString picturePath, QPointF position, double width, double height,
+void UniversalDraw::drawPicture(const QString &picturePath, const QPointF &position, double width, double height,
                                 int dpiVector)
 {
     qInfo() << "UniversalDraw::drawPicture(QString picturePath(" << picturePath
@@ -117,7 +117,7 @@ void UniversalDraw::drawPicture(QString picturePath, QPointF position, double wi
             << "), double height(" << height << "))";
 }
 
-QString UniversalDraw::fileName() const
+const QString &UniversalDraw::fileName() const
 {
     return m_fileName;
 }
@@ -159,7 +159,7 @@ bool UniversalDraw::end()
     return true;
 }
 
-void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer)
+void UniversalDraw::printTest(const std::shared_ptr<UniversalDraw> &drawer)
 {
     drawer->setHeight(210);
     drawer->setWidth(297);
@@ -191,7 +191,7 @@ void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer)
     drawer->end();
 }
 
-void UniversalDraw::printTest(std::shared_ptr<UniversalDraw> drawer, QPageLayout layout)
+void UniversalDraw::printTest(const std::shared_ptr<UniversalDraw> &drawer, const QPageLayout &layout)
 {
     drawer->setHeight(layout.fullRect(QPageLayout::Millimeter).height());
     drawer->setWidth(layout.fullRect(QPageLayout::Millimeter).width());

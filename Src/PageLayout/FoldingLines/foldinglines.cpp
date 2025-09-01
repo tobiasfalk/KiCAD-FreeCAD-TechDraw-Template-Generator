@@ -2,10 +2,10 @@
 
 FoldingLines::FoldingLines() { }
 
-void FoldingLines::draw(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat)
+void FoldingLines::draw(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat)
 {
     qInfo() << "FoldingLines None, Into: " << into.get();
-    qInfo() << "FoldingLines None, On What: " << onWhat;
+    qInfo() << "FoldingLines None, On What: " << onWhat.fullRect(QPageLayout::Millimeter).size();
 }
 
 double FoldingLines::depth() const
@@ -18,7 +18,7 @@ void FoldingLines::setDepth(double newDepth)
     m_depth = newDepth;
 }
 
-void FoldingLines::drawVerFoldLine(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat,
+void FoldingLines::drawVerFoldLine(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat,
                                    double x, double depth, double width)
 {
     into->drawLine(QPointF{ x, 0 }, QPointF{ x, depth }, width);
@@ -26,7 +26,7 @@ void FoldingLines::drawVerFoldLine(std::shared_ptr<UniversalDraw> into, QPageLay
                    QPointF{ x, onWhat.fullRect(QPageLayout::Millimeter).height() - depth }, width);
 }
 
-void FoldingLines::drawHorFoldLine(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat,
+void FoldingLines::drawHorFoldLine(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat,
                                    double y, double depth, double width)
 {
     into->drawLine(QPointF{ 0, y }, QPointF{ depth, y }, width);
@@ -34,7 +34,7 @@ void FoldingLines::drawHorFoldLine(std::shared_ptr<UniversalDraw> into, QPageLay
                    QPointF{ onWhat.fullRect(QPageLayout::Millimeter).width() - depth, y }, width);
 }
 
-QPageLayout FoldingLines::toWhat() const
+const QPageLayout &FoldingLines::toWhat() const
 {
     return m_toWhat;
 }
@@ -44,7 +44,7 @@ void FoldingLines::setToWhat(const QPageLayout &newToWhat)
     m_toWhat = newToWhat;
 }
 
-QString FoldingLines::description() const
+const QString &FoldingLines::description() const
 {
     return m_description;
 }
@@ -54,7 +54,7 @@ void FoldingLines::setDescription(const QString &newDescription)
     m_description = newDescription;
 }
 
-QString FoldingLines::type() const
+const QString &FoldingLines::type() const
 {
     return m_type;
 }

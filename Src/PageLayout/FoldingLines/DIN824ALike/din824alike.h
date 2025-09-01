@@ -29,7 +29,7 @@ public:
     /// \param into the universal drawer that is drawn in to
     /// \param onWhat is the page layout the folding lines is to be draw on
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QPageLayout onWhat) override;
+    virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat) override;
 };
 
 #endif // DIN824ALIKE_H

@@ -21,8 +21,8 @@ public:
     /// page)
     /// \param onWhat is the page layout the frame is to be draw on
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where,
-                      QPageLayout onWhat) override;
+    virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
+                      const QPageLayout &onWhat) override;
 
     ///
     /// \brief decideBottomCenteringLine decides if the Bottom Centering mark should be drawn.
@@ -31,7 +31,7 @@ public:
     /// \param where
     ///
     void decideBottomAndTopCenteringLine(double TitleBlockWidth, double TitleBlockHeight,
-                                         QRectF where);
+                                         const QRectF &where);
 
     ///
     /// \brief showPageSize returns true if the page size should be drawn on the bottom right

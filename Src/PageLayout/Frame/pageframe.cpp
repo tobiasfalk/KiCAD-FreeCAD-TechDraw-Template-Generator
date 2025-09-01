@@ -6,22 +6,21 @@
 
 PageFrame::PageFrame() { }
 
-QString PageFrame::type() const
+const QString &PageFrame::type() const
 {
     return m_type;
 }
 
-void PageFrame::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void PageFrame::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
-
     setDrawingArea(where);
 
     qInfo() << "PageFrame None, Into: " << into.get();
     qInfo() << "PageFrame None, On What: " << onWhat;
     qInfo() << "PageFrame None, Where: " << where;
 
-    // into.drawRect(QPointF{ 0, 0 }, QPointF{0, 0}, 1);
-    // into.fileName();
+    // into->drawRect(QPointF{ 0, 0 }, QPointF{0, 0}, 1);
+    // into->fileName();
 }
 
 void PageFrame::setType(const QString &newType)
@@ -29,7 +28,7 @@ void PageFrame::setType(const QString &newType)
     m_type = newType;
 }
 
-QString PageFrame::description() const
+const QString &PageFrame::description() const
 {
     return m_description;
 }
@@ -39,7 +38,7 @@ void PageFrame::setDescription(const QString &newDescription)
     m_description = newDescription;
 }
 
-QRectF PageFrame::drawingArea() const
+const QRectF &PageFrame::drawingArea() const
 {
     return m_drawingArea;
 }
@@ -49,7 +48,7 @@ void PageFrame::setDrawingArea(const QRectF &newDrawingArea)
     m_drawingArea = newDrawingArea;
 }
 
-QString PageFrame::font() const
+const QString &PageFrame::font() const
 {
     return m_font;
 }

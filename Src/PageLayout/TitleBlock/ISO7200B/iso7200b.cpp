@@ -14,7 +14,7 @@ ISO7200B::ISO7200B()
     initLanguages();
 }
 
-void ISO7200B::draw(std::shared_ptr<UniversalDraw> into, QRectF where, QPageLayout onWhat)
+void ISO7200B::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
     setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 27 }, where.bottomRight() });
     into->drawRect(titleBlockArea(), .7);

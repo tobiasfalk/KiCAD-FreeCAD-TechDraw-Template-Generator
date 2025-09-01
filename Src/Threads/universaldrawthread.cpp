@@ -11,8 +11,8 @@
 
 UniversalDrawThread::UniversalDrawThread() { }
 
-UniversalDrawThread::UniversalDrawThread(QString fileName, PageStyle pageStyle,
-                                         QList<DrawingFormate> drawingFormates)
+UniversalDrawThread::UniversalDrawThread(const QString &fileName, const PageStyle &pageStyle,
+                                         const QList<DrawingFormate> &drawingFormates)
     : m_pageStyle(pageStyle), m_fileName(fileName), m_drawingFormates(drawingFormates)
 {
 }
@@ -61,7 +61,7 @@ void UniversalDrawThread::run()
     emit resultReady(this);
 }
 
-QString UniversalDrawThread::fileName() const
+const QString &UniversalDrawThread::fileName() const
 {
     return m_fileName;
 }
@@ -71,7 +71,7 @@ void UniversalDrawThread::setFileName(const QString &newFileName)
     m_fileName = newFileName;
 }
 
-PageStyle UniversalDrawThread::pageStyle() const
+const PageStyle &UniversalDrawThread::pageStyle() const
 {
     return m_pageStyle;
 }
@@ -81,12 +81,12 @@ void UniversalDrawThread::setPageStyle(const PageStyle &newPageStyle)
     m_pageStyle = newPageStyle;
 }
 
-QList<DrawingFormate> UniversalDrawThread::drawingFormates() const
+const QList<DrawingFormate> &UniversalDrawThread::drawingFormates() const
 {
     return m_drawingFormates;
 }
 
-void UniversalDrawThread::setDrawingFormate(QList<DrawingFormate> newDrawingFormates)
+void UniversalDrawThread::setDrawingFormate(const QList<DrawingFormate> &newDrawingFormates)
 {
     m_drawingFormates = newDrawingFormates;
 }

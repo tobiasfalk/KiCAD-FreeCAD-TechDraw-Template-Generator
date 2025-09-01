@@ -28,13 +28,13 @@ public:
     /// \brief draw draws the set page style
     /// \param into is a pointer to the Universal Draw class that is to be used
     ///
-    void draw(std::shared_ptr<UniversalDraw> into);
+    void draw(const std::shared_ptr<UniversalDraw> &into);
 
     ///
     /// \brief getLayout returns the current page layout/size and nothing more, no settings of
     /// the title-block, frame or other \return
     ///
-    [[nodiscard]] auto getLayout() const -> QPageLayout;
+    [[nodiscard]] auto getLayout() const -> const QPageLayout &;
     ///
     /// \brief setLayout sets the current layout of the page, this includes size, sizeSting and
     /// orientation
@@ -87,31 +87,31 @@ public:
     /// \brief frame returns the frame object
     /// \return the frame
     ///
-    [[nodiscard]] auto frame() const -> std::shared_ptr<PageFrame>;
+    [[nodiscard]] auto frame() const -> const std::shared_ptr<PageFrame> &;
     ///
     /// \brief setFrame sets the frame object
     /// \param newFrame
     ///
-    void setFrame(std::shared_ptr<PageFrame> newFrame);
+    void setFrame(const std::shared_ptr<PageFrame> &newFrame);
 
     ///
     /// \brief titleblocke returns the title-block that is used
     /// \return
     ///
-    std::shared_ptr<TitleBlock> titleblocke() const;
+    const std::shared_ptr<TitleBlock> &titleblocke() const;
     ///
     /// \brief setTitleblocke sets the title-block that is used
     /// \param newTitleblocke
     ///
     void setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke);
 
-    std::shared_ptr<FoldingLines> foldingLines() const;
+    const std::shared_ptr<FoldingLines> &foldingLines() const;
     void setFoldingLines(const std::shared_ptr<FoldingLines> &newFoldingLines);
 
     bool showEditable() const;
     void setShowEditable(bool newShowEditable);
 
-    QString font() const;
+    const QString &font() const;
     void setFont(const QString &newFont);
 
 private:

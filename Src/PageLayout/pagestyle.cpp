@@ -7,7 +7,7 @@
 
 PageStyle::PageStyle() { }
 
-void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
+void PageStyle::draw(const std::shared_ptr<UniversalDraw> &into)
 {
     // UniversalDraw::printTest(into, m_layout);
 
@@ -29,7 +29,7 @@ void PageStyle::draw(std::shared_ptr<UniversalDraw> into)
     into->end();
 }
 
-auto PageStyle::getLayout() const -> QPageLayout
+auto PageStyle::getLayout() const -> const QPageLayout &
 {
     return m_layout;
 }
@@ -78,17 +78,17 @@ void PageStyle::setPageSize(qreal newPageHeight, qreal newPageWidth,
     m_layout.setOrientation(newOrientation);
 }
 
-auto PageStyle::frame() const -> std::shared_ptr<PageFrame>
+auto PageStyle::frame() const -> const std::shared_ptr<PageFrame> &
 {
     return m_frame;
 }
 
-void PageStyle::setFrame(std::shared_ptr<PageFrame> newFrame)
+void PageStyle::setFrame(const std::shared_ptr<PageFrame> &newFrame)
 {
     m_frame = newFrame;
 }
 
-std::shared_ptr<TitleBlock> PageStyle::titleblocke() const
+const std::shared_ptr<TitleBlock> &PageStyle::titleblocke() const
 {
     return m_titleblocke;
 }
@@ -98,7 +98,7 @@ void PageStyle::setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke
     m_titleblocke = newTitleblocke;
 }
 
-std::shared_ptr<FoldingLines> PageStyle::foldingLines() const
+const std::shared_ptr<FoldingLines> &PageStyle::foldingLines() const
 {
     return m_foldingLines;
 }
@@ -118,7 +118,7 @@ void PageStyle::setShowEditable(bool newShowEditable)
     m_showEditable = newShowEditable;
 }
 
-QString PageStyle::font() const
+const QString &PageStyle::font() const
 {
     return m_font;
 }

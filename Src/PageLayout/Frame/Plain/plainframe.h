@@ -22,8 +22,8 @@ public:
     /// page)
     /// \param onWhat is the page layout the frame is to be draw on
     ///
-    virtual void draw(std::shared_ptr<UniversalDraw> into, QRectF where,
-                      QPageLayout onWhat) override;
+    virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
+                      const QPageLayout &onWhat) override;
 
     ///
     /// \brief indentLeft returns the indent/space to the line on the left side/west of the page

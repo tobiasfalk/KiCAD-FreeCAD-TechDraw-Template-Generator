@@ -28,7 +28,7 @@ public:
     /// \brief frame returns a frame with the given settings
     /// \return
     ///
-    std::shared_ptr<ISO5457Frame> frame() const;
+    const std::shared_ptr<ISO5457Frame> &frame() const;
     ///
     /// \brief setFrame takes the given settings a a base
     /// \param newFrame

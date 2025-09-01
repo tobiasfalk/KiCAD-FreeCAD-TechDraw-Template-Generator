@@ -14,7 +14,7 @@ ISO7200BDialog::~ISO7200BDialog()
     delete m_ui;
 }
 
-std::shared_ptr<ISO7200B> ISO7200BDialog::titleBlock() const
+const std::shared_ptr<ISO7200B> &ISO7200BDialog::titleBlock() const
 {
     return m_titleBlock;
 }

@@ -33,10 +33,10 @@ public:
     /// \param name is the name that the text field is given, often used for
     /// variable/editable text
     ///
-    virtual void drawText(QPointF position, QString text, double textSize,
+    virtual void drawText(const QPointF &position, const QString &text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                          double lineWidth, QString font = QString::fromLatin1("osifont"),
-                          QString name = QString::fromLatin1(""), bool isEditable = false) override;
+                          double lineWidth, const QString &font = QString::fromLatin1("osifont"),
+                          const QString &name = QString::fromLatin1(""), bool isEditable = false) override;
 
     ///
     /// \brief start initialises the file and make everything ready to be drawn in to

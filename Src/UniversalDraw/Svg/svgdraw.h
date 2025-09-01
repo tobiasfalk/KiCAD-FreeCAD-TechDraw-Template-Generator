@@ -33,7 +33,7 @@ public:
     /// \param end is the end point of the line
     /// \param lineWidth is the width of the line in mm
     ///
-    virtual void drawLine(QPointF start, QPointF end, double lineWidth) override;
+    virtual void drawLine(const QPointF &start, const QPointF &end, double lineWidth) override;
     ///
     /// \brief drawLine draws a line between the start point and the end point with
     /// a certain line width
@@ -41,7 +41,7 @@ public:
     /// \param lineWidth
     /// is the width of the line in mm
     ///
-    virtual void drawLine(QLineF line, double lineWidth) override;
+    virtual void drawLine(const QLineF &line, double lineWidth) override;
     ///
     /// \brief drawRect draws a rectangle between start and end point where the top
     /// line parallel to the upper page edge
@@ -50,7 +50,7 @@ public:
     /// \param lineWidth is the line width that the rectangle is drawn in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawRect(QPointF start, QPointF end, double lineWidth, bool fill = false) override;
+    virtual void drawRect(const QPointF &start, const QPointF &end, double lineWidth, bool fill = false) override;
     ///
     /// \brief drawRect draws a rectangle between start and end point where the top
     /// line parallel to the upper page edge
@@ -58,7 +58,7 @@ public:
     /// \param lineWidth is the line width that the rectangle is drawn in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawRect(QRectF rect, double lineWidth, bool fill = false) override;
+    virtual void drawRect(const QRectF &rect, double lineWidth, bool fill = false) override;
     ///
     /// \brief drawPoly draws a polygon
     /// \param position is the position of the first point in mm
@@ -70,7 +70,7 @@ public:
     /// \param fill defines if the polygon is filled(true) or
     /// not(false)
     ///
-    virtual void drawPoly(QPointF position, QList<QPointF> points, double lineWidth,
+    virtual void drawPoly(const QPointF &position, const QList<QPointF> &points, double lineWidth,
                           bool fill = false) override;
     ///
     /// \brief drawPoly draws a polygon
@@ -79,7 +79,7 @@ public:
     /// mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawPoly(QPolygonF poly, double lineWidth, bool fill = false) override;
+    virtual void drawPoly(const QPolygonF &poly, double lineWidth, bool fill = false) override;
     ///
     /// \brief drawCircle draws a circle
     /// \param center is the position of the center point in mm
@@ -87,7 +87,7 @@ public:
     /// \param lineWidth is the width of the line that the circle drawn with in mm
     /// \param fill defines if the polygon is filled(true) or not(false)
     ///
-    virtual void drawCircle(QPointF center, double radius, double lineWidth,
+    virtual void drawCircle(const QPointF &center, double radius, double lineWidth,
                             bool fill = false) override;
     ///
     /// \brief drawText draws Text on the given position
@@ -103,10 +103,10 @@ public:
     /// \param name is the name that the text field is given, often
     /// used for variable/editable text
     ///
-    virtual void drawText(QPointF position, QString text, double textSize,
+    virtual void drawText(const QPointF &position, const QString &text, double textSize,
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
-                          double lineWidth, QString font = QString::fromLatin1("osifont"),
-                          QString name = QString::fromLatin1(""), bool isEditable = false) override;
+                          double lineWidth, const QString &font = QString::fromLatin1("osifont"),
+                          const QString &name = QString::fromLatin1(""), bool isEditable = false) override;
     ///
     /// \brief drawPicture draws a Picture on the given position, the anchor is on
     /// the bottom right, with png's the PNG is coped in to the destination path and is not embedded
@@ -121,7 +121,7 @@ public:
     /// may needs to be lowered if the picture should be big, this does not do a thing if a SVG is
     /// to be inserted
     ///
-    virtual void drawPicture(QString picturePath, QPointF position, double width, double height,
+    virtual void drawPicture(const QString &picturePath, const QPointF &position, double width, double height,
                              int dpiVector = 33020) override;
 
     ///
@@ -141,13 +141,13 @@ public:
     /// \brief file returns the file that is written in to
     /// \return
     ///
-    std::shared_ptr<QFile> file() const;
+    const std::shared_ptr<QFile> &file() const;
 
     ///
     /// \brief document returns the Qt XML document that is used
     /// \return
     ///
-    QDomDocument document() const;
+    const QDomDocument &document() const;
 
 protected:
     ///
