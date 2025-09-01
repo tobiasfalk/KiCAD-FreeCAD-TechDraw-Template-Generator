@@ -3,3 +3,5 @@ osifont.ttf
 form.uiZone.Identifier
 CMakeLists.txt.user
 *.user
+/build
+.vscode/settings.json
