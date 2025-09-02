@@ -129,6 +129,18 @@ public:
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, const QString &font = QString::fromLatin1("osifont"),
                           const QString &name = QString::fromLatin1(""), bool isEditable = false);
+    ///
+    /// \brief drawText draws multiple lines of text on the given position
+    /// \param position is the Position of the Text(Text Anchor) in mm
+    /// \param text is the list of text lines that needs to be drawn
+    /// \param textSize is the height/size of the text in mm
+    /// \param textHeightAnchor is the position of the text anchor in the height
+    /// \param textWidthAnchor is the position of the text anchor in the width
+    /// \param lineWidth is the width of the text line in mm
+    /// \param font is the name of the font
+    /// \param isEditable defines if the text field is editable(true) or not(false)
+    /// \param name is the name that the text field is given, often used for variable/editable text
+    ///
     void drawText(const QPointF &position, const QStringList &text, double textSize,
                   TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                   double lineWidth, const QString &font = QString::fromLatin1("osifont"),
@@ -238,7 +250,15 @@ public:
     ///
     static void printTest(const std::shared_ptr<UniversalDraw> &drawer, const QPageLayout &layout);
 
+    ///
+    /// \brief showEditable returns true if editable fields/texts should be rendered
+    /// \return
+    ///
     bool showEditable() const;
+    ///
+    /// \brief setShowEditable sets whether editable fields/texts should be rendered
+    /// \param newShowEditable
+    ///
     void setShowEditable(bool newShowEditable);
 
 signals:

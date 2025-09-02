@@ -85,6 +85,10 @@ private:
     ///
     /// \brief m_resolutionPMM the used resolution of the drawing coordinates in Px per mm
     ///
+    ///
+    /// \brief m_resolutionPMM the used resolution of the drawing coordinates in Px per mm
+    /// calculated from DPI (px/in) using 25.4 mm per inch
+    ///
     double m_resolutionPMM = m_resolutionDPI * (1 / 25.4);
 };
 

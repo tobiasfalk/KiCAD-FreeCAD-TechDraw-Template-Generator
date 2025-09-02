@@ -61,8 +61,15 @@ public:
     /// \param newNoDrawingAreaIndent
     ///
     void setNoDrawingAreaIndent(bool newNoDrawingAreaIndent);
-
+    ///
+    /// \brief font returns the name of the font to be used when drawing
+    /// \return the font name
+    ///
     const QString &font() const;
+    ///
+    /// \brief setFont sets the name of the font to be used when drawing
+    /// \param newFont the font name
+    ///
     void setFont(const QString &newFont);
 
 protected:

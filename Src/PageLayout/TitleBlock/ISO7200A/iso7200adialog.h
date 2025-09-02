@@ -13,10 +13,22 @@ class ISO7200ADialog : public QDialog
     Q_OBJECT
 
 public:
+    ///
+    /// \brief ISO7200ADialog the base constructor
+    /// \param parent the Qt parent pointer
+    ///
     explicit ISO7200ADialog(QWidget *parent = nullptr);
     ~ISO7200ADialog();
 
+    ///
+    /// \brief titleBlock returns the currently edited title block
+    /// \return the title block
+    ///
     const std::shared_ptr<ISO7200A> &titleBlock() const;
+    ///
+    /// \brief setTitleBlock sets the title block to edit
+    /// \param newTitleBlock
+    ///
     void setTitleBlock(const std::shared_ptr<ISO7200A> &newTitleBlock);
 
 private slots:
@@ -44,6 +56,9 @@ private:
     ///
     std::shared_ptr<ISO7200A> m_titleBlock;
 
+    ///
+    /// \brief initLanguages initializes the language combo box
+    ///
     void initLanguages();
 };
 

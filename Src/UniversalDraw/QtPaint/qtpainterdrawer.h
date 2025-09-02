@@ -24,6 +24,9 @@ public:
     /// \brief QtPainterDrawer is the basic constructor
     ///
     QtPainterDrawer();
+    ///
+    /// \brief ~QtPainterDrawer the destructor
+    ///
     ~QtPainterDrawer();
 
     ///

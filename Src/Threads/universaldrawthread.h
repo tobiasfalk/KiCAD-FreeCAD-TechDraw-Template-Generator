@@ -25,9 +25,9 @@ enum class DrawingFormate {
     /// saves the output as a SVG with all the editable fields empty,
     /// it ends with <b>".qt.svg"</b> and uses the SvgQtPaint class
     SvgQtPaint,
-    ///
+    /// writes an HTML page that embeds the SVG output
     Html,
-    ///
+    /// writes a PNG image using a Qt painter backend
     PngQtPaint,
 };
 
@@ -80,7 +80,15 @@ public:
     ///
     void setPageStyle(const PageStyle &newPageStyle);
 
+    ///
+    /// \brief drawingFormates returns the selected output formats
+    /// \return list of formats
+    ///
     const QList<DrawingFormate> &drawingFormates() const;
+    ///
+    /// \brief setDrawingFormate sets the selected output formats
+    /// \param newDrawingFormates list of formats
+    ///
     void setDrawingFormate(const QList<DrawingFormate> &newDrawingFormates);
 
 signals:
@@ -131,8 +139,14 @@ private:
     ///
     void runSvgQtPaint();
 
+    ///
+    /// \brief runHtml creates a HTML file and is triggered by DrawingFormate::Html
+    ///
     void runHtml();
 
+    ///
+    /// \brief runPng creates a PNG file and is triggered by DrawingFormate::PngQtPaint
+    ///
     void runPng();
 };
 

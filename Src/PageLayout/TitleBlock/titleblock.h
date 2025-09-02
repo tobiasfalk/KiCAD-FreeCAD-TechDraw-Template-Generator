@@ -78,7 +78,15 @@ public:
     ///
     const QList<QString> &languages() const;
 
+    ///
+    /// \brief font returns the name of the font used for drawing text
+    /// \return the font name
+    ///
     const QString &font() const;
+    ///
+    /// \brief setFont sets the name of the font used for drawing text
+    /// \param newFont the font name
+    ///
     void setFont(const QString &newFont);
 
 protected:

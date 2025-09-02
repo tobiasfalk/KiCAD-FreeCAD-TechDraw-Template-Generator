@@ -9,7 +9,7 @@
 #include "UniversalDraw/QtPaint/qtpainterdrawer.h"
 
 ///
-/// \brief The PngQtPaint class is used to draw a PDF with the Qt Painter
+/// \brief The PngQtPaint class is used to draw a PNG image with the Qt Painter
 ///
 class PngQtPaint : public QtPainterDrawer
 {
@@ -74,6 +74,8 @@ public:
     void setResolutionPMM(double newResolutionPMM);
 
 private:
+    ///
+    /// \brief m_image the in-memory image to paint on
     ///
     std::shared_ptr<QImage> m_image;
 

@@ -32,20 +32,52 @@ public:
     /// \brief depth returns the the length of the line from the border on in to the page
     /// \return
     ///
+    ///
+    /// \brief depth returns the length of the folding line from the border into the page
+    /// \return the depth in mm
+    ///
     double depth() const;
     ///
     /// \brief setDepth sets the the length of the line from the border on in to the page
     /// \param newDepth
     ///
+    ///
+    /// \brief setDepth sets the length of the folding line from the border into the page
+    /// \param newDepth the new depth in mm
+    ///
     void setDepth(double newDepth);
 
+    ///
+    /// \brief type returns the name/type of the folding line algorithm
+    /// \return type name
+    ///
     const QString &type() const;
+    ///
+    /// \brief setType sets the name/type of the folding line algorithm
+    /// \param newType
+    ///
     void setType(const QString &newType);
 
+    ///
+    /// \brief description returns a description for the folding line algorithm
+    /// \return the description
+    ///
     const QString &description() const;
+    ///
+    /// \brief setDescription sets the description for the folding line algorithm
+    /// \param newDescription
+    ///
     void setDescription(const QString &newDescription);
 
+    ///
+    /// \brief toWhat returns the page layout the page should be folded down to
+    /// \return the target page layout
+    ///
     const QPageLayout &toWhat() const;
+    ///
+    /// \brief setToWhat sets the page layout the page should be folded down to
+    /// \param newToWhat the target page layout
+    ///
     void setToWhat(const QPageLayout &newToWhat);
 
 protected:

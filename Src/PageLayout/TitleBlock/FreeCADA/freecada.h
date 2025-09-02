@@ -4,9 +4,15 @@
 #include "PageLayout/TitleBlock/titleblock.h"
 #include "PageLayout/TitleBlock/ISO7200A/iso7200a.h"
 
+///
+/// \brief The FreeCADA class draws a FreeCAD-styled ISO 7200 title block variant
+///
 class FreeCADA : public ISO7200A
 {
 public:
+    ///
+    /// \brief FreeCADA the base constructor
+    ///
     FreeCADA();
 
     ///

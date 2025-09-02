@@ -3,9 +3,15 @@
 
 #include "UniversalDraw/Svg/svgdraw.h"
 
+///
+/// \brief The HtmlDraw class writes an HTML file that embeds the generated SVG
+///
 class HtmlDraw : public SvgDraw
 {
 public:
+    ///
+    /// \brief HtmlDraw the base constructor
+    ///
     HtmlDraw();
 
     ///

@@ -18,6 +18,9 @@ public:
     /// \brief PreView a basic constructor
     ///
     PreView();
+    ///
+    /// \brief ~PreView the destructor
+    ///
     ~PreView();
 
     ///

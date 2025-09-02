@@ -44,43 +44,51 @@ public:
     ~UTGMainWindow() override;
 
 private slots:
-    void on_GeneratePushButton_clicked();
+  ///
+  /// \brief on_GeneratePushButton_clicked generates all selected outputs
+  ///
+  void on_GeneratePushButton_clicked();
 
-    void handleResults(UniversalDrawThread *thread);
+  ///
+  /// \brief handleResults is called once the background drawing thread finished
+  /// \param thread the finished thread
+  ///
+  void handleResults(UniversalDrawThread *thread);
 
-    void on_PageSizeComboBox_currentTextChanged(const QString &arg1);
+  /// UI change handlers
+  void on_PageSizeComboBox_currentTextChanged(const QString &arg1);
 
-    void on_PageWidthDoubleSpinBox_valueChanged(double arg1);
+  void on_PageWidthDoubleSpinBox_valueChanged(double arg1);
 
-    void on_PageHeigthDoubleSpinBox_valueChanged(double arg1);
+  void on_PageHeigthDoubleSpinBox_valueChanged(double arg1);
 
-    void on_NameLineEdit_editingFinished();
+  void on_NameLineEdit_editingFinished();
 
-    void on_framePushButton_clicked();
+  void on_framePushButton_clicked();
 
-    void on_FrameComboBox_currentTextChanged(const QString &arg1);
+  void on_FrameComboBox_currentTextChanged(const QString &arg1);
 
-    void on_TitleBlockComboBox_currentTextChanged(const QString &arg1);
+  void on_TitleBlockComboBox_currentTextChanged(const QString &arg1);
 
-    void on_TitleBlockPushButton_clicked();
+  void on_TitleBlockPushButton_clicked();
 
-    void on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1);
+  void on_TitleBlLanguageComboBox_currentTextChanged(const QString &arg1);
 
-    void on_FoldingLineComboBox_currentTextChanged(const QString &arg1);
+  void on_FoldingLineComboBox_currentTextChanged(const QString &arg1);
 
-    void on_FoldingLinesTagetComboBox_currentTextChanged(const QString &arg1);
+  void on_FoldingLinesTagetComboBox_currentTextChanged(const QString &arg1);
 
-    void on_PortraitCheckBox_stateChanged(int arg1);
+  void on_PortraitCheckBox_stateChanged(int arg1);
 
-    void on_FoldingKinesTargetPortraitCheckBox_stateChanged(int arg1);
+  void on_FoldingKinesTargetPortraitCheckBox_stateChanged(int arg1);
 
-    void on_updatePushButton_clicked();
+  void on_updatePushButton_clicked();
 
-    void on_FoldingLineDepthDoubleSpinBox_editingFinished();
+  void on_FoldingLineDepthDoubleSpinBox_editingFinished();
 
-    void on_FoldingLineDepthDoubleSpinBox_valueChanged(double arg1);
+  void on_FoldingLineDepthDoubleSpinBox_valueChanged(double arg1);
 
-    void on_FontLineEdit_textChanged(const QString &arg1);
+  void on_FontLineEdit_textChanged(const QString &arg1);
 
 private:
     ///
@@ -104,10 +112,27 @@ private:
     ///
     /// \brief updatePreView redraws the preview
     ///
+  ///
+  /// \brief updatePreView redraws the preview widget
+  ///
   void updatePreView();
+  ///
+  /// \brief updateFrame updates the current frame selection by name
+  /// \param framStr name of the frame
+  ///
   void updateFrame(const QString &framStr);
+  ///
+  /// \brief updateFrame updates the current frame selection based on UI state
+  ///
   void updateFrame();
+  ///
+  /// \brief updateFoldingLines updates the folding lines selection by name
+  /// \param foldStr name of the folding line algorithm
+  ///
   void updateFoldingLines(const QString &foldStr);
+  ///
+  /// \brief updateFoldingLines updates the folding lines selection based on UI state
+  ///
   void updateFoldingLines();
 
     ///

@@ -105,13 +105,37 @@ public:
     ///
     void setTitleblocke(const std::shared_ptr<TitleBlock> &newTitleblocke);
 
+    ///
+    /// \brief foldingLines returns the folding lines algorithm in use
+    /// \return the folding lines object
+    ///
     const std::shared_ptr<FoldingLines> &foldingLines() const;
+    ///
+    /// \brief setFoldingLines sets the folding lines algorithm to use
+    /// \param newFoldingLines the new folding lines object
+    ///
     void setFoldingLines(const std::shared_ptr<FoldingLines> &newFoldingLines);
 
+    ///
+    /// \brief showEditable returns true if editable fields/texts should be rendered
+    /// \return
+    ///
     bool showEditable() const;
+    ///
+    /// \brief setShowEditable sets whether editable fields/texts should be rendered
+    /// \param newShowEditable
+    ///
     void setShowEditable(bool newShowEditable);
 
+    ///
+    /// \brief font returns the name of the font used for drawing text
+    /// \return the font name
+    ///
     const QString &font() const;
+    ///
+    /// \brief setFont sets the name of the font used for drawing text
+    /// \param newFont the font name
+    ///
     void setFont(const QString &newFont);
 
 private:

@@ -9,6 +9,9 @@
 class FreeCADSvg : public SvgDraw
 {
 public:
+    ///
+    /// \brief FreeCADSvg the base constructor
+    ///
     FreeCADSvg();
     ///
     /// \brief drawText draws Text on the given position
