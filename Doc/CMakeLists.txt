@@ -1,5 +1,7 @@
+# cmake --build build --target Build_Doc
+
 # Documentation
-#option(BUILD_DOC "Build documentation" ON)
+# option(BUILD_DOC "Build documentation" ON)
 find_package(Doxygen #REQUIRED
     OPTIONAL_COMPONENTS mscgen dia dot)
 string(TIMESTAMP timestamp "%Y-%m-%d %H:%M:%S")
@@ -9,6 +11,8 @@ message(STATUS "qhelpgen: ${qhelpgen}")
 if(NOT DOXYGEN_FOUND)
     message(WARNING "Doxygen not found, unable to generate documentation")
 else()
+    message(STATUS "Doxygen found: ${DOXYGEN_EXECUTABLE} (version ${DOXYGEN_VERSION})")
+
     set(DOC_DEST_DIR ${CMAKE_BINARY_DIR} CACHE PATH "Path to the doxygen output")                      ## used in the doxyfile.in
     set(DOC_INPUT_ROOT_DIRS ${CMAKE_HOME_DIRECTORY} CACHE PATH "Path from where to start to parse")    ## used in the doxyfile.in
     set(DOC_EXCLUDE_PATTERNS_DIRS ${CMAKE_BINARY_DIR} CACHE STRING "Regex patterns exclusion")          ## used in the doxyfile.in
@@ -92,6 +96,7 @@ else()
             ../README.md
             Test/test.svg
     )
+    add_dependencies(KiCAD-FreeCAD-TechDraw-Template-Generator Build_Doc)
 #    set_target_properties(Build_Doc PROPERTIES ADDITIONAL_CLEAN_FILES
 #            "${CMAKE_BINARY_DIR}/doxyfile")
 endif()
