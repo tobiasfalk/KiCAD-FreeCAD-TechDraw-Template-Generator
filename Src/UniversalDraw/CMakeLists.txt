@@ -25,3 +25,4 @@ target_link_libraries(UniversalDraw PUBLIC
 )
 
 target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,5 +1,7 @@
 message(STATUS "Window")
 
+message(STATUS "Window")
+
 set(Window_SOURCES
     mainwindow.cpp
     mainwindow.ui
