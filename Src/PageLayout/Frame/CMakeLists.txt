@@ -19,7 +19,7 @@ set(ISO5457_SOURCES
     ISO5457/iso5457framedialog.ui
 )
 
-add_library(PageFrame STATIC
+qt_add_library(PageFrame STATIC
     ${PageFrame_SOURCES}
     ${PlainFrame_SOURCES}
     ${ISO5457_SOURCES}
@@ -33,4 +33,4 @@ target_link_libraries(PageFrame PRIVATE
     PageLayout
 )
 
-# target_include_directories(PageFrame PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(PageFrame PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

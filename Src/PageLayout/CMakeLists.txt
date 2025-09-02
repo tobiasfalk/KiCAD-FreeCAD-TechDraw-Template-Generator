@@ -1,8 +1,10 @@
-subdirs(Frame/)
-subdirs(TitleBlock/)
-subdirs(FoldingLines/)
+message(STATUS "Page Layout")
 
-add_library(PageLayout STATIC
+add_subdirectory(Frame/)
+add_subdirectory(TitleBlock/)
+add_subdirectory(FoldingLines/)
+
+qt_add_library(PageLayout STATIC
     pagestyle.h pagestyle.cpp
 )
 
@@ -15,4 +17,4 @@ target_link_libraries(PageLayout PRIVATE
     UniversalDraw
 )
 
-# target_include_directories(PageLayout PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(PageLayout PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,10 +1,12 @@
+message(STATUS "Window")
+
 set(Window_SOURCES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
 )
 
-add_library(Window STATIC
+qt_add_library(Window STATIC
     ${Window_SOURCES}
 )
 
@@ -23,7 +25,7 @@ target_link_libraries(Window PRIVATE
     KiCAD_Symbol_scaler
 )
 
-# target_include_directories(Window PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Window PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 get_target_property(LIB_INCLUDES PreView INCLUDE_DIRECTORIES)
 

@@ -1,3 +1,5 @@
+message(STATUS "Src")
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 # Subdirs
 add_subdirectory(UniversalDraw/)

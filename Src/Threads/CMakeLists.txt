@@ -1,9 +1,11 @@
+message(STATUS "Threads")
+
 set(Threads_SOURCES
     universaldrawthread.h
     universaldrawthread.cpp
 )
 
-add_library(Threads STATIC
+qt_add_library(Threads STATIC
     ${Threads_SOURCES}
 
 )
@@ -17,4 +19,4 @@ target_link_libraries(Threads PRIVATE
     PageFrame
 )
 
-# target_include_directories(Threads PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Threads PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
