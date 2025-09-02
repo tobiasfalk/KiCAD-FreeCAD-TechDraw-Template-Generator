@@ -1,3 +1,4 @@
+message(STATUS "Src")
 # Provide project-wide includes via a target to avoid global include_directories
 add_library(ProjectIncludes INTERFACE)
 target_include_directories(ProjectIncludes INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

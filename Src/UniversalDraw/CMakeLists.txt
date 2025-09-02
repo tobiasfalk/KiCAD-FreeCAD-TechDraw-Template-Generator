@@ -1,3 +1,5 @@
+message(STATUS "UniversalDraw")
+
 set(UniversalDraw_SOURCES
     universaldraw.cpp
     QtPaint/qtpainterdrawer.cpp
@@ -10,7 +12,7 @@ set(UniversalDraw_SOURCES
     PngQtPaint/pngqtpaint.cpp
 )
 
-add_library(UniversalDraw STATIC ${UniversalDraw_SOURCES})
+qt_add_library(UniversalDraw STATIC ${UniversalDraw_SOURCES})
 
 target_sources(UniversalDraw PRIVATE ${UniversalDraw_SOURCES})
 target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
@@ -22,4 +24,4 @@ target_link_libraries(UniversalDraw PUBLIC
     ProjectIncludes
 )
 
-# target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(UniversalDraw PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

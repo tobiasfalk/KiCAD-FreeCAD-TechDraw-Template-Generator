@@ -24,7 +24,7 @@ set(FreeCADATitleBlock_SOURCES
     FreeCADA/freecada.cpp
 )
 
-add_library(TitleBlock STATIC
+qt_add_library(TitleBlock STATIC
     ${TitleBlock_SOURCES}
     ${PlainTitleBlock_SOURCES}
     ${ISO7200ATitleBlock_SOURCES}
@@ -44,4 +44,7 @@ target_link_libraries(TitleBlock PRIVATE
     PageLayout
     ProjectIncludes
 )
+
+target_include_directories(TitleBlock PUBLIC BEFORE ${CMAKE_CURRENT_SOURCE_DIR})
+# set(INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
 

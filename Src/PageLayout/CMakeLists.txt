@@ -1,3 +1,5 @@
+message(STATUS "Page Layout")
+
 add_subdirectory(Frame)
 add_subdirectory(TitleBlock)
 add_subdirectory(FoldingLines)
@@ -6,7 +8,7 @@ set(PageLayout_SOURCES
     pagestyle.cpp
 )
 
-add_library(PageLayout STATIC ${PageLayout_SOURCES})
+qt_add_library(PageLayout STATIC ${PageLayout_SOURCES})
 target_sources(PageLayout PRIVATE ${PageLayout_SOURCES})
 target_include_directories(PageLayout PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
