@@ -6,6 +6,7 @@ set(Threads_SOURCES
 
 qt_add_library(Threads STATIC
     ${Threads_SOURCES}
+)
 
 target_sources(Threads PRIVATE ${Threads_SOURCES})
 target_include_directories(Threads PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
