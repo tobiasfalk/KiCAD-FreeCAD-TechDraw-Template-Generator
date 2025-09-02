@@ -1,3 +1,15 @@
+message("Starting CMake Config")
+message("#################################################################################")
+message("#   _____                    _       _        ____                              #")
+message("#  |_   _|__ _ __ ___  _ __ | | __ _| |_ ___ / ___| ___ _ __                    #")
+message("#    | |/ _ \\ '_ ` _ \\| '_ \\| |/ _` | __/ _ \\ |  _ / _ \\ '_ \\                   #")
+message("#    | |  __/ | | | | | |_) | | (_| | ||  __/ |_| |  __/ | | |                  #")
+message("#    |_|\\___|_| |_| |_| .__/|_|\\__,_|\\__\\___|\\____|\\___|_| |_|                  #")
+message("#                     |_|                                                       #")
+message("#         KiCAD-FreeCAD-TechDraw-Template-Generator (TempGen)                   #")
+message("#################################################################################")
+message("")
+
 cmake_minimum_required(VERSION 3.18)
 message("CMake: "${CMAKE_VERSION})
 
@@ -30,7 +42,7 @@ endif()
 find_package(QT NAMES Qt6 COMPONENTS Core Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets LinguistTools Xml Svg SvgWidgets REQUIRED)
 
-message("Qt: "${QT_VERSION_MAJOR})
+message("Qt: ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH}")
 
 if(Qt6_FOUND AND WIN32 AND TARGET Qt6::qmake AND NOT TARGET Qt6::windeployqt)
     get_target_property(_qt6_qmake_location Qt6::qmake IMPORTED_LOCATION)
@@ -84,3 +96,15 @@ install(DIRECTORY TemplateLibrary/ DESTINATION share/KiCAD-FreeCAD-TechDraw-Temp
 install(FILES README.md CODESTYLE.md DESTINATION share/doc/KiCAD-FreeCAD-TechDraw-Template-Generator)
 
 include(CPack)
+
+# Custom Target: Banner beim Build ausgeben
+add_custom_target(banner
+    COMMAND ${CMAKE_COMMAND} -E echo "  _____                    _       _        ____            "
+    COMMAND ${CMAKE_COMMAND} -E echo " |_   _|__ _ __ ___  _ __ | | __ _| |_ ___ / ___| ___ _ __  "
+    COMMAND ${CMAKE_COMMAND} -E echo "   | |/ _ \\ '_ ` _ \\| '_ \\| |/ _` | __/ _ \\ |  _ / _ \\ '_ \\ "
+    COMMAND ${CMAKE_COMMAND} -E echo "   | |  __/ | | | | | |_) | | (_| | ||  __/ |_| |  __/ | | |"
+    COMMAND ${CMAKE_COMMAND} -E echo "   |_|\\___|_| |_| |_| .__/|_|\\__,_|\\__\\___|\\____|\\___|_| |_|"
+    COMMAND ${CMAKE_COMMAND} -E echo "                    |_|                                      "
+    VERBATIM
+)
+add_dependencies(KiCAD-FreeCAD-TechDraw-Template-Generator banner)
