@@ -26,6 +26,14 @@ public:
     virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
                       const QPageLayout &onWhat) override;
 
+    // Same field keys as ISO7200A are used (subset rendered):
+    // ResponsibleDepartment, TechnicalReference, Creator, DocumentType,
+    // DocumentStatus, LegalOwner, Title, SupplementaryTitle, IdentificationNumber,
+    // ApprovalPerson, RevisionIndex, DateOfIssue, LanguageCode, SheetNumberNumbers.
+    // Differences vs. A:
+    // - Block height is 27 mm (180 x 27 mm) and grid differs (narrower top rows).
+    // - Picture area (if used) is smaller and placed left-of-right edge compared to A.
+
     // QString picturePath() const;
     // void setPicturePath(const QString &newPicturePath);
 

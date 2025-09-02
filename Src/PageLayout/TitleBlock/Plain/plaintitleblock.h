@@ -26,6 +26,11 @@ public:
     virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
                       const QPageLayout &onWhat) override;
 
+    // Behavior:
+    // - Draws a plain rectangle of configurable width/height (defaults 180 x 50 mm)
+    //   anchored to the bottom-right corner of the target 'where' rect.
+    // - No text fields; useful for debugging layouts or as a spacer.
+
     ///
     /// \brief height returns the height of the title-block
     /// \return the height in mm

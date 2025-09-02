@@ -86,8 +86,8 @@ protected:
     /// \param into
     /// \param onWhat
     /// \param x
-    /// \param depth
-    /// \param width
+    /// \param depth line length from border into page (mm)
+    /// \param width line width (mm)
     ///
     void drawVerFoldLine(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat, double x,
                          double depth, double width);
@@ -96,8 +96,8 @@ protected:
     /// \param into
     /// \param onWhat
     /// \param y
-    /// \param depth
-    /// \param width
+    /// \param depth line length from border into page (mm)
+    /// \param width line width (mm)
     ///
     void drawHorFoldLine(const std::shared_ptr<UniversalDraw> &into, const QPageLayout &onWhat, double y,
                          double depth, double width);

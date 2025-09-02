@@ -27,6 +27,18 @@ public:
     virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
                       const QPageLayout &onWhat) override;
 
+    // Field keys used in this title block (for mapping and backends):
+    // ResponsibleDepartment, TechnicalReference, Creator, ApprovalPerson,
+    // ClassificationKeyWords, LegalOwner, DocumentType, DocumentStatus,
+    // Title, SupplementaryTitle, IdentificationNumber, RevisionIndex,
+    // DateOfIssue, LanguageCode, SheetNumberNumbers.
+    // Notes:
+    // - Coordinates are in millimeters; origin for this block is set to the
+    //   bottom-right corner of the given 'where' rect minus the block size
+    //   (180 x 36 mm). All grid lines and text anchors are relative to that.
+    // - The optional picture (m_picturePath) is drawn inside the block if the
+    //   referenced file exists (supports .svg and .png via UniversalDraw).
+
     const QMap<QString, ISO7200ATextStruct> &currentLanguage() const;
     void setCurrentLanguage(const QMap<QString, ISO7200ATextStruct> &newCurrentLanguage);
     void updateCurrentLanguage();

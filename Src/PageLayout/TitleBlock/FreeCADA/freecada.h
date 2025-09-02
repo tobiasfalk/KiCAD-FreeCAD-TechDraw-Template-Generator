@@ -26,6 +26,14 @@ public:
     virtual void draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where,
                       const QPageLayout &onWhat) override;
 
+    // Field keys used by this FreeCAD-like layout:
+    // Creator, DateOfIssue, Title, SupplementaryTitle, Size, UnnamedA, UnnamedB,
+    // Scale, Weight, IdentificationNumber, SheetNumberNumbers, Disclaimer, A..G.
+    // Notes:
+    // - Fixed size 140.35 x 47 mm, bottom-right anchored.
+    // - Right side has stacked cells labeled A..G with separate label and value.
+    // - Uses the same UniversalDraw semantics (editable flags honored by backends).
+
 protected:
     ///
     /// \brief initLanguages initialises the Languages map(m_languageTexts)

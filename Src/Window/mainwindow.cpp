@@ -23,6 +23,7 @@ UTGMainWindow::UTGMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui
 {
     m_ui->setupUi(this);
 
+    // Create model and preview objects
     m_preView = std::make_shared<PreView>();
     m_pageStyle = std::make_shared<PageStyle>();
     m_frame = std::make_shared<PageFrame>();
@@ -32,6 +33,7 @@ UTGMainWindow::UTGMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui
 
     m_ui->PreViewGridLayout->addWidget(m_preView.get());
 
+    // Populate UI controls
     initPageSizes();
     initFrames();
     initTitleBlocks();
@@ -48,6 +50,7 @@ void UTGMainWindow::on_GeneratePushButton_clicked()
 {
     PageStyle pageStyle;
 
+    // Snapshot current selections into a local PageStyle (used by worker thread)
     pageStyle.setFrame(m_frame);
     pageStyle.setTitleblocke(m_titleblock);
     pageStyle.setFoldingLines(m_foldingLines);
@@ -58,6 +61,7 @@ void UTGMainWindow::on_GeneratePushButton_clicked()
     pageStyle.setShowEditable(m_ui->ShowEditTextCheckBox->isChecked());
     pageStyle.setFont(m_ui->FontLineEdit->text());
 
+    // Ask for target directory and start background rendering for selected formats
     QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory"), m_lastPath,
                                                      QFileDialog::ShowDirsOnly
                                                              | QFileDialog::DontResolveSymlinks);
@@ -67,6 +71,7 @@ void UTGMainWindow::on_GeneratePushButton_clicked()
 
     m_lastPath = path;
 
+    // Thread takes base filename (no extension), formats, and PageStyle
     UniversalDrawThread *thread = new UniversalDrawThread(
             m_lastPath + "/" + m_ui->fileNameLineEdit->text(), pageStyle, getDrawingFormates());
 
@@ -88,6 +93,7 @@ void UTGMainWindow::resizeEvent(QResizeEvent *event)
 
 void UTGMainWindow::updatePreView()
 {
+    // Push UI state into shared PageStyle and repaint preview
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
     m_pageStyle->setFrame(m_frame);
@@ -101,6 +107,7 @@ void UTGMainWindow::updatePreView()
 
 void UTGMainWindow::updateFrame(const QString &framStr)
 {
+    // Switch frame impl based on selection, preserving indent flag and recalculating geometry
     m_pageStyle->setPageSize(getPageSizeFromName(m_ui->PageSizeComboBox->currentText()),
                              getOrientationFromUi());
     bool indent = m_frame->noDrawingAreaIndent();

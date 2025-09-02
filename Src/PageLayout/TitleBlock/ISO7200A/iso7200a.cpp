@@ -16,12 +16,15 @@ ISO7200A::ISO7200A()
 
 void ISO7200A::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
-    setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 36 }, where.bottomRight() });
-    into->drawRect(titleBlockArea(), .7);
+        // Anchor the ISO7200A title block in the bottom-right corner of 'where'.
+        // The block has a fixed size of 180 x 36 mm.
+        setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 36 }, where.bottomRight() });
+        into->drawRect(titleBlockArea(), .7); // outer border
 
     m_currentLanguage = m_languageTexts->value(language());
 
-    // Grid
+        // Grid: mimic ISO 7200 style A layout using horizontal and vertical lines.
+        // Horizontal separations at y: 9, 18, 27 (from top of block).
     // Horizontal
     into->drawLine(
             QPointF{ titleBlockArea().topLeft().x(), titleBlockArea().topLeft().y() + 9 },
@@ -32,7 +35,7 @@ void ISO7200A::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
     into->drawLine(
             QPointF{ titleBlockArea().topLeft().x() + 129, titleBlockArea().topLeft().y() + 27 },
             QPointF{ titleBlockArea().bottomRight().x(), titleBlockArea().topLeft().y() + 27 }, .5);
-    // Vertical
+        // Vertical separations create columns for labels/values and right-side cells.
     into->drawLine(
             QPointF{ titleBlockArea().topLeft().x() + 26, titleBlockArea().topLeft().y() },
             QPointF{ titleBlockArea().topLeft().x() + 26, titleBlockArea().topLeft().y() + 9 }, .5);
@@ -64,7 +67,8 @@ void ISO7200A::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
             QPointF{ titleBlockArea().topLeft().x() + 171, titleBlockArea().bottomRight().y() },
             .5);
 
-    // Text
+        // Text: labels (small, top-anchored) above values (editable by key).
+        // Keys correspond to backend variable mapping (see header comment).
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 1 },
             m_currentLanguage["ResponsibleDepartment"].lable, 1.8, TextHeightAnchor::Top,
@@ -227,7 +231,8 @@ void ISO7200A::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
             TextWidthAnchor::Left, .25, font(), "SheetNumberNumbers",
             m_currentLanguage["SheetNumberNumbers"].isEditable);
 
-    if (QFileInfo::exists(m_picturePath)) {
+        // Optional company logo or mark; drawn if file exists.
+        if (QFileInfo::exists(m_picturePath)) {
         into->drawPicture(m_picturePath,
                           QPointF{ titleBlockArea().topLeft().x() + 67,
                                    titleBlockArea().bottomRight().y() - 2 },

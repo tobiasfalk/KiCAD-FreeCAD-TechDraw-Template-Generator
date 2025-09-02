@@ -5,12 +5,13 @@
 
 void PreView::paintEvent(QPaintEvent *e)
 {
-
+    // Create a painter bound to this widget and wrap it in a UniversalDraw backend
     m_painter = std::shared_ptr<QPainter>(new QPainter(this));
 
     std::shared_ptr<QtPainterDrawer> pre_painter = std::make_shared<QtPainterDrawer>(m_painter);
     pre_painter->setEditableBlue(true);
 
+    // Compute uniform scale so the full page fits into the widget
     double scale = this->minimumWidth() / m_pageStyle->getPageWidth();
     if (m_pageStyle->getPageHight() * scale > this->height()) {
         scale = this->height() / m_pageStyle->getPageHight();
@@ -35,6 +36,7 @@ void PreView::paintEvent(QPaintEvent *e)
     // path.addPolygon(rectangle);
     // m_painter->fillPath(path, brush);
 
+    // Render full page into the preview backend (no files written)
     m_pageStyle->draw(pre_painter);
 
     // UniversalDraw::printTest(pre_painter);

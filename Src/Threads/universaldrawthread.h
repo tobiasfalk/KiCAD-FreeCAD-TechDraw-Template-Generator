@@ -12,18 +12,23 @@
 enum class DrawingFormate {
     /// saves the output as SVG hat is compatible with FreeCAD,
     /// it ends with <b>".freecad.svg"</b> and uses the FreeCADSvg class
+    /// (adds freecad:editable/autofill attributes for TechDraw)
     FreeCADSvg,
     /// saves the output as a KiCAD Worksheet Template,
     /// it ends with <b>".ki8.kicad_wks"</b> and uses the KiCAD8 class
+    /// (uses KiCAD v8 worksheet S-expression format; text maps to ${...})
     KiCAD8,
     /// saves the output as a PDF with all the editable fields empty,
     /// it ends with <b>".qt.pdf"</b> and uses the PdfQtPaint class
+    /// (Qt painter backend)
     PdfQtPaint,
     /// saves the output as a SVG with all the editable fields empty,
     /// it ends with <b>".svg"</b> and uses the SvgDraw class
+    /// (plain SVG without FreeCAD-specific attributes)
     Svg,
     /// saves the output as a SVG with all the editable fields empty,
     /// it ends with <b>".qt.svg"</b> and uses the SvgQtPaint class
+    /// (SVG generated via Qt painter)
     SvgQtPaint,
     /// writes an HTML page that embeds the SVG output
     Html,
@@ -32,7 +37,7 @@ enum class DrawingFormate {
 };
 
 ///
-/// \brief The UniversalDrawThread class prepares a UniversalDraw Class and starts it in a QThread
+/// \brief The UniversalDrawThread class prepares UniversalDraw backends and renders in a QThread
 ///
 class UniversalDrawThread : public QThread
 {
@@ -54,6 +59,10 @@ public:
 
     ///
     /// \brief run starts the thread
+    ///
+    /// Iterates all selected formats, instantiates the matching backend, appends
+    /// the proper file extension to m_fileName, and calls PageStyle::draw().
+    /// Emits resultReady(this) when finished.
     ///
     void run() override;
 
@@ -99,7 +108,7 @@ signals:
 
 private:
     ///
-    /// \brief m_fileName is the name and path of the file that is written to
+    /// \brief m_fileName is the base name/path without extension; each backend appends its own extension
     ///
     QString m_fileName;
 
@@ -109,7 +118,7 @@ private:
     PageStyle m_pageStyle;
 
     ///
-    /// \brief m_drawingFormates is the style/file formate of the output;
+    /// \brief m_drawingFormates is the list of file formats to generate
     ///
     QList<DrawingFormate> m_drawingFormates;
 

@@ -16,12 +16,13 @@ ISO7200B::ISO7200B()
 
 void ISO7200B::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
-    setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 27 }, where.bottomRight() });
-    into->drawRect(titleBlockArea(), .7);
+        // ISO7200 style B variant: fixed size 180 x 27 mm, bottom-right anchored.
+        setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 180, 27 }, where.bottomRight() });
+        into->drawRect(titleBlockArea(), .7);
 
     m_currentLanguage = m_languageTexts->value(language());
 
-    // Grid
+        // Grid: two main rows (0-9, 9-18) and lower row (18-27) with narrow right cells.
     // Horizontal
     into->drawLine(
             QPointF{ titleBlockArea().topLeft().x(), titleBlockArea().topLeft().y() + 9 },
@@ -61,7 +62,7 @@ void ISO7200B::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
             QPointF{ titleBlockArea().topLeft().x() + 171, titleBlockArea().bottomRight().y() },
             .5);
 
-    // Text
+        // Text: similar keys as style A but arranged for the shorter height.
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 2, titleBlockArea().topLeft().y() + 1 },
             m_currentLanguage["ResponsibleDepartment"].lable, 1.8, TextHeightAnchor::Top,
@@ -200,7 +201,8 @@ void ISO7200B::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
             m_currentLanguage["SheetNumberNumbers"].text, 2.5, TextHeightAnchor::Bottom,
             TextWidthAnchor::Left, .25, font(), "SheetNumberNumbers", true);
 
-    if (QFileInfo::exists(m_picturePath)) {
+        // Optional logo picture when available.
+        if (QFileInfo::exists(m_picturePath)) {
         into->drawPicture(m_picturePath,
                           QPointF{ titleBlockArea().topLeft().x() + 28,
                                    titleBlockArea().bottomRight().y() - 2 },

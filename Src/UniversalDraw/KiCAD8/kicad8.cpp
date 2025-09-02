@@ -104,6 +104,7 @@ void KiCAD8::drawText(const QPointF &position, const QString &text, double textS
                       TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                       double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
+    // Map anchors to KiCAD's (justify ...) options
     QString anchorString = "";
     // make mutable copies because parameters are const-ref
     QString mutableText = text;
@@ -144,12 +145,15 @@ void KiCAD8::drawText(const QPointF &position, const QString &text, double textS
         anchorString = "(justify right bottom)";
     }
 
+    // Recognized field names for KiCAD built-in variables
     QList<QString> keyWords = { "SheetNumberNumbers", "SheetNumber",    "NumberOfPages", "LegalOwner",
                                 "DateOfIssue",       "RevisionIndex", "Title" };
 
     if (isEditable && !(keyWords.contains(mutableName))) {
+        // For custom fields: emit ${FieldName} so it can be bound via KiCAD variables
         mutableText = "${" + mutableName + "}";
     } else if (keyWords.contains(mutableName)) {
+        // Built-in variables
         if (mutableName == "SheetNumberNumbers") {
             mutableText = "${#}/${##}";
         } else if (mutableName == "SheetNumber") {
@@ -167,6 +171,7 @@ void KiCAD8::drawText(const QPointF &position, const QString &text, double textS
         }
     }
 
+    // Slight +0.3mm y-offset to align baseline visually in KiCAD
     QString lineString = "  (tbtext \"" + mutableText + "\" (name \"\")\n    (pos "
             + QString::number(position.x()) + " " + QString::number(position.y() + .3)
             + " ltcorner)\n    (font (face \"" + font + "\") (linewidth "
@@ -180,6 +185,7 @@ void KiCAD8::drawPicture(const QString &picturePath, const QPointF &position, do
 {
 
     if (picturePath.endsWith(".svg")) {
+        // KiCAD worksheets can't embed SVGs directly; convert to PNG and embed as hex data
         // Load SVG
         QSvgRenderer renderer(picturePath);
         QSize size = renderer.defaultSize();
@@ -243,6 +249,7 @@ void KiCAD8::drawPicture(const QString &picturePath, const QPointF &position, do
         data.append("    )\n  )\n");
         m_file->write(data.toLatin1());
     } else if (picturePath.endsWith(".png")) {
+        // PNG is embedded as hex-encoded (pngdata) in the worksheet
         // Load SVG
         QImage image(picturePath);
         QSize size = image.size();

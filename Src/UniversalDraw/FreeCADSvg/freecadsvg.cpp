@@ -6,6 +6,7 @@ void FreeCADSvg::drawText(const QPointF &position, const QString &text, double t
                           TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                           double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
+    // Compute SVG text-anchor and baseline adjustments
     QString anchorString = "";
     double posX = position.x();
     double posY = position.y();
@@ -26,6 +27,7 @@ void FreeCADSvg::drawText(const QPointF &position, const QString &text, double t
     }
 
     if (isEditable) {
+        // Editable fields get freecad:editable set to the field name
         QDomElement obj = m_document.createElement("text");
         obj.setAttribute("x", QString::number(posX));
         obj.setAttribute("y", QString::number(posY));
@@ -35,7 +37,7 @@ void FreeCADSvg::drawText(const QPointF &position, const QString &text, double t
                                  + QString::number(textSize * (1 + double(7) / 18))
                                  + "; text-anchor: " + anchorString + ";");
 
-        // Autofill artibute
+        // FreeCAD auto-fill attribute mapping (adds freecad:autofill where applicable)
         QList<QString> keyWords = {
             "SheetNumberNumbers", "LegalOwner", "DateOfIssue",  "Title", "Scale",
             "Creator",           "SheetNumber", "NumberOfPages"
@@ -60,7 +62,8 @@ void FreeCADSvg::drawText(const QPointF &position, const QString &text, double t
                 obj.setAttribute("freecad:autofill", "author");
             }
         }
-        QDomElement obj2 = m_document.createElement("tspan");
+    // Actual text content is nested in a tspan for compatibility
+    QDomElement obj2 = m_document.createElement("tspan");
         obj2.setAttribute("x", QString::number(posX));
         obj2.setAttribute("y", QString::number(posY));
         obj2.setAttribute("style",

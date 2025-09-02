@@ -9,6 +9,12 @@ PageStyle::PageStyle() { }
 
 void PageStyle::draw(const std::shared_ptr<UniversalDraw> &into)
 {
+    // Entry point for composing a full page:
+    // 1) configure backend switches (editable visibility)
+    // 2) set backend page size (mm)
+    // 3) start() backend
+    // 4) draw frame (sets drawingArea), then title block, then folding lines
+    // 5) end() backend
     // UniversalDraw::printTest(into, m_layout);
 
     into->setShowEditable(m_showEditable);
@@ -18,12 +24,15 @@ void PageStyle::draw(const std::shared_ptr<UniversalDraw> &into)
 
     into->start();
 
+    // Draw page frame in full page bounds; frame is responsible for computing its drawing area
     m_frame->setFont(m_font);
     m_frame->draw(into, m_layout.fullRect(QPageLayout::Millimeter), m_layout);
 
+    // Draw title block inside the frame's drawing area
     m_titleblocke->setFont(m_font);
     m_titleblocke->draw(into, m_frame->drawingArea(), m_layout);
 
+    // Draw folding marks according to selected algorithm/target size
     m_foldingLines->draw(into, m_layout);
 
     into->end();

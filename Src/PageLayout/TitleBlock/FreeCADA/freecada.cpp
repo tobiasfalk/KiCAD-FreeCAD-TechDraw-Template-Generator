@@ -15,12 +15,14 @@ FreeCADA::FreeCADA()
 
 void FreeCADA::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &where, const QPageLayout &onWhat)
 {
-    setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 140.35, 47 }, where.bottomRight() });
-    into->drawRect(titleBlockArea(), .35);
+        // FreeCAD-like layout; fixed size 140.35 x 47 mm anchored at bottom-right.
+        setTitleBlockArea(QRectF{ where.bottomRight() - QPointF{ 140.35, 47 }, where.bottomRight() });
+        into->drawRect(titleBlockArea(), .35);
 
     m_currentLanguage = m_languageTexts->value(language());
 
-    // Grid
+        // Grid: three main horizontal bands within the left 119 mm area
+        // and a right-side column subdivided into A..G rows.
 
     // Horizontal
     into->drawLine(
@@ -72,7 +74,7 @@ void FreeCADA::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
     // A 43,495
     // 47
 
-    // Vertical
+        // Vertical: split left area into small columns plus a narrow id/stack at the far right.
     into->drawLine(QPointF{ titleBlockArea().topLeft().x() + 17.5,
                             titleBlockArea().topLeft().y() + 16.825 },
                    QPointF{ titleBlockArea().topLeft().x() + 17.5,
@@ -96,7 +98,7 @@ void FreeCADA::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
             QPointF{ titleBlockArea().topLeft().x() + 123.92, titleBlockArea().bottomRight().y() },
             .35);
 
-    // Text
+        // Text: labels (small) and values (editable) per cell. Keys listed in header.
     // Row 1
     into->drawText(
             QPointF{ titleBlockArea().topLeft().x() + 1.25, titleBlockArea().topLeft().y() + 1.5 },
@@ -201,7 +203,7 @@ void FreeCADA::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
                    TextWidthAnchor::Left, .15, font(), "Disclaimer",
                    m_currentLanguage["Disclaimer"].isEditable);
 
-    // ABC Side
+        // ABC side (actually A..G): stacked cells on the far right with label/value each.
     into->drawText(QPointF{ titleBlockArea().topLeft().x() + 121.46,
                             titleBlockArea().topLeft().y() + 3.325 },
                    m_currentLanguage["G"].lable, 3, TextHeightAnchor::Middle,
@@ -259,7 +261,7 @@ void FreeCADA::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
                    m_currentLanguage["A"].text, 3, TextHeightAnchor::Middle,
                    TextWidthAnchor::Center, .3, font(), "A", m_currentLanguage["A"].isEditable);
 
-    // Picture
+        // Picture: optional company logo drawn if m_picturePath exists.
     if (QFileInfo::exists(m_picturePath)) {
         into->drawPicture(m_picturePath,
                           QPointF{ titleBlockArea().topLeft().x() + 117,

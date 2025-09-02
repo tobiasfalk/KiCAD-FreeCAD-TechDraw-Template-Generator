@@ -23,41 +23,43 @@ void UniversalDrawThread::run()
     //     runFreeCADSvg();
     // }
 
+    // Sequentially produce each selected output format
     foreach (DrawingFormate formate, m_drawingFormates) {
         switch (formate) {
-        case DrawingFormate::FreeCADSvg:
-            qInfo() << "FreeCAD";
-            runFreeCADSvg();
-            break;
-        case DrawingFormate::KiCAD8:
-            qInfo() << "KiCAD8";
-            runKiCAD8();
-            break;
-        case DrawingFormate::PdfQtPaint:
-            qInfo() << "PdfQtPaint";
-            runPdfQtPaint();
-            break;
-        case DrawingFormate::Svg:
-            qInfo() << "Svg";
-            runSvg();
-            break;
-        case DrawingFormate::SvgQtPaint:
-            qInfo() << "SvgQtPaint";
-            runSvgQtPaint();
-            break;
-        case DrawingFormate::Html:
-            qInfo() << "Html";
-            runHtml();
-            break;
-        case DrawingFormate::PngQtPaint:
-            qInfo() << "Png";
-            runPng();
-            break;
-        default:
-            break;
+            case DrawingFormate::FreeCADSvg:
+                qInfo() << "FreeCAD";
+                runFreeCADSvg();
+                break;
+            case DrawingFormate::KiCAD8:
+                qInfo() << "KiCAD8";
+                runKiCAD8();
+                break;
+            case DrawingFormate::PdfQtPaint:
+                qInfo() << "PdfQtPaint";
+                runPdfQtPaint();
+                break;
+            case DrawingFormate::Svg:
+                qInfo() << "Svg";
+                runSvg();
+                break;
+            case DrawingFormate::SvgQtPaint:
+                qInfo() << "SvgQtPaint";
+                runSvgQtPaint();
+                break;
+            case DrawingFormate::Html:
+                qInfo() << "Html";
+                runHtml();
+                break;
+            case DrawingFormate::PngQtPaint:
+                qInfo() << "Png";
+                runPng();
+                break;
+            default:
+                break;
         }
     }
 
+    // Signal completion back to the UI
     emit resultReady(this);
 }
 

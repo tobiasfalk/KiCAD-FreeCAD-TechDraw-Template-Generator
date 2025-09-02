@@ -84,6 +84,7 @@ void SvgDraw::drawText(const QPointF &position, const QString &text, double text
                        TextHeightAnchor textHeightAnchor, TextWidthAnchor textWidthAnchor,
                        double lineWidth, const QString &font, const QString &name, bool isEditable)
 {
+    // Skip editable fields for plain SVG when showEditable=false (used to produce "empty" templates)
     if (isEditable && !this->showEditable()) {
         return;
     }

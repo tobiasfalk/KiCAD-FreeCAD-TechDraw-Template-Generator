@@ -120,8 +120,7 @@ public:
     /// \param textWidthAnchor is the position of the text anchor in the width
     /// \param lineWidth is the width of the text line in mm
     /// \param font is the name of the font
-    /// \param isEditable defines if the text field is editable(true) or
-    /// not(false)
+    /// \param isEditable defines if the text field is editable(true) or not(false)
     /// \param name is the name that the text field is given, often
     /// used for variable/editable text
     ///
@@ -278,7 +277,8 @@ private:
     ///
     qreal m_width;
     ///
-    /// \brief m_showEditable if set to true, editable text is shown
+    /// \brief m_showEditable if set to true, editable text is shown; backends may skip editable
+    /// text when false to produce "empty" templates
     ///
     bool m_showEditable = false;
 };
