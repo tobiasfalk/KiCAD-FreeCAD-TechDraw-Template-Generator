@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=KiCAD-FreeCAD-TechDraw-Template-Generator
+Exec=KiCAD-FreeCAD-TechDraw-Template-Generator
+Icon=icon
+Categories=Graphics;Engineering;
+Comment=Vorlagen-Generator für KiCAD, FreeCAD und TechDraw

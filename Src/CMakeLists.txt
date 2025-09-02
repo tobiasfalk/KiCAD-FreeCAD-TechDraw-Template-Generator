@@ -88,3 +88,6 @@ endif()
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Test/
     DESTINATION ${CMAKE_BINARY_DIR}/bin/Test/)
 
+
+# AppImage Target
+

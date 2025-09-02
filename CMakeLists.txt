@@ -61,3 +61,6 @@ add_subdirectory(Doc/)
 #foreach (_variableName ${_variableNames})
 #    message(STATUS "${_variableName}=${${_variableName}}")
 #endforeach()
+
+# Include AppImage build support
+include(AppDir/AppImage.cmake)
