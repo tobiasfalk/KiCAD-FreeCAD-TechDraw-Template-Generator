@@ -1,14 +1,12 @@
 message(STATUS "Conft PreView")
 
 set(PreView_SOURCES
-)
-
-qt_add_library(PreView STATIC
-    # ${PreView_SOURCES}
     preview.cpp
 )
 
-add_library(PreView STATIC ${PreView_SOURCES})
+qt_add_library(PreView STATIC
+    ${PreView_SOURCES}
+)
 
 target_sources(PreView PRIVATE ${PreView_SOURCES})
 target_include_directories(PreView PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
