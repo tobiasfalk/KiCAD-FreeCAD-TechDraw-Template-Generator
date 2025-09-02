@@ -64,3 +64,23 @@ add_subdirectory(Doc/)
 
 # Include AppImage build support
 include(AppDir/AppImage.cmake)
+
+# CPack-Konfiguration für RPM
+include(InstallRequiredSystemLibraries)
+set(CPACK_GENERATOR "RPM")
+set(CPACK_PACKAGE_NAME "KiCAD-FreeCAD-TechDraw-Template-Generator")
+set(CPACK_PACKAGE_VERSION "2.1")
+set(CPACK_PACKAGE_RELEASE 1)
+set(CPACK_PACKAGE_CONTACT "Tobias Falk tobiasfalk200242@gmail.com")
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_GROUP "Productivity/Graphics")
+set(CPACK_RPM_PACKAGE_URL "https://github.com/tobiasfalk/KiCAD-FreeCAD-TechDraw-Template-Generator")
+set(CPACK_RPM_PACKAGE_DESCRIPTION "Generator für KiCAD/FreeCAD TechDraw-Vorlagen.")
+
+# Install-Regeln (Beispiel, passe ggf. an):
+install(DIRECTORY Doc/ DESTINATION share/doc/KiCAD-FreeCAD-TechDraw-Template-Generator)
+install(DIRECTORY Examples/ DESTINATION share/KiCAD-FreeCAD-TechDraw-Template-Generator/examples)
+install(DIRECTORY TemplateLibrary/ DESTINATION share/KiCAD-FreeCAD-TechDraw-Template-Generator/templates)
+install(FILES README.md CODESTYLE.md DESTINATION share/doc/KiCAD-FreeCAD-TechDraw-Template-Generator)
+
+include(CPack)

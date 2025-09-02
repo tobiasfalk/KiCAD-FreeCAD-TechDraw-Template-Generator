@@ -84,10 +84,8 @@ if(TARGET Qt6::windeployqt)
 #    )
 endif()
 
+install(TARGETS ${APP_TARGET} DESTINATION bin)
+
 # Copy Test Folder
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Test/
     DESTINATION ${CMAKE_BINARY_DIR}/bin/Test/)
-
-
-# AppImage Target
-
