@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
+
+      - name: Build AppImage
+        run: |
+          chmod +x ./scripts/package-appimage.sh
+          ./scripts/package-appimage.sh
+
+      - name: Build Windows EXE
+        run: |
+          pwsh ./scripts/package-windows.ps1
+
+      - name: Create Release
+        id: create_release
+        run: |
+          gh release create ${{ github.ref }} \
+            appimage.AppImage \
+            app.exe \
+            --title "Beta Release ${{ github.ref }}" \
+            --notes "This is a beta release containing the AppImage and Windows executable."
+
+      - name: Upload Release Assets
+        run: |
+          gh release upload ${{ github.ref }} appimage.AppImage
+          gh release upload ${{ github.ref }} app.exe
