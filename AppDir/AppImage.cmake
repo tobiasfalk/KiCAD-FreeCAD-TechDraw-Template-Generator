@@ -16,6 +16,16 @@
 # Hier ein Beispiel, wie du ein Target appimage in deiner CMakeLists.txt definierst:
 
 # AppImage Target für KiCAD-FreeCAD-TechDraw-Template-Generator
+# Require or infer APP_TARGET (Name des ausführbaren Targets)
+if(NOT DEFINED APP_TARGET OR "${APP_TARGET}" STREQUAL "")
+  if(TARGET ${PROJECT_NAME})
+    set(APP_TARGET ${PROJECT_NAME} CACHE INTERNAL "Target to bundle into AppImage")
+    message(STATUS "AppImage: using project target '${APP_TARGET}' as APP_TARGET")
+  else()
+    message(FATAL_ERROR "AppImage.cmake: APP_TARGET is not set and no target named '${PROJECT_NAME}' exists.\nSet APP_TARGET to the executable target name before including this file, z.B.:\n  set(APP_TARGET MyExecutable)\ninclude(\"${CMAKE_CURRENT_LIST_FILE}\")")
+  endif()
+endif()
+
 if(UNIX AND NOT APPLE)
     find_program(APPIMAGETOOL appimagetool)
     if(NOT APPIMAGETOOL)
@@ -24,7 +34,8 @@ if(UNIX AND NOT APPLE)
 
     add_custom_target(appimage
         COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/AppDir/usr/bin
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${APP_TARGET}> ${CMAKE_BINARY_DIR}/AppDir/usr/bin/
+        # Kopiere die gebaute Binary ins AppDir; hier wird die Generator‑Expression mit aufgelöstem APP_TARGET verwendet
+        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${APP_TARGET}>" ${CMAKE_BINARY_DIR}/AppDir/usr/bin/
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/AppDir/KiCAD-FreeCAD-TechDraw-Template-Generator.desktop ${CMAKE_BINARY_DIR}/AppDir/
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/AppDir/icon.png ${CMAKE_BINARY_DIR}/AppDir/
         COMMAND ${APPIMAGETOOL} ${CMAKE_BINARY_DIR}/AppDir ${CMAKE_BINARY_DIR}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
