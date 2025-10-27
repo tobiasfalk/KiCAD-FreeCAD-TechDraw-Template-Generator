@@ -209,13 +209,22 @@ jobs:
           name: build-${{ github.run_id }}-${{ matrix.os }}
           path: ${{ steps.strings.outputs.build-output-dir }}
 
-      - name: Create Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Create Release (Windows)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v2.0.0-beta
           files: |
-            ${{ steps.strings.outputs.build-output-dir }}/bin/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
             ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release (Linux)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'ubuntu-latest'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v2.0.0-beta
+          files: |
+            ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
