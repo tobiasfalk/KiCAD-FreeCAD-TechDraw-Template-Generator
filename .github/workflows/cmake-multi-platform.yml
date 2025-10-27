@@ -155,13 +155,28 @@ jobs:
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+      - name: Zip Windows bin folder
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $bd = "${{ steps.strings.outputs.build-output-dir }}"
+          $bin = Join-Path $bd "bin"
+          $zip = Join-Path $bd "KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip"
+          if (Test-Path $bin) {
+            Remove-Item -Force -ErrorAction Ignore $zip
+            Compress-Archive -Path "$bin\*" -DestinationPath $zip -Force
+            Write-Host "Created zip: $zip"
+          } else {
+            Write-Host "No bin folder found at $bin"
+          }
+
       - name: Create Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v1.0.0-beta
+          tag_name: v2.0.0-beta
           files: |
-            ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
-            ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.exe
+            ${{ steps.strings.outputs.build-output-dir }}/bin/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
+            ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
