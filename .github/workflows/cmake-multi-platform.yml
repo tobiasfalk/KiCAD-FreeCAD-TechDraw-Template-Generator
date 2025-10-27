@@ -192,7 +192,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         id: create_release_win
         with:
-          tag_name: v2.99.99-beta
+          tag_name: v2.99.99.${{ github.run_number }}-beta
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -203,7 +203,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $repo = "${{ github.repository }}"
-          $tag = "v2.99.99-beta"
+          $tag = "v2.99.99.${{ github.run_number }}-beta"
           $assetName = "KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip"
           Write-Host "Checking release by tag $tag in $repo"
           $release = Invoke-RestMethod -Headers @{ Authorization = "token $env:GITHUB_TOKEN"; "User-Agent" = "github-actions" } -Uri "https://api.github.com/repos/$repo/releases/tags/$tag" -ErrorAction SilentlyContinue
@@ -230,7 +230,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'ubuntu-latest'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v2.99.99-beta
+          tag_name: v2.99.99.${{ github.run_number }}-beta
           files: |
             ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
         env:
