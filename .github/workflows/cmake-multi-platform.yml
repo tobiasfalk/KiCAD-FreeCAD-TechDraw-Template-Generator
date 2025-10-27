@@ -61,11 +61,10 @@ jobs:
           version: 6.10.0
           arch: linux_gcc_64
 
-      - name: doxygen-install
-        if: matrix.os == 'ubuntu-latest'
-        # You may pin to the exact commit or the version.
-        uses: ssciwr/doxygen-install@v1.4.0
-
+      #- name: doxygen-install
+      #  if: matrix.os == 'ubuntu-latest'
+      #  # You may pin to the exact commit or the version.
+      #  uses: ssciwr/doxygen-install@v1.4.0
       - name: Install Vulkan SDK (Prepare Vulkan SDK)
         if: matrix.os == 'ubuntu-latest'
         uses: humbletim/setup-vulkan-sdk@v1.2.1
@@ -138,8 +137,7 @@ jobs:
         run: |
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-      - name: Configure CMake (Windows — disable docs)
-        if: matrix.os == 'windows-latest'
+      - name: Configure CMake
         shell: pwsh
         run: |
           $bd = "${{ steps.strings.outputs.build-output-dir }}"
@@ -147,33 +145,6 @@ jobs:
             -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} `
             -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} `
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} `
-            -DBUILD_DOC:BOOL=OFF `
-            -DBUILD_DOCUMENTATION:BOOL=OFF `
-            -DUSE_DOXYGEN:BOOL=OFF `
-            -DDOXYGEN_FOUND:BOOL=OFF `
-            -S ${{ github.workspace }}
-
-      - name: Diagnose CMake cache (Windows)
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          $bd = "${{ steps.strings.outputs.build-output-dir }}"
-          Write-Host "CMakeCache.txt exists:" (Test-Path (Join-Path $bd "CMakeCache.txt"))
-          if (Test-Path (Join-Path $bd "CMakeCache.txt")) {
-            Select-String -Path (Join-Path $bd "CMakeCache.txt") -Pattern 'DOC|DOXYGEN|BUILD_DOC|BUILD_DOCUMENTATION' -SimpleMatch -AllMatches | ForEach-Object { $_.Line }
-          }
-          Write-Host "Build/Doc folder listing (if exists):"
-          if (Test-Path (Join-Path $bd "Doc")) { Get-ChildItem -Recurse (Join-Path $bd "Doc") | Select-Object FullName,Length | ForEach-Object { $_ } } else { Write-Host "No Doc folder." }
-
-      - name: Configure CMake (Linux — docs enabled)
-        if: matrix.os == 'ubuntu-latest'
-        run: >
-          cmake -B ${{ steps.strings.outputs.build-output-dir }}
-          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -DBUILD_DOC=ON
-          -S ${{ github.workspace }}
 
       - name: Build
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
