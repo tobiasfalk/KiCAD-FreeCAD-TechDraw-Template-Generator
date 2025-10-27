@@ -25,7 +25,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang, cl]
+        c_compiler: [gcc, cl] # , clang
         include:
           - os: windows-latest
             c_compiler: cl
@@ -155,7 +155,7 @@ jobs:
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
-      - name: Build AppImage (Ubuntu)
+      - name: Build AppImage (Linux)
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
@@ -177,37 +177,37 @@ jobs:
             Write-Host "No bin folder found at $bin"
           }
 
-      - name: List available CMake targets (Linux)
-        if: matrix.os == 'ubuntu-latest'
-        shell: bash
-        run: |
-          cmake --build "${{ steps.strings.outputs.build-output-dir }}" --target help || true
-          # optional: show ninja targets if generator is Ninja
-          if [ -f "${{ steps.strings.outputs.build-output-dir }}/build.ninja" ]; then
-            ninja -C "${{ steps.strings.outputs.build-output-dir }}" -t targets || true
-          fi
+      #- name: List available CMake targets (Linux)
+      #  if: matrix.os == 'ubuntu-latest'
+      #  shell: bash
+      #  run: |
+      #    cmake --build "${{ steps.strings.outputs.build-output-dir }}" --target help || true
+      #    # optional: show ninja targets if generator is Ninja
+      #    if [ -f "${{ steps.strings.outputs.build-output-dir }}/build.ninja" ]; then
+      #      ninja -C "${{ steps.strings.outputs.build-output-dir }}" -t targets || true
+      #    fi
 
-      - name: List build folder (for debug)
-        shell: bash
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          echo "Build folder: ${{ steps.strings.outputs.build-output-dir }}"
-          du -sh "${{ steps.strings.outputs.build-output-dir }}" || true
-          find "${{ steps.strings.outputs.build-output-dir }}" -maxdepth 3 -type f -print || true
+      #- name: List build folder (for debug)
+      #  shell: bash
+      #  if: matrix.os == 'ubuntu-latest'
+      #  run: |
+      #    echo "Build folder: ${{ steps.strings.outputs.build-output-dir }}"
+      #    du -sh "${{ steps.strings.outputs.build-output-dir }}" || true
+      #    find "${{ steps.strings.outputs.build-output-dir }}" -maxdepth 3 -type f -print || true
 
-      - name: List build folder (for debug - Windows)
-        shell: pwsh
-        if: matrix.os == 'windows-latest'
-        run: |
-          $bd = "${{ steps.strings.outputs.build-output-dir }}"
-          Write-Host "Build folder: $bd"
-          Get-ChildItem -Path $bd -Recurse -File -Depth 3 | Select-Object FullName,Length
+      #- name: List build folder (for debug - Windows)
+      #  shell: pwsh
+      #  if: matrix.os == 'windows-latest'
+      #  run: |
+      #    $bd = "${{ steps.strings.outputs.build-output-dir }}"
+      #    Write-Host "Build folder: $bd"
+      #    Get-ChildItem -Path $bd -Recurse -File -Depth 3 | Select-Object FullName,Length
 
-      - name: Upload full build folder as artifact (debug)
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ github.run_id }}-${{ matrix.os }}
-          path: ${{ steps.strings.outputs.build-output-dir }}
+      #- name: Upload full build folder as artifact (debug)
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: build-${{ github.run_id }}-${{ matrix.os }}
+      #    path: ${{ steps.strings.outputs.build-output-dir }}
 
       - name: Create Release (Windows)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
@@ -225,6 +225,7 @@ jobs:
         with:
           tag_name: v2.0.0-beta
           files: |
-            ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
+            D:\a\KiCAD-FreeCAD-TechDraw-Template-Generator\KiCAD-FreeCAD-TechDraw-Template-Generator\build\KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
