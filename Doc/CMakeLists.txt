@@ -6,7 +6,7 @@ option(BUILD_DOCUMENTATION "Build documentation" ON)
 
 if(BUILD_DOC OR BUILD_DOCUMENTATION OR USE_DOXYGEN)
     message(STATUS "Documentation build enabled")
-    
+
     find_package(Doxygen #REQUIRED
         OPTIONAL_COMPONENTS mscgen dia dot)
     string(TIMESTAMP timestamp "%Y-%m-%d %H:%M:%S")
@@ -105,5 +105,8 @@ if(BUILD_DOC OR BUILD_DOCUMENTATION OR USE_DOXYGEN)
     #    set_target_properties(Build_Doc PROPERTIES ADDITIONAL_CLEAN_FILES
     #            "${CMAKE_BINARY_DIR}/doxyfile")
     endif()
+  
+else()
+    message(STATUS "Documentation NOT enabled")
 endif()
 
