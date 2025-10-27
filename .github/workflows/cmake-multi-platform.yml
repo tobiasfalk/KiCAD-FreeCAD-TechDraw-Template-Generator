@@ -193,7 +193,7 @@ jobs:
         id: create_release_win
         with:
           tag_name: v2.0.0-beta
-          files: ${{ steps.strings.outputs.build-output-dir }}/*.zip
+          files: ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -204,7 +204,7 @@ jobs:
           UPLOAD_URL="https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID/assets?name=asset.zip"
           curl -H "Authorization: token $GITHUB_TOKEN" \
               -H "Content-Type: application/zip" \
-              --data-binary @build/asset.zip "$UPLOAD_URL"
+              --data-binary ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.zip "$UPLOAD_URL"
 
       - name: Create Release (Linux)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'ubuntu-latest'
