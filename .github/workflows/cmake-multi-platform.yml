@@ -155,6 +155,31 @@ jobs:
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+      - name: Zip Windows bin folder
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $bd = "${{ steps.strings.outputs.build-output-dir }}"
+          $bin = Join-Path $bd "bin"
+          $zip = Join-Path $bd "KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip"
+          if (Test-Path $bin) {
+            Remove-Item -Force -ErrorAction Ignore $zip
+            Compress-Archive -Path "$bin\*" -DestinationPath $zip -Force
+            Write-Host "Created zip: $zip"
+          } else {
+            Write-Host "No bin folder found at $bin"
+          }
+
+      - name: List available CMake targets (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          cmake --build "${{ steps.strings.outputs.build-output-dir }}" --target help || true
+          # optional: show ninja targets if generator is Ninja
+          if [ -f "${{ steps.strings.outputs.build-output-dir }}/build.ninja" ]; then
+            ninja -C "${{ steps.strings.outputs.build-output-dir }}" -t targets || true
+          fi
+
       - name: List build folder (for debug)
         shell: bash
         if: matrix.os == 'ubuntu-latest'
@@ -176,21 +201,6 @@ jobs:
         with:
           name: build-${{ github.run_id }}-${{ matrix.os }}
           path: ${{ steps.strings.outputs.build-output-dir }}
-
-      - name: Zip Windows bin folder
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          $bd = "${{ steps.strings.outputs.build-output-dir }}"
-          $bin = Join-Path $bd "bin"
-          $zip = Join-Path $bd "KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip"
-          if (Test-Path $bin) {
-            Remove-Item -Force -ErrorAction Ignore $zip
-            Compress-Archive -Path "$bin\*" -DestinationPath $zip -Force
-            Write-Host "Created zip: $zip"
-          } else {
-            Write-Host "No bin folder found at $bin"
-          }
 
       - name: Create Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
