@@ -33,9 +33,6 @@ jobs:
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
         exclude:
           - os: windows-latest
             c_compiler: gcc
@@ -177,44 +174,38 @@ jobs:
             Write-Host "No bin folder found at $bin"
           }
 
-      #- name: List available CMake targets (Linux)
-      #  if: matrix.os == 'ubuntu-latest'
-      #  shell: bash
-      #  run: |
-      #    cmake --build "${{ steps.strings.outputs.build-output-dir }}" --target help || true
-      #    # optional: show ninja targets if generator is Ninja
-      #    if [ -f "${{ steps.strings.outputs.build-output-dir }}/build.ninja" ]; then
-      #      ninja -C "${{ steps.strings.outputs.build-output-dir }}" -t targets || true
-      #    fi
-      #- name: List build folder (for debug)
-      #  shell: bash
-      #  if: matrix.os == 'ubuntu-latest'
-      #  run: |
-      #    echo "Build folder: ${{ steps.strings.outputs.build-output-dir }}"
-      #    du -sh "${{ steps.strings.outputs.build-output-dir }}" || true
-      #    find "${{ steps.strings.outputs.build-output-dir }}" -maxdepth 3 -type f -print || true
-      #- name: List build folder (for debug - Windows)
-      #  shell: pwsh
-      #  if: matrix.os == 'windows-latest'
-      #  run: |
-      #    $bd = "${{ steps.strings.outputs.build-output-dir }}"
-      #    Write-Host "Build folder: $bd"
-      #    Get-ChildItem -Path $bd -Recurse -File -Depth 3 | Select-Object FullName,Length
-      #- name: Upload full build folder as artifact (debug)
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: build-${{ github.run_id }}-${{ matrix.os }}
-      #    path: ${{ steps.strings.outputs.build-output-dir }}
-      - name: Create Release (Windows)
+      - name: Verify zip exists (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $zip = Join-Path "${{ steps.strings.outputs.build-output-dir }}" "KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip"
+          Write-Host "Checking for: $zip"
+          if (-not (Test-Path $zip)) {
+            Write-Host "Zip not found. Listing build folder content:"
+            Get-ChildItem -Path "${{ steps.strings.outputs.build-output-dir }}" -Recurse | Select-Object FullName,Length
+            throw "ZIP file missing: $zip"
+          }
+          Write-Host "ZIP found: $zip"
+
+      - name: Create Release (Windows) - create only
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
         uses: softprops/action-gh-release@v1
+        id: create_release_win
         with:
           tag_name: v2.0.0-beta
-          files: |
-            D:\a\KiCAD-FreeCAD-TechDraw-Template-Generator\KiCAD-FreeCAD-TechDraw-Template-Generator\build\KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
+
+      - name: Upload ZIP as release asset (Windows)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release_win.outputs.upload_url }}
+          asset_path: ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
+          asset_name: KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release (Linux)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'ubuntu-latest'
