@@ -79,17 +79,37 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libfuse2 curl ca-certificates python3
+          HOST_ARCH=$(uname -m)
+          case "$HOST_ARCH" in
+            x86_64|amd64) WANT='x86_64' ;;
+            aarch64|arm64) WANT='aarch64' ;;
+            armv7l) WANT='armv7l' ;;
+            *) WANT='x86_64' ;;
+          esac
+          export WANT
           ASSET=$(python3 - <<'PY'
-          import sys, json, urllib.request
+          import os,sys,json,urllib.request
+          want=os.environ.get('WANT','x86_64')
           url="https://api.github.com/repos/AppImage/AppImageKit/releases/latest"
           req=urllib.request.Request(url, headers={'User-Agent':'ci'})
           with urllib.request.urlopen(req) as r:
               j=json.load(r)
-          for a in j.get('assets',[]):
-              n=a.get('name','')
-              if 'appimagetool' in n and n.endswith('.AppImage'):
-                  print(a.get('browser_download_url'))
-                  sys.exit(0)
+          assets=j.get('assets',[])
+          # 1) exact arch match
+          for a in assets:
+              n=a.get('name','').lower()
+              if 'appimagetool' in n and want in n and n.endswith('.appimage'):
+                  print(a.get('browser_download_url')); sys.exit(0)
+          # 2) prefer x86_64
+          for a in assets:
+              n=a.get('name','').lower()
+              if 'appimagetool' in n and 'x86_64' in n and n.endswith('.appimage'):
+                  print(a.get('browser_download_url')); sys.exit(0)
+          # 3) any appimagetool.AppImage
+          for a in assets:
+              n=a.get('name','').lower()
+              if 'appimagetool' in n and n.endswith('.appimage'):
+                  print(a.get('browser_download_url')); sys.exit(0)
           sys.exit(1)
           PY
           )
