@@ -187,13 +187,12 @@ jobs:
           }
           Write-Host "ZIP found: $zip"
 
-      - name: Create Release (Windows)
+      - name: Create Release (Windows) - create only
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
         uses: softprops/action-gh-release@v1
         id: create_release_win
         with:
           tag_name: v2.0.0-beta
-          # files: ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
