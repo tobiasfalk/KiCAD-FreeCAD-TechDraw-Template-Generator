@@ -59,7 +59,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install aqtinstall
-          python3 -m aqt list-qt linux desktop 6.10.0 || true
+          python3 -m aqt list-qt
 
       - name: Install Qt (Linux)
         if: matrix.os == 'ubuntu-latest'
