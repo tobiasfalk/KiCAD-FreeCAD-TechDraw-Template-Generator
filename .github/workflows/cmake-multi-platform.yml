@@ -196,6 +196,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Delete existing release asset (Windows)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $repo = "${{ github.repository }}"
+          $tag = "v2.0.0-beta"
+          $assetName = "KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip"
+          Write-Host "Checking release by tag $tag in $repo"
+          $release = Invoke-RestMethod -Headers @{ Authorization = "token $env:GITHUB_TOKEN"; "User-Agent" = "github-actions" } -Uri "https://api.github.com/repos/$repo/releases/tags/$tag" -ErrorAction SilentlyContinue
+          if (-not $release) { Write-Host "Release not found (will be created)."; exit 0 }
+          foreach ($a in $release.assets) {
+            if ($a.name -eq $assetName) {
+              Write-Host "Deleting existing asset: $($a.name) (id $($a.id))"
+              Invoke-RestMethod -Method Delete -Headers @{ Authorization = "token $env:GITHUB_TOKEN"; "User-Agent" = "github-actions" } -Uri "https://api.github.com/repos/$repo/releases/assets/$($a.id)"
+            }
+          }
+
       - name: Upload ZIP as release asset (Windows)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
         uses: actions/upload-release-asset@v1
