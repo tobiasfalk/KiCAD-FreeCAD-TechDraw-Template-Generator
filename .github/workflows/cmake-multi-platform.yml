@@ -47,10 +47,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          version: 6.9.3
+      #- name: Install Qt
+      #  uses: jurplel/install-qt-action@v3
+      #  with:
+      #    version: 6.9.3
 
       #- name: doxygen-install
       # You may pin to the exact commit or the version.
