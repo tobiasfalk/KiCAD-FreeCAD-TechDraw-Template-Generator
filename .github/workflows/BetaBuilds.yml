@@ -193,6 +193,7 @@ jobs:
         id: create_release_win
         with:
           tag_name: v2.999.999.${{ github.run_number }}-beta
+          prerelease: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -233,5 +234,6 @@ jobs:
           tag_name: v2.999.999.${{ github.run_number }}-beta
           files: |
             ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
+          prerelease: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
