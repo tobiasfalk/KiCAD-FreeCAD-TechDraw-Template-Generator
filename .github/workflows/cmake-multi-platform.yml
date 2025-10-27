@@ -47,10 +47,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Qt
+      - name: Install Qt (Windows — MSVC 2022)
+        if: matrix.os == 'windows-latest'
         uses: jurplel/install-qt-action@v3
         with:
           version: 6.10.0
+          arch: win64_msvc2022_64
+
+      - name: Install Qt (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.10.0
+          arch: gcc_64
 
       - name: doxygen-install
         # You may pin to the exact commit or the version.
@@ -69,10 +78,19 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libfuse2 curl
-          curl -sL -o appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/latest/download/appimagetool-x86_64.AppImage
-          chmod +x appimagetool.AppImage
-          sudo mv appimagetool.AppImage /usr/local/bin/appimagetool
-          appimagetool --version
+          URL="https://github.com/AppImage/AppImageKit/releases/latest/download/appimagetool-x86_64.AppImage"
+          echo "Downloading $URL"
+          curl -fSL -o appimagetool.AppImage "$URL" || { echo "Download failed (HTTP error)"; exit 1; }
+          # Prüfen, ob es ein echtes AppImage/ELF ist
+          if file appimagetool.AppImage | grep -qi 'ELF'; then
+            chmod +x appimagetool.AppImage
+            sudo mv appimagetool.AppImage /usr/local/bin/appimagetool
+            /usr/local/bin/appimagetool --version
+          else
+            echo "Fehler: Heruntergeladene Datei ist kein ELF/AppImage. Auszug:"
+            head -n 50 appimagetool.AppImage
+            exit 1
+          fi
 
       - name: Set reusable strings
         # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
