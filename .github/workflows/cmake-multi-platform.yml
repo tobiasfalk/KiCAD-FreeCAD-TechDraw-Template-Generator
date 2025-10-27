@@ -201,7 +201,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: v2.0.0-beta
-          files: ${{ steps.strings.outputs.build-output-dir }}/*.zip
+          artifacts: ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #  uses: actions/upload-release-asset@v1
