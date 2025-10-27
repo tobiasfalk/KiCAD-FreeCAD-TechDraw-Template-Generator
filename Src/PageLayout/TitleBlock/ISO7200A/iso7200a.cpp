@@ -236,7 +236,7 @@ void ISO7200A::draw(const std::shared_ptr<UniversalDraw> &into, const QRectF &wh
         into->drawPicture(m_picturePath,
                           QPointF{ titleBlockArea().topLeft().x() + 67,
                                    titleBlockArea().bottomRight().y() - 2 },
-                          65, 23);
+                          65, 20);
     }
 }
 
