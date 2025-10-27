@@ -140,13 +140,30 @@ jobs:
 
       - name: Configure CMake (Windows — disable docs)
         if: matrix.os == 'windows-latest'
-        run: >
-          cmake -B ${{ steps.strings.outputs.build-output-dir }}
-          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -DBUILD_DOC=OFF
-          -S ${{ github.workspace }}
+        shell: pwsh
+        run: |
+          $bd = "${{ steps.strings.outputs.build-output-dir }}"
+          cmake -B $bd `
+            -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} `
+            -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} `
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} `
+            -DBUILD_DOC:BOOL=OFF `
+            -DBUILD_DOCUMENTATION:BOOL=OFF `
+            -DUSE_DOXYGEN:BOOL=OFF `
+            -DDOXYGEN_FOUND:BOOL=OFF `
+            -S ${{ github.workspace }}
+
+      - name: Diagnose CMake cache (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $bd = "${{ steps.strings.outputs.build-output-dir }}"
+          Write-Host "CMakeCache.txt exists:" (Test-Path (Join-Path $bd "CMakeCache.txt"))
+          if (Test-Path (Join-Path $bd "CMakeCache.txt")) {
+            Select-String -Path (Join-Path $bd "CMakeCache.txt") -Pattern 'DOC|DOXYGEN|BUILD_DOC|BUILD_DOCUMENTATION' -SimpleMatch -AllMatches | ForEach-Object { $_.Line }
+          }
+          Write-Host "Build/Doc folder listing (if exists):"
+          if (Test-Path (Join-Path $bd "Doc")) { Get-ChildItem -Recurse (Join-Path $bd "Doc") | Select-Object FullName,Length | ForEach-Object { $_ } } else { Write-Host "No Doc folder." }
 
       - name: Configure CMake (Linux — docs enabled)
         if: matrix.os == 'ubuntu-latest'
