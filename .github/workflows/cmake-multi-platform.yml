@@ -159,7 +159,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v1
         with:
-          tag: v1.0.0-beta
+          tag_name: v1.0.0-beta
           files: |
             ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
             ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator.exe
