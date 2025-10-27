@@ -47,20 +47,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      #- name: Install Qt
-      #  uses: jurplel/install-qt-action@v3
-      #  with:
-      #    version: 6.9.3
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.9.3
 
-      #- name: doxygen-install
-      # You may pin to the exact commit or the version.
-      # uses: ssciwr/doxygen-install@8ebee91aa1d497c78f84be02a372ec7e1d240731
-      #  uses: ssciwr/doxygen-install@v1.4.0
-
-      - name: Install Vulkan SDK
+      - name: doxygen-install
         # You may pin to the exact commit or the version.
-        # uses: humbletim/install-vulkan-sdk@6aadcb709dbb8e4096dad20e35adaefec83d4b45
-        uses: humbletim/install-vulkan-sdk@v1.1.1
+        # uses: ssciwr/doxygen-install@8ebee91aa1d497c78f84be02a372ec7e1d240731
+        uses: ssciwr/doxygen-install@v1.4.0
+
+      #- name: Install Vulkan SDK
+      #  # You may pin to the exact commit or the version.
+      #  # uses: humbletim/install-vulkan-sdk@6aadcb709dbb8e4096dad20e35adaefec83d4b45
+      #  uses: humbletim/install-vulkan-sdk@v1.1.1
 
       - name: Set reusable strings
         # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
