@@ -155,6 +155,13 @@ jobs:
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+      - name: Build AppImage (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          echo "Running CMake target: appimage"
+          cmake --build "${{ steps.strings.outputs.build-output-dir }}" --config ${{ matrix.build_type }} --target appimage
+
       - name: Zip Windows bin folder
         if: matrix.os == 'windows-latest'
         shell: pwsh
@@ -209,6 +216,6 @@ jobs:
           tag_name: v2.0.0-beta
           files: |
             ${{ steps.strings.outputs.build-output-dir }}/bin/KiCAD-FreeCAD-TechDraw-Template-Generator.AppImage
-            ${{ steps.strings.outputs.build-output-dir }}/bin/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
+            ${{ steps.strings.outputs.build-output-dir }}/KiCAD-FreeCAD-TechDraw-Template-Generator-windows.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
